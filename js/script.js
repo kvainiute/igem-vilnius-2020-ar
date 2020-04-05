@@ -84,7 +84,7 @@ function init() {
     //loading the 3D model
     models = new THREE.Object3D();
     var loader = new THREE.GLTFLoader();
-    loader.load('assets/scene.gltf', function (gltf) {
+    loader.load('models/1stModel/scene.gltf', function (gltf) {
         model = gltf.scene;
 
         //Putting the model in the center and scaling it
