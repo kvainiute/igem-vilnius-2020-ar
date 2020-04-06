@@ -1,3 +1,9 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 .button {
     background: #fcbd1b;
     border-radius: 100px;
@@ -55,7 +61,7 @@
     overflow:auto;
 }
 #model-info #info-footer {
-    /*position: absolute;*/
+    position: absolute;
     bottom: 5px;
     padding-top: 10px;
     margin: 0 auto;
@@ -129,4 +135,8 @@ a {
     88.59% { -webkit-transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
     96% { -webkit-transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
     100% { -webkit-transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+img {
+    width: 30px;
+    height: 30px;
 }

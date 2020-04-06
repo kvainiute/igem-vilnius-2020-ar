@@ -1,10 +1,12 @@
-var camera, ambient, scene, renderer, video, update, model, models, raycaster, mouse, selectedObject, constraints;
+var camera, ambient, scene, renderer, video, update, model, raycaster, mouse, selectedObject, constraints, infoHeader, infoParagraph;
 
 var strDownloadMime = "image/octet-stream";
 
 
-function init() {
-
+export function init(modelName, models, header, paragraph) {
+    console.log("initiated");
+    infoHeader = header;
+    infoParagraph = paragraph;
     //initial Media setup
     var defaultsOpts = { audio: false, video: true };
     var shouldFaceUser = false;
@@ -58,11 +60,7 @@ function init() {
 
     document.getElementById("photo-button").addEventListener( 'click', saveAsImage, false );
 
-    document.getElementById("info-button").addEventListener( 'click', function(){
-        $('#model-info').css('display', 'block');
-        positionInfoDiv();
-        console.log("Success");
-    }, false );
+    document.getElementById("info-button").addEventListener( 'click', showInfo, false );
 
     document.getElementById("close-button").addEventListener( 'click', function(){
         $('#model-info').css('display', 'none');
@@ -81,10 +79,18 @@ function init() {
 
     });
 
-    //loading the 3D model
-    models = new THREE.Object3D();
+    load3Dmodel(modelName, models);
+
+    //rotation of the 3D model
+    update = function(){
+        models.rotation.y += 0.01;
+        models.rotation.z += 0.01;
+    };
+}
+//loading the 3D model
+function load3Dmodel(modelName, models){
     var loader = new THREE.GLTFLoader();
-    loader.load('assets/scene.gltf', function (gltf) {
+    loader.load(modelName, function (gltf) {
         model = gltf.scene;
 
         //Putting the model in the center and scaling it
@@ -116,13 +122,8 @@ function init() {
 
     });
     scene.add(models);
-
-    //rotation of the 3D model
-    update = function(){
-        models.rotation.y += 0.01;
-        models.rotation.z += 0.01;
-    };
 }
+
 //Called when clicking on the 3d model => info div pops up
 function onClick() {
 
@@ -137,21 +138,22 @@ function onClick() {
 
     if ( intersects.length > 0 ) {
         selectedObject = intersects[0].object;
-        // toggle html element
-        $('#model-info').css('display', 'block');
-        positionInfoDiv();
-        console.log("Success");
+        showInfo();
 
     }
-
+}
+function showInfo() {
+    $('#st-name').text(infoHeader);
+    $('#text-info').text(infoParagraph);
+    // toggle html element
+    $('#model-info').css('display', 'block');
+    positionInfoDiv();
 }
 //positioning the Info Div in the middle
 function positionInfoDiv() {
 
     var height = $("#model-info").height();
     var width = $("#model-info").width();
-    console.log( height, width );
-    console.log($("#model-info h1").width());
     if(width < $("#model-info h1").width()){
         width = $("#model-info h1").width();
     }
@@ -166,17 +168,9 @@ function onWindowResize() {
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    positionTip();
+    positionInfoDiv();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
-
-}
-//important
-function animate() {
-
-    requestAnimationFrame( animate );
-    update();
-    renderer.render( scene, camera );
 
 }
 //Custom image file name 
@@ -215,6 +209,13 @@ var saveFile = function (strData, filename) {
         location.replace(uri);
     }
 }
-init();
-animate();
+//important
+export function animate() {
+
+    requestAnimationFrame( animate );
+    update();
+    renderer.render( scene, camera );
+
+}
+
 
