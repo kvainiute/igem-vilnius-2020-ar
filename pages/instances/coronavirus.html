@@ -24,6 +24,7 @@
         <script type="module" src="../../js/three.js"></script>
         <script type="module" src="../../js/OrbitControls.js"></script>
         <script type="module" src="../../js/GLTFLoader.js"></script>
+        <script type="module" src="../../js/DRACOLoader.js"></script>
 
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
@@ -37,10 +38,12 @@
             var models = new THREE.Object3D();
             var modelName = "../../models/coronavirus/scene.gltf";
 
+            var animated = false;
+            var compressed = false;
 
-            import { init, animate } from '../../js/script.js';
-            init(modelName, models, header, paragraph);
-            animate();
+            import { init, animateN } from '../../js/script.js';
+            init(modelName, models, header, paragraph, animated, compressed);
+            animateN();
         </script>
 
     </body>

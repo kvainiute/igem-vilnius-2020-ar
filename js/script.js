@@ -2,8 +2,9 @@ var camera, ambient, scene, renderer, video, update, model, raycaster, mouse, se
 
 var strDownloadMime = "image/octet-stream";
 
-
-export function init(modelName, models, header, paragraph) {
+var mixer = null;
+var clock = new THREE.Clock();
+export function init(modelName, models, header, paragraph, animated, compressed) {
     console.log("initiated");
     infoHeader = header;
     infoParagraph = paragraph;
@@ -79,17 +80,20 @@ export function init(modelName, models, header, paragraph) {
 
     });
 
-    load3Dmodel(modelName, models);
-
-    //rotation of the 3D model
+    load3Dmodel(modelName, models, compressed, animated);
     update = function(){
         models.rotation.y += 0.01;
         models.rotation.z += 0.01;
-    };
+    }
 }
 //loading the 3D model
-function load3Dmodel(modelName, models){
+function load3Dmodel(modelName, models, compressed, animated){
     var loader = new THREE.GLTFLoader();
+    if(compressed){
+        var dracoLoader = new THREE.DRACOLoader();
+        dracoLoader.setDecoderPath('../../draco/');
+        loader.setDRACOLoader(dracoLoader);
+    }
     loader.load(modelName, function (gltf) {
         model = gltf.scene;
 
@@ -108,18 +112,19 @@ function load3Dmodel(modelName, models){
         //Reposition to 0,halfY,0
         mroot.position.copy(cent).multiplyScalar(-1);
         mroot.position.y-= (size.y * 0.5);
+        if(animated){mroot.rotation.y -= 1.5;}
+
+
         models.add(mroot);
-    },
-                // called while loading is progressing
-                function ( xhr ) {
+        if(animated){
+            mixer = new THREE.AnimationMixer(model);
+            mixer.clipAction(gltf.animations[0]).play();
+        }
 
+    }, function ( xhr ) {
         console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-    },
-                // called when loading has errors
-                function ( error ) {
+    }, function ( error ) {
         console.log( 'An error happened' );
-
     });
     scene.add(models);
 }
@@ -210,12 +215,20 @@ var saveFile = function (strData, filename) {
     }
 }
 //important
-export function animate() {
+export function animateN() {
 
-    requestAnimationFrame( animate );
+    requestAnimationFrame( animateN );
     update();
     renderer.render( scene, camera );
 
+}
+export function animateAN(){
+    requestAnimationFrame( animateAN );
+    var delta = clock.getDelta();
+    if (mixer != null) {
+        mixer.update(delta);
+    };
+    renderer.render( scene, camera );
 }
 
 
