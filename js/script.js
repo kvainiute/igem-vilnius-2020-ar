@@ -4,28 +4,19 @@ var strDownloadMime = "image/octet-stream";
 
 var mixer = null;
 var clock = new THREE.Clock();
+
 export function init(modelName, models, header, paragraph, animated, compressed) {
-    console.log("initiated");
     infoHeader = header;
     infoParagraph = paragraph;
-    //initial Media setup
-    var defaultsOpts = { audio: false, video: true };
-    var shouldFaceUser = false;
-    var stream = null;
 
-    //getting Users webcam input
-    function capture() {
-        defaultsOpts.video = { facingMode: shouldFaceUser ? 'user' : 'environment' };
-        navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (streamTemp) {
-            stream  = streamTemp;
-            video.srcObject = stream;
-            video.play();
-        }).catch(function (err) {
-            console.log(err);
-        });
+    if (navigator.userAgent.indexOf("like Mac") != -1){
+        if (navigator.userAgent.indexOf("CriOS") != -1){
+            alert("iOS nepalaiko WebRTC naršyklėje Google Chrome. Siūlome naudoti Safari.");
+        } else if (navigator.userAgent.indexOf("FxiOS") != -1){
+            alert("iOS nepalaiko WebRTC naršyklėje Mozilla Firefox. Siūlome naudoti Safari.");
+        }
     }
-    capture();
-
+    
     //setting up the camera
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     camera.position.z = 1.5;
@@ -43,7 +34,27 @@ export function init(modelName, models, header, paragraph, animated, compressed)
     var canvas = renderer.domElement;
 
     //setting the background as webcam stream
-    video = document.getElementById( 'video' );
+    video = document.createElement( 'video' );
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    var facing = "environment";
+    var defaultsOpts = { 
+        audio: false, video: {
+            facingMode: facing
+        } 
+    }
+    if ( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ) {
+        navigator.mediaDevices.getUserMedia( defaultsOpts ).then( function ( stream ) {
+            video.srcObject = stream;
+            video.play();
+        } ).catch( function ( error ) {
+            console.error( 'Unable to access the camera/webcam.', error );
+        } );
+    } else {
+        console.error( 'MediaDevices interface not available.' );
+    }
+    document.body.appendChild(video);
     var webBackground = new THREE.VideoTexture( video );
     scene.background = webBackground;
 
@@ -68,16 +79,28 @@ export function init(modelName, models, header, paragraph, animated, compressed)
     }, false );
     //Reversing the camera <- needs fixing
     document.getElementById("reverse-button").addEventListener('click', function(){
-        if( stream == null ) {console.log(stream);return} else {console.log(stream)};
-        // we need to flip, stop everything
-        stream.getTracks().forEach(t => {
-            t.stop();
-        });
-        // toggle / flip
-        shouldFaceUser = !shouldFaceUser;
-        console.log(shouldFaceUser);
-        capture();
-
+        if (facing == "user") {
+            facing = "environment";
+        } else {
+            facing = "user";
+        }
+        defaultsOpts = { 
+            audio: false, video: {
+                facingMode: facing
+            } 
+        }
+        if ( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ) {
+            navigator.mediaDevices.getUserMedia( defaultsOpts ).then( function ( stream ) {
+                video.srcObject = stream;
+                video.play();
+            } ).catch( function ( error ) {
+                console.error( 'Unable to access the camera/webcam.', error );
+            } );
+        } else {
+            console.error( 'MediaDevices interface not available.' );
+        }
+        webBackground = new THREE.VideoTexture( video );
+        scene.background = webBackground;
     });
 
     load3Dmodel(modelName, models, compressed, animated);
@@ -112,7 +135,11 @@ function load3Dmodel(modelName, models, compressed, animated){
         //Reposition to 0,halfY,0
         mroot.position.copy(cent).multiplyScalar(-1);
         mroot.position.y-= (size.y * 0.5);
-        if(animated){mroot.rotation.y -= 1.5;}
+        if(animated){
+            mroot.position.z += 0.5;
+            mroot.position.y += 0.3;
+            mroot.rotation.y -= 1.5;
+        }
 
 
         models.add(mroot);
@@ -174,32 +201,26 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     positionInfoDiv();
-
     renderer.setSize( window.innerWidth, window.innerHeight );
 
 }
 //Custom image file name 
 function defaultFileName (ext) {
     const str = `${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}${ext}`;
-    var name = str.replace(/\//g, '-').replace(/:/g, '.');
-    console.log(name);
+    var name = str.replace(/\//g, '-');
     return name;
 }
 //Saving the image <- needs fixing
 function saveAsImage() {
     var imgData, imgNode;
-
     try {
         var strMime = "image/jpeg";
         imgData = renderer.domElement.toDataURL(strMime);
-
         saveFile(imgData.replace(strMime, strDownloadMime), defaultFileName(".jpg"));
-
     } catch (e) {
         console.log(e);
         return;
     }
-
 }
 //Capturing the image
 var saveFile = function (strData, filename) {
@@ -208,19 +229,19 @@ var saveFile = function (strData, filename) {
         document.body.appendChild(link); //Firefox requires the link to be in the body
         link.download = filename;
         link.href = strData;
-        link.click();
-        document.body.removeChild(link); //remove the link when done
+        setTimeout(function(){
+            link.click();
+            document.body.removeChild(link); //remove the link when done
+        }, 500);
     } else {
         location.replace(uri);
     }
 }
 //important
 export function animateN() {
-
     requestAnimationFrame( animateN );
     update();
     renderer.render( scene, camera );
-
 }
 export function animateAN(){
     requestAnimationFrame( animateAN );
@@ -230,5 +251,3 @@ export function animateAN(){
     };
     renderer.render( scene, camera );
 }
-
-

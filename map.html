@@ -1,126 +1,289 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-        <script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
-        <link href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" rel="stylesheet" />
-        <!-- Bootstrap core CSS -->
-        <link href="./css/bootstrap.min.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="./css/main.min.css" rel="stylesheet">
-        <style>
-            #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
-            .mapboxgl-popup {
-                max-width: 400px;
-                font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-            }
-            #foot {
-                position: absolute;
-                z-index: 1000;
-                width: 100%;
-                bottom: 0;
-                left: 0;
-                border-radius: 0;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="map"></div>
-        <main role="main" class="inner cover"><a href="/" id="foot" class="btn btn-lg btn-secondary">gr&#303;&#382;ti atgal</a><br></main>
-        
-        
-        <script>
-            // You can remove the following line if you don't need support for RTL (right-to-left) labels:
-            mapboxgl.setRTLTextPlugin('https://cdn.maptiler.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.2/mapbox-gl-rtl-text.js');
-            if (!mapboxgl.supported()) {
-                alert('Your browser does not support Mapbox GL');
-            } else {
-                mapboxgl.accessToken = 'pk.eyJ1IjoiaWdlbXZpbG5pdXMiLCJhIjoiY2s4b2tuM3ZmMDNmMDNlbnNyNjBjYmF6byJ9.awDMKTb7QstzkFAD3FPA-g';
-                var map = new mapboxgl.Map({
-                    container: 'map',
-                    style: 'https://api.maptiler.com/maps/565e5c8b-5c56-489b-b954-0f260bfa40eb/style.json?key=dh3avbXkPzMlI59PVFsz',
-                    center: [25.27989, 54.68842],
-                    zoom: 13.45
-                });
-                map.on('load', function() {
-                    console.log("loaded");
+
+<head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
+    <link href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="./css/main.min.css" rel="stylesheet">
+    <style>
+        #map {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .mapboxgl-popup-content {
+            max-width: 400px;
+            background-color: #fcbd1b;
+            color: #fff;
+            text-align: center;
+        }
+
+        .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+            border-top-color: #fcbd1b;
+        }
+
+        #foot {
+            position: absolute;
+            z-index: 1000;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            border-radius: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <main role="main" class="inner cover"><a href="/" id="foot" class="btn btn-lg btn-secondary">gr&iogon;&zcaron;ti atgal</a><br></main>
+
+
+    <script>
+        // You can remove the following line if you don't need support for RTL (right-to-left) labels:
+        mapboxgl.setRTLTextPlugin('https://cdn.maptiler.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.2/mapbox-gl-rtl-text.js');
+        if (!mapboxgl.supported()) {
+            alert('Your browser does not support Mapbox GL');
+        } else {
+            mapboxgl.accessToken = 'pk.eyJ1IjoiaWdlbXZpbG5pdXMiLCJhIjoiY2s4b2tuM3ZmMDNmMDNlbnNyNjBjYmF6byJ9.awDMKTb7QstzkFAD3FPA-g';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'https://api.maptiler.com/maps/565e5c8b-5c56-489b-b954-0f260bfa40eb/style.json?key=dh3avbXkPzMlI59PVFsz',
+                //center: [25.27989, 54.68842],
+                //zoom: 13.45
+            });
+            map.on('load', function() {
+                map.loadImage('images/map-target.png', function(error, image) {
+                    if (error) throw error;
+                    map.addImage('map-target', image);
                     map.addSource('places', {
                         'type': 'geojson',
                         'data': {
                             'type': 'FeatureCollection',
-                            'features': [
-                                {
+                            'features': [{
                                     'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Katedros aik&scaron;t&edot;</strong><p><a href="./dna.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
                                     'geometry': {
                                         'type': 'Point',
-                                        'coordinates': [
-                                            25.27984005,
-                                            54.68782848
-                                        ]
-                                    },
-                                    'properties': {
-                                        'description': 'Vinco Kudirkos aikštė<br><a href="modelview.html">Žiūrėti</a>'
+                                        'coordinates': [25.288243, 54.685297]
                                     }
                                 },
                                 {
                                     'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Daukanto aik&scaron;t&edot;</strong><p><a href="./rna.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
                                     'geometry': {
                                         'type': 'Point',
-                                        'coordinates': [
-                                            25.28044107,
-                                            54.69235005
-                                        ]
-                                    },
-                                    'properties': {
-                                        'description': 'Zaliasis tiltas<br><a href="modelview.html">Žiūrėti</a>'
+                                        'coordinates': [25.288991, 54.688194]
                                     }
                                 },
                                 {
                                     'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Vingio parkas (I)</strong><p><a href="./game.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
                                     'geometry': {
                                         'type': 'Point',
-                                        'coordinates': [
-                                            25.28100000,
-                                            54.69235005
-                                        ]
+                                        'coordinates': [25.248680, 54.682399]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Vingio parkas (II)</strong><p><a href="./synbio.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
                                     },
-                                    'description': 'IDK<br><a href="modelview.html">Žiūrėti</a>'
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.239913, 54.682663]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Vingio parkas (III)</strong><p><a href="./biobrick.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.236457, 54.682373]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Trij&uogon; kry&zcaron;i&uogon; kalnas</strong><p><a href="./crispr-cas9.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.297490, 54.686754]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Bernardin&uogon; sodas (I)</strong><p><a href="./gfp.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.297362, 54.683689]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Vilniaus Universitetas</strong><p><a href="./fish.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.287624, 54.682960]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Vinco Kudirkos aik&scaron;t&edot;</strong><p><a href="./gmo.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.280564, 54.687349]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>U&zcaron;upio angelas</strong><p><a href="./e621.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.295431, 54.680630]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>U&zcaron;upio undin&edot;</strong><p><a href="./sequencing.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.292648, 54.680584]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Luki&scaron;ki&uogon; aik&scaron;t&edot;</strong><p><a href="./nano.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.271029, 54.689640]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Bernardin&uogon; sodas (II)</strong><p><a href="./ecoli.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.296628, 54.682367]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Vingio parkas (IV)</strong><p><a href="./sb.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.232576, 54.683055]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Baltasis tiltas</strong><p><a href="./bioethics.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.272825, 54.692826]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Sirvydo skveras</strong><p><a href="./protein.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.303095, 54.692732]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>Rotu&scaron;&edot;</strong><p><a href="./gene.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.287355, 54.678824]
+                                    }
+                                },
+                                {
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': '<strong>MO muziejus</strong><p><a href="./coronavirus.html" target="_blank">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [25.277759, 54.679589]
+                                    }
                                 }
                             ]
                         }
                     });
+                    // Add a layer showing the places.
                     map.addLayer({
                         'id': 'places',
-                        'interactive': true,
                         'type': 'symbol',
                         'source': 'places',
                         'layout': {
-                            'text-field': ['get', 'title'],
-                            'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-                            'text-offset': [0, 0.6],
-                            'text-anchor': 'top'
+                            'icon-image': 'map-target',
+                            'icon-allow-overlap': true,
+                            'icon-size': 0.4
                         }
                     });
-                });
-                map.on('click', 'places' ,function(e) {
-                    console.log("clicked");
-                    var coordinates = e.features[0].geometry.coordinates.slice();
-                    var description = e.features[0].properties.description;
+                    map.on('click', 'places', function(e) {
+                        var coordinates = e.features[0].geometry.coordinates.slice();
+                        var description = e.features[0].properties.description;
+                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                        }
 
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                    }
-
-                    new mapboxgl.Popup()
-                        .setLngLat(coordinates)
-                        .setHTML(description)
-                        .addTo(map);
+                        new mapboxgl.Popup()
+                            .setLngLat(coordinates)
+                            .setHTML(description)
+                            .addTo(map);
+                    });
+                    map.on('mouseenter', 'places', function() {
+                        map.getCanvas().style.cursor = 'pointer';
+                    });
+                    map.on('mouseleave', 'places', function() {
+                        map.getCanvas().style.cursor = '';
+                    });
                 });
-            }
-        </script>
-    </body>
+            });
+        }
+
+    </script>
+</body>
+
 </html>
