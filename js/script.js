@@ -1,14 +1,15 @@
-var camera, ambient, scene, renderer, video, update, model, raycaster, mouse, selectedObject, constraints, infoHeader, infoParagraph;
+var camera, light, scene, renderer, video, update, model, raycaster, mouse, selectedObject, constraints;
 
 var strDownloadMime = "image/octet-stream";
 
 var mixer = null;
 var clock = new THREE.Clock();
 
-export function init(modelName, models, header, paragraph, animated) {
-    infoHeader = header;
-    infoParagraph = paragraph;
+var header, paragraph, models, modelName, animated, control_type;
 
+var x_pos, y_pos, z_pos;
+
+function init() {
     if (navigator.userAgent.indexOf("like Mac") != -1) {
         if (navigator.userAgent.indexOf("CriOS") != -1) {
             alert("iOS nepalaiko WebRTC naršyklėje Google Chrome. Siūlome naudoti Safari.");
@@ -23,8 +24,9 @@ export function init(modelName, models, header, paragraph, animated) {
 
     //setting up the scene
     scene = new THREE.Scene();
-    ambient = new THREE.AmbientLight(0xffffff, 1.0);
-    scene.add(ambient);
+    light = new THREE.PointLight(0xffffff, 2.0);
+    light.position.set(1, 1, 1);
+    scene.add(light);
 
     //setting up the renderer
     renderer = new THREE.WebGLRenderer({
@@ -62,8 +64,8 @@ export function init(modelName, models, header, paragraph, animated) {
     var webBackground = new THREE.VideoTexture(video);
     scene.background = webBackground;
 
-    //camera controls
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    setControls();
+
     //choosing the 3D object
     raycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2()
@@ -107,14 +109,14 @@ export function init(modelName, models, header, paragraph, animated) {
         scene.background = webBackground;
     });
 
-    load3Dmodel(modelName, models, animated);
+    load3Dmodel();
     update = function () {
         models.rotation.y += 0.01;
         models.rotation.z += 0.01;
     }
 }
 //loading the 3D model
-function load3Dmodel(modelName, models, animated) {
+function load3Dmodel() {
     var loader = new THREE.GLTFLoader();
     var dracoLoader = new THREE.DRACOLoader();
     dracoLoader.setDecoderPath('../../draco/');
@@ -137,19 +139,17 @@ function load3Dmodel(modelName, models, animated) {
         //Reposition to 0,halfY,0
         mroot.position.copy(cent).multiplyScalar(-1);
         mroot.position.y -= (size.y * 0.5);
-        if (animated) {
-            mroot.position.z += 0.5;
-            mroot.position.y += 0.3;
-            mroot.rotation.y -= 1.5;
-        }
-
-
+        mroot.position.z += z_pos;
+        mroot.position.y += y_pos;
+        mroot.rotation.x += x_pos;
+        mroot.scale.set(0.3, 0.3, 0.3);
         models.add(mroot);
         if (animated) {
             mixer = new THREE.AnimationMixer(model);
-            mixer.clipAction(gltf.animations[0]).play();
+            var action = mixer.clipAction(gltf.animations[0]);
+            action.setLoop(THREE.LoopOnce);
+            action.play();
         }
-
     }, function (xhr) {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
     }, function (error) {
@@ -158,6 +158,15 @@ function load3Dmodel(modelName, models, animated) {
     scene.add(models);
 }
 
+function setControls() {
+    //camera controls
+    if (control_type == "orbit") {
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    } else {
+        return;
+    }
+
+}
 //Called when clicking on the 3d model => info div pops up
 function onClick() {
 
@@ -178,8 +187,8 @@ function onClick() {
 }
 
 function showInfo() {
-    $('#st-name').text(infoHeader);
-    $('#text-info').text(infoParagraph);
+    $('#st-name').text(header);
+    $('#text-info').text(paragraph);
     // toggle html element
     $('#model-info').css('display', 'block');
     positionInfoDiv();
@@ -244,16 +253,32 @@ var saveFile = function (strData, filename) {
     }
 }
 //important
-export function animateN() {
+function animateN() {
     requestAnimationFrame(animateN);
     update();
     renderer.render(scene, camera);
 }
-export function animateAN() {
+
+function animateAN() {
     requestAnimationFrame(animateAN);
     var delta = clock.getDelta();
     if (mixer != null) {
         mixer.update(delta);
     };
     renderer.render(scene, camera);
+}
+export function bacteriophage() {
+    header = "Bakteriofagas";
+    paragraph = "tekstas tekstas";
+
+    models = new THREE.Object3D();
+    modelName = "../models/bacteriophage.glb";
+
+    animated = true;
+    control_type = "none";
+    x_pos = -0.3;
+    y_pos = 0;
+    z_pos = 0.5;
+    init();
+    animateAN();
 }
