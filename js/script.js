@@ -107,7 +107,7 @@ export function init(modelName, models, header, paragraph, animated) {
         scene.background = webBackground;
     });
 
-    load3Dmodel(modelName, models, compressed, animated);
+    load3Dmodel(modelName, models, animated);
     update = function () {
         models.rotation.y += 0.01;
         models.rotation.z += 0.01;
