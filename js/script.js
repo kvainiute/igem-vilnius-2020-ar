@@ -5,20 +5,20 @@ var strDownloadMime = "image/octet-stream";
 var mixer = null;
 var clock = new THREE.Clock();
 
-export function init(modelName, models, header, paragraph, animated, compressed) {
+export function init(modelName, models, header, paragraph, animated) {
     infoHeader = header;
     infoParagraph = paragraph;
 
-    if (navigator.userAgent.indexOf("like Mac") != -1){
-        if (navigator.userAgent.indexOf("CriOS") != -1){
+    if (navigator.userAgent.indexOf("like Mac") != -1) {
+        if (navigator.userAgent.indexOf("CriOS") != -1) {
             alert("iOS nepalaiko WebRTC naršyklėje Google Chrome. Siūlome naudoti Safari.");
-        } else if (navigator.userAgent.indexOf("FxiOS") != -1){
+        } else if (navigator.userAgent.indexOf("FxiOS") != -1) {
             alert("iOS nepalaiko WebRTC naršyklėje Mozilla Firefox. Siūlome naudoti Safari.");
         }
     }
-    
+
     //setting up the camera
-    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 1.5;
 
     //setting up the scene
@@ -27,96 +27,98 @@ export function init(modelName, models, header, paragraph, animated, compressed)
     scene.add(ambient);
 
     //setting up the renderer
-    renderer = new THREE.WebGLRenderer( { antialias: true, preserveDrawingBuffer: true} );
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
+    renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        preserveDrawingBuffer: true
+    });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
     var canvas = renderer.domElement;
 
     //setting the background as webcam stream
-    video = document.createElement( 'video' );
+    video = document.createElement('video');
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
     var facing = "environment";
-    var defaultsOpts = { 
-        audio: false, video: {
+    var defaultsOpts = {
+        audio: false,
+        video: {
             facingMode: facing
-        } 
+        }
     }
-    if ( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ) {
-        navigator.mediaDevices.getUserMedia( defaultsOpts ).then( function ( stream ) {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
             video.srcObject = stream;
             video.play();
-        } ).catch( function ( error ) {
-            console.error( 'Unable to access the camera/webcam.', error );
-        } );
+        }).catch(function (error) {
+            console.error('Unable to access the camera/webcam.', error);
+        });
     } else {
-        console.error( 'MediaDevices interface not available.' );
+        console.error('MediaDevices interface not available.');
     }
     document.body.appendChild(video);
-    var webBackground = new THREE.VideoTexture( video );
+    var webBackground = new THREE.VideoTexture(video);
     scene.background = webBackground;
 
     //camera controls
-    var controls = new THREE.OrbitControls( camera, renderer.domElement );
-
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
     //choosing the 3D object
     raycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2()
 
     //All the event listeners
-    window.addEventListener( 'resize', onWindowResize, false );
+    window.addEventListener('resize', onWindowResize, false);
 
-    renderer.domElement.addEventListener( 'click', onClick, false );
+    renderer.domElement.addEventListener('click', onClick, false);
 
-    document.getElementById("photo-button").addEventListener( 'click', saveAsImage, false );
+    document.getElementById("photo-button").addEventListener('click', saveAsImage, false);
 
-    document.getElementById("info-button").addEventListener( 'click', showInfo, false );
+    document.getElementById("info-button").addEventListener('click', showInfo, false);
 
-    document.getElementById("close-button").addEventListener( 'click', function(){
+    document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
-    }, false );
+    }, false);
     //Reversing the camera <- needs fixing
-    document.getElementById("reverse-button").addEventListener('click', function(){
+    document.getElementById("reverse-button").addEventListener('click', function () {
         if (facing == "user") {
             facing = "environment";
         } else {
             facing = "user";
         }
-        defaultsOpts = { 
-            audio: false, video: {
+        defaultsOpts = {
+            audio: false,
+            video: {
                 facingMode: facing
-            } 
+            }
         }
-        if ( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ) {
-            navigator.mediaDevices.getUserMedia( defaultsOpts ).then( function ( stream ) {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
                 video.srcObject = stream;
                 video.play();
-            } ).catch( function ( error ) {
-                console.error( 'Unable to access the camera/webcam.', error );
-            } );
+            }).catch(function (error) {
+                console.error('Unable to access the camera/webcam.', error);
+            });
         } else {
-            console.error( 'MediaDevices interface not available.' );
+            console.error('MediaDevices interface not available.');
         }
-        webBackground = new THREE.VideoTexture( video );
+        webBackground = new THREE.VideoTexture(video);
         scene.background = webBackground;
     });
 
     load3Dmodel(modelName, models, compressed, animated);
-    update = function(){
+    update = function () {
         models.rotation.y += 0.01;
         models.rotation.z += 0.01;
     }
 }
 //loading the 3D model
-function load3Dmodel(modelName, models, compressed, animated){
+function load3Dmodel(modelName, models, animated) {
     var loader = new THREE.GLTFLoader();
-    if(compressed){
-        var dracoLoader = new THREE.DRACOLoader();
-        dracoLoader.setDecoderPath('../../draco/');
-        loader.setDRACOLoader(dracoLoader);
-    }
+    var dracoLoader = new THREE.DRACOLoader();
+    dracoLoader.setDecoderPath('../../draco/');
+    loader.setDRACOLoader(dracoLoader);
     loader.load(modelName, function (gltf) {
         model = gltf.scene;
 
@@ -134,8 +136,8 @@ function load3Dmodel(modelName, models, compressed, animated){
         bbox.getSize(size);
         //Reposition to 0,halfY,0
         mroot.position.copy(cent).multiplyScalar(-1);
-        mroot.position.y-= (size.y * 0.5);
-        if(animated){
+        mroot.position.y -= (size.y * 0.5);
+        if (animated) {
             mroot.position.z += 0.5;
             mroot.position.y += 0.3;
             mroot.rotation.y -= 1.5;
@@ -143,15 +145,15 @@ function load3Dmodel(modelName, models, compressed, animated){
 
 
         models.add(mroot);
-        if(animated){
+        if (animated) {
             mixer = new THREE.AnimationMixer(model);
             mixer.clipAction(gltf.animations[0]).play();
         }
 
-    }, function ( xhr ) {
-        console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-    }, function ( error ) {
-        console.log( 'An error happened' );
+    }, function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+    }, function (error) {
+        console.log('An error happened');
     });
     scene.add(models);
 }
@@ -161,19 +163,20 @@ function onClick() {
 
     event.preventDefault();
 
-    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    raycaster.setFromCamera( mouse, camera );
+    raycaster.setFromCamera(mouse, camera);
 
-    var intersects = raycaster.intersectObjects( scene.children, true );
+    var intersects = raycaster.intersectObjects(scene.children, true);
 
-    if ( intersects.length > 0 ) {
+    if (intersects.length > 0) {
         selectedObject = intersects[0].object;
         showInfo();
 
     }
 }
+
 function showInfo() {
     $('#st-name').text(infoHeader);
     $('#text-info').text(infoParagraph);
@@ -186,13 +189,16 @@ function positionInfoDiv() {
 
     var height = $("#model-info").height();
     var width = $("#model-info").width();
-    if(width < $("#model-info h1").width()){
+    if (width < $("#model-info h1").width()) {
         width = $("#model-info h1").width();
     }
-    var left = ( window.innerWidth - width ) / 2;
-    var top = ( window.innerHeight - height ) / 2;
+    var left = (window.innerWidth - width) / 2;
+    var top = (window.innerHeight - height) / 2;
 
-    $('#model-info').css({ left: left, top: top });
+    $('#model-info').css({
+        left: left,
+        top: top
+    });
 
 }
 //Window resizing
@@ -201,11 +207,11 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     positionInfoDiv();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
 }
 //Custom image file name 
-function defaultFileName (ext) {
+function defaultFileName(ext) {
     const str = `${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}${ext}`;
     var name = str.replace(/\//g, '-');
     return name;
@@ -229,7 +235,7 @@ var saveFile = function (strData, filename) {
         document.body.appendChild(link); //Firefox requires the link to be in the body
         link.download = filename;
         link.href = strData;
-        setTimeout(function(){
+        setTimeout(function () {
             link.click();
             document.body.removeChild(link); //remove the link when done
         }, 500);
@@ -239,15 +245,15 @@ var saveFile = function (strData, filename) {
 }
 //important
 export function animateN() {
-    requestAnimationFrame( animateN );
+    requestAnimationFrame(animateN);
     update();
-    renderer.render( scene, camera );
+    renderer.render(scene, camera);
 }
-export function animateAN(){
-    requestAnimationFrame( animateAN );
+export function animateAN() {
+    requestAnimationFrame(animateAN);
     var delta = clock.getDelta();
     if (mixer != null) {
         mixer.update(delta);
     };
-    renderer.render( scene, camera );
+    renderer.render(scene, camera);
 }

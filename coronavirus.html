@@ -55,13 +55,12 @@
             var paragraph = "Koronavirusai yra virusai, kurie cirkuliuoja tarp gyvūnų, tačiau žinoma, kad kai kurie iš jų sukelia infekcijas žmonėms. Sukėlę infekciją žmonėms, jie toliau gali būti perduoti nuo žmogaus žmogui. Koronavirusų infekcijos šaltinis gali būti daugybė gyvūnų. Pavyzdžiui, Artimųjų Rytų respiracinio sindromo koronaviruso (MERS-CoV) šaltinis buvo kupranugariai, o sunkaus ūmaus respiracinio sindromo (SŪRS) - civetės katės.";
 
             var models = new THREE.Object3D();
-            var modelName = "./models/coronavirus/scene.gltf";
+            var modelName = "./models/coronavirus.glb";
 
             var animated = false;
-            var compressed = false;
 
             import { init, animateN } from './js/script.js';
-            init(modelName, models, header, paragraph, animated, compressed);
+            init(modelName, models, header, paragraph, animated);
             animateN();
         </script>
 
