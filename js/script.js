@@ -8,6 +8,7 @@ var clock = new THREE.Clock();
 var header, paragraph, models, modelName, animated, control_type;
 
 var x_pos, y_pos, z_pos, x_rot, y_rot, z_rot;
+var looponce = false;
 
 function init() {
     if (navigator.userAgent.indexOf("like Mac") != -1) {
@@ -69,6 +70,8 @@ function init() {
         document.body.appendChild(video);
         var webBackground = new THREE.VideoTexture(video);
         scene.background = webBackground;
+    } else {
+        scene.background = new THREE.Color(0xdccba0);
     }
 
 
@@ -160,8 +163,10 @@ function load3Dmodel() {
         if (animated) {
             mixer = new THREE.AnimationMixer(model);
             var action = mixer.clipAction(gltf.animations[0]);
-            action.setLoop(THREE.LoopOnce);
-            action.clampWhenFinished = true;
+            if (looponce) {
+                action.setLoop(THREE.LoopOnce);
+                action.clampWhenFinished = true;
+            }
             action.play();
         }
     }, function (xhr) {
@@ -297,6 +302,7 @@ export function bacteriophage() {
     x_rot = 0;
     y_rot = -1.7;
     z_rot = 0;
+    looponce = true;
     init();
     animateAN();
 }
@@ -315,6 +321,7 @@ export function coronavirus() {
     x_rot = 0;
     y_rot = 0;
     z_rot = 0;
+
     init();
     animateN();
 }
@@ -345,12 +352,12 @@ export function crispr() {
 
     animated = true;
     control_type = "orbit";
-    x_pos = 0;
+    x_pos = 0.35;
     y_pos = 0;
-    z_pos = 0;
-    x_rot = 0;
-    y_rot = 0;
-    z_rot = 0;
+    z_pos = 1;
+    x_rot = 0.2;
+    y_rot = 1.2;
+    z_rot = 0.5;
     init();
     animateAN();
 }
