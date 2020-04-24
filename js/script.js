@@ -7,7 +7,7 @@ var clock = new THREE.Clock();
 
 var header, paragraph, models, modelName, animated, control_type;
 
-var x_pos, y_pos, z_pos;
+var x_pos, y_pos, z_pos, x_rot, y_rot, z_rot;
 
 function init() {
     if (navigator.userAgent.indexOf("like Mac") != -1) {
@@ -24,14 +24,16 @@ function init() {
 
     //setting up the scene
     scene = new THREE.Scene();
-    light = new THREE.PointLight(0xffffff, 2.0);
+    scene.background = new THREE.Color(0xdccba0);
+    light = new THREE.DirectionalLight(0xffffff, 2.0);
     light.position.set(1, 1, 1);
     scene.add(light);
 
     //setting up the renderer
     renderer = new THREE.WebGLRenderer({
         antialias: true,
-        preserveDrawingBuffer: true
+        preserveDrawingBuffer: true,
+        alpha: true
     });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -50,19 +52,25 @@ function init() {
             facingMode: facing
         }
     }
+    var webcam_playable = true;
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
             video.srcObject = stream;
             video.play();
         }).catch(function (error) {
             console.error('Unable to access the camera/webcam.', error);
+            webcam_playable = false;
         });
     } else {
         console.error('MediaDevices interface not available.');
+        webcam_playable = false;
     }
-    document.body.appendChild(video);
-    var webBackground = new THREE.VideoTexture(video);
-    scene.background = webBackground;
+    if (webcam_playable) {
+        document.body.appendChild(video);
+        var webBackground = new THREE.VideoTexture(video);
+        scene.background = webBackground;
+    }
+
 
     setControls();
 
@@ -82,31 +90,33 @@ function init() {
     document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
     }, false);
-    //Reversing the camera <- needs fixing
+    //Reversing the camera
     document.getElementById("reverse-button").addEventListener('click', function () {
-        if (facing == "user") {
-            facing = "environment";
-        } else {
-            facing = "user";
-        }
-        defaultsOpts = {
-            audio: false,
-            video: {
-                facingMode: facing
+        if (webcam_playable) {
+            if (facing == "user") {
+                facing = "environment";
+            } else {
+                facing = "user";
             }
+            defaultsOpts = {
+                audio: false,
+                video: {
+                    facingMode: facing
+                }
+            }
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
+                    video.srcObject = stream;
+                    video.play();
+                }).catch(function (error) {
+                    console.error('Unable to access the camera/webcam.', error);
+                });
+            } else {
+                console.error('MediaDevices interface not available.');
+            }
+            webBackground = new THREE.VideoTexture(video);
+            scene.background = webBackground;
         }
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
-                video.srcObject = stream;
-                video.play();
-            }).catch(function (error) {
-                console.error('Unable to access the camera/webcam.', error);
-            });
-        } else {
-            console.error('MediaDevices interface not available.');
-        }
-        webBackground = new THREE.VideoTexture(video);
-        scene.background = webBackground;
     });
 
     load3Dmodel();
@@ -126,6 +136,7 @@ function load3Dmodel() {
 
         //Putting the model in the center and scaling it
         var mroot = model;
+        mroot.scale.set(0.3, 0.3, 0.3);
         var bbox = new THREE.Box3().setFromObject(mroot);
         var cent = bbox.getCenter(new THREE.Vector3());
         var size = bbox.getSize(new THREE.Vector3());
@@ -141,13 +152,16 @@ function load3Dmodel() {
         mroot.position.y -= (size.y * 0.5);
         mroot.position.z += z_pos;
         mroot.position.y += y_pos;
-        mroot.rotation.x += x_pos;
-        mroot.scale.set(0.3, 0.3, 0.3);
+        mroot.position.x += x_pos;
+        mroot.rotation.z += z_rot;
+        mroot.rotation.y += y_rot;
+        mroot.rotation.x += x_rot;
         models.add(mroot);
         if (animated) {
             mixer = new THREE.AnimationMixer(model);
             var action = mixer.clipAction(gltf.animations[0]);
             action.setLoop(THREE.LoopOnce);
+            action.clampWhenFinished = true;
             action.play();
         }
     }, function (xhr) {
@@ -161,6 +175,7 @@ function load3Dmodel() {
 function setControls() {
     //camera controls
     if (control_type == "orbit") {
+        console.log("orbit");
         var controls = new THREE.OrbitControls(camera, renderer.domElement);
     } else {
         return;
@@ -275,10 +290,67 @@ export function bacteriophage() {
     modelName = "../models/bacteriophage.glb";
 
     animated = true;
-    control_type = "none";
-    x_pos = -0.3;
+    control_type = "orbit";
+    x_pos = -1.4;
+    y_pos = 2.4;
+    z_pos = 1.5;
+    x_rot = 0;
+    y_rot = -1.7;
+    z_rot = 0;
+    init();
+    animateAN();
+}
+export function coronavirus() {
+    header = "COVID-19";
+    paragraph = "Koronavirusai yra virusai, kurie cirkuliuoja tarp gyvūnų, tačiau žinoma, kad kai kurie iš jų sukelia infekcijas žmonėms. Sukėlę infekciją žmonėms, jie toliau gali būti perduoti nuo žmogaus žmogui. Koronavirusų infekcijos šaltinis gali būti daugybė gyvūnų. Pavyzdžiui, Artimųjų Rytų respiracinio sindromo koronaviruso (MERS-CoV) šaltinis buvo kupranugariai, o sunkaus ūmaus respiracinio sindromo (SŪRS) - civetės katės.";
+
+    models = new THREE.Object3D();
+    modelName = "./models/coronavirus.glb";
+
+    animated = false;
+    control_type = "orbit";
+    x_pos = 0;
     y_pos = 0;
-    z_pos = 0.5;
+    z_pos = 0;
+    x_rot = 0;
+    y_rot = 0;
+    z_rot = 0;
+    init();
+    animateN();
+}
+export function dna() {
+    header = "DNR";
+    paragraph = "tekstas tekstas";
+
+    models = new THREE.Object3D();
+    modelName = "../models/DNA.glb";
+
+    animated = true;
+    control_type = "orbit";
+    x_pos = 0;
+    y_pos = 0.35;
+    z_pos = 1;
+    x_rot = 0;
+    y_rot = 4.7;
+    z_rot = 0;
+    init();
+    animateAN();
+}
+export function crispr() {
+    header = "Crispr - Cas9";
+    paragraph = "tekstas tekstas";
+
+    models = new THREE.Object3D();
+    modelName = "../models/crisprcas9.glb";
+
+    animated = true;
+    control_type = "orbit";
+    x_pos = 0;
+    y_pos = 0;
+    z_pos = 0;
+    x_rot = 0;
+    y_rot = 0;
+    z_rot = 0;
     init();
     animateAN();
 }
