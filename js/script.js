@@ -26,8 +26,10 @@ function init() {
     //setting up the scene
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xdccba0);
-    light = new THREE.DirectionalLight(0xffffff, 2.0);
-    light.position.set(1, 1, 1);
+    light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(0, 0, 1);
+    scene.add(light);
+    light = new THREE.AmbientLight(0xffffff, 6);
     scene.add(light);
 
     //setting up the renderer
@@ -37,7 +39,10 @@ function init() {
         alpha: true
     });
     renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.toneMappingExposure = 1;
+    renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.physicallyCorrectLights = true;
     document.body.appendChild(renderer.domElement);
     var canvas = renderer.domElement;
 
@@ -130,12 +135,14 @@ function init() {
 }
 //loading the 3D model
 function load3Dmodel() {
-    var loader = new THREE.GLTFLoader();
+    var loader;
+    loader = new THREE.GLTFLoader();
     var dracoLoader = new THREE.DRACOLoader();
-    dracoLoader.setDecoderPath('../../draco/');
+    dracoLoader.setDecoderPath('./draco/');
     loader.setDRACOLoader(dracoLoader);
-    loader.load(modelName, function (gltf) {
-        model = gltf.scene;
+
+    loader.load(modelName, function (load_model) {
+        model = load_model.scene;
 
         //Putting the model in the center and scaling it
         var mroot = model;
@@ -162,12 +169,14 @@ function load3Dmodel() {
         models.add(mroot);
         if (animated) {
             mixer = new THREE.AnimationMixer(model);
-            var action = mixer.clipAction(gltf.animations[0]);
-            if (looponce) {
-                action.setLoop(THREE.LoopOnce);
-                action.clampWhenFinished = true;
+            for (var i = 0; i < load_model.animations.length; i++) {
+                var action = mixer.clipAction(load_model.animations[i]);
+                if (looponce) {
+                    action.setLoop(THREE.LoopOnce);
+                    action.clampWhenFinished = true;
+                }
+                action.play();
             }
-            action.play();
         }
     }, function (xhr) {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
@@ -292,15 +301,15 @@ export function bacteriophage() {
     paragraph = "tekstas tekstas";
 
     models = new THREE.Object3D();
-    modelName = "../models/bacteriophage.glb";
+    modelName = "./models/bacteriophage.glb";
 
     animated = true;
     control_type = "orbit";
-    x_pos = -1.4;
-    y_pos = 2.4;
-    z_pos = 1.5;
+    x_pos = 0.05;
+    y_pos = 3;
+    z_pos = 0.5;
     x_rot = 0;
-    y_rot = -1.7;
+    y_rot = -1.6;
     z_rot = 0;
     looponce = true;
     init();
@@ -330,7 +339,7 @@ export function dna() {
     paragraph = "tekstas tekstas";
 
     models = new THREE.Object3D();
-    modelName = "../models/DNA.glb";
+    modelName = "./models/DNA.glb";
 
     animated = true;
     control_type = "orbit";
@@ -348,16 +357,35 @@ export function crispr() {
     paragraph = "tekstas tekstas";
 
     models = new THREE.Object3D();
-    modelName = "../models/crisprcas9.glb";
+    modelName = "./models/crisprcas9.glb";
 
     animated = true;
     control_type = "orbit";
-    x_pos = 0.35;
-    y_pos = 0;
-    z_pos = 1;
-    x_rot = 0.2;
-    y_rot = 1.2;
+    x_pos = -0.2;
+    y_pos = 0.1;
+    z_pos = 1.79;
+    x_rot = 0.3;
+    y_rot = -1.85;
     z_rot = 0.5;
+    init();
+    animateAN();
+}
+export function lego() {
+    header = "Bio Brick";
+    paragraph = "tekstas tekstas";
+
+    models = new THREE.Object3D();
+    modelName = "./models/lego.glb";
+
+    animated = true;
+    control_type = "orbit";
+    looponce = true;
+    x_pos = -0.05;
+    y_pos = 0.4;
+    z_pos = 1.2;
+    x_rot = 0;
+    y_rot = -1.6;
+    z_rot = 0;
     init();
     animateAN();
 }
