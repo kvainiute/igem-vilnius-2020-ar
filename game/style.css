@@ -92,11 +92,11 @@ body {
 }
 
 #dna-s {
-    display: block;
+    display: none;
 }
 
-#dna-show:hover {
-    fill: red;
+#dna-push {
+    display: block;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {

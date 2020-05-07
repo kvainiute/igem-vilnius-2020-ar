@@ -515,11 +515,11 @@ export function sequencing() {
 
     animated = true;
     control_type = "orbit";
-    x_pos = -0.1;
-    y_pos = 0.2;
+    x_pos = 0;
+    y_pos = 0.5;
     z_pos = 1.2;
     x_rot = 0;
-    y_rot = -1.55;
+    y_rot = 0;
     z_rot = 0;
     init();
     animateAN();

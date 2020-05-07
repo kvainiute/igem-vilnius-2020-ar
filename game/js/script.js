@@ -30,8 +30,13 @@ function reportWindowSize() {
 document.addEventListener("click", printMousePos);
 window.addEventListener('resize', reportWindowSize);
 
-document.getElementById("dna-show").addEventListener('hover', function () {
+document.getElementById("dna-show").addEventListener('mouseenter', function () {
     document.getElementById("dna-s").style.display = "block";
+    document.getElementById("dna-push").style.display = "none";
+});
+document.getElementById("dna-show").addEventListener('mouseleave', function () {
+    document.getElementById("dna-s").style.display = "none";
+    document.getElementById("dna-push").style.display = "block";
 });
 
 
