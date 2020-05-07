@@ -9,6 +9,31 @@ var header, paragraph, models, modelName, animated, control_type;
 
 var x_pos, y_pos, z_pos, x_rot, y_rot, z_rot;
 var looponce = false;
+const TRAY = document.getElementById('js-tray-slide');
+const colors = [
+    {
+        color: '03f4fc'
+},
+    {
+        color: '0303fc'
+},
+    {
+        color: 'fc03a1'
+},
+    {
+        color: 'f4fc03'
+},
+    {
+        color: '03fc4a'
+},
+    {
+        color: '6703fc'
+},
+    {
+        color: 'fc0303'
+    }
+];
+
 
 function init() {
     if (navigator.userAgent.indexOf("like Mac") != -1) {
@@ -29,7 +54,8 @@ function init() {
     light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(0, 0, 1);
     scene.add(light);
-    light = new THREE.AmbientLight(0xffffff, 6);
+    //light = new THREE.AmbientLight(0xffffff, 6);
+    light = new THREE.AmbientLight(0xffffff, 3);
     scene.add(light);
 
     //setting up the renderer
@@ -39,8 +65,10 @@ function init() {
         alpha: true
     });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.toneMappingExposure = 1;
-    renderer.outputEncoding = THREE.sRGBEncoding;
+    if (!modelName.includes("gfp")) {
+        renderer.outputEncoding = THREE.sRGBEncoding;
+    }
+    renderer.toneMappingExposure = 0.7;
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.physicallyCorrectLights = true;
     document.body.appendChild(renderer.domElement);
@@ -63,13 +91,18 @@ function init() {
         navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
             video.srcObject = stream;
             video.play();
+            setTimeout(function () {
+                load3Dmodel();
+            }, 2000);
         }).catch(function (error) {
             console.error('Unable to access the camera/webcam.', error);
             webcam_playable = false;
+            load3Dmodel();
         });
     } else {
         console.error('MediaDevices interface not available.');
         webcam_playable = false;
+        load3Dmodel();
     }
     if (webcam_playable) {
         document.body.appendChild(video);
@@ -116,18 +149,23 @@ function init() {
                 navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
                     video.srcObject = stream;
                     video.play();
+                    setTimeout(function () {
+                        load3Dmodel();
+                    }, 2000);
                 }).catch(function (error) {
                     console.error('Unable to access the camera/webcam.', error);
+                    load3Dmodel();
                 });
             } else {
                 console.error('MediaDevices interface not available.');
+                load3Dmodel();
             }
             webBackground = new THREE.VideoTexture(video);
             scene.background = webBackground;
         }
     });
 
-    load3Dmodel();
+    // load3Dmodel();
     update = function () {
         models.rotation.y += 0.01;
         models.rotation.z += 0.01;
@@ -150,6 +188,13 @@ function load3Dmodel() {
         var bbox = new THREE.Box3().setFromObject(mroot);
         var cent = bbox.getCenter(new THREE.Vector3());
         var size = bbox.getSize(new THREE.Vector3());
+        const INITIAL_MTL = new THREE.MeshPhongMaterial({
+            color: 0x03fc4a
+        });
+
+        if (modelName.includes("gfp")) {
+            initColor(model, "GFP", INITIAL_MTL);
+        }
 
         //Rescale the object to normalized space
         var maxAxis = Math.max(size.x, size.y, size.z);
@@ -296,6 +341,53 @@ function animateAN() {
     };
     renderer.render(scene, camera);
 }
+
+function initColor(parent, type, mtl) {
+    parent.traverse((o) => {
+        if (o.isMesh) {
+            if (o.name.includes(type)) {
+                o.material = mtl;
+                o.nameID = type; // Set a new property to identify this object
+            }
+        }
+    });
+}
+
+function buildColors(colors) {
+    for (let [i, color] of colors.entries()) {
+        let swatch = document.createElement('div');
+        swatch.classList.add('tray__swatch');
+
+        swatch.style.background = "#" + color.color;
+
+        swatch.setAttribute('data-key', i);
+        TRAY.append(swatch);
+    }
+}
+
+function selectSwatch(e) {
+    let color = colors[parseInt(e.target.dataset.key)];
+    let new_mtl;
+
+    new_mtl = new THREE.MeshPhongMaterial({
+        color: parseInt('0x' + color.color),
+        shininess: color.shininess ? color.shininess : 10
+
+    });
+
+    console.log("click");
+    setMaterial(models, 'GFP', new_mtl);
+}
+
+function setMaterial(parent, type, mtl) {
+    parent.traverse((o) => {
+        if (o.isMesh && o.nameID != null) {
+            if (o.nameID == type) {
+                o.material = mtl;
+            }
+        }
+    });
+}
 export function bacteriophage() {
     header = "Bakteriofagas";
     paragraph = "tekstas tekstas";
@@ -385,6 +477,49 @@ export function lego() {
     z_pos = 1.2;
     x_rot = 0;
     y_rot = -1.6;
+    z_rot = 0;
+    init();
+    animateAN();
+}
+export function gfp() {
+    buildColors(colors);
+    const swatches = document.querySelectorAll(".tray__swatch");
+
+    for (const swatch of swatches) {
+        swatch.addEventListener('click', selectSwatch);
+    }
+
+    header = "GFP";
+    paragraph = "tekstas tekstas";
+
+    models = new THREE.Object3D();
+    modelName = "./models/gfp.glb";
+
+    animated = true;
+    control_type = "orbit";
+    x_pos = 0;
+    y_pos = 0.5;
+    z_pos = 0.5;
+    x_rot = 0;
+    y_rot = 0;
+    z_rot = 0;
+    init();
+    animateAN();
+}
+export function sequencing() {
+    header = "Sekvenavimas";
+    paragraph = "tekstas tekstas";
+
+    models = new THREE.Object3D();
+    modelName = "./models/sekoskaita.glb";
+
+    animated = true;
+    control_type = "orbit";
+    x_pos = -0.1;
+    y_pos = 0.2;
+    z_pos = 1.2;
+    x_rot = 0;
+    y_rot = -1.55;
     z_rot = 0;
     init();
     animateAN();

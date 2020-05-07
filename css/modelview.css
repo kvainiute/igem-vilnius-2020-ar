@@ -3,7 +3,8 @@ body {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    background: rgba(252, 189, 27, 0.1)
+    /*background: rgba(252, 189, 27, 0.1)*/
+    background: url('../images/bg/bg-dark.png');
 }
 
 .button {

@@ -20,15 +20,57 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="./css/threejsmain.css">
     <link type="text/css" rel="stylesheet" href="./css/modelview.css">
+    <style>
+        .controls {
+            height: 50%;
+            width: 50px;
+            position: fixed;
+            margin: 0 auto;
+        }
+
+        .tray {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            position: absolute;
+            overflow-x: hidden;
+        }
+
+        .tray__slide {
+            position: fixed;
+            /*display: flex;*/
+            left: 0;
+            margin: 0 auto;
+        }
+
+        .tray__swatch {
+            transition: 0.1s ease-in;
+            height: 50px;
+            min-width: 50px;
+            flex: 1;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            background-size: cover;
+            background-position: center;
+        }
+
+    </style>
 </head>
 
 <body>
+    <div class="controls">
+        <div id="js-tray" class="tray">
+            <div id="js-tray-slide" class="tray__slide"></div>
+        </div>
+    </div>
+    <!--<canvas id="c"></canvas>-->
+
     <div class="info">
         <a href="/map.html" class="button" id="home-button"><img src="images/home.png"></a>
         <a href="#" class="button" id="reverse-button"><img src="images/switch-camera.png"></a>
         <a href="#" class="button" id="photo-button"><img src="images/photo.png"></a>
         <a href="#" class="button" id="info-button"><img src="images/info.png"></a>
     </div>
+
     <div id="model-info" style="position: absolute; display: none">
         <div id="info-name">
             <h1 id="st-name" text-align="center"></h1>
@@ -51,19 +93,9 @@
 
     <script type="module" src="./js/script.js"></script>
     <script type="module">
-        var header = "RNR";
-            var paragraph = "tekstas tekstas";
-
-            var models = new THREE.Object3D();
-            var modelName = "./models/rna/rna.gltf";
-
-            var animated = false;
-
-            import { init, animateN } from './js/script.js';
-            init(modelName, models, header, paragraph, animated);
-            animateN();
+        import { gfp } from './js/script.js';
+        gfp();
         </script>
-
 </body>
 
 </html>

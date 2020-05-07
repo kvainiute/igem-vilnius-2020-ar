@@ -1,0 +1,131 @@
+html {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #fcbd1b;
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 10px 10px 10px 10px;
+
+}
+
+.container {
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#parts {
+    height: 30vh;
+    width: 70%;
+    margin: 0 auto;
+
+}
+
+#parts img {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 70%
+}
+
+#plasmid {
+    height: 60vh;
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+#plasmid-main,
+#result {
+    height: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+
+}
+
+.row {
+    display: flex;
+
+}
+
+.upper {
+    height: 50%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.lower {
+    height: 50%;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.col-4 {
+    position: relative;
+    width: 33.3%;
+    padding: 10px;
+
+}
+
+.col-6 {
+    position: relative;
+    width: 50%;
+    padding: 10px
+}
+
+#plasmid img {
+    display: none;
+    transition: 1s;
+}
+
+#plasmid-m:hover {
+    fill: darkblue;
+    transition: 2s
+}
+
+#dna-s {
+    display: block;
+}
+
+#dna-show:hover {
+    fill: red;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #parts {
+        width: 80%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    #parts {
+        width: 100%;
+    }
+
+    .upper,
+    .lower {
+        width: 100%;
+    }
+
+    .p {
+        padding: 2px;
+        text-align: center;
+    }
+
+    #plasmid {
+        padding: 10px;
+        width: 90%
+    }
+
+    #prom-p {
+        width: 80%;
+    }
+}
