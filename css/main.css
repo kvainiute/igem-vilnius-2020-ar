@@ -1,69 +1,57 @@
 .btn-secondary {
-    color: #14192e;
-    text-shadow: none;
-    background-color: #fcbd1b;
-    margin-top: 1.25rem;
-    width: 70%;
-    border-radius: 20px
+	color: #14192e;
+	text-shadow: none;
+	background-color: #fcbd1b;
+	margin-top: 1.25rem;
+	width: 70%;
+	border-radius: 20px
 }
-
 .btn-secondary: active {
-    background-color: #000020
+	background-color: #000020
 }
-
-.btn-secondary: hover,
-.btn-secondary: focus {
-    background-color: #14192e
+.btn-secondary: hover,.btn-secondary: focus {
+	background-color: #14192e
 }
-
-html,
+html,body {
+	height: 100%;
+	/*background-color: #14192e;
+	overflow-x: hidden
+}
 body {
-    height: 100%;
-    overflow-x: hidden
+	display: -ms-flexbox;
+	display: flex;
+	color: #fff;
+	text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+	box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5)
 }
-
-body {
-    display: -ms-flexbox;
-    display: flex;
-    color: #fff;
-    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-    box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5)
-}
-
 .cover-container {
-    max-width: 42em
+	max-width: 42em
 }
-
-header img {
-    padding-top: 2rem;
-    width: 50%;
-    height: auto
+header img{
+	padding-top: 2rem;
+	width: 50%;
+	height: auto
 }
-
 @media (min-width: 48em) {
-    .masthead-brand {
-        float: left
-    }
-
-    .nav-masthead {
-        float: right
-    }
+	.masthead-brand {
+		float: left
 }
-
+	.nav-masthead {
+		float: right
+}
+}
 .cover {
-    padding: 0 1.5rem
+	padding: 0 1.5rem
 }
-
 .cover .btn-lg {
-    padding: .75rem 1.25rem;
-    font-weight: 200
+	padding: .75rem 1.25rem;
+	font-weight: 200
 }
-
 footer {
-    padding-top: 20px
+	padding-top: 20px
+}
+footer .inner img{
+	width: 10%;
+	height: auto
 }
 
-footer .inner img {
-    width: 10%;
-    height: auto
-}

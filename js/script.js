@@ -236,6 +236,7 @@ function setControls() {
     if (control_type == "orbit") {
         console.log("orbit");
         var controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.zoomSpeed = 0.05;
     } else {
         return;
     }
@@ -472,8 +473,8 @@ export function lego() {
     animated = true;
     control_type = "orbit";
     looponce = true;
-    x_pos = -0.05;
-    y_pos = 0.4;
+    x_pos = -0.06;
+    y_pos = 0.38;
     z_pos = 1.2;
     x_rot = 0;
     y_rot = -1.6;
