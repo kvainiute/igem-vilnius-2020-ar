@@ -9,6 +9,7 @@ var header, paragraph, models, modelName, animated, control_type;
 
 var x_pos, y_pos, z_pos, x_rot, y_rot, z_rot;
 var looponce = false;
+
 const TRAY = document.getElementById('js-tray-slide');
 const colors = [
     {
