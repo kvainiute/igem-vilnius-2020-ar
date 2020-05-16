@@ -15,7 +15,7 @@
         gtag('config', 'UA-163985569-1');
 
     </script>
-    <title>iGEM AR RNA</title>
+    <title>iGEM AR </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="./css/threejsmain.css">
@@ -24,7 +24,7 @@
 
 <body>
     <div class="info">
-        <a href="./map.html" class="button" id="home-button"><img src="images/home.png"></a>
+        <a href="/map.html" class="button" id="home-button"><img src="images/home.png"></a>
         <a href="#" class="button" id="reverse-button"><img src="images/switch-camera.png"></a>
         <a href="#" class="button" id="photo-button"><img src="images/photo.png"></a>
         <a href="#" class="button" id="info-button"><img src="images/info.png"></a>
@@ -40,6 +40,8 @@
         <div id="info-footer"><img id="close-button" src="./images/close.png"></div>
     </div>
 
+    <div id="tray-container" style="display:none;"></div>
+
     <script type="module" src="./js/three.js"></script>
     <script type="module" src="./js/OrbitControls.js"></script>
     <script type="module" src="./js/GLTFLoader.js"></script>
@@ -50,12 +52,8 @@
     <video id="video" autoplay style="display:none"></video>
 
     <script type="module" src="./js/script.js"></script>
-    <script type="module">
-        document.querySelector("body").style.backgroundImage = "url('images/bg/bg-dark.png')";
-        import { bacteriophage } from './js/script.js';
-        bacteriophage();
-    </script>
+    <script type="module" src="./js/preview-db.js"></script>
+    <script type="module" src="./js/preview.js"></script>
 
 </body>
-
 </html>

@@ -60,6 +60,52 @@
 
 
     <script>
+        let pointList = [
+            { title: "Katedros aik&scaron;t&edot;", coordinates: [25.288243, 54.685297], link: "dna", },
+            { title: "Daukanto aik&scaron;t&edot;", coordinates: [25.288991, 54.688194], link: "rna", },
+            { title: "Vingio parkas (I)", coordinates: [25.248680, 54.682399], customLink: "./game.html", },
+            { title: "Vingio parkas (II)", coordinates: [25.239913, 54.682663], link: "synbio", },
+            { title: "Vingio parkas (III)", coordinates: [25.236457, 54.682373], link: "biobrick", },
+            { title: "Trij&uogon; kry&zcaron;i&uogon; kalnas", coordinates: [25.297490, 54.686754], link: "crispr_cas9", },
+            { title: "Bernardin&uogon; sodas (I)", coordinates: [25.297362, 54.683689], link: "gfp", },
+            { title: "Vilniaus Universitetas", coordinates: [25.287624, 54.682960], link: "fish", },
+            { title: "Vinco Kudirkos aik&scaron;t&edot;", coordinates: [25.280564, 54.687349], link: "gmo", },
+            { title: "U&zcaron;upio angelas", coordinates: [25.295431, 54.680630], link: "e621", },
+            { title: "U&zcaron;upio undin&edot;", coordinates: [25.292648, 54.680584], link: "sequencing", },
+            { title: "Luki&scaron;ki&uogon; aik&scaron;t&edot;", coordinates: [25.271029, 54.689640], link: "nano", },
+            { title: "Bernardin&uogon; sodas (II)", coordinates: [25.296628, 54.682367], link: "ecoli", },
+            { title: "Vingio parkas (IV)", coordinates: [25.232576, 54.683055], link: "sb", },
+            { title: "Baltasis tiltas", coordinates: [25.272992, 54.692972], link: "bioethics", },
+            { title: "Sirvydo skveras", coordinates: [25.303095, 54.692732], link: "protein", },
+            { title: "Rotu&scaron;&edot;", coordinates: [25.287355, 54.678824], link: "gene", },
+            { title: "MO muziejus", coordinates: [25.277759, 54.679589], link: "coronavirus", },
+        ];
+
+        function makeFeatures(){
+            let returnList = [];
+            for (let item of pointList){
+                let theLink;
+                if (typeof(item.customLink) === 'string'){
+                    theLink = item.customLink;
+                }else{
+                    theLink = './preview.html?model=' + item.link;
+                }
+
+                returnList.push({
+                    'type': 'Feature',
+                    'properties': {
+                        'description': '<strong>' + item.title + '</strong><p><a href="' + theLink + '">&Zcaron;i&umacr;r&edot;ti</a></p>'
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': item.coordinates
+                    }
+                });
+            }
+            return returnList;
+        }
+
+
         // You can remove the following line if you don't need support for RTL (right-to-left) labels:
         mapboxgl.setRTLTextPlugin('https://cdn.maptiler.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.2/mapbox-gl-rtl-text.js');
         if (!mapboxgl.supported()) {
@@ -80,187 +126,7 @@
                         'type': 'geojson',
                         'data': {
                             'type': 'FeatureCollection',
-                            'features': [{
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Katedros aik&scaron;t&edot;</strong><p><a href="./dna.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.288243, 54.685297]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Daukanto aik&scaron;t&edot;</strong><p><a href="./rna.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.288991, 54.688194]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Vingio parkas (I)</strong><p><a href="./game.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.248680, 54.682399]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Vingio parkas (II)</strong><p><a href="./synbio.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.239913, 54.682663]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Vingio parkas (III)</strong><p><a href="./biobrick.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.236457, 54.682373]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Trij&uogon; kry&zcaron;i&uogon; kalnas</strong><p><a href="./crispr-cas9.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.297490, 54.686754]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Bernardin&uogon; sodas (I)</strong><p><a href="./gfp.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.297362, 54.683689]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Vilniaus Universitetas</strong><p><a href="./fish.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.287624, 54.682960]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Vinco Kudirkos aik&scaron;t&edot;</strong><p><a href="./gmo.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.280564, 54.687349]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>U&zcaron;upio angelas</strong><p><a href="./e621.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.295431, 54.680630]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>U&zcaron;upio undin&edot;</strong><p><a href="./sequencing.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.292648, 54.680584]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Luki&scaron;ki&uogon; aik&scaron;t&edot;</strong><p><a href="./nano.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.271029, 54.689640]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Bernardin&uogon; sodas (II)</strong><p><a href="./ecoli.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.296628, 54.682367]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Vingio parkas (IV)</strong><p><a href="./sb.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.232576, 54.683055]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Baltasis tiltas</strong><p><a href="./bioethics.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.272992, 54.692972]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Sirvydo skveras</strong><p><a href="./protein.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.303095, 54.692732]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>Rotu&scaron;&edot;</strong><p><a href="./gene.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.287355, 54.678824]
-                                    }
-                                },
-                                {
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': '<strong>MO muziejus</strong><p><a href="./coronavirus.html">&Zcaron;i&umacr;r&edot;ti</a></p>'
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': [25.277759, 54.679589]
-                                    }
-                                }
-                            ]
+                            'features': makeFeatures(),
                         }
                     });
                     // Add a layer showing the places.

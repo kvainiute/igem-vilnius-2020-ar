@@ -1,42 +1,16 @@
-var camera, light, scene, renderer, video, update, model, raycaster, mouse, selectedObject, constraints;
-
-var strDownloadMime = "image/octet-stream";
+var camera, light, scene, renderer, video, update, model, raycaster, mouse;
 
 var mixer = null;
 var clock = new THREE.Clock();
 
-var header, paragraph, models, modelName, animated, control_type;
 
-var x_pos, y_pos, z_pos, x_rot, y_rot, z_rot;
-var looponce = false;
+// export function init(modelName, header, paragraph, animated, pos, rot, looponce) {
+export function init(modelData, metaData){
+    modelData.models = new THREE.Object3D();
+    
+    let header = metaData.nameLT;
+    let paragraph = metaData.infoLT;
 
-const TRAY = document.getElementById('js-tray-slide');
-const colors = [
-    {
-        color: '03f4fc'
-},
-    {
-        color: '0303fc'
-},
-    {
-        color: 'fc03a1'
-},
-    {
-        color: 'f4fc03'
-},
-    {
-        color: '03fc4a'
-},
-    {
-        color: '6703fc'
-},
-    {
-        color: 'fc0303'
-    }
-];
-
-
-function init() {
     if (navigator.userAgent.indexOf("like Mac") != -1) {
         if (navigator.userAgent.indexOf("CriOS") != -1) {
             alert("iOS nepalaiko WebRTC naršyklėje Google Chrome. Siūlome naudoti Safari.");
@@ -66,7 +40,7 @@ function init() {
         alpha: true
     });
     renderer.setPixelRatio(window.devicePixelRatio);
-    if (!modelName.includes("gfp")) {
+    if (!modelData.path.includes("gfp")) {
         renderer.outputEncoding = THREE.sRGBEncoding;
     }
     renderer.toneMappingExposure = 0.7;
@@ -93,17 +67,17 @@ function init() {
             video.srcObject = stream;
             video.play();
             setTimeout(function () {
-                load3Dmodel();
+                load3Dmodel(modelData);
             }, 2000);
         }).catch(function (error) {
             console.error('Unable to access the camera/webcam.', error);
             webcam_playable = false;
-            load3Dmodel();
+            load3Dmodel(modelData);
         });
     } else {
         console.error('MediaDevices interface not available.');
         webcam_playable = false;
-        load3Dmodel();
+        load3Dmodel(modelData);
     }
     if (webcam_playable) {
         document.body.appendChild(video);
@@ -114,7 +88,7 @@ function init() {
     }
 
 
-    setControls();
+    setControls("orbit");
 
     //choosing the 3D object
     raycaster = new THREE.Raycaster();
@@ -123,7 +97,7 @@ function init() {
     //All the event listeners
     window.addEventListener('resize', onWindowResize, false);
 
-    renderer.domElement.addEventListener('click', onClick, false);
+    renderer.domElement.addEventListener('click', ()=>onClick(header, paragraph), false);
 
     document.getElementById("photo-button").addEventListener('click', saveAsImage, false);
 
@@ -151,29 +125,40 @@ function init() {
                     video.srcObject = stream;
                     video.play();
                     setTimeout(function () {
-                        load3Dmodel();
+                        load3Dmodel(modelData);
                     }, 2000);
                 }).catch(function (error) {
                     console.error('Unable to access the camera/webcam.', error);
-                    load3Dmodel();
+                    load3Dmodel(modelData);
                 });
             } else {
                 console.error('MediaDevices interface not available.');
-                load3Dmodel();
+                load3Dmodel(modelData);
             }
             webBackground = new THREE.VideoTexture(video);
             scene.background = webBackground;
         }
     });
 
-    // load3Dmodel();
+    // load3Dmodel(modelData);
     update = function () {
         models.rotation.y += 0.01;
         models.rotation.z += 0.01;
     }
+
+    return modelData.models; // El randomo būdas į GFP perduoti models objektą, kad galėtų keisti spalvą
 }
 //loading the 3D model
-function load3Dmodel() {
+function load3Dmodel(modelData){
+    let modelName = modelData.path;
+    let models = modelData.models;
+    let pos = modelData.pos;
+    let rot = modelData.rot;
+    let animated = modelData.animated;
+    let looponce = modelData.looponce;
+
+    if (pos == undefined) pos = {z: 0, y: 0, x: 0};
+    if (rot == undefined) rot = {z: 0, y: 0, x: 0};
     var loader;
     loader = new THREE.GLTFLoader();
     var dracoLoader = new THREE.DRACOLoader();
@@ -206,12 +191,12 @@ function load3Dmodel() {
         //Reposition to 0,halfY,0
         mroot.position.copy(cent).multiplyScalar(-1);
         mroot.position.y -= (size.y * 0.5);
-        mroot.position.z += z_pos;
-        mroot.position.y += y_pos;
-        mroot.position.x += x_pos;
-        mroot.rotation.z += z_rot;
-        mroot.rotation.y += y_rot;
-        mroot.rotation.x += x_rot;
+        mroot.position.z += pos.z;
+        mroot.position.y += pos.y;
+        mroot.position.x += pos.x;
+        mroot.rotation.z += rot.z;
+        mroot.rotation.y += rot.y;
+        mroot.rotation.x += rot.x;
         models.add(mroot);
         if (animated) {
             mixer = new THREE.AnimationMixer(model);
@@ -227,12 +212,12 @@ function load3Dmodel() {
     }, function (xhr) {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
     }, function (error) {
-        console.log('An error happened');
+        console.log('Error loading the model (load3Dmodel)');
     });
     scene.add(models);
 }
 
-function setControls() {
+function setControls(control_type) {
     //camera controls
     if (control_type == "orbit") {
         console.log("orbit");
@@ -244,7 +229,7 @@ function setControls() {
 
 }
 //Called when clicking on the 3d model => info div pops up
-function onClick() {
+function onClick(header, paragraph) {
 
     event.preventDefault();
 
@@ -256,13 +241,13 @@ function onClick() {
     var intersects = raycaster.intersectObjects(scene.children, true);
 
     if (intersects.length > 0) {
-        selectedObject = intersects[0].object;
-        showInfo();
+        let selectedObject = intersects[0].object;
+        showInfo(header, paragraph);
 
     }
 }
 
-function showInfo() {
+function showInfo(header, paragraph) {
     $('#st-name').text(header);
     $('#text-info').text(paragraph);
     // toggle html element
@@ -307,7 +292,7 @@ function saveAsImage() {
     try {
         var strMime = "image/jpeg";
         imgData = renderer.domElement.toDataURL(strMime);
-        saveFile(imgData.replace(strMime, strDownloadMime), defaultFileName(".jpg"));
+        saveFile(imgData.replace(strMime, "image/octet-stream"), defaultFileName(".jpg"));
     } catch (e) {
         console.log(e);
         return;
@@ -329,13 +314,13 @@ var saveFile = function (strData, filename) {
     }
 }
 //important
-function animateN() {
+export function animateN() {
     requestAnimationFrame(animateN);
     update();
     renderer.render(scene, camera);
 }
 
-function animateAN() {
+export function animateAN() {
     requestAnimationFrame(animateAN);
     var delta = clock.getDelta();
     if (mixer != null) {
@@ -353,176 +338,4 @@ function initColor(parent, type, mtl) {
             }
         }
     });
-}
-
-function buildColors(colors) {
-    for (let [i, color] of colors.entries()) {
-        let swatch = document.createElement('div');
-        swatch.classList.add('tray__swatch');
-
-        swatch.style.background = "#" + color.color;
-
-        swatch.setAttribute('data-key', i);
-        TRAY.append(swatch);
-    }
-}
-
-function selectSwatch(e) {
-    let color = colors[parseInt(e.target.dataset.key)];
-    let new_mtl;
-
-    new_mtl = new THREE.MeshPhongMaterial({
-        color: parseInt('0x' + color.color),
-        shininess: color.shininess ? color.shininess : 10
-
-    });
-
-    console.log("click");
-    setMaterial(models, 'GFP', new_mtl);
-}
-
-function setMaterial(parent, type, mtl) {
-    parent.traverse((o) => {
-        if (o.isMesh && o.nameID != null) {
-            if (o.nameID == type) {
-                o.material = mtl;
-            }
-        }
-    });
-}
-export function bacteriophage() {
-    header = "Bakteriofagas";
-    paragraph = "tekstas tekstas";
-
-    models = new THREE.Object3D();
-    modelName = "./models/bacteriophage.glb";
-
-    animated = true;
-    control_type = "orbit";
-    x_pos = 0.05;
-    y_pos = 3;
-    z_pos = 0.5;
-    x_rot = 0;
-    y_rot = -1.6;
-    z_rot = 0;
-    looponce = true;
-    init();
-    animateAN();
-}
-export function coronavirus() {
-    header = "COVID-19";
-    paragraph = "Koronavirusai yra virusai, kurie cirkuliuoja tarp gyvūnų, tačiau žinoma, kad kai kurie iš jų sukelia infekcijas žmonėms. Sukėlę infekciją žmonėms, jie toliau gali būti perduoti nuo žmogaus žmogui. Koronavirusų infekcijos šaltinis gali būti daugybė gyvūnų. Pavyzdžiui, Artimųjų Rytų respiracinio sindromo koronaviruso (MERS-CoV) šaltinis buvo kupranugariai, o sunkaus ūmaus respiracinio sindromo (SŪRS) - civetės katės.";
-
-    models = new THREE.Object3D();
-    modelName = "./models/coronavirus.glb";
-
-    animated = false;
-    control_type = "orbit";
-    x_pos = 0;
-    y_pos = 0;
-    z_pos = 0;
-    x_rot = 0;
-    y_rot = 0;
-    z_rot = 0;
-
-    init();
-    animateN();
-}
-export function dna() {
-    header = "DNR";
-    paragraph = "tekstas tekstas";
-
-    models = new THREE.Object3D();
-    modelName = "./models/DNA.glb";
-
-    animated = true;
-    control_type = "orbit";
-    x_pos = 0;
-    y_pos = 0.35;
-    z_pos = 1;
-    x_rot = 0;
-    y_rot = 4.7;
-    z_rot = 0;
-    init();
-    animateAN();
-}
-export function crispr() {
-    header = "Crispr - Cas9";
-    paragraph = "tekstas tekstas";
-
-    models = new THREE.Object3D();
-    modelName = "./models/crisprcas9.glb";
-
-    animated = true;
-    control_type = "orbit";
-    x_pos = -0.2;
-    y_pos = 0.1;
-    z_pos = 1.79;
-    x_rot = 0.3;
-    y_rot = -1.85;
-    z_rot = 0.5;
-    init();
-    animateAN();
-}
-export function lego() {
-    header = "Bio Brick";
-    paragraph = "tekstas tekstas";
-
-    models = new THREE.Object3D();
-    modelName = "./models/lego.glb";
-
-    animated = true;
-    control_type = "orbit";
-    looponce = true;
-    x_pos = -0.06;
-    y_pos = 0.38;
-    z_pos = 1.2;
-    x_rot = 0;
-    y_rot = -1.6;
-    z_rot = 0;
-    init();
-    animateAN();
-}
-export function gfp() {
-    buildColors(colors);
-    const swatches = document.querySelectorAll(".tray__swatch");
-
-    for (const swatch of swatches) {
-        swatch.addEventListener('click', selectSwatch);
-    }
-
-    header = "GFP";
-    paragraph = "tekstas tekstas";
-
-    models = new THREE.Object3D();
-    modelName = "./models/gfp.glb";
-
-    animated = true;
-    control_type = "orbit";
-    x_pos = 0;
-    y_pos = 0.5;
-    z_pos = 0.5;
-    x_rot = 0;
-    y_rot = 0;
-    z_rot = 0;
-    init();
-    animateAN();
-}
-export function sequencing() {
-    header = "Sekvenavimas";
-    paragraph = "tekstas tekstas";
-
-    models = new THREE.Object3D();
-    modelName = "./models/sekoskaita.glb";
-
-    animated = true;
-    control_type = "orbit";
-    x_pos = 0;
-    y_pos = 0.5;
-    z_pos = 1.2;
-    x_rot = 0;
-    y_rot = 0;
-    z_rot = 0;
-    init();
-    animateAN();
 }
