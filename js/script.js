@@ -9,7 +9,7 @@ export function init(modelData, metaData){
     modelData.models = new THREE.Object3D();
     
     let header = metaData.nameLT;
-    let paragraph = metaData.info;
+    let paragraph = metaData.infoLT;
 
     if (navigator.userAgent.indexOf("like Mac") != -1) {
         if (navigator.userAgent.indexOf("CriOS") != -1) {
@@ -97,7 +97,7 @@ export function init(modelData, metaData){
     //All the event listeners
     window.addEventListener('resize', onWindowResize, false);
 
-    renderer.domElement.addEventListener('click', onClick, false);
+    renderer.domElement.addEventListener('click', ()=>onClick(header, paragraph), false);
 
     document.getElementById("photo-button").addEventListener('click', saveAsImage, false);
 
@@ -229,7 +229,7 @@ function setControls(control_type) {
 
 }
 //Called when clicking on the 3d model => info div pops up
-function onClick() {
+function onClick(header, paragraph) {
 
     event.preventDefault();
 
@@ -242,7 +242,7 @@ function onClick() {
 
     if (intersects.length > 0) {
         let selectedObject = intersects[0].object;
-        showInfo();
+        showInfo(header, paragraph);
 
     }
 }
