@@ -146,7 +146,7 @@ export function init(modelData, metaData){
         models.rotation.z += 0.01;
     }
 
-    return modelData.models;
+    return modelData.models; // El randomo būdas į GFP perduoti models objektą, kad galėtų keisti spalvą
 }
 //loading the 3D model
 function load3Dmodel(modelData){
