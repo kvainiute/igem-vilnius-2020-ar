@@ -15,6 +15,8 @@ function getQueryParams(){
 let params = getQueryParams();
 let it = data[params["model"]];
 
+document.querySelector('title').innerText += it.meta.nameLT;
+
 let models = init(it.model, it.meta); // magic function
 
 switch (it.model.animationType){
