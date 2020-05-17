@@ -141,8 +141,8 @@ export function init(modelData, metaData) {
 
     // load3Dmodel(modelData);
     update = function () {
-        models.rotation.y += 0.01;
-        models.rotation.z += 0.01;
+        modelData.models.rotation.y += 0.01;
+        modelData.models.rotation.z += 0.01;
     }
 
     return modelData.models; // El randomo būdas į GFP perduoti models objektą, kad galėtų keisti spalvą
@@ -229,9 +229,9 @@ function setControls(control_type) {
     if (control_type == "orbit") {
         console.log("orbit");
         var controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.zoomSpeed = 0.05;
-        contols.rotateSpeed = 0.1;
-        controls.panSpeed = 0.1;
+        controls.zoomSpeed = 0.3;
+        controls.rotateSpeed = 0.5;
+        controls.panSpeed = 0.5;
     } else {
         return;
     }
