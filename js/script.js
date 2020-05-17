@@ -5,9 +5,9 @@ var clock = new THREE.Clock();
 
 
 // export function init(modelName, header, paragraph, animated, pos, rot, looponce) {
-export function init(modelData, metaData){
+export function init(modelData, metaData) {
     modelData.models = new THREE.Object3D();
-    
+
     let header = metaData.nameLT;
     let paragraph = metaData.infoLT;
 
@@ -29,7 +29,6 @@ export function init(modelData, metaData){
     light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(0, 0, 1);
     scene.add(light);
-    //light = new THREE.AmbientLight(0xffffff, 6);
     light = new THREE.AmbientLight(0xffffff, 3);
     scene.add(light);
 
@@ -97,7 +96,7 @@ export function init(modelData, metaData){
     //All the event listeners
     window.addEventListener('resize', onWindowResize, false);
 
-    renderer.domElement.addEventListener('click', ()=>onClick(header, paragraph), false);
+    renderer.domElement.addEventListener('click', () => onClick(header, paragraph), false);
 
     document.getElementById("photo-button").addEventListener('click', saveAsImage, false);
 
@@ -149,7 +148,7 @@ export function init(modelData, metaData){
     return modelData.models; // El randomo būdas į GFP perduoti models objektą, kad galėtų keisti spalvą
 }
 //loading the 3D model
-function load3Dmodel(modelData){
+function load3Dmodel(modelData) {
     let modelName = modelData.path;
     let models = modelData.models;
     let pos = modelData.pos;
@@ -157,8 +156,16 @@ function load3Dmodel(modelData){
     let animated = modelData.animated;
     let looponce = modelData.looponce;
 
-    if (pos == undefined) pos = {z: 0, y: 0, x: 0};
-    if (rot == undefined) rot = {z: 0, y: 0, x: 0};
+    if (pos == undefined) pos = {
+        z: 0,
+        y: 0,
+        x: 0
+    };
+    if (rot == undefined) rot = {
+        z: 0,
+        y: 0,
+        x: 0
+    };
     var loader;
     loader = new THREE.GLTFLoader();
     var dracoLoader = new THREE.DRACOLoader();
@@ -223,6 +230,8 @@ function setControls(control_type) {
         console.log("orbit");
         var controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.zoomSpeed = 0.05;
+        contols.rotateSpeed = 0.1;
+        controls.panSpeed = 0.1;
     } else {
         return;
     }

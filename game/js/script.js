@@ -1,4 +1,4 @@
-var overlapThreshold = "5%";
+/*var overlapThreshold = "5%";
 var or, st, pr, an, gf;
 var centArr = [];
 var centers = document.querySelectorAll(".st5");
@@ -172,4 +172,19 @@ var myTimer = setInterval(function () {
         document.getElementById("result").style.display = "block";
         clearInterval(myTimer);
     }
-}, 2000);
+}, 2000);*/
+
+function dragstart_handler(ev) {
+    // Add the target element's id to the data transfer object
+    ev.dataTransfer.setData("text/plain", ev.target.id);
+    ev.dataTransfer.setData("text/html", ev.target.outerHTML);
+    ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
+    ev.dataTransfer.dropEffect = "move";
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    // Get the element by id
+    const element = document.getElementById("prom-p");
+    // Add the ondragstart event listener
+    element.addEventListener("dragstart", dragstart_handler);
+});
