@@ -387,7 +387,9 @@ export const data = {
             rot: {
                 x: 0,
                 y: -1.2,
-                z: 0
+                //pc:
+                //z: 1.43
+                z: 1.27
             },
             animated: true,
             looponce: false,
@@ -461,9 +463,9 @@ export const data = {
         model: {
             path: "./models/sekoskaita.glb",
             pos: {
-                x: 0,
+                x: 0.015,
                 y: 0.5,
-                z: 1.5
+                z: 1.2
             },
             rot: {
                 x: 0,
