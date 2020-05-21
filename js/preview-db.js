@@ -34,26 +34,6 @@ export const data = {
             document.querySelector("body").style.backgroundImage = "url('images/bg/bg-dark.png')";
         },
     },
-
-    // -------------------- bioethics --------------------
-    bioethics: {
-        meta: {
-            nameLT: "Bioetika",
-            infoLT: "",
-            nameEN: "Bioethics",
-            infoEN: "",
-        },
-        model: {
-            path: "./models/rna/rna.gltf",
-            pos: undefined,
-            rot: undefined,
-            animated: false,
-            looponce: true,
-            animationType: 'n',
-        },
-        displayFunction: undefined,
-    },
-
     // -------------------- coronavirus --------------------
     coronavirus: {
         meta: {
@@ -137,33 +117,6 @@ export const data = {
         },
         displayFunction: undefined,
     },
-
-    // -------------------- e621 --------------------
-    e621: {
-        meta: {
-            nameLT: "Mononatrio glutamatas (E621)",
-            infoLT: "Tekstas - tekstas",
-            nameEN: "Monosodium glutamate (E621)",
-            infoEN: "...",
-        },
-        model: {
-            path: "./models/rna/rna.gltf",
-            pos: {
-                x: 0,
-                y: 0,
-                z: 0
-            },
-            rot: {
-                x: 0,
-                y: 0,
-                z: 0
-            },
-            animated: false,
-            looponce: true,
-            animationType: 'n',
-        },
-    },
-
     // -------------------- ecoli --------------------
     ecoli: {
         meta: {
@@ -192,61 +145,6 @@ export const data = {
             document.querySelector("body").style.backgroundImage = "url('images/bg/bg-dark.png')";
         },
     },
-
-    // -------------------- fish --------------------
-    fish: {
-        meta: {
-            nameLT: "Žuvis?",
-            infoLT: "Tekstas - tekstas",
-            nameEN: "Fish?",
-            infoEN: "...",
-        },
-        model: {
-            path: "./models/rna/rna.gltf",
-            pos: {
-                x: 0,
-                y: 0,
-                z: 0
-            },
-            rot: {
-                x: 0,
-                y: 0,
-                z: 0
-            },
-            animated: false,
-            looponce: false,
-            animationType: 'n',
-        },
-        displayFunction: undefined,
-    },
-
-    // -------------------- gene --------------------
-    gene: {
-        meta: {
-            nameLT: "Genas?",
-            infoLT: "Tekstas - tekstas",
-            nameEN: "Gene?",
-            infoEN: "...",
-        },
-        model: {
-            path: "./models/rna/rna.gltf",
-            pos: {
-                x: 0,
-                y: 0,
-                z: 0
-            },
-            rot: {
-                x: 0,
-                y: 0,
-                z: 0
-            },
-            animated: false,
-            looponce: false,
-            animationType: 'n',
-        },
-        displayFunction: undefined
-    },
-
     // -------------------- gfp --------------------
     gfp: {
         meta: {
@@ -430,9 +328,9 @@ export const data = {
     // -------------------- sb --------------------
     sb: {
         meta: {
-            nameLT: "SB??",
+            nameLT: "Sintetinė Biologija",
             infoLT: "Tekstas - tekstas",
-            nameEN: "SB???",
+            nameEN: "Synthetic Biology",
             infoEN: "...",
         },
         model: {
@@ -483,8 +381,114 @@ export const data = {
         }
     },
 
+    // Might be used later
+
+    // -------------------- bioethics --------------------
+    /*bioethics: {
+        meta: {
+            nameLT: "Bioetika",
+            infoLT: "",
+            nameEN: "Bioethics",
+            infoEN: "",
+        },
+        model: {
+            path: "./models/rna/rna.gltf",
+            pos: undefined,
+            rot: undefined,
+            animated: false,
+            looponce: true,
+            animationType: 'n',
+        },
+        displayFunction: undefined,
+    },*/
+
+
+
+    // -------------------- e621 --------------------
+    /*e621: {
+        meta: {
+            nameLT: "Mononatrio glutamatas (E621)",
+            infoLT: "Tekstas - tekstas",
+            nameEN: "Monosodium glutamate (E621)",
+            infoEN: "...",
+        },
+        model: {
+            path: "./models/rna/rna.gltf",
+            pos: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            rot: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            animated: false,
+            looponce: true,
+            animationType: 'n',
+        },
+    },*/
+
+
+    // -------------------- fish --------------------
+    /*fish: {
+        meta: {
+            nameLT: "Žuvis?",
+            infoLT: "Tekstas - tekstas",
+            nameEN: "Fish?",
+            infoEN: "...",
+        },
+        model: {
+            path: "./models/rna/rna.gltf",
+            pos: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            rot: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            animated: false,
+            looponce: false,
+            animationType: 'n',
+        },
+        displayFunction: undefined,
+    },*/
+
+    // -------------------- gene --------------------
+    /*gene: {
+        meta: {
+            nameLT: "Genas?",
+            infoLT: "Tekstas - tekstas",
+            nameEN: "Gene?",
+            infoEN: "...",
+        },
+        model: {
+            path: "./models/rna/rna.gltf",
+            pos: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            rot: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            animated: false,
+            looponce: false,
+            animationType: 'n',
+        },
+        displayFunction: undefined
+    },*/
+
+
+
     // -------------------- synbio --------------------
-    synbio: {
+    /*synbio: {
         meta: {
             nameLT: "Sintetinė biologija",
             infoLT: "Tekstas - tekstas",
@@ -508,5 +512,5 @@ export const data = {
             animationType: 'n',
         },
         displayFunction: undefined
-    },
+    },*/
 };
