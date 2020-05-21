@@ -173,22 +173,24 @@ export const data = {
             infoEN: "...",
         },
         model: {
-            path: "./models/rna/rna.gltf",
+            path: "./models/ecoli.glb",
             pos: {
-                x: 0,
-                y: 0,
-                z: 0
+                x: -0.2,
+                y: 0.2,
+                z: 0.4
             },
             rot: {
                 x: 0,
-                y: 0,
+                y: Math.PI / 2,
                 z: 0
             },
-            animated: false,
+            animated: true,
             looponce: false,
-            animationType: 'n',
+            animationType: 'an',
         },
-        displayFunction: undefined,
+        displayFunction: () => {
+            document.querySelector("body").style.backgroundImage = "url('images/bg/bg-dark.png')";
+        },
     },
 
     // -------------------- fish --------------------
@@ -322,20 +324,20 @@ export const data = {
             infoEN: "...",
         },
         model: {
-            path: "./models/rna/rna.gltf",
+            path: "./models/gmo.glb",
             pos: {
-                x: 0,
-                y: 0,
-                z: 0
+                x: -0.1,
+                y: 0.2,
+                z: 0.5
             },
             rot: {
-                x: 0,
-                y: 0,
+                x: 0.3,
+                y: 3.2,
                 z: 0
             },
-            animated: false,
+            animated: true,
             looponce: false,
-            animationType: 'n',
+            animationType: 'an',
         },
         displayFunction: undefined
     },
@@ -351,17 +353,17 @@ export const data = {
         model: {
             path: "./models/bacteriophage.glb",
             pos: {
-                x: 0.05,
-                y: 3,
-                z: 0.05
+                x: 0,
+                y: 0,
+                z: 0
             },
             rot: {
                 x: 0,
-                y: -1.6,
+                y: 3 * (Math.PI / 2),
                 z: 0
             },
             animated: true,
-            looponce: true,
+            looponce: false,
             animationType: 'an',
         },
         displayFunction: () => {
@@ -382,14 +384,14 @@ export const data = {
             pos: {
                 x: -0.3,
                 y: 0.3,
-                z: 1.43
+                z: 1.2
             },
             rot: {
                 x: 0,
                 y: -1.2,
                 //pc:
                 //z: 1.43
-                z: 1.27
+                z: 0
             },
             animated: true,
             looponce: false,

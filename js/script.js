@@ -42,6 +42,7 @@ export function init(modelData, metaData) {
     if (!modelData.path.includes("gfp")) {
         renderer.outputEncoding = THREE.sRGBEncoding;
     }
+    scene.background.encoding = THREE.LinearEncoding;
     renderer.toneMappingExposure = 0.7;
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.physicallyCorrectLights = true;
@@ -123,18 +124,15 @@ export function init(modelData, metaData) {
                 navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
                     video.srcObject = stream;
                     video.play();
-                    setTimeout(function () {
-                        load3Dmodel(modelData);
-                    }, 2000);
+                    setTimeout(function () {}, 2000);
                 }).catch(function (error) {
                     console.error('Unable to access the camera/webcam.', error);
-                    load3Dmodel(modelData);
                 });
             } else {
                 console.error('MediaDevices interface not available.');
-                load3Dmodel(modelData);
             }
             webBackground = new THREE.VideoTexture(video);
+            console.log(scene.background.encoding);
             scene.background = webBackground;
         }
     });
@@ -173,8 +171,15 @@ function load3Dmodel(modelData) {
     loader.setDRACOLoader(dracoLoader);
 
     loader.load(modelName, function (load_model) {
-        model = load_model.scene;
 
+
+        /*load_model.scene.traverse(function (child) {
+            if (child.isMesh) {
+                child.material.encoding = THREE.sRGBEncoding;
+                console.log(child.material);
+            }
+        });*/
+        model = load_model.scene;
         //Putting the model in the center and scaling it
         var mroot = model;
         mroot.scale.set(0.3, 0.3, 0.3);
@@ -204,6 +209,8 @@ function load3Dmodel(modelData) {
         mroot.rotation.z += rot.z;
         mroot.rotation.y += rot.y;
         mroot.rotation.x += rot.x;
+
+
         models.add(mroot);
         if (animated) {
             mixer = new THREE.AnimationMixer(model);
@@ -221,6 +228,7 @@ function load3Dmodel(modelData) {
     }, function (error) {
         console.log('Error loading the model (load3Dmodel)');
     });
+
     scene.add(models);
 }
 
