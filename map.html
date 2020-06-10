@@ -60,34 +60,86 @@
 
 
     <script>
-        let pointList = [
-            { title: "Katedros aik&scaron;t&edot;", coordinates: [25.288243, 54.685297], link: "dna", },
-            { title: "Daukanto aik&scaron;t&edot;", coordinates: [25.288991, 54.688194], link: "rna", },
-            { title: "Vingio parkas (I)", coordinates: [25.248680, 54.682399], customLink: "./game.html", },
-            { title: "Vingio parkas (II)", coordinates: [25.239913, 54.682663], link: "synbio", },
-            { title: "Vingio parkas (III)", coordinates: [25.236457, 54.682373], link: "biobrick", },
-            { title: "Trij&uogon; kry&zcaron;i&uogon; kalnas", coordinates: [25.297490, 54.686754], link: "crispr_cas9", },
-            { title: "Bernardin&uogon; sodas (I)", coordinates: [25.297362, 54.683689], link: "gfp", },
-            { title: "Vilniaus Universitetas", coordinates: [25.287624, 54.682960], link: "fish", },
-            { title: "Vinco Kudirkos aik&scaron;t&edot;", coordinates: [25.280564, 54.687349], link: "gmo", },
-            { title: "U&zcaron;upio angelas", coordinates: [25.295431, 54.680630], link: "e621", },
-            { title: "U&zcaron;upio undin&edot;", coordinates: [25.292648, 54.680584], link: "sequencing", },
-            { title: "Luki&scaron;ki&uogon; aik&scaron;t&edot;", coordinates: [25.271029, 54.689640], link: "nano", },
-            { title: "Bernardin&uogon; sodas (II)", coordinates: [25.296628, 54.682367], link: "ecoli", },
-            { title: "Vingio parkas (IV)", coordinates: [25.232576, 54.683055], link: "sb", },
-            { title: "Baltasis tiltas", coordinates: [25.272992, 54.692972], link: "bioethics", },
-            { title: "Sirvydo skveras", coordinates: [25.303095, 54.692732], link: "protein", },
-            { title: "Rotu&scaron;&edot;", coordinates: [25.287355, 54.678824], link: "gene", },
-            { title: "MO muziejus", coordinates: [25.277759, 54.679589], link: "coronavirus", },
+        /*
+        ---kol kas nereikalingos stotelės--
+        { title: "Baltasis tiltas", coordinates: [25.272992, 54.692972], link: "bioethics", },
+        { title: "U&zcaron;upio angelas", coordinates: [25.295431, 54.680630], link: "e621", },
+        { title: "Vilniaus Universitetas", coordinates: [25.287624, 54.682960], link: "fish", }
+        */
+        let pointList = [{
+                title: "Katedros aik&scaron;t&edot;",
+                coordinates: [25.288243, 54.685297],
+                link: "dna",
+            },
+            {
+                title: "Daukanto aik&scaron;t&edot;",
+                coordinates: [25.288991, 54.688194],
+                link: "rna",
+            },
+            {
+                title: "Vingio parkas (I)",
+                coordinates: [25.248680, 54.682399],
+                customLink: "./game.html",
+            },
+            {
+                title: "Vingio parkas (III)",
+                coordinates: [25.236457, 54.682373],
+                link: "biobrick",
+            },
+            {
+                title: "Trij&uogon; kry&zcaron;i&uogon; kalnas",
+                coordinates: [25.297490, 54.686754],
+                link: "crispr_cas9",
+            },
+            {
+                title: "Bernardin&uogon; sodas (I)",
+                coordinates: [25.297362, 54.683689],
+                link: "gfp",
+            },
+            {
+                title: "Vinco Kudirkos aik&scaron;t&edot;",
+                coordinates: [25.280564, 54.687349],
+                link: "gmo",
+            },
+            {
+                title: "U&zcaron;upio undin&edot;",
+                coordinates: [25.292648, 54.680584],
+                link: "sequencing",
+            },
+            {
+                title: "Luki&scaron;ki&uogon; aik&scaron;t&edot;",
+                coordinates: [25.271029, 54.689640],
+                link: "nano",
+            },
+            {
+                title: "Bernardin&uogon; sodas (II)",
+                coordinates: [25.296628, 54.682367],
+                link: "ecoli",
+            },
+            {
+                title: "Vingio parkas (IV)",
+                coordinates: [25.232576, 54.683055],
+                link: "sb",
+            },
+            {
+                title: "Sirvydo skveras",
+                coordinates: [25.303095, 54.692732],
+                link: "protein",
+            },
+            {
+                title: "MO muziejus",
+                coordinates: [25.277759, 54.679589],
+                link: "coronavirus",
+            },
         ];
 
-        function makeFeatures(){
+        function makeFeatures() {
             let returnList = [];
-            for (let item of pointList){
+            for (let item of pointList) {
                 let theLink;
-                if (typeof(item.customLink) === 'string'){
+                if (typeof(item.customLink) === 'string') {
                     theLink = item.customLink;
-                }else{
+                } else {
                     theLink = './preview.html?model=' + item.link;
                 }
 

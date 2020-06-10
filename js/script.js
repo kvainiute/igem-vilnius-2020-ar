@@ -5,9 +5,9 @@ var clock = new THREE.Clock();
 
 
 // export function init(modelName, header, paragraph, animated, pos, rot, looponce) {
-export function init(modelData, metaData){
+export function init(modelData, metaData) {
     modelData.models = new THREE.Object3D();
-    
+
     let header = metaData.nameLT;
     let paragraph = metaData.infoLT;
 
@@ -29,7 +29,6 @@ export function init(modelData, metaData){
     light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(0, 0, 1);
     scene.add(light);
-    //light = new THREE.AmbientLight(0xffffff, 6);
     light = new THREE.AmbientLight(0xffffff, 3);
     scene.add(light);
 
@@ -43,6 +42,7 @@ export function init(modelData, metaData){
     if (!modelData.path.includes("gfp")) {
         renderer.outputEncoding = THREE.sRGBEncoding;
     }
+    scene.background.encoding = THREE.LinearEncoding;
     renderer.toneMappingExposure = 0.7;
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.physicallyCorrectLights = true;
@@ -97,7 +97,7 @@ export function init(modelData, metaData){
     //All the event listeners
     window.addEventListener('resize', onWindowResize, false);
 
-    renderer.domElement.addEventListener('click', ()=>onClick(header, paragraph), false);
+    renderer.domElement.addEventListener('click', () => onClick(header, paragraph), false);
 
     document.getElementById("photo-button").addEventListener('click', saveAsImage, false);
 
@@ -124,32 +124,29 @@ export function init(modelData, metaData){
                 navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
                     video.srcObject = stream;
                     video.play();
-                    setTimeout(function () {
-                        load3Dmodel(modelData);
-                    }, 2000);
+                    setTimeout(function () {}, 2000);
                 }).catch(function (error) {
                     console.error('Unable to access the camera/webcam.', error);
-                    load3Dmodel(modelData);
                 });
             } else {
                 console.error('MediaDevices interface not available.');
-                load3Dmodel(modelData);
             }
             webBackground = new THREE.VideoTexture(video);
+            console.log(scene.background.encoding);
             scene.background = webBackground;
         }
     });
 
     // load3Dmodel(modelData);
     update = function () {
-        models.rotation.y += 0.01;
-        models.rotation.z += 0.01;
+        modelData.models.rotation.y += 0.01;
+        modelData.models.rotation.z += 0.01;
     }
 
     return modelData.models; // El randomo būdas į GFP perduoti models objektą, kad galėtų keisti spalvą
 }
 //loading the 3D model
-function load3Dmodel(modelData){
+function load3Dmodel(modelData) {
     let modelName = modelData.path;
     let models = modelData.models;
     let pos = modelData.pos;
@@ -157,8 +154,16 @@ function load3Dmodel(modelData){
     let animated = modelData.animated;
     let looponce = modelData.looponce;
 
-    if (pos == undefined) pos = {z: 0, y: 0, x: 0};
-    if (rot == undefined) rot = {z: 0, y: 0, x: 0};
+    if (pos == undefined) pos = {
+        z: 0,
+        y: 0,
+        x: 0
+    };
+    if (rot == undefined) rot = {
+        z: 0,
+        y: 0,
+        x: 0
+    };
     var loader;
     loader = new THREE.GLTFLoader();
     var dracoLoader = new THREE.DRACOLoader();
@@ -166,8 +171,15 @@ function load3Dmodel(modelData){
     loader.setDRACOLoader(dracoLoader);
 
     loader.load(modelName, function (load_model) {
-        model = load_model.scene;
 
+
+        /*load_model.scene.traverse(function (child) {
+            if (child.isMesh) {
+                child.material.encoding = THREE.sRGBEncoding;
+                console.log(child.material);
+            }
+        });*/
+        model = load_model.scene;
         //Putting the model in the center and scaling it
         var mroot = model;
         mroot.scale.set(0.3, 0.3, 0.3);
@@ -197,6 +209,8 @@ function load3Dmodel(modelData){
         mroot.rotation.z += rot.z;
         mroot.rotation.y += rot.y;
         mroot.rotation.x += rot.x;
+
+
         models.add(mroot);
         if (animated) {
             mixer = new THREE.AnimationMixer(model);
@@ -214,6 +228,7 @@ function load3Dmodel(modelData){
     }, function (error) {
         console.log('Error loading the model (load3Dmodel)');
     });
+
     scene.add(models);
 }
 
@@ -222,7 +237,9 @@ function setControls(control_type) {
     if (control_type == "orbit") {
         console.log("orbit");
         var controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.zoomSpeed = 0.05;
+        controls.zoomSpeed = 0.3;
+        controls.rotateSpeed = 0.5;
+        controls.panSpeed = 0.5;
     } else {
         return;
     }

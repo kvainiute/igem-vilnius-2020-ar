@@ -5,7 +5,7 @@ html {
 }
 
 body {
-    background: #fcbd1b;
+    background: #14192e;
     height: 100%;
     margin: 0;
     box-sizing: border-box;
@@ -27,11 +27,12 @@ body {
 }
 
 #parts img {
-    position: relative;
+    /*position: relative;*/
     top: 50%;
-    -webkit-transform: translateY(-50%);
+    /*-webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    transform: translateY(-50%);*/
+    margin: 0 auto;
     height: 70%
 }
 
@@ -53,7 +54,7 @@ body {
 
 .row {
     display: flex;
-
+    margin: 0 auto;
 }
 
 .upper {
@@ -72,13 +73,14 @@ body {
     position: relative;
     width: 33.3%;
     padding: 10px;
-
+    margin: 0 auto;
 }
 
 .col-6 {
     position: relative;
     width: 50%;
-    padding: 10px
+    padding: 10px;
+    margin: 0 auto;
 }
 
 #plasmid img {
