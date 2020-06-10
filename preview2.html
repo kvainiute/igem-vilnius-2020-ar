@@ -315,7 +315,8 @@ function initGfpColors(){
 		});
 	
 		console.log("click " + color); // TODO: remove
-		setMaterial(data[9].model.root.children[0], 'GFP', new_mtl);
+		setMaterial(data[1].model.root.children[0], 'GFP', new_mtl);
+		// TODO: don't use data[1], somehow find gfp yourself
 	}
 	
 
