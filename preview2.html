@@ -70,6 +70,9 @@ function initialize()
 	let light2 = new THREE.DirectionalLight(0xffffff, 1);
     light2.position.set(-1, 1, -1);
 	scene.add(light2);
+	let light3 = new THREE.DirectionalLight(0xffffff, 1);
+    light3.position.set(0, -1, 2);
+	scene.add(light3);
 				
 	camera = new THREE.Camera();
 	scene.add(camera);
@@ -186,7 +189,8 @@ function load3Dmodel(item){
     loader.load(modelPath, function (load_model) {
 		meshItem = load_model.scene;
 		//meshItem.material.side = THREE.DoubleSide;
-		meshItem.scale.set(0.25,0.25,0.25);
+		let scale = modelData.scale * 0.25;
+		meshItem.scale.set(scale,scale,scale);
 		meshItem.position.x += pos.x;
 		meshItem.position.y += pos.y;
 		meshItem.position.z += pos.z;
@@ -196,8 +200,6 @@ function load3Dmodel(item){
         if (modelPath.includes("gfp")) {
 			initColor(meshItem, "GFP", INITIAL_MTL);
         }
-		
-		meshItem.position.y += 0.75;	
 		
         if (animated) {
 			modelData.actions = [];
@@ -255,11 +257,13 @@ function update()
 			if (item.model.visible){
 				item.onVisible();
 				for (let action of item.model.actions){
-					action.reset();
 					action.play();
 				}
 			}else{
 				item.onHidden();
+				for (let action of item.model.actions){
+					action.stop();
+				}
 			}
 		}
 	}
