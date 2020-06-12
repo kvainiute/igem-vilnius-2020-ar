@@ -205,13 +205,16 @@ function load3Dmodel(item){
 			modelData.actions = [];
 			console.log(load_model.animations);
             modelData.mixer = new THREE.AnimationMixer(meshItem);
-            for (var i = 0; i < load_model.animations.length; i++) {
-                var action = modelData.mixer.clipAction(load_model.animations[i]);
+            for (let i = 0; i < load_model.animations.length; i++) {
+                let action = modelData.mixer.clipAction(load_model.animations[i]);
                 if (looponce) {
                     action.setLoop(THREE.LoopOnce);
                     action.clampWhenFinished = true;
 				}
 				modelData.actions.push(action);
+				if (modelData.visible){
+					action.play();
+				}
             }
 		}
 
