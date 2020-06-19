@@ -106,7 +106,7 @@ const data = [
                 y: 3*Math.PI/2,
                 z: 0
             },
-            scale: 0.8s,
+            scale: 0.8,
             looponce: false,
         }
     },
