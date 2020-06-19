@@ -22,10 +22,8 @@ const data = [
                 y: -1.6,
                 z: 0
             },
-            scale: 1,
-            animated: true,
+            scale: 0.7,
             looponce: true,
-            animationType: 'an',
         }
     },
 
@@ -50,10 +48,8 @@ const data = [
                 y: 0,
                 z: 0
             },
-            scale: 1,
-            animated: true,
+            scale: 0.9,
             looponce: false,
-            animationType: 'an',
         },
         onVisible: () => {
             tray.style = "display: flex;";
@@ -75,27 +71,26 @@ const data = [
             path: "./models/crisprcas9.glb",
             pattern: "crisprcas",
             pos: {
-                x: 0,
-                y: 0.5,
-                z: 0
+                x: 0.3,
+                y: 0.6,
+                z: -0.1
             },
             rot: {
                 x: 0,
                 y: 0,
                 z: 0
             },
-            scale: 0.07,
-            animated: true,
+            scale: 0.03,
             looponce: false,
-            animationType: 'an',
-
         }
     },
+
+    // -------------------- bacteriophage --------------------
     {
         meta: {
-            nameLT: "Žalias fluorescencinis baltymas (GFP)",
+            nameLT: "Bakteriofagas",
             infoLT: "Tekstas - tekstas",
-            nameEN: "Green fluorescent protein (GFP)",
+            nameEN: "Bacteriophage",
             infoEN: "...",
         },
         model: {
@@ -103,20 +98,20 @@ const data = [
             pattern: "bacteriophage",
             pos: {
                 x: 0,
-                y: 0,
+                y: 0.5,
                 z: 0
             },
             rot: {
                 x: 0,
-                y: 0,
+                y: 3*Math.PI/2,
                 z: 0
             },
-            scale: 1,
-            animated: true,
+            scale: 0.8s,
             looponce: false,
-            animationType: 'an',
         }
     },
+    
+    // -------------------- dna --------------------
     {
         meta: {
             nameLT: "Deoksiribonukleorūgštis (DNR)",
@@ -138,11 +133,11 @@ const data = [
                 z: 0
             },
             scale: 0.1,
-            animated: true,
             looponce: false,
-            animationType: 'an',
         },
     },
+
+    // -------------------- rna --------------------
     {
         meta: {
             nameLT: "Ribonukleino rūgštis (RNR)",
@@ -151,11 +146,11 @@ const data = [
             infoEN: "...",
         },
         model: {
-            path: "./models/rna/rna.gltf",
+            path: "./models/RNA.glb",
             pattern: "rna",
             pos: {
                 x: 0,
-                y: 0,
+                y: 0.45,
                 z: 0
             },
             rot: {
@@ -163,12 +158,12 @@ const data = [
                 y: 0,
                 z: 0
             },
-            scale: 1,
-            animated: false,
+            scale: 0.24,
             looponce: false,
-            animationType: 'n',
         },
     },
+
+    // -------------------- coronavirus --------------------
     {
         meta: {
             nameLT: "SARS-CoV-2",
@@ -190,16 +185,16 @@ const data = [
                 z: 0
             },
             scale: 1,
-            animated: false,
             looponce: true,
-            animationType: 'n',
         }
     },
+    
+    // -------------------- ecoli --------------------
     {
         meta: {
-            nameLT: "Žalias fluorescencinis baltymas (GFP)",
+            nameLT: "E-coli",
             infoLT: "Tekstas - tekstas",
-            nameEN: "Green fluorescent protein (GFP)",
+            nameEN: "E-coli",
             infoEN: "...",
         },
         model: {
@@ -207,7 +202,7 @@ const data = [
             pattern: "ecoli",
             pos: {
                 x: 0.3,
-                y: 0,
+                y: -0.2,
                 z: -0.2
             },
             rot: {
@@ -216,12 +211,7 @@ const data = [
                 z: 0
             },
             scale: 2,
-            animated: true,
             looponce: false,
-            animationType: 'an',
         },
-        onVisible: () => {},
-        onHidden: () => {}
     }
-
 ];

@@ -211,22 +211,20 @@
 
                 }
 
-                if (animated) {
-                    modelData.actions = [];
-                    modelData.mixer = new THREE.AnimationMixer(meshItem);
-                    for (let i = 0; i < load_model.animations.length; i++) {
-                        let action = modelData.mixer.clipAction(load_model.animations[i]);
-                        if (looponce) {
-                            action.setLoop(THREE.LoopOnce);
-                            action.clampWhenFinished = true;
-                        }
-                        modelData.actions.push(action);
-                        if (modelData.visible) {
-                            action.play();
-                        }
-                    }
-                }
-
+				modelData.actions = [];
+				modelData.mixer = new THREE.AnimationMixer(meshItem);
+				for (let i = 0; i < load_model.animations.length; i++) {
+					let action = modelData.mixer.clipAction(load_model.animations[i]);
+					if (looponce) {
+						action.setLoop(THREE.LoopOnce);
+						action.clampWhenFinished = true;
+					}
+					modelData.actions.push(action);
+					if (modelData.visible) {
+						action.play();
+					}
+				}
+				
                 root.add(meshItem);
             }, function(xhr) {
                 console.log((xhr.loaded / xhr.total * 100) + '% loaded');
