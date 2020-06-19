@@ -213,7 +213,6 @@
 
                 if (animated) {
                     modelData.actions = [];
-                    console.log(load_model.animations);
                     modelData.mixer = new THREE.AnimationMixer(meshItem);
                     for (let i = 0; i < load_model.animations.length; i++) {
                         let action = modelData.mixer.clipAction(load_model.animations[i]);
@@ -267,12 +266,12 @@
                 if (item.model.root.visible !== item.model.visible) {
                     item.model.visible = item.model.root.visible;
                     if (item.model.visible) {
-                        item.onVisible();
+						if (typeof item.onVisible === 'function') item.onVisible();
                         for (let action of item.model.actions) {
                             action.play();
                         }
                     } else {
-                        item.onHidden();
+                        if (typeof item.onHidden === 'function') item.onHidden();
                         for (let action of item.model.actions) {
                             action.stop();
                         }
