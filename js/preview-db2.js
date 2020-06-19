@@ -10,22 +10,30 @@ const data = [
         },
         model: {
             path: "./models/lego.glb",
-            pattern: "kanji",
-            pos: {x: 0, y: 0.1, z: 0},
-            rot: {x: 0, y: -1.6, z: 0},
-			scale: 1,
+            pattern: "pattern-lego-02",
+            pos: {
+                x: 0,
+                y: 0.1,
+                z: 0
+            },
+            rot: {
+                x: 0,
+                y: -1.6,
+                z: 0
+            },
+            scale: 0.7,
             animated: true,
             looponce: true,
             animationType: 'an',
         },
-        onVisible: ()=>{
+        onVisible: () => {
             document.querySelector("body").style.backgroundImage = "url('images/bg/bg-dark.png')";
         },
-        onHidden: ()=>{
-            
+        onHidden: () => {
+
         }
     },
-    
+
     // -------------------- gfp --------------------
     {
         meta: {
@@ -36,24 +44,32 @@ const data = [
         },
         model: {
             path: "./models/gfp.glb",
-            pattern: "igem-test1",
-            pos: {x: 0, y: 0.75, z: 0},
-            rot: {x: 0, y: 0, z: 0},
-			scale: 1,
+            pattern: "gfp",
+            pos: {
+                x: 0,
+                y: 0.75,
+                z: 0
+            },
+            rot: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            scale: 1,
             animated: true,
             looponce: false,
             animationType: 'an',
         },
-        onVisible: ()=>{
+        onVisible: () => {
             tray.style = "display: flex;";
         },
-        onHidden: ()=>{
+        onHidden: () => {
             tray.style = "display: none;";
         }
     },
-	
+
     // -------------------- crispr_cas9 --------------------
-	{
+    {
         meta: {
             nameLT: "CRISPR-Cas9",
             infoLT: "",
@@ -62,7 +78,7 @@ const data = [
         },
         model: {
             path: "./models/crisprcas9.glb",
-			pattern: "hiro",
+            pattern: "crisprcas",
             pos: {
                 x: 0,
                 y: 0.5,
@@ -73,15 +89,70 @@ const data = [
                 y: -1.85,
                 z: 0.5
             },
-			scale: 0.07,
+            scale: 0.07,
             animated: true,
             looponce: false,
             animationType: 'an',
 
         },
-        onVisible: ()=>{
-        },
-        onHidden: ()=>{
-        },
+        onVisible: () => {},
+        onHidden: () => {},
     },
+    {
+        meta: {
+            nameLT: "Žalias fluorescencinis baltymas (GFP)",
+            infoLT: "Tekstas - tekstas",
+            nameEN: "Green fluorescent protein (GFP)",
+            infoEN: "...",
+        },
+        model: {
+            path: "./models/bacteriophage.glb",
+            pattern: "bacteriophage",
+            pos: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            rot: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            scale: 1,
+            animated: true,
+            looponce: false,
+            animationType: 'an',
+        },
+        onVisible: () => {},
+        onHidden: () => {}
+    },
+    {
+        meta: {
+            nameLT: "Žalias fluorescencinis baltymas (GFP)",
+            infoLT: "Tekstas - tekstas",
+            nameEN: "Green fluorescent protein (GFP)",
+            infoEN: "...",
+        },
+        model: {
+            path: "./models/ecoli.glb",
+            pattern: "ecoli",
+            pos: {
+                x: 0.3,
+                y: 0,
+                z: -0.2
+            },
+            rot: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            scale: 2,
+            animated: true,
+            looponce: false,
+            animationType: 'an',
+        },
+        onVisible: () => {},
+        onHidden: () => {}
+    }
+
 ];
