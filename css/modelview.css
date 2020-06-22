@@ -20,19 +20,11 @@ body {
 }
 
 #home-button {
-    right: 30px;
-}
-
-#photo-button {
-    left: 90px;
-}
-
-#reverse-button {
-    left: 30px;
+    right: 20px;
 }
 
 #info-button {
-    right: 90px;
+    left: 20px;
 }
 
 .info img {
@@ -303,7 +295,9 @@ a {
     }
 }
 
-img {
+#prew img,
+#prew2 img,
+.info img {
     width: 30px;
     height: 30px;
 }
@@ -315,6 +309,7 @@ img {
     left: 30px;
     margin-top: 20px;
 }
+
 .tray-swatch {
     width: 32px;
     height: 32px;
@@ -327,6 +322,7 @@ img {
     animation: hover 1200ms linear 2 alternate;
     cursor: pointer;
 }
+
 .tray-swatch:active {
     -webkit-animation: active 1200ms ease 1 alternate;
     animation: active 1200ms ease 1 alternate;

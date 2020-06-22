@@ -1,16 +1,22 @@
-var camera, light, scene, renderer, video, update, model, raycaster, mouse;
+var scene, camera, renderer, clock, deltaTime, totalTime, header, paragraph, recording;
 
-var mixer = null;
-var clock = new THREE.Clock();
+var mixer;
 
+const tray = document.getElementById('tray-container');
+const infoBox = document.getElementById("info-button");
 
-// export function init(modelName, header, paragraph, animated, pos, rot, looponce) {
-export function init(modelData, metaData) {
-    modelData.models = new THREE.Object3D();
+var arToolkitSource, arToolkitContext;
 
-    let header = metaData.nameLT;
-    let paragraph = metaData.infoLT;
+var rootsAndControls = [];
 
+const INITIAL_MTL = new THREE.MeshPhongMaterial({
+    color: 0x03fc4a
+});
+
+initialize();
+animate();
+
+function initialize() {
     if (navigator.userAgent.indexOf("like Mac") != -1) {
         if (navigator.userAgent.indexOf("CriOS") != -1) {
             alert("iOS nepalaiko WebRTC naršyklėje Google Chrome. Siūlome naudoti Safari.");
@@ -18,137 +24,134 @@ export function init(modelData, metaData) {
             alert("iOS nepalaiko WebRTC naršyklėje Mozilla Firefox. Siūlome naudoti Safari.");
         }
     }
-
-    //setting up the camera
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 1.5;
-
-    //setting up the scene
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xdccba0);
-    light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(0, 0, 1);
-    scene.add(light);
-    light = new THREE.AmbientLight(0xffffff, 3);
-    scene.add(light);
 
-    //setting up the renderer
+    let light0 = new THREE.DirectionalLight(0xcccccc, 1);
+    light0.position.set(0, 3, 0);
+    scene.add(light0);
+    let light1 = new THREE.DirectionalLight(0xffffff, 1);
+    light1.position.set(1, 1, 1);
+    scene.add(light1);
+    let light2 = new THREE.DirectionalLight(0xffffff, 1);
+    light2.position.set(-1, 1, -1);
+    scene.add(light2);
+    let light3 = new THREE.DirectionalLight(0xffffff, 1);
+    light3.position.set(0, -1, 2);
+    scene.add(light3);
+
+    camera = new THREE.Camera();
+    scene.add(camera);
+
     renderer = new THREE.WebGLRenderer({
         antialias: true,
-        preserveDrawingBuffer: true,
         alpha: true
     });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    if (!modelData.path.includes("gfp")) {
-        renderer.outputEncoding = THREE.sRGBEncoding;
-    }
-    scene.background.encoding = THREE.LinearEncoding;
-    renderer.toneMappingExposure = 0.7;
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.physicallyCorrectLights = true;
+    renderer.setClearColor(new THREE.Color('lightgrey'), 0)
+    renderer.setSize(1280, 960);
+    renderer.outputEncoding = THREE.sRGBEncoding;
+
+
     document.body.appendChild(renderer.domElement);
-    var canvas = renderer.domElement;
 
-    //setting the background as webcam stream
-    video = document.createElement('video');
-    video.setAttribute('autoplay', '');
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    var facing = "environment";
-    var defaultsOpts = {
-        audio: false,
-        video: {
-            facingMode: facing
-        }
-    }
-    var webcam_playable = true;
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
-            video.srcObject = stream;
-            video.play();
-            setTimeout(function () {
-                load3Dmodel(modelData);
-            }, 2000);
-        }).catch(function (error) {
-            console.error('Unable to access the camera/webcam.', error);
-            webcam_playable = false;
-            load3Dmodel(modelData);
-        });
-    } else {
-        console.error('MediaDevices interface not available.');
-        webcam_playable = false;
-        load3Dmodel(modelData);
-    }
-    if (webcam_playable) {
-        document.body.appendChild(video);
-        var webBackground = new THREE.VideoTexture(video);
-        scene.background = webBackground;
-    } else {
-        scene.background = new THREE.Color(0xdccba0);
-    }
+    clock = new THREE.Clock();
+    deltaTime = 0;
+    totalTime = 0;
 
+    /*infoBox.addEventListener('click', showInfo(header, paragraph), false);*/
+    infoBox.addEventListener('click', function () {
+            console.log(header);
+            $('#st-name').text(header);
+            $('#text-info').text(paragraph);
+            // toggle html element
+            $('#model-info').css('display', 'block');
+            positionInfoDiv();
+        },
+        false);
 
-    setControls("orbit");
-
-    //choosing the 3D object
-    raycaster = new THREE.Raycaster();
-    mouse = new THREE.Vector2()
-
-    //All the event listeners
-    window.addEventListener('resize', onWindowResize, false);
-
-    renderer.domElement.addEventListener('click', () => onClick(header, paragraph), false);
-
-    document.getElementById("photo-button").addEventListener('click', saveAsImage, false);
-
-    document.getElementById("info-button").addEventListener('click', showInfo, false);
-
-    document.getElementById("close-button").addEventListener('click', function () {
+    /*document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
-    }, false);
-    //Reversing the camera
-    document.getElementById("reverse-button").addEventListener('click', function () {
-        if (webcam_playable) {
-            if (facing == "user") {
-                facing = "environment";
-            } else {
-                facing = "user";
-            }
-            defaultsOpts = {
-                audio: false,
-                video: {
-                    facingMode: facing
-                }
-            }
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                navigator.mediaDevices.getUserMedia(defaultsOpts).then(function (stream) {
-                    video.srcObject = stream;
-                    video.play();
-                    setTimeout(function () {}, 2000);
-                }).catch(function (error) {
-                    console.error('Unable to access the camera/webcam.', error);
-                });
-            } else {
-                console.error('MediaDevices interface not available.');
-            }
-            webBackground = new THREE.VideoTexture(video);
-            console.log(scene.background.encoding);
-            scene.background = webBackground;
-        }
+    }, false);*/
+
+    ////////////////////////////////////////////////////////////
+    // setup arToolkitSource
+    ////////////////////////////////////////////////////////////
+
+    arToolkitSource = new THREEx.ArToolkitSource({
+        sourceType: 'webcam',
     });
 
-    // load3Dmodel(modelData);
-    update = function () {
-        modelData.models.rotation.y += 0.01;
-        modelData.models.rotation.z += 0.01;
+    function onResize() {
+        arToolkitSource.onResizeElement()
+        arToolkitSource.copyElementSizeTo(renderer.domElement)
+        if (arToolkitContext.arController !== null) {
+            arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
+        }
+        //positionInfoDiv();
     }
 
-    return modelData.models; // El randomo būdas į GFP perduoti models objektą, kad galėtų keisti spalvą
+    arToolkitSource.init(function onReady() {
+        onResize()
+    });
+
+    // handle resize event
+    window.addEventListener('resize', onResize);
+
+    ////////////////////////////////////////////////////////////
+    // setup arToolkitContext
+    ////////////////////////////////////////////////////////////	
+
+    // create atToolkitContext
+    arToolkitContext = new THREEx.ArToolkitContext({
+        cameraParametersUrl: 'data/camera_para.dat',
+        detectionMode: 'mono'
+    });
+
+    // copy projection matrix to camera when initialization complete
+    arToolkitContext.init(function onCompleted() {
+        camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
+    });
+
+    ////////////////////////////////////////////////////////////
+    // setup markerRoots
+    ////////////////////////////////////////////////////////////
+
+    load3Dmodels();
 }
-//loading the 3D model
-function load3Dmodel(modelData) {
-    let modelName = modelData.path;
-    let models = modelData.models;
+
+function load3Dmodel(item) {
+    let modelData = item.model;
+    let modelMeta = item.meta;
+
+    header = modelMeta.nameLT;
+    paragraph = modelMeta.infoLT;
+    recording = modelMeta.audioRec;
+    console.log(header);
+    if (typeof modelData.pattern === 'undefined') {
+        return;
+    }
+
+    // interpolates from last position to create smoother transitions when moving.
+    // parameter lerp values near 0 are slow, near 1 are fast (instantaneous).
+    let root = new THREE.Group();
+    scene.add(root);
+    let smoothedControl = new THREEx.ArSmoothedControls(root, {
+        lerpPosition: 0.8,
+        lerpQuaternion: 0.8,
+        lerpScale: 1,
+        // minVisibleDelay: 1,
+        // minUnvisibleDelay: 1,
+    });
+
+    // build markerControls
+    let markerControls = new THREEx.ArMarkerControls(
+        arToolkitContext,
+        root, {
+            type: 'pattern',
+            patternUrl: "data/" + modelData.pattern + ".patt",
+        }
+    );
+
+    let modelPath = modelData.path;
     let pos = modelData.pos;
     let rot = modelData.rot;
     let animated = modelData.animated;
@@ -164,104 +167,162 @@ function load3Dmodel(modelData) {
         y: 0,
         x: 0
     };
-    var loader;
-    loader = new THREE.GLTFLoader();
-    var dracoLoader = new THREE.DRACOLoader();
+    let loader = new THREE.GLTFLoader();
+
+    let dracoLoader = new THREE.DRACOLoader();
     dracoLoader.setDecoderPath('./draco/');
     loader.setDRACOLoader(dracoLoader);
-
-    loader.load(modelName, function (load_model) {
-
-
-        /*load_model.scene.traverse(function (child) {
-            if (child.isMesh) {
-                child.material.encoding = THREE.sRGBEncoding;
-                console.log(child.material);
-            }
-        });*/
-        model = load_model.scene;
-        //Putting the model in the center and scaling it
-        var mroot = model;
-        mroot.scale.set(0.3, 0.3, 0.3);
-        var bbox = new THREE.Box3().setFromObject(mroot);
-        var cent = bbox.getCenter(new THREE.Vector3());
-        var size = bbox.getSize(new THREE.Vector3());
-        const INITIAL_MTL = new THREE.MeshPhongMaterial({
-            color: 0x03fc4a
-        });
-
-        if (modelName.includes("gfp")) {
-            initColor(model, "GFP", INITIAL_MTL);
+    let meshItem;
+    loader.load(modelPath, function (load_model) {
+        meshItem = load_model.scene;
+        //meshItem.material.side = THREE.DoubleSide;
+        let scale = modelData.scale * 0.25;
+        meshItem.scale.set(scale, scale, scale);
+        meshItem.position.x += pos.x;
+        meshItem.position.y += pos.y;
+        meshItem.position.z += pos.z;
+        meshItem.rotation.x += rot.x;
+        meshItem.rotation.y += rot.y;
+        meshItem.rotation.z += rot.z;
+        if (modelPath.includes("gfp")) {
+            renderer.outputEncoding = THREE.LinearEncoding
+            initColor(meshItem, "GFP", INITIAL_MTL);
         }
-
-        //Rescale the object to normalized space
-        var maxAxis = Math.max(size.x, size.y, size.z);
-        mroot.scale.multiplyScalar(1.0 / maxAxis);
-        bbox.setFromObject(mroot);
-        bbox.getCenter(cent);
-        bbox.getSize(size);
-        //Reposition to 0,halfY,0
-        mroot.position.copy(cent).multiplyScalar(-1);
-        mroot.position.y -= (size.y * 0.5);
-        mroot.position.z += pos.z;
-        mroot.position.y += pos.y;
-        mroot.position.x += pos.x;
-        mroot.rotation.z += rot.z;
-        mroot.rotation.y += rot.y;
-        mroot.rotation.x += rot.x;
-
-
-        models.add(mroot);
         if (animated) {
-            mixer = new THREE.AnimationMixer(model);
-            for (var i = 0; i < load_model.animations.length; i++) {
-                var action = mixer.clipAction(load_model.animations[i]);
+            modelData.actions = [];
+            modelData.mixer = new THREE.AnimationMixer(meshItem);
+            for (let i = 0; i < load_model.animations.length; i++) {
+                let action = modelData.mixer.clipAction(load_model.animations[i]);
                 if (looponce) {
                     action.setLoop(THREE.LoopOnce);
                     action.clampWhenFinished = true;
                 }
-                action.play();
+                modelData.actions.push(action);
+                if (modelData.visible) {
+                    action.play();
+                }
             }
         }
+
+        root.add(meshItem);
     }, function (xhr) {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
     }, function (error) {
-        console.log('Error loading the model (load3Dmodel)');
+        console.error('Error loading the model (load3Dmodel)\n');
+        console.error(error);
     });
-
-    scene.add(models);
+    if (modelPath.includes("gfp")) {
+        initGfpColors(meshItem);
+    } //*/
+    modelData.visible = false;
+    modelData.root = root;
+    modelData.control = smoothedControl;
 }
 
-function setControls(control_type) {
-    //camera controls
-    if (control_type == "orbit") {
-        console.log("orbit");
-        var controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.zoomSpeed = 0.3;
-        controls.rotateSpeed = 0.5;
-        controls.panSpeed = 0.5;
-    } else {
-        return;
+function load3Dmodels() {
+    for (let item of data) {
+        load3Dmodel(item);
     }
-
 }
-//Called when clicking on the 3d model => info div pops up
-function onClick(header, paragraph) {
 
-    event.preventDefault();
 
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+function update() {
+    // update artoolkit on every frame
+    if (arToolkitSource.ready !== false)
+        arToolkitContext.update(arToolkitSource.domElement);
 
-    raycaster.setFromCamera(mouse, camera);
-
-    var intersects = raycaster.intersectObjects(scene.children, true);
-
-    if (intersects.length > 0) {
-        let selectedObject = intersects[0].object;
-        showInfo(header, paragraph);
-
+    // additional code for smoothed controls
+    for (let item of data) {
+        if (item.model.control === undefined) continue;
+        item.model.control.update(item.model.root);
     }
+
+    // start animation depending on model
+    for (let item of data) {
+        if (item.model.root === undefined) continue;
+        if (item.model.root.visible !== item.model.visible) {
+            item.model.visible = item.model.root.visible;
+            if (item.model.visible) {
+                if (typeof item.onVisible === 'function') item.onVisible();
+                for (let action of item.model.actions) {
+                    action.play();
+                }
+            } else {
+                if (typeof item.onHidden === 'function') item.onHidden();
+                for (let action of item.model.actions) {
+                    action.stop();
+                }
+            }
+        }
+    }
+}
+
+
+function animate() {
+    requestAnimationFrame(animate);
+    deltaTime = clock.getDelta();
+    totalTime += deltaTime;
+
+    for (let item of data) {
+        if (item.model.mixer != null) item.model.mixer.update(deltaTime);
+    }
+    update(); // AR update
+    renderer.render(scene, camera); // model update
+}
+
+
+
+function initColor(parent, type, mtl) {
+    parent.traverse((o) => {
+        if (o.isMesh) {
+            if (o.name.includes(type)) {
+                o.material = mtl;
+                o.nameID = type; // Set a new property to identify this object
+            }
+        }
+    });
+}
+
+function initGfpColors() {
+    //tray.style = "display: flex;";
+    // const colors = ['03f4fc', '0303fc', 'fc03a1', 'f4fc03', '03fc4a', '6703fc', 'fc0303', ]; // old colors
+    const colors = ['0CFC16', 'F2FC3B', 'FC8839', 'FC3D3D', '4040FC', '35A0FC', '3AEBFC', ];
+
+    const setMaterial = (parent, type, mtl) => {
+        parent.traverse((o) => {
+            if (o.isMesh && o.nameID != null) {
+                if (o.nameID == type) {
+                    o.material = mtl;
+                }
+            }
+        });
+    }
+
+    const selectSwatch = (e) => {
+        let color = colors[parseInt(e.target.dataset.key)];
+        let new_mtl = new THREE.MeshPhongMaterial({
+            color: parseInt('0x' + color),
+            shininess: 10
+        });
+
+        console.log("click " + color); // TODO: remove
+        setMaterial(data[1].model.root.children[0], 'GFP', new_mtl);
+        // TODO: don't use data[1], somehow find gfp yourself
+    }
+
+
+    const buildColors = (colors) => {
+        for (let [i, color] of colors.entries()) {
+            let swatch = document.createElement('div');
+            swatch.classList.add('tray-swatch');
+            swatch.style.background = "#" + color;
+            swatch.setAttribute('data-key', i);
+            swatch.addEventListener('click', selectSwatch);
+            tray.append(swatch);
+        }
+    }
+
+    buildColors(colors);
 }
 
 function showInfo(header, paragraph) {
@@ -288,71 +349,14 @@ function positionInfoDiv() {
     });
 
 }
-//Window resizing
-function onWindowResize() {
 
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    positionInfoDiv();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+function playAudio(file) {
+    music.pause();
+    music = new Audio(file);
+    music.play();
 
 }
-//Custom image file name 
-function defaultFileName(ext) {
-    const str = `${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}${ext}`;
-    var name = str.replace(/\//g, '-');
-    return name;
-}
-//Saving the image <- needs fixing
-function saveAsImage() {
-    var imgData, imgNode;
-    try {
-        var strMime = "image/jpeg";
-        imgData = renderer.domElement.toDataURL(strMime);
-        saveFile(imgData.replace(strMime, "image/octet-stream"), defaultFileName(".jpg"));
-    } catch (e) {
-        console.log(e);
-        return;
-    }
-}
-//Capturing the image
-var saveFile = function (strData, filename) {
-    var link = document.createElement('a');
-    if (typeof link.download === 'string') {
-        document.body.appendChild(link); //Firefox requires the link to be in the body
-        link.download = filename;
-        link.href = strData;
-        setTimeout(function () {
-            link.click();
-            document.body.removeChild(link); //remove the link when done
-        }, 500);
-    } else {
-        location.replace(uri);
-    }
-}
-//important
-export function animateN() {
-    requestAnimationFrame(animateN);
-    update();
-    renderer.render(scene, camera);
-}
 
-export function animateAN() {
-    requestAnimationFrame(animateAN);
-    var delta = clock.getDelta();
-    if (mixer != null) {
-        mixer.update(delta);
-    };
-    renderer.render(scene, camera);
-}
-
-function initColor(parent, type, mtl) {
-    parent.traverse((o) => {
-        if (o.isMesh) {
-            if (o.name.includes(type)) {
-                o.material = mtl;
-                o.nameID = type; // Set a new property to identify this object
-            }
-        }
-    });
+function testing() {
+    console.log('test')
 }

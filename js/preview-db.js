@@ -2,7 +2,7 @@ import {
     init,
     animateN,
     animateAN
-} from './script.js';
+} from './script-old.js';
 
 export const data = {
 

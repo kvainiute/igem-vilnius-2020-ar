@@ -18,18 +18,16 @@
     <title>iGEM AR </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-    <link type="text/css" rel="stylesheet" href="./css/threejsmain.css">
-    <link type="text/css" rel="stylesheet" href="./css/modelview.css">
+    <link type="text/css" rel="stylesheet" href="./css/modelview2.css">
 </head>
 
 <body>
     <div class="info">
-        <a href="/map.html" class="button" id="home-button"><img src="images/home.png"></a>
-        <a href="#" class="button" id="reverse-button"><img src="images/switch-camera.png"></a>
-        <a href="#" class="button" id="photo-button"><img src="images/photo.png"></a>
         <a href="#" class="button" id="info-button"><img src="images/info.png"></a>
+        <a href="#" class="button" id="audio-button"><img src="images/audio.png"></a>
+        <a href="/map.html" class="button" id="home-button"><img src="images/home.png"></a>
     </div>
-    <div id="model-info" style="position: absolute; display: none">
+    <div id="model-info">
         <div id="info-name">
             <h1 id="st-name" text-align="center"></h1>
         </div>
@@ -41,19 +39,27 @@
     </div>
 
     <div id="tray-container" style="display:none;"></div>
+    <script src='js/three.js'></script>
 
-    <script type="module" src="./js/three.js"></script>
-    <script type="module" src="./js/OrbitControls.js"></script>
-    <script type="module" src="./js/GLTFLoader.js"></script>
-    <script type="module" src="./js/DRACOLoader.js"></script>
+    <script src="jsartoolkit5/artoolkit.min.js"></script>
+    <script src="jsartoolkit5/artoolkit.api.js"></script>
+
+    <script src="threex/threex-artoolkitsource.js"></script>
+    <script src="threex/threex-artoolkitcontext.js"></script>
+    <script src="threex/threex-arbasecontrols.js"></script>
+    <script src="threex/threex-armarkercontrols.js"></script>
+    <script src="threex/threex-arsmoothedcontrols.js"></script>
+
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/GLTFLoader.js"></script>
+    <script src="js/DRACOLoader.js"></script>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-    <video id="video" autoplay style="display:none"></video>
-
-    <script type="module" src="./js/script.js"></script>
-    <script type="module" src="./js/preview-db.js"></script>
+    <script type="module" src="./js/script-old.js"></script>
+    <script type="module" src="./js/preview-db2.js"></script>
     <script type="module" src="./js/preview.js"></script>
 
 </body>
+
 </html>
