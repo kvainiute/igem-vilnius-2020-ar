@@ -2,7 +2,6 @@ import {
     init
 } from './script-old.js';
 export const data = {
-
     // -------------------- biobrick --------------------
     biobrick: {
         meta: {
@@ -26,7 +25,8 @@ export const data = {
                 y: -1.6,
                 z: 0
             },
-            scale: 0.7
+            scale: 0.7,
+            looponce: true
         }
     },
 
@@ -52,7 +52,8 @@ export const data = {
                 y: 0,
                 z: 0
             },
-            scale: 1
+            scale: 0.9,
+            looponce: false
         },
         onVisible: () => {
             tray.style = "display: flex;";
@@ -74,17 +75,15 @@ export const data = {
             path: "./models/crisprcas9.glb",
             pattern: "crisprcas",
             pos: {
-                x: 0,
-                y: 0,
-                z: 1
+                x: 0.3,
+                y: 0.6,
+                z: -0.1
             },
             rot: {
                 x: 0,
                 y: 0,
                 z: 0
-            },
-            scale: 0.04
-
+            }
         }
     },
     // -------------------- bakteriofagai --------------------
@@ -131,10 +130,11 @@ export const data = {
             },
             rot: {
                 x: 0,
-                y: -1.5,
+                y: 3 * Math.PI / 2,
                 z: 0
             },
-            scale: 0.1
+            scale: 0.8,
+            looponce: false
         },
     },
     // -------------------- rna --------------------
@@ -151,7 +151,7 @@ export const data = {
             pattern: "rna",
             pos: {
                 x: 0,
-                y: 0,
+                y: 0.45,
                 z: 0
             },
             rot: {
@@ -159,7 +159,8 @@ export const data = {
                 y: 1.5,
                 z: 0
             },
-            scale: 0.3
+            scale: 0.1,
+            looponce: false
         },
     },
     // -------------------- sars-cov-2 --------------------
@@ -201,7 +202,7 @@ export const data = {
             pattern: "ecoli",
             pos: {
                 x: 0.3,
-                y: 0,
+                y: -0.2,
                 z: -0.2
             },
             rot: {
