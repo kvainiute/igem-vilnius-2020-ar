@@ -22,8 +22,10 @@ video, canvas {
 
 .info {
     display: flex;
-    height: 100%;
-
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
 }
 
 .button {
