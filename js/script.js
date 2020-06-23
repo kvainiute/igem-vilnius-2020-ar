@@ -2,6 +2,8 @@ var scene, camera, renderer, clock, deltaTime, totalTime, header, paragraph, rec
 
 var mixer;
 
+const dataKeys = Object.keys(data); // get list of model ids
+
 const tray = document.getElementById('tray-container');
 const infoBox = document.getElementById("info-button");
 
@@ -154,8 +156,6 @@ function load3Dmodel(item) {
     let modelPath = modelData.path;
     let pos = modelData.pos;
     let rot = modelData.rot;
-    let animated = modelData.animated;
-    let looponce = modelData.looponce;
 
     if (pos == undefined) pos = {
         z: 0,
@@ -188,19 +188,18 @@ function load3Dmodel(item) {
             renderer.outputEncoding = THREE.LinearEncoding
             initColor(meshItem, "GFP", INITIAL_MTL);
         }
-        if (animated) {
-            modelData.actions = [];
-            modelData.mixer = new THREE.AnimationMixer(meshItem);
-            for (let i = 0; i < load_model.animations.length; i++) {
-                let action = modelData.mixer.clipAction(load_model.animations[i]);
-                if (looponce) {
-                    action.setLoop(THREE.LoopOnce);
-                    action.clampWhenFinished = true;
-                }
-                modelData.actions.push(action);
-                if (modelData.visible) {
-                    action.play();
-                }
+
+        modelData.actions = [];
+        modelData.mixer = new THREE.AnimationMixer(meshItem);
+        for (let i = 0; i < load_model.animations.length; i++) {
+            let action = modelData.mixer.clipAction(load_model.animations[i]);
+            if (modelData.looponce) {
+                action.setLoop(THREE.LoopOnce);
+                action.clampWhenFinished = true;
+            }
+            modelData.actions.push(action);
+            if (modelData.visible) {
+                action.play();
             }
         }
 
@@ -220,8 +219,8 @@ function load3Dmodel(item) {
 }
 
 function load3Dmodels() {
-    for (let item of data) {
-        load3Dmodel(item);
+    for (let key of dataKeys) {
+        load3Dmodel(data[key]);
     }
 }
 
@@ -232,13 +231,15 @@ function update() {
         arToolkitContext.update(arToolkitSource.domElement);
 
     // additional code for smoothed controls
-    for (let item of data) {
+    for (let key of dataKeys) {
+        let item = data[key];
         if (item.model.control === undefined) continue;
         item.model.control.update(item.model.root);
     }
 
     // start animation depending on model
-    for (let item of data) {
+    for (let key of dataKeys) {
+        let item = data[key];
         if (item.model.root === undefined) continue;
         if (item.model.root.visible !== item.model.visible) {
             item.model.visible = item.model.root.visible;
@@ -263,8 +264,8 @@ function animate() {
     deltaTime = clock.getDelta();
     totalTime += deltaTime;
 
-    for (let item of data) {
-        if (item.model.mixer != null) item.model.mixer.update(deltaTime);
+    for (let key of dataKeys) {
+        if (data[key].model.mixer != null) data[key].model.mixer.update(deltaTime);
     }
     update(); // AR update
     renderer.render(scene, camera); // model update
@@ -306,8 +307,7 @@ function initGfpColors() {
         });
 
         console.log("click " + color); // TODO: remove
-        setMaterial(data[1].model.root.children[0], 'GFP', new_mtl);
-        // TODO: don't use data[1], somehow find gfp yourself
+        setMaterial(data["gfp"].model.root.children[0], 'GFP', new_mtl);
     }
 
 

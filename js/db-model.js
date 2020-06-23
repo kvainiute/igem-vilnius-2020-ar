@@ -1,7 +1,4 @@
-import {
-    init
-} from './script-old.js';
-export const data = {
+const data = {
     // -------------------- biobrick --------------------
     biobrick: {
         meta: {
@@ -53,7 +50,6 @@ export const data = {
                 z: 0
             },
             scale: 0.9,
-            looponce: false
         },
         onVisible: () => {
             tray.style = "display: flex;";
@@ -62,6 +58,7 @@ export const data = {
             tray.style = "display: none;";
         }
     },
+
     // -------------------- crispr_cas9 --------------------
     crisprcas9: {
         meta: {
@@ -86,6 +83,7 @@ export const data = {
             }
         }
     },
+
     // -------------------- bakteriofagai --------------------
     nano: {
         meta: {
@@ -111,6 +109,7 @@ export const data = {
             scale: 1
         }
     },
+
     // -------------------- dna --------------------
     dna: {
         meta: {
@@ -133,10 +132,10 @@ export const data = {
                 y: 3 * Math.PI / 2,
                 z: 0
             },
-            scale: 0.8,
-            looponce: false
+            scale: 0.15,
         },
     },
+
     // -------------------- rna --------------------
     rna: {
         meta: {
@@ -156,13 +155,13 @@ export const data = {
             },
             rot: {
                 x: 0,
-                y: 1.5,
+                y: Math.PI*3/2,
                 z: 0
             },
-            scale: 0.1,
-            looponce: false
+            scale: 0.3,
         },
     },
+
     // -------------------- sars-cov-2 --------------------
     virus: {
         meta: {
@@ -188,6 +187,7 @@ export const data = {
             scale: 0.5
         }
     },
+
     // -------------------- model organisms --------------------
     ecoli: {
         meta: {
@@ -201,18 +201,19 @@ export const data = {
             path: "./models/ecoli.glb",
             pattern: "ecoli",
             pos: {
-                x: 0.3,
+                x: -0.2,
                 y: -0.2,
                 z: -0.2
             },
             rot: {
                 x: 0,
-                y: 0,
+                y: 2.5,
                 z: 0
             },
             scale: 2
         }
     },
+
     // -------------------- genetic circuit --------------------
     /*circuit: {
         meta: {
@@ -238,6 +239,7 @@ export const data = {
             scale: 0.5
         }
     },*/
+
     // -------------------- sequencing --------------------
     sequencing: {
         meta: {
@@ -263,6 +265,7 @@ export const data = {
             scale: 0.2
         }
     },
+
     // -------------------- translation --------------------
     translation: {
         meta: {
