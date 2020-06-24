@@ -1,6 +1,6 @@
 import {
     data
-} from "./preview-db2.js";
+} from "./db-model.js";
 
 import {
     init

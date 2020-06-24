@@ -16,6 +16,7 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial({
 });
 
 initialize();
+load3Dmodels();
 animate();
 
 function initialize() {
@@ -112,26 +113,22 @@ function initialize() {
     arToolkitContext.init(function onCompleted() {
         camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
     });
-
-    ////////////////////////////////////////////////////////////
-    // setup markerRoots
-    ////////////////////////////////////////////////////////////
-
-    load3Dmodels();
 }
 
 function load3Dmodel(item) {
+    let language = "lt"; // TODO: normal language
     let modelData = item.model;
-    let modelMeta = item.meta;
-
-    header = modelMeta.nameLT;
-    paragraph = modelMeta.infoLT;
-    recording = modelMeta.audioRec;
-    console.log(header);
+    let modelMeta = item.meta[language];
+    
     if (typeof modelData.pattern === 'undefined') {
         return;
     }
 
+
+    header = modelMeta.name;
+    paragraph = modelMeta.info;
+    recording = modelMeta.audioRec;
+    console.log(header);
     // interpolates from last position to create smoother transitions when moving.
     // parameter lerp values near 0 are slow, near 1 are fast (instantaneous).
     let root = new THREE.Group();
