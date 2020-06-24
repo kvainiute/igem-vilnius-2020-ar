@@ -95,9 +95,9 @@ function load3Dmodel(item) {
     if (typeof item.pattern === 'undefined') {
         return;
     }
-    root = new THREE.Group();
+    markerRoot = new THREE.Group();
     scene.add(markerRoot);
-    let smoothedControl = new THREEx.ArSmoothedControls(root, {
+    let smoothedControl = new THREEx.ArSmoothedControls(markerRoot, {
         lerpPosition: 0.8,
         lerpQuaternion: 0.8,
         lerpScale: 1

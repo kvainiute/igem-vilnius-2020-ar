@@ -1,8 +1,4 @@
 import {
-    data
-} from "./db-model.js";
-
-import {
     init
 } from './script-old.js';
 
