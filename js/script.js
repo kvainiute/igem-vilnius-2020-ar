@@ -16,20 +16,20 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial({
 });
 
 // functions to use in different versions
-function loadAll(){
+function loadAll() {
     initialize();
     load3Dmodels();
     animate();
 }
 
-function loadSingle(which){
+function loadSingle(which) {
     if (data[which] == undefined) return;
     initialize();
     load3Dmodel(data[which]);
     animate();
 }
 
-function loadSingleNoAR(which){
+function loadSingleNoAR(which) {
     if (data[which] == undefined) return;
     initializeNoAR();
     load3Dmodel(data[which], false);
@@ -88,20 +88,18 @@ function initialize() {
     window.addEventListener('resize', onResizeNoAR, false);
 
     /*infoBox.addEventListener('click', showInfo(header, paragraph), false);*/
-    infoBox.addEventListener('click', function () {
-            console.log(header);
-            $('#st-name').text(header);
-            $('#text-info').text(paragraph);
-            // toggle html element
-            $('#model-info').css('display', 'block');
-            positionInfoDiv();
-        },
-        false);
 
-    /*document.getElementById("close-button").addEventListener('click', function () {
+
+    document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
-    }, false);*/
-
+    }, false);
+    var audioButton = document.getElementById("audio-div");
+    console.log(audioButton)
+    audioButton.addEventListener('click', function () {
+        console.log("test")
+        //var audioContent = audioButton.contentDocument();
+        //console.log(audioContent)
+    });
     ////////////////////////////////////////////////////////////
     // setup arToolkitSource
     ////////////////////////////////////////////////////////////
@@ -116,7 +114,7 @@ function initialize() {
         if (arToolkitContext.arController !== null) {
             arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
         }
-        //positionInfoDiv();
+        positionInfoDiv();
     }
 
     arToolkitSource.init(function onReady() {
@@ -209,16 +207,23 @@ function load3Dmodel(item, ar = true) {
     let language = "lt"; // TODO: normal language
     let modelData = item.model;
     let modelMeta = item.meta[language];
-    
+
     if (typeof modelData.pattern === 'undefined') {
         return;
     }
 
 
     header = modelMeta.name;
-    paragraph = modelMeta.info;
+    paragraph = modelMeta.desc;
     recording = modelMeta.audioRec;
-    console.log(header);
+    infoBox.addEventListener('click', function () {
+            $('#st-name').text(header);
+            $('#text-info').text(paragraph);
+            // toggle html element
+            $('#model-info').css('display', 'block');
+            positionInfoDiv();
+        },
+        false);
     // interpolates from last position to create smoother transitions when moving.
     // parameter lerp values near 0 are slow, near 1 are fast (instantaneous).
     let root = new THREE.Group();
@@ -448,8 +453,4 @@ function playAudio(file) {
     music = new Audio(file);
     music.play();
 
-}
-
-function testing() {
-    console.log('test')
 }

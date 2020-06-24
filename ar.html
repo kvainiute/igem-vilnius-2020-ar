@@ -15,7 +15,7 @@
         gtag('config', 'UA-163985569-1');
 
     </script>
-    <title>Hello, world!</title>
+    <title>iGEM AR</title>
 
     <link type="text/css" rel="stylesheet" href="./css/modelview2.css">
 
@@ -23,9 +23,10 @@
 
 <body>
     <div class="info">
-        <a href="#" class="button" id="info-button"><img src="images/info.png"></a>
-        <a href="#" class="button" id="audio-button"><img src="images/audio.png"></a>
-        <a href="/map.html" class="button" id="home-button"><img src="images/home.png"></a>
+        <div class="col-3"><a href="#"><img class="button" id="info-button" src="images/info.svg"></a></div>
+        <div class="col-3" id="audio-div"><object type="image/svg+xml" class="button" id="audio-button" data="images/audio.svg"></object></div>
+        <div class="col-3"><object type="image/svg+xml" class="button" id="video-button" data="images/video-control.svg"></object></div>
+        <div class="col-3"><a href="/map.html"><img class="button" id="home-button" src="images/house.svg"></a></div>
     </div>
     <div id="model-info">
         <div id="info-name">
@@ -35,7 +36,11 @@
         <div id="info-text">
             <p id="text-info"></p>
         </div>
-        <div id="info-footer"><img id="close-button" src="./images/close.png"></div>
+        <div id="info-footer">
+            <img id="ar-switch" class="info-footer-icons " src="images/ar.svg">
+            <img id="close-button" class="info-footer-icons" src="./images/close.svg">
+            <a href="/info.html"><img id="settings-button" class="info-footer-icons" src="./images/settings.svg"></a>
+        </div>
     </div>
 
     <div id="tray-container" style="display:none;"></div>
@@ -58,13 +63,14 @@
     <script src="js/db-model.js" charset="UTF-8"></script>
     <script src="js/script.js"></script>
     <script src="js/queryParams.js"></script>
-    
+
     <div id="tray-container" style="display:none;" id="prew2"></div>
 
     <script>
         let model = getQueryParams()["model"];
 
         loadSingle(model);
+
     </script>
 </body>
 

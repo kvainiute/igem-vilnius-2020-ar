@@ -22,29 +22,32 @@ canvas {
 
 .info {
     display: flex;
+    margin: 0 auto;
     position: fixed;
     width: 100vw;
     height: 100vh;
     z-index: 5;
 }
 
+.col-3 {
+    width: 25%;
+    align-self: flex-end;
+    text-align: center
+}
+
+
 .button {
     background: #fcbd1b;
     border-radius: 100%;
-    padding: 10px 10px 10px 10px;
+    padding: 4px 4px 4px 4px;
     align-self: flex-end;
     border: 2px dashed #000020;
-
+    margin: 0 auto;
     margin-bottom: 2vh;
-    height: 30px
+    height: 40px
 }
 
-#prew img,
-#prew2 img,
-.info img {
-    width: 30px;
-    height: 30px
-}
+
 
 #audio-button {
     margin: 0 auto;
@@ -61,8 +64,9 @@ canvas {
 
 
 
+
 .button:hover,
-#close-button:hover {
+.info-footer-icons:hover {
     -webkit-animation: hover 1200ms linear 2 alternate;
     animation: hover 1200ms linear 2 alternate;
     text-decoration: none;
@@ -70,7 +74,7 @@ canvas {
 }
 
 .button:active,
-#close-button:active {
+.info-footer-icons:active {
     -webkit-animation: active 1200ms ease 1 alternate;
     animation: active 1200ms ease 1 alternate;
 }
@@ -139,14 +143,19 @@ canvas {
 #model-info #info-footer {
     bottom: 5px;
     margin: 0 auto;
-    padding: 10px 10px 10px 10px;
+    width: 100%;
+    display: inline-flex
+}
+
+#info-footer a {
+    margin: 0 auto
 }
 
 
-#model-info #close-button {
+#model-info .info-footer-icons {
     margin: 0 auto;
     vertical-align: middle;
-    display: block;
+    display: inline-flex;
     height: 30px;
 }
 
@@ -171,7 +180,7 @@ canvas {
         font-size: 16pt
     }
 
-    #model-info #close-button {
+    #model-info .info-footer-icons {
         height: 50px
     }
 
