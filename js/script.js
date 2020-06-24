@@ -78,20 +78,18 @@ function initialize() {
     totalTime = 0;
 
     /*infoBox.addEventListener('click', showInfo(header, paragraph), false);*/
-    infoBox.addEventListener('click', function () {
-            console.log(header);
-            $('#st-name').text(header);
-            $('#text-info').text(paragraph);
-            // toggle html element
-            $('#model-info').css('display', 'block');
-            positionInfoDiv();
-        },
-        false);
+
 
     document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
     }, false);
-
+    var audioButton = document.getElementById("audio-div");
+    console.log(audioButton)
+    audioButton.addEventListener('click', function () {
+        console.log("test")
+        //var audioContent = audioButton.contentDocument();
+        //console.log(audioContent)
+    });
     ////////////////////////////////////////////////////////////
     // setup arToolkitSource
     ////////////////////////////////////////////////////////////
@@ -106,7 +104,7 @@ function initialize() {
         if (arToolkitContext.arController !== null) {
             arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
         }
-        //positionInfoDiv();
+        positionInfoDiv();
     }
 
     arToolkitSource.init(function onReady() {
@@ -143,9 +141,16 @@ function load3Dmodel(item) {
 
 
     header = modelMeta.name;
-    paragraph = modelMeta.info;
+    paragraph = modelMeta.desc;
     recording = modelMeta.audioRec;
-    console.log(header);
+    infoBox.addEventListener('click', function () {
+            $('#st-name').text(header);
+            $('#text-info').text(paragraph);
+            // toggle html element
+            $('#model-info').css('display', 'block');
+            positionInfoDiv();
+        },
+        false);
     // interpolates from last position to create smoother transitions when moving.
     // parameter lerp values near 0 are slow, near 1 are fast (instantaneous).
     let root = new THREE.Group();
