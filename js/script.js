@@ -16,20 +16,20 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial({
 });
 
 // functions to use in different versions
-function loadAll(){
+function loadAll() {
     initialize();
     load3Dmodels();
     animate();
 }
 
-function loadSingle(which){
+function loadSingle(which) {
     if (data[which] == undefined) return;
     initialize();
     load3Dmodel(data[which]);
     animate();
 }
 
-function loadSingleNoAR(which){
+function loadSingleNoAR(which) {
     if (data[which] == undefined) return;
     initializeNoAR();
     load3DmodelNoAR();
@@ -88,9 +88,9 @@ function initialize() {
         },
         false);
 
-    /*document.getElementById("close-button").addEventListener('click', function () {
+    document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
-    }, false);*/
+    }, false);
 
     ////////////////////////////////////////////////////////////
     // setup arToolkitSource
@@ -136,7 +136,7 @@ function load3Dmodel(item) {
     let language = "lt"; // TODO: normal language
     let modelData = item.model;
     let modelMeta = item.meta[language];
-    
+
     if (typeof modelData.pattern === 'undefined') {
         return;
     }
@@ -369,8 +369,4 @@ function playAudio(file) {
     music = new Audio(file);
     music.play();
 
-}
-
-function testing() {
-    console.log('test')
 }
