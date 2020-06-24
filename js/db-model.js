@@ -100,12 +100,12 @@ const data = {
         meta: {
             lt: {
                 name: "Bakteriofagai",
-                desc: "Bakteriofagai - tai virusų rūšis, kuri puola tam tikras bakterijas, bet nedaro žalos žmogaus ląstelėms. Jų forma primena robotus: turi galvutę, kurioje saugo genetinę informaciją, uodegėlę ir kojytes, kuriomis tvirtinasi prie bakterijos. Prisikabinęs prie bakterijos bakteriofagas įleidžia savo genetinę informaciją, liepia kopijuoti naujas viruso dalis ir galiausiai sunaikina ląstelę. Didėjant bakterijų atsparumui antibiotikams, fagų terapija gali pakeisti tradicinius gydymo būdus. Todėl mokslininkai bando padaryti šią terapiją kuo saugesne ir prieinamesne visuomenei. Vienas tokių bandymų pavyzdžių: http://2018.igem.org/Team:Munich.",
+                desc: "<b>Bakteriofagai</b> - tai virusų rūšis, kuri puola tam tikras bakterijas, bet nedaro žalos žmogaus ląstelėms. Jų forma primena robotus: turi galvutę, kurioje saugo genetinę informaciją, uodegėlę ir kojytes, kuriomis tvirtinasi prie bakterijos. Prisikabinęs prie bakterijos bakteriofagas įleidžia savo genetinę informaciją, liepia kopijuoti naujas viruso dalis ir galiausiai sunaikina ląstelę. Didėjant bakterijų atsparumui antibiotikams, fagų terapija gali pakeisti tradicinius gydymo būdus. Todėl mokslininkai bando padaryti šią terapiją kuo saugesne ir prieinamesne visuomenei. Vienas tokių bandymų pavyzdžių: http://2018.igem.org/Team:Munich.",
                 audioRec: ""
             },
             en: {
                 name: "Bacteriophages",
-                desc: "",
+                desc: "tekstas",
             },
         },
         model: {
@@ -130,12 +130,12 @@ const data = {
         meta: {
             lt: {
                 name: "Deoksiribonukleorūgštis (DNR)",
-                desc: "",
+                desc: "tekstas",
                 audioRec: ""
             },
             en: {
                 name: "Deoxyribonucleic acid (DNA)",
-                desc: "",
+                desc: "tekstas",
             },
         },
         model: {
@@ -160,12 +160,12 @@ const data = {
         meta: {
             lt: {
                 name: "Ribonukleino rūgštis (RNR)",
-                desc: "",
+                desc: "tekstas",
                 audioRec: ""
             },
             en: {
                 name: "Ribonucleic acid (RNA)",
-                desc: "",
+                desc: "tekstas",
             },
         },
         model: {
@@ -178,7 +178,7 @@ const data = {
             },
             rot: {
                 x: 0,
-                y: Math.PI*3/2,
+                y: Math.PI * 3 / 2,
                 z: 0
             },
             scale: 0.3,
@@ -195,7 +195,7 @@ const data = {
             },
             en: {
                 name: "SARS-CoV-2",
-                desc: "",
+                desc: "tekstas",
             },
         },
         model: {
@@ -220,12 +220,12 @@ const data = {
         meta: {
             lt: {
                 name: "Modeliniai organizmai",
-                desc: "",
+                desc: "tekstas",
                 audioRec: ""
             },
             en: {
                 name: "Model organisms",
-                desc: "",
+                desc: "tekstas",
             },
         },
         model: {
@@ -246,20 +246,20 @@ const data = {
     },
 
     // -------------------- genetic circuit --------------------
-    /*circuit: {
+    circuit: {
         meta: {
             lt: {
                 name: "Genetinė grandinė",
-                desc: "",
+                desc: "tekstas-tekstas",
                 audioRec: ""
             },
             en: {
                 name: "Genetic circuit",
-                desc: "",
+                desc: "text",
             },
         },
         model: {
-            path: "./models/untitled.glb",
+            path: "./models/circuit.glb",
             pattern: "circuit",
             pos: {
                 x: 0,
@@ -273,7 +273,7 @@ const data = {
             },
             scale: 0.5
         }
-    },*/
+    },
 
     // -------------------- sequencing --------------------
     sequencing: {
@@ -285,7 +285,7 @@ const data = {
             },
             en: {
                 name: "DNA sequencing",
-                desc: "",
+                desc: "tekstas",
             },
         },
         model: {
@@ -310,17 +310,41 @@ const data = {
         meta: {
             lt: {
                 name: "Baltymų transliacija",
-                desc: "",
+                desc: "tekstas",
                 audioRec: ""
             },
             en: {
                 name: "Protein translation",
-                desc: "",
+                desc: "tekstas",
             },
         },
         model: {
             path: "./models/transliacija.glb",
             pattern: "translation",
+            pos: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            rot: {
+                x: 0,
+                y: -1,
+                z: 0
+            },
+            scale: 25
+        }
+    },
+    // -------------------- iGEM logo --------------------
+    igem: {
+        meta: {
+            en: {
+                name: "Vilnius iGEM",
+                desc: "text",
+            },
+        },
+        model: {
+            path: "./models/igem-logo.glb",
+            pattern: "lego",
             pos: {
                 x: 0,
                 y: 0,

@@ -144,10 +144,9 @@ function load3Dmodel(item) {
     paragraph = modelMeta.desc;
     recording = modelMeta.audioRec;
     infoBox.addEventListener('click', function () {
-            $('#st-name').text(header);
-            $('#text-info').text(paragraph);
-            // toggle html element
-            $('#model-info').css('display', 'block');
+            document.getElementById("st-name").innerHTML = header;
+            document.getElementById("text-info").innerHTML = paragraph;
+            document.getElementById("model-info").style.display = 'block';
             positionInfoDiv();
         },
         false);
@@ -344,16 +343,8 @@ function initGfpColors() {
     buildColors(colors);
 }
 
-function showInfo(header, paragraph) {
-    $('#st-name').text(header);
-    $('#text-info').text(paragraph);
-    // toggle html element
-    $('#model-info').css('display', 'block');
-    positionInfoDiv();
-}
 //positioning the Info Div in the middle
 function positionInfoDiv() {
-
     var height = $("#model-info").height();
     var width = $("#model-info").width();
     if (width < $("#model-info h1").width()) {
@@ -366,7 +357,6 @@ function positionInfoDiv() {
         left: left,
         top: top
     });
-
 }
 
 function playAudio(file) {

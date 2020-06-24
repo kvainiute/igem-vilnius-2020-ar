@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163985569-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-163985569-1');
+    </script>
+    <title>iGEM AR</title>
+
+    <link type="text/css" rel="stylesheet" href="./css/postcard.css">
+
+</head>
+
+<body>
+    <div class="info">
+        <div class="col-6"><a href="#"><img class="button" id="info-button" src="images/info.svg"></a></div>
+        <div class="col-6"><object type="image/svg+xml" class="button" id="video-button" data="images/video-control.svg"></object></div>
+    </div>
+    <div id="model-info">
+        <div id="info-name">
+            <h1 id="st-name" text-align="center"></h1>
+        </div>
+
+        <div id="info-text">
+            <p id="text-info"></p>
+        </div>
+        <div id="info-footer">
+            <img id="close-button" class="info-footer-icons" src="./images/close.svg">
+        </div>
+    </div>
+
+    <script src='js/three.js'></script>
+
+    <script src="jsartoolkit5/artoolkit.min.js"></script>
+    <script src="jsartoolkit5/artoolkit.api.js"></script>
+
+    <script src="threex/threex-artoolkitsource.js"></script>
+    <script src="threex/threex-artoolkitcontext.js"></script>
+    <script src="threex/threex-arbasecontrols.js"></script>
+    <script src="threex/threex-armarkercontrols.js"></script>
+    <script src="threex/threex-arsmoothedcontrols.js"></script>
+
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/GLTFLoader.js"></script>
+    <script src="js/DRACOLoader.js"></script>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="js/db-model.js" charset="UTF-8"></script>
+    <script src="js/script.js"></script>
+    <script src="js/queryParams.js"></script>
+
+    <script>
+        var scene, camera, renderer, clock, deltaTime, totalTime, header, paragraph, recording;
+
+        var mixer;
+
+        var arToolkitSource, arToolkitContext;
+
+        var rootsAndControls = [];
+
+        initialize();
+        console.log(data.igem)
+        load3Dmodel(data.igem);
+        animate();
+
+
+        function initialize() {
+            if (navigator.userAgent.indexOf("like Mac") != -1) {
+                if (navigator.userAgent.indexOf("CriOS") != -1) {
+                    alert("iOS does not support WebRTC in Google Chrome browser. We suggest you to use Safari.");
+                } else if (navigator.userAgent.indexOf("FxiOS") != -1) {
+                    alert("iOS does not support WebRTC in Mozilla Firefox browser. We suggest you to use Safari.");
+                }
+            }
+            scene = new THREE.Scene();
+
+            let light0 = new THREE.DirectionalLight(0xcccccc, 1);
+            light0.position.set(0, 3, 0);
+            scene.add(light0);
+            let light1 = new THREE.DirectionalLight(0xffffff, 1);
+            light1.position.set(1, 1, 1);
+            scene.add(light1);
+            let light2 = new THREE.DirectionalLight(0xffffff, 1);
+            light2.position.set(-1, 1, -1);
+            scene.add(light2);
+            let light3 = new THREE.DirectionalLight(0xffffff, 1);
+            light3.position.set(0, -1, 2);
+            scene.add(light3);
+
+            camera = new THREE.Camera();
+            scene.add(camera);
+
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                alpha: true
+            });
+            renderer.setClearColor(new THREE.Color('lightgrey'), 0)
+            renderer.setSize(1280, 960);
+            renderer.outputEncoding = THREE.sRGBEncoding;
+
+
+            document.body.appendChild(renderer.domElement);
+
+            clock = new THREE.Clock();
+            deltaTime = 0;
+            totalTime = 0;
+
+            document.getElementById("close-button").addEventListener('click', function() {
+                $('#model-info').css('display', 'none');
+            }, false);
+            arToolkitSource = new THREEx.ArToolkitSource({
+                sourceType: 'webcam',
+            });
+
+            function onResize() {
+                arToolkitSource.onResizeElement()
+                arToolkitSource.copyElementSizeTo(renderer.domElement)
+                if (arToolkitContext.arController !== null) {
+                    arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
+                }
+                positionInfoDiv();
+            }
+
+            arToolkitSource.init(function onReady() {
+                onResize()
+            });
+
+            window.addEventListener('resize', onResize);
+
+            arToolkitContext = new THREEx.ArToolkitContext({
+                cameraParametersUrl: 'data/camera_para.dat',
+                detectionMode: 'mono'
+            });
+
+            arToolkitContext.init(function onCompleted() {
+                camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
+            });
+        }
+
+        function load3Dmodel(item) {
+            let language = "en"; // TODO: normal language
+            let modelData = item.model;
+            let modelMeta = item.meta[language];
+
+            if (typeof modelData.pattern === 'undefined') {
+                return;
+            }
+
+
+            header = modelMeta.name;
+            paragraph = modelMeta.desc;
+            recording = modelMeta.audioRec;
+            infoBox.addEventListener('click', function() {
+                    document.getElementById("st-name").innerHTML = header;
+                    document.getElementById("text-info").innerHTML = paragraph;
+                    document.getElementById("model-info").style.display = 'block';
+                    positionInfoDiv();
+                },
+                false);
+
+            let root = new THREE.Group();
+            scene.add(root);
+            let smoothedControl = new THREEx.ArSmoothedControls(root, {
+                lerpPosition: 0.8,
+                lerpQuaternion: 0.8,
+                lerpScale: 1
+            });
+
+            // build markerControls
+            let markerControls = new THREEx.ArMarkerControls(
+                arToolkitContext,
+                root, {
+                    type: 'pattern',
+                    patternUrl: "data/" + modelData.pattern + ".patt",
+                }
+            );
+
+            let modelPath = modelData.path;
+            let pos = modelData.pos;
+            let rot = modelData.rot;
+
+            if (pos == undefined) pos = {
+                z: 0,
+                y: 0,
+                x: 0
+            };
+            if (rot == undefined) rot = {
+                z: 0,
+                y: 0,
+                x: 0
+            };
+            let loader = new THREE.GLTFLoader();
+
+            let dracoLoader = new THREE.DRACOLoader();
+            dracoLoader.setDecoderPath('./draco/');
+            loader.setDRACOLoader(dracoLoader);
+            let meshItem;
+            loader.load(modelPath, function(load_model) {
+                meshItem = load_model.scene;
+                let scale = modelData.scale * 0.25;
+                meshItem.scale.set(scale, scale, scale);
+                meshItem.position.x += pos.x;
+                meshItem.position.y += pos.y;
+                meshItem.position.z += pos.z;
+                meshItem.rotation.x += rot.x;
+                meshItem.rotation.y += rot.y;
+                meshItem.rotation.z += rot.z;
+
+                modelData.actions = [];
+                modelData.mixer = new THREE.AnimationMixer(meshItem);
+                for (let i = 0; i < load_model.animations.length; i++) {
+                    let action = modelData.mixer.clipAction(load_model.animations[i]);
+                    if (modelData.looponce) {
+                        action.setLoop(THREE.LoopOnce);
+                        action.clampWhenFinished = true;
+                    }
+                    modelData.actions.push(action);
+                    if (modelData.visible) {
+                        action.play();
+                    }
+                }
+
+                root.add(meshItem);
+            }, function(xhr) {
+                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            }, function(error) {
+                console.error('Error loading the model (load3Dmodel)\n');
+                console.error(error);
+            });
+            modelData.visible = false;
+            modelData.root = root;
+            modelData.control = smoothedControl;
+        }
+
+
+        function update() {
+            if (arToolkitSource.ready !== false)
+                arToolkitContext.update(arToolkitSource.domElement);
+
+            for (let key of dataKeys) {
+                let item = data[key];
+                if (item.model.control === undefined) continue;
+                item.model.control.update(item.model.root);
+            }
+
+            // start animation depending on model
+            for (let key of dataKeys) {
+                let item = data[key];
+                if (item.model.root === undefined) continue;
+                if (item.model.root.visible !== item.model.visible) {
+                    item.model.visible = item.model.root.visible;
+                    if (item.model.visible) {
+                        if (typeof item.onVisible === 'function') item.onVisible();
+                        for (let action of item.model.actions) {
+                            action.play();
+                        }
+                    } else {
+                        if (typeof item.onHidden === 'function') item.onHidden();
+                        for (let action of item.model.actions) {
+                            action.stop();
+                        }
+                    }
+                }
+            }
+        }
+
+
+        function animate() {
+            requestAnimationFrame(animate);
+            deltaTime = clock.getDelta();
+            totalTime += deltaTime;
+
+            for (let key of dataKeys) {
+                if (data[key].model.mixer != null) data[key].model.mixer.update(deltaTime);
+            }
+            update(); // AR update
+            renderer.render(scene, camera); // model update
+        }
+
+        function positionInfoDiv() {
+            var height = $("#model-info").height();
+            var width = $("#model-info").width();
+            if (width < $("#model-info h1").width()) {
+                width = $("#model-info h1").width();
+            }
+            var left = (window.innerWidth - width) / 2;
+            var top = (window.innerHeight - height) / 2;
+
+            $('#model-info').css({
+                left: left,
+                top: top
+            });
+        }
+    </script>
+</body></html>
