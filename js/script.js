@@ -32,8 +32,8 @@ function loadSingle(which){
 function loadSingleNoAR(which){
     if (data[which] == undefined) return;
     initializeNoAR();
-    load3DmodelNoAR();
-    animateNoAR();
+    load3Dmodel(data[which], false);
+    animate();
 }
 
 function initialize() {
@@ -44,6 +44,7 @@ function initialize() {
             alert("iOS nepalaiko WebRTC naršyklėje Mozilla Firefox. Siūlome naudoti Safari.");
         }
     }
+
     scene = new THREE.Scene();
 
     let light0 = new THREE.DirectionalLight(0xcccccc, 1);
@@ -76,6 +77,15 @@ function initialize() {
     clock = new THREE.Clock();
     deltaTime = 0;
     totalTime = 0;
+
+    function onResizeNoAR() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        positionInfoDiv();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    window.addEventListener('resize', onResizeNoAR, false);
 
     /*infoBox.addEventListener('click', showInfo(header, paragraph), false);*/
     infoBox.addEventListener('click', function () {
@@ -132,7 +142,70 @@ function initialize() {
     });
 }
 
-function load3Dmodel(item) {
+function initializeNoAR(){
+    if (navigator.userAgent.indexOf("like Mac") != -1) {
+        if (navigator.userAgent.indexOf("CriOS") != -1) {
+            alert("iOS nepalaiko WebRTC naršyklėje Google Chrome. Siūlome naudoti Safari.");
+        } else if (navigator.userAgent.indexOf("FxiOS") != -1) {
+            alert("iOS nepalaiko WebRTC naršyklėje Mozilla Firefox. Siūlome naudoti Safari.");
+        }
+    }
+    
+    clock = new THREE.Clock();
+    deltaTime = 0;
+    totalTime = 0;
+
+    scene = new THREE.Scene();
+
+    let light0 = new THREE.DirectionalLight(0xcccccc, 1);
+    light0.position.set(0, 3, 0);
+    scene.add(light0);
+    let light1 = new THREE.DirectionalLight(0xffffff, 1);
+    light1.position.set(1, 1, 1);
+    scene.add(light1);
+    let light2 = new THREE.DirectionalLight(0xffffff, 1);
+    light2.position.set(-1, 1, -1);
+    scene.add(light2);
+    let light3 = new THREE.DirectionalLight(0xffffff, 1);
+    light3.position.set(0, -1, 2);
+    scene.add(light3);
+
+    //setting up the camera
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 1.5;
+    camera.position.y = 0.5;
+    // TODO: fix rotations on models
+    scene.add(camera);
+
+    //setting up the renderer
+    renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        preserveDrawingBuffer: true,
+        alpha: true
+    });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    //scene.background.encoding = THREE.LinearEncoding;
+    renderer.toneMappingExposure = 0.7;
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.physicallyCorrectLights = true;
+    document.body.appendChild(renderer.domElement);
+
+    //setting the background as webcam stream
+    video = document.createElement('video');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+
+    scene.background = new THREE.Color(0xdccba0);
+
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.zoomSpeed = 0.3;
+    controls.rotateSpeed = 0.5;
+    controls.panSpeed = 0.5;
+}
+
+function load3Dmodel(item, ar = true) {
     let language = "lt"; // TODO: normal language
     let modelData = item.model;
     let modelMeta = item.meta[language];
@@ -150,22 +223,27 @@ function load3Dmodel(item) {
     // parameter lerp values near 0 are slow, near 1 are fast (instantaneous).
     let root = new THREE.Group();
     scene.add(root);
-    let smoothedControl = new THREEx.ArSmoothedControls(root, {
-        lerpPosition: 0.8,
-        lerpQuaternion: 0.8,
-        lerpScale: 1,
-        // minVisibleDelay: 1,
-        // minUnvisibleDelay: 1,
-    });
+    let smoothedControl;
+    if (ar){
+        smoothedControl = new THREEx.ArSmoothedControls(root, {
+            lerpPosition: 0.8,
+            lerpQuaternion: 0.8,
+            lerpScale: 1,
+            // minVisibleDelay: 1,
+            // minUnvisibleDelay: 1,
+        });
 
     // build markerControls
-    let markerControls = new THREEx.ArMarkerControls(
-        arToolkitContext,
-        root, {
-            type: 'pattern',
-            patternUrl: "data/" + modelData.pattern + ".patt",
-        }
-    );
+        let markerControls = new THREEx.ArMarkerControls(
+            arToolkitContext,
+            root, {
+                type: 'pattern',
+                patternUrl: "data/" + modelData.pattern + ".patt",
+            }
+        );
+    }else{
+
+    }
 
     let modelPath = modelData.path;
     let pos = modelData.pos;
@@ -182,7 +260,6 @@ function load3Dmodel(item) {
         x: 0
     };
     let loader = new THREE.GLTFLoader();
-
     let dracoLoader = new THREE.DRACOLoader();
     dracoLoader.setDecoderPath('./draco/');
     loader.setDRACOLoader(dracoLoader);
@@ -229,7 +306,9 @@ function load3Dmodel(item) {
     } //*/
     modelData.visible = false;
     modelData.root = root;
-    modelData.control = smoothedControl;
+    if (ar){
+        modelData.control = smoothedControl;
+    }
 }
 
 function load3Dmodels() {
@@ -241,7 +320,7 @@ function load3Dmodels() {
 
 function update() {
     // update artoolkit on every frame
-    if (arToolkitSource.ready !== false)
+    if (arToolkitSource != undefined && arToolkitSource.ready !== false)
         arToolkitContext.update(arToolkitSource.domElement);
 
     // additional code for smoothed controls
@@ -254,19 +333,19 @@ function update() {
     // start animation depending on model
     for (let key of dataKeys) {
         let item = data[key];
-        if (item.model.root === undefined) continue;
-        if (item.model.root.visible !== item.model.visible) {
-            item.model.visible = item.model.root.visible;
-            if (item.model.visible) {
-                if (typeof item.onVisible === 'function') item.onVisible();
-                for (let action of item.model.actions) {
-                    action.play();
-                }
-            } else {
-                if (typeof item.onHidden === 'function') item.onHidden();
-                for (let action of item.model.actions) {
-                    action.stop();
-                }
+        if (item.model.root == undefined) continue;
+        if (item.model.actions == undefined) continue;
+        if (item.model.root.visible === item.model.visible) continue;
+        item.model.visible = item.model.root.visible;
+        if (item.model.visible) {
+            if (typeof item.onVisible === 'function') item.onVisible();
+            for (let action of item.model.actions) {
+                action.play();
+            }
+        } else {
+            if (typeof item.onHidden === 'function') item.onHidden();
+            for (let action of item.model.actions) {
+                action.stop();
             }
         }
     }
@@ -281,7 +360,7 @@ function animate() {
     for (let key of dataKeys) {
         if (data[key].model.mixer != null) data[key].model.mixer.update(deltaTime);
     }
-    update(); // AR update
+    update();
     renderer.render(scene, camera); // model update
 }
 
