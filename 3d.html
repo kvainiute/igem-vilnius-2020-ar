@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163985569-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -15,10 +15,10 @@
         gtag('config', 'UA-163985569-1');
 
     </script>
-    <title>iGEM AR </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Hello, world!</title>
+
     <link type="text/css" rel="stylesheet" href="./css/modelview2.css">
+
 </head>
 
 <body>
@@ -55,11 +55,17 @@
     <script src="js/DRACOLoader.js"></script>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="js/db-model.js" charset="UTF-8"></script>
+    <script src="js/script.js"></script>
+    <script src="js/queryParams.js"></script>
+    
+    <div id="tray-container" style="display:none;" id="prew2"></div>
 
-    <script type="module" src="./js/script-old.js"></script>
-    <script src="./js/db-model.js" charset="UTF-8"></script>
-    <script type="module" src="./js/preview.js"></script>
+    <script>
+        let model = getQueryParams()["model"];
 
+        loadSingleNoAR(model);
+    </script>
 </body>
 
 </html>

@@ -2,15 +2,18 @@ const data = {
     // -------------------- biobrick --------------------
     biobrick: {
         meta: {
-            nameLT: "BioBrick",
-            infoLT: "",
-            nameEN: "BioBrick",
-            infoEN: "",
-            audioRec: ""
+            lt: {
+                name: "BioBrick",
+                desc: "BioBrick yra ...",
+                audioRec: ""
+            },
+            en: {
+                name: "BioBrick",
+                desc: "BioBricks are ...",
+            },
         },
         model: {
             path: "./models/lego.glb",
-
             pattern: "lego",
             pos: {
                 x: 0,
@@ -30,11 +33,15 @@ const data = {
     // -------------------- gfp --------------------
     gfp: {
         meta: {
-            nameLT: "Žalias fluorescencinis baltymas (GFP)",
-            infoLT: "Tekstas - tekstas",
-            nameEN: "Green fluorescent protein (GFP)",
-            infoEN: "...",
-            audioRec: ""
+            lt: {
+                name: "Žalias fluorescencinis baltymas (GFP)",
+                desc: "Tekstas - tekstas",
+                audioRec: ""
+            },
+            en: {
+                name: "Green fluorescent protein (GFP)",
+                desc: "The green fluorescent protein is a protein ...",
+            },
         },
         model: {
             path: "./models/gfp.glb",
@@ -62,11 +69,15 @@ const data = {
     // -------------------- crispr_cas9 --------------------
     crisprcas9: {
         meta: {
-            nameLT: "CRISPR-Cas9",
-            infoLT: "",
-            nameEN: "CRISPR-Cas9",
-            infoEN: "",
-            audioRec: ""
+            lt: {
+                name: "CRISPR-Cas9",
+                desc: "...",
+                audioRec: ""
+            },
+            en: {
+                name: "CRISPR-Cas9",
+                desc: "Cas9 is a ...",
+            },
         },
         model: {
             path: "./models/crisprcas9.glb",
@@ -87,11 +98,15 @@ const data = {
     // -------------------- bakteriofagai --------------------
     nano: {
         meta: {
-            nameLT: "Bakteriofagai",
-            infoLT: "Bakteriofagai - tai virusų rūšis, kuri puola tam tikras bakterijas, bet nedaro žalos žmogaus ląstelėms. Jų forma primena robotus: turi galvutę, kurioje saugo genetinę informaciją, uodegėlę ir kojytes, kuriomis tvirtinasi prie bakterijos. Prisikabinęs prie bakterijos bakteriofagas įleidžia savo genetinę informaciją, liepia kopijuoti naujas viruso dalis ir galiausiai sunaikina ląstelę. Didėjant bakterijų atsparumui antibiotikams, fagų terapija gali pakeisti tradicinius gydymo būdus. Todėl mokslininkai bando padaryti šią terapiją kuo saugesne ir prieinamesne visuomenei. Vienas tokių bandymų pavyzdžių: http://2018.igem.org/Team:Munich. ",
-            nameEN: "Bacteriophages",
-            infoEN: "...",
-            audioRec: ""
+            lt: {
+                name: "Bakteriofagai",
+                desc: "Bakteriofagai - tai virusų rūšis, kuri puola tam tikras bakterijas, bet nedaro žalos žmogaus ląstelėms. Jų forma primena robotus: turi galvutę, kurioje saugo genetinę informaciją, uodegėlę ir kojytes, kuriomis tvirtinasi prie bakterijos. Prisikabinęs prie bakterijos bakteriofagas įleidžia savo genetinę informaciją, liepia kopijuoti naujas viruso dalis ir galiausiai sunaikina ląstelę. Didėjant bakterijų atsparumui antibiotikams, fagų terapija gali pakeisti tradicinius gydymo būdus. Todėl mokslininkai bando padaryti šią terapiją kuo saugesne ir prieinamesne visuomenei. Vienas tokių bandymų pavyzdžių: http://2018.igem.org/Team:Munich.",
+                audioRec: ""
+            },
+            en: {
+                name: "Bacteriophages",
+                desc: "",
+            },
         },
         model: {
             path: "./models/bacteriophage.glb",
@@ -113,11 +128,15 @@ const data = {
     // -------------------- dna --------------------
     dna: {
         meta: {
-            nameLT: "Deoksiribonukleorūgštis (DNR)",
-            infoLT: "Tekstas - tekstas",
-            nameEN: "Deoxyribonucleic acid (DNA)",
-            infoEN: "...",
-            audioRec: ""
+            lt: {
+                name: "Deoksiribonukleorūgštis (DNR)",
+                desc: "",
+                audioRec: ""
+            },
+            en: {
+                name: "Deoxyribonucleic acid (DNA)",
+                desc: "",
+            },
         },
         model: {
             path: "./models/DNA.glb",
@@ -139,11 +158,15 @@ const data = {
     // -------------------- rna --------------------
     rna: {
         meta: {
-            nameLT: "Ribonukleino rūgštis (RNR)",
-            infoLT: "Tekstas - tekstas",
-            nameEN: "Ribonucleic acid (RNA)",
-            infoEN: "...",
-            audioRec: ""
+            lt: {
+                name: "Ribonukleino rūgštis (RNR)",
+                desc: "",
+                audioRec: ""
+            },
+            en: {
+                name: "Ribonucleic acid (RNA)",
+                desc: "",
+            },
         },
         model: {
             path: "./models/RNA.glb",
@@ -165,11 +188,15 @@ const data = {
     // -------------------- sars-cov-2 --------------------
     virus: {
         meta: {
-            nameLT: "SARS-CoV-2",
-            infoLT: "Koronavirusai yra virusai, kurie cirkuliuoja tarp gyvūnų, tačiau žinoma, kad kai kurie iš jų sukelia infekcijas žmonėms. Sukėlę infekciją žmonėms, jie toliau gali būti perduoti nuo žmogaus žmogui. Koronavirusų infekcijos šaltinis gali būti daugybė gyvūnų. Pavyzdžiui, Artimųjų Rytų respiracinio sindromo koronaviruso (MERS-CoV) šaltinis buvo kupranugariai, o sunkaus ūmaus respiracinio sindromo (SARS-CoV-1) – civetės katės.",
-            nameEN: "SARS-CoV-2",
-            infoEN: "...",
-            audioRec: ""
+            lt: {
+                name: "SARS-CoV-2",
+                desc: "Koronavirusai yra virusai, kurie cirkuliuoja tarp gyvūnų, tačiau žinoma, kad kai kurie iš jų sukelia infekcijas žmonėms. Sukėlę infekciją žmonėms, jie toliau gali būti perduoti nuo žmogaus žmogui. Koronavirusų infekcijos šaltinis gali būti daugybė gyvūnų. Pavyzdžiui, Artimųjų Rytų respiracinio sindromo koronaviruso (MERS-CoV) šaltinis buvo kupranugariai, o sunkaus ūmaus respiracinio sindromo (SARS-CoV-1) – civetės katės.",
+                audioRec: ""
+            },
+            en: {
+                name: "SARS-CoV-2",
+                desc: "",
+            },
         },
         model: {
             path: "./models/virus.glb",
@@ -191,11 +218,15 @@ const data = {
     // -------------------- model organisms --------------------
     ecoli: {
         meta: {
-            nameLT: "Modeliniai organizmai",
-            infoLT: "Tekstas - tekstas",
-            nameEN: "Model organisms",
-            infoEN: "...",
-            audioRec: ""
+            lt: {
+                name: "Modeliniai organizmai",
+                desc: "",
+                audioRec: ""
+            },
+            en: {
+                name: "Model organisms",
+                desc: "",
+            },
         },
         model: {
             path: "./models/ecoli.glb",
@@ -217,11 +248,15 @@ const data = {
     // -------------------- genetic circuit --------------------
     /*circuit: {
         meta: {
-            nameLT: "Genetinė grandinė",
-            infoLT: "Tekstas - tekstas",
-            nameEN: "Genetic circuit",
-            infoEN: "...",
-            audioRec: ""
+            lt: {
+                name: "Genetinė grandinė",
+                desc: "",
+                audioRec: ""
+            },
+            en: {
+                name: "Genetic circuit",
+                desc: "",
+            },
         },
         model: {
             path: "./models/untitled.glb",
@@ -243,11 +278,15 @@ const data = {
     // -------------------- sequencing --------------------
     sequencing: {
         meta: {
-            nameLT: "DNR sekoskaita",
-            infoLT: "Visa biologinė informacija apie tave slypi genome, sudarytame iš DNR grandinių. Šios grandinės sudarytos iš dalių, vadinamų nukleotidais. Iššifravus jų sekas grandinėje galima perskaityti, pavyzdžiui, kokiomis ligomis esi linkęs sirgti. Plika akimi genomo seka nėra matoma, todėl norint ją perskaityti, reikia DNR grandinę perstumti per mažą baltyminę skylutę dirbtinėje membranoje, vadinama nanopora. Pro nanoporą yra leidžiama vienkryptė elektrinė srovė, kurią fiksuoja jutiklis. Jei nanoporoje atsiranda pašalinių darinių, šie sutrikdo elektros srovės tekėjimą ir, priklausomai nuo objekto savybių, atitinkamai pakeičia fiksuojamo signalo stiprumą. Kadangi A, T, C ir G nukleotidai yra skirtingų dydžių ir savybių, eidami per nanoporą jie sukelia skirtingo stiprumo elektrinės srovės pokyčus. Taip gaunami unikalūs signalai, kuriuos užfiksavus nesunku atsekti nukleotidų seką grandinėje ir paversti lengviau suprantamomis raidėmis A, T, C bei G, ir iššifruoti gautą kodą. Tai vadinama DNR sekoskaita.",
-            nameEN: "DNA sequencing",
-            infoEN: "...",
-            audioRec: ""
+            lt: {
+                name: "DNR sekoskaita",
+                desc: "Visa biologinė informacija apie tave slypi genome, sudarytame iš DNR grandinių. Šios grandinės sudarytos iš dalių, vadinamų nukleotidais. Iššifravus jų sekas grandinėje galima perskaityti, pavyzdžiui, kokiomis ligomis esi linkęs sirgti. Plika akimi genomo seka nėra matoma, todėl norint ją perskaityti, reikia DNR grandinę perstumti per mažą baltyminę skylutę dirbtinėje membranoje, vadinama nanopora. Pro nanoporą yra leidžiama vienkryptė elektrinė srovė, kurią fiksuoja jutiklis. Jei nanoporoje atsiranda pašalinių darinių, šie sutrikdo elektros srovės tekėjimą ir, priklausomai nuo objekto savybių, atitinkamai pakeičia fiksuojamo signalo stiprumą. Kadangi A, T, C ir G nukleotidai yra skirtingų dydžių ir savybių, eidami per nanoporą jie sukelia skirtingo stiprumo elektrinės srovės pokyčus. Taip gaunami unikalūs signalai, kuriuos užfiksavus nesunku atsekti nukleotidų seką grandinėje ir paversti lengviau suprantamomis raidėmis A, T, C bei G, ir iššifruoti gautą kodą. Tai vadinama DNR sekoskaita.",
+                audioRec: ""
+            },
+            en: {
+                name: "DNA sequencing",
+                desc: "",
+            },
         },
         model: {
             path: "./models/sekoskaita.glb",
@@ -269,11 +308,15 @@ const data = {
     // -------------------- translation --------------------
     translation: {
         meta: {
-            nameLT: "Baltymų transliacija",
-            infoLT: "Tekstas - tekstas",
-            nameEN: "Protein translation",
-            infoEN: "...",
-            audioRec: ""
+            lt: {
+                name: "Baltymų transliacija",
+                desc: "",
+                audioRec: ""
+            },
+            en: {
+                name: "Protein translation",
+                desc: "",
+            },
         },
         model: {
             path: "./models/transliacija.glb",

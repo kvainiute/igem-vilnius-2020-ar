@@ -13,15 +13,15 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-163985569-1');
+
     </script>
-    <title>iGEM AR</title>
+    <title>Hello, world!</title>
 
     <link type="text/css" rel="stylesheet" href="./css/modelview2.css">
 
 </head>
 
 <body>
-
     <div class="info">
         <a href="#" class="button" id="info-button"><img src="images/info.png"></a>
         <a href="#" class="button" id="audio-button"><img src="images/audio.png"></a>
@@ -37,7 +37,6 @@
         </div>
         <div id="info-footer"><img id="close-button" src="./images/close.png"></div>
     </div>
-
 
     <div id="tray-container" style="display:none;"></div>
     <script src='js/three.js'></script>
@@ -56,10 +55,17 @@
     <script src="js/DRACOLoader.js"></script>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <!--<script src="js/db-model.js"></script>
-    <script src="js/script.js"></script>-->
-    <script type="module" src="js/db-model.js"></script>
-    <script type="module" src="js/preview.js"></script>
-
+    <script src="js/db-model.js" charset="UTF-8"></script>
+    <script src="js/script.js"></script>
+    <script src="js/queryParams.js"></script>
+    
     <div id="tray-container" style="display:none;" id="prew2"></div>
-</body></html>
+
+    <script>
+        let model = getQueryParams()["model"];
+
+        loadSingle(model);
+    </script>
+</body>
+
+</html>

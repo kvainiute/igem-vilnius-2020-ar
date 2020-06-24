@@ -15,8 +15,26 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial({
     color: 0x03fc4a
 });
 
-initialize();
-animate();
+// functions to use in different versions
+function loadAll(){
+    initialize();
+    load3Dmodels();
+    animate();
+}
+
+function loadSingle(which){
+    if (data[which] == undefined) return;
+    initialize();
+    load3Dmodel(data[which]);
+    animate();
+}
+
+function loadSingleNoAR(which){
+    if (data[which] == undefined) return;
+    initializeNoAR();
+    load3DmodelNoAR();
+    animateNoAR();
+}
 
 function initialize() {
     if (navigator.userAgent.indexOf("like Mac") != -1) {
@@ -112,26 +130,22 @@ function initialize() {
     arToolkitContext.init(function onCompleted() {
         camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
     });
-
-    ////////////////////////////////////////////////////////////
-    // setup markerRoots
-    ////////////////////////////////////////////////////////////
-
-    load3Dmodels();
 }
 
 function load3Dmodel(item) {
+    let language = "lt"; // TODO: normal language
     let modelData = item.model;
-    let modelMeta = item.meta;
-
-    header = modelMeta.nameLT;
-    paragraph = modelMeta.infoLT;
-    recording = modelMeta.audioRec;
-    console.log(header);
+    let modelMeta = item.meta[language];
+    
     if (typeof modelData.pattern === 'undefined') {
         return;
     }
 
+
+    header = modelMeta.name;
+    paragraph = modelMeta.info;
+    recording = modelMeta.audioRec;
+    console.log(header);
     // interpolates from last position to create smoother transitions when moving.
     // parameter lerp values near 0 are slow, near 1 are fast (instantaneous).
     let root = new THREE.Group();

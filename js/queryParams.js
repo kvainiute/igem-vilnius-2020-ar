@@ -1,7 +1,3 @@
-import {
-    init
-} from './script-old.js';
-
 function getQueryParams() {
     let params = {};
     let queryParams = window.location.search.substring(1).split("&");
@@ -12,9 +8,3 @@ function getQueryParams() {
     }
     return params;
 }
-
-let params = getQueryParams();
-let it = data[params["model"]];
-document.querySelector('title').innerText += it.meta.nameLT;
-
-let models = init(it.model, it.meta); // magic function
