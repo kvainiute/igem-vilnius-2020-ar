@@ -15,9 +15,26 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial({
     color: 0x03fc4a
 });
 
-initialize();
-load3Dmodels();
-animate();
+// functions to use in different versions
+function loadAll(){
+    initialize();
+    load3Dmodels();
+    animate();
+}
+
+function loadSingle(which){
+    if (data[which] == undefined) return;
+    initialize();
+    load3Dmodel(data[which]);
+    animate();
+}
+
+function loadSingleNoAR(which){
+    if (data[which] == undefined) return;
+    initializeNoAR();
+    load3DmodelNoAR();
+    animateNoAR();
+}
 
 function initialize() {
     if (navigator.userAgent.indexOf("like Mac") != -1) {

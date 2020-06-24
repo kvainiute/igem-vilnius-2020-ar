@@ -143,7 +143,7 @@ function load3Dmodel(item) {
         });
 
         if (modelPath.includes("gfp")) {
-            initColor(model, "GFP", INITIAL_MTL);
+            initColor(meshItem, "GFP", INITIAL_MTL);
         }
 
         item.actions = [];
