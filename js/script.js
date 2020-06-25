@@ -1,7 +1,8 @@
-var scene, camera, renderer, clock, deltaTime, totalTime, header, paragraph, recording, rec;
+var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec;
 
 let isAR = false;
-let currentModelName;
+let currentModel;
+let language = "lt";
 
 let loader = new THREE.GLTFLoader();
 let dracoLoader = new THREE.DRACOLoader();
@@ -13,11 +14,9 @@ var mixer;
 const dataKeys = Object.keys(data); // get list of model ids
 
 const tray = document.getElementById('tray-container');
-const infoBox = document.getElementById("info-button");
+const infoButton = document.getElementById("info-button");
 
 var arToolkitSource, arToolkitContext;
-
-var rootsAndControls = [];
 
 const INITIAL_MTL = new THREE.MeshPhongMaterial({
     color: 0x03fc4a
@@ -250,14 +249,10 @@ function reset(){
     clock = undefined;
     deltaTime = undefined;
     totalTime = undefined;
-    header = undefined;
-    paragraph = undefined;
     recording = undefined;
 
     arToolkitSource = undefined;
     arToolkitContext = undefined;
-
-    rootsAndControls = [];
 
     window.removeEventListener('resize', onResize);
     window.removeEventListener('resize', onResizeNoAR);
@@ -265,9 +260,17 @@ function reset(){
     tray.innerHTML = "";
 }
 
+function showModelInfo(){
+    let info = data[currentModel].meta[language]
+
+    document.getElementById("st-name").innerHTML = info.name;
+    document.getElementById("text-info").innerHTML = info.desc;
+    document.getElementById("model-info").style.display = 'block';
+    positionInfoDiv();
+}
+
 
 function load3Dmodel(item, ar = true) {
-    let language = "lt"; // TODO: normal language
     let modelData = item.model;
     let modelMeta = item.meta[language];
 
@@ -275,17 +278,8 @@ function load3Dmodel(item, ar = true) {
         return;
     }
 
-
-    header = modelMeta.name;
-    paragraph = modelMeta.desc;
     recording = modelMeta.audioRec;
-    infoBox.addEventListener('click', function () {
-            document.getElementById("st-name").innerHTML = header;
-            document.getElementById("text-info").innerHTML = paragraph;
-            document.getElementById("model-info").style.display = 'block';
-            positionInfoDiv();
-        },
-        false);
+    infoButton.addEventListener('click', showModelInfo, false);
     var audioplay = document.getElementById("audio-button");
     var audiocontent;
     audioplay.addEventListener('load', function () {

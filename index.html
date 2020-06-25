@@ -21,6 +21,7 @@
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="./css/main.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./css/languagebox.css">
 </head>
 
 <body class="text-center">
@@ -30,9 +31,10 @@
         </header>
 
         <main role="main" class="inner cover">
-            <a href="./map.html" class="btn btn-lg btn-secondary">visos stotelės</a><br>
-            <a href="./info.html" class="btn btn-lg btn-secondary">instrukcija</a><br>
-            <a href="http://vilniusigem.lt" target="_blank" class="btn btn-lg btn-secondary">iGEM</a>
+            <a href="./map.html" id="button-map" class="btn btn-lg btn-secondary">Visos stotelės</a>
+            <a href="./info.html" id="button-instr" class="btn btn-lg btn-secondary">Instrukcija</a>
+            <a href="http://vilniusigem.lt" id="button-igem" target="_blank" class="btn btn-lg btn-secondary">iGEM</a>
+            <div id="language" style="margin-top: 14px"></div>
         </main>
 
         <footer class="mastfoot mt-auto">
@@ -42,4 +44,21 @@
             </div>
         </footer>
     </div>
+    <script src="js/languages.js" charset="UTF-8"></script>
+    <script>
+        LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
+        LanguageSwitcher.addOnLanguageChangeListener((newLanguage) => {
+            // TODO: there is definitely a better way to do this, please refactor
+            switch (newLanguage){
+                case "en":
+                    document.getElementById("button-map").innerText = "All Spots";
+                    document.getElementById("button-instr").innerText = "Instructions";
+                    break;
+                case "lt":
+                    document.getElementById("button-map").innerText = "Visos stotelės";
+                    document.getElementById("button-instr").innerText = "Instrukcija";
+                    break;
+            }
+        });
+    </script>
 </body></html>

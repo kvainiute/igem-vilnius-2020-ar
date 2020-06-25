@@ -18,6 +18,7 @@
     <title>iGEM AR</title>
 
     <link type="text/css" rel="stylesheet" href="./css/modelview2.css">
+    <link type="text/css" rel="stylesheet" href="./css/languagebox.css">
 
 </head>
 
@@ -64,14 +65,24 @@
     <script src="js/db-model.js" charset="UTF-8"></script>
     <script src="js/script.js"></script>
     <script src="js/queryParams.js"></script>
+    <script src="js/languages.js" charset="UTF-8"></script>
 
     <div id="tray-container" style="display:none;" id="prew2"></div>
 
     <script>
+        language = LanguageSwitcher.currentLanguage;
+
         let model = getQueryParams()["model"];
 
         loadSingle(model);
 
+        LanguageSwitcher.makeLanguageBox(document.getElementById("model-info"), 0);
+        LanguageSwitcher.languagebox.style = "float: right";
+        LanguageSwitcher.addOnLanguageChangeListener((newLanguage) => {
+            language = newLanguage;
+            showModelInfo();
+            recording = data[currentModel].meta[language].audioRec;
+        });
     </script>
 </body>
 
