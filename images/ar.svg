@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
+	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
 <font horiz-adv-x="2000">
 <!-- Lato is a trademark of tyPoland Lukasz Dziedzic. -->
 <!-- Copyright: Copyright 2020 Adobe System Incorporated. All rights reserved. -->
@@ -11,7 +11,10 @@
 <glyph unicode="R" horiz-adv-x="1262" d="M342,640l0,-640l-102,0l0,1415l361,0C764,1415 886,1384 967,1321C1048,1258 1088,1165 1088,1043C1088,989 1079,940 1060,895C1041,850 1015,811 980,778C945,744 902,716 853,695C804,673 748,659 686,652C702,642 716,629 729,612l487,-612l-89,0C1116,0 1107,2 1100,6C1092,10 1084,17 1077,26l-453,574C613,615 601,625 588,631C575,637 554,640 527,640M342,716l246,0C651,716 707,724 757,739C806,754 848,775 883,803C917,831 943,865 961,904C979,943 988,988 988,1037C988,1138 955,1212 889,1261C823,1310 727,1334 601,1334l-259,0z"/>
 </font>
 
-	<text transform="matrix(0.98 0 0 1 -1.264811e-04 38.3594)" font-family="'Lato-Light'" font-size="41px">AR</text>
-<circle fill="none" stroke="#000000" stroke-width="2.5" stroke-linejoin="round" stroke-miterlimit="10" cx="25" cy="25" r="23.8"/>
-<path fill="none" stroke="#000000" stroke-width="2.5" stroke-miterlimit="10" d="M8.3,8.3l34.4,33.4L8.3,8.3z"/>
+	<text transform="matrix(0.98 0 0 1 -1.264811e-04 38.3594)" style="font-family:'Lato-Light'; font-size:41px;">AR</text>
+<g id="no">
+	
+		<circle style="fill:none;stroke:#000000;stroke-width:2.5;stroke-linejoin:round;stroke-miterlimit:10;" cx="25" cy="25" r="23.8"/>
+	<path style="fill:none;stroke:#000000;stroke-width:2.5;stroke-miterlimit:10;" d="M8.3,8.3l34.4,33.4L8.3,8.3z"/>
+</g>
 </svg>
