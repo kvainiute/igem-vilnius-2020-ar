@@ -24,6 +24,7 @@ canvas {
     display: flex;
     margin: 0 auto;
     position: fixed;
+    bottom: 0;
     width: 100vw;
     height: 100vh;
     z-index: 5;
@@ -40,28 +41,10 @@ canvas {
     background: #fcbd1b;
     border-radius: 100%;
     padding: 4px 4px 4px 4px;
-    align-self: flex-end;
     border: 2px dashed #000020;
-    margin: 0 auto;
     margin-bottom: 2vh;
     height: 40px
 }
-
-
-
-#audio-button {
-    margin: 0 auto;
-    margin-bottom: 2vh;
-}
-
-#home-button {
-    margin-right: 2vw;
-}
-
-#info-button {
-    margin-left: 2vw;
-}
-
 
 
 
@@ -161,13 +144,6 @@ canvas {
 
 @media (min-width: 768px) {
     .button {
-        height: 50px
-    }
-
-    #prew img,
-    #prew2 img,
-    .info img {
-        width: 50px;
         height: 50px
     }
 

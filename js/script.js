@@ -1,4 +1,4 @@
-var scene, camera, renderer, clock, deltaTime, totalTime, header, paragraph, recording;
+var scene, camera, renderer, clock, deltaTime, totalTime, header, paragraph, recording, rec;
 
 let isAR = false;
 let currentModelName;
@@ -67,6 +67,7 @@ function initializeAR() {
     }
 
     scene = new THREE.Scene();
+    scene.background = "none"
 
     let light0 = new THREE.DirectionalLight(0xcccccc, 1);
     light0.position.set(0, 3, 0);
@@ -99,19 +100,11 @@ function initializeAR() {
     deltaTime = 0;
     totalTime = 0;
 
-    /*infoBox.addEventListener('click', showInfo(header, paragraph), false);*/
 
     document.getElementById("ar-switch").addEventListener('click', toggleAR3D, false);
     document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
     }, false);
-    var audioButton = document.getElementById("audio-div");
-    console.log(audioButton)
-    audioButton.addEventListener('click', function () {
-        console.log("test")
-        //var audioContent = audioButton.contentDocument();
-        //console.log(audioContent)
-    });
     ////////////////////////////////////////////////////////////
     // setup arToolkitSource
     ////////////////////////////////////////////////////////////
@@ -141,6 +134,7 @@ function initializeAR() {
     arToolkitContext.init(function onCompleted() {
         camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
     });
+
 }
 
 function toggleAR3D(){
@@ -191,7 +185,7 @@ function initialize3D(){
 
     //setting up the camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 1.5;
+    camera.position.z = 2;
     camera.position.y = 0.5;
     scene.position.y = -0.5;
     // TODO: fix rotations on models
@@ -217,7 +211,7 @@ function initialize3D(){
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
 
-    scene.background = new THREE.Color(0xdccba0);
+    scene.background = new THREE.Color(0x333333);
 
     let controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.zoomSpeed = 0.3;
@@ -292,12 +286,20 @@ function load3Dmodel(item, ar = true) {
             positionInfoDiv();
         },
         false);
+    var audioplay = document.getElementById("audio-button");
+    var audiocontent;
+    audioplay.addEventListener('load', function () {
+        audiocontent = audioplay.contentDocument;
+        audiocontent.addEventListener('click', function () {
+            playAudio(recording);
+        })
+    })
     // interpolates from last position to create smoother transitions when moving.
     // parameter lerp values near 0 are slow, near 1 are fast (instantaneous).
     let root = new THREE.Group();
     scene.add(root);
     let smoothedControl;
-    if (ar){
+    if (ar) {
         smoothedControl = new THREEx.ArSmoothedControls(root, {
             lerpPosition: 0.8,
             lerpQuaternion: 0.8,
@@ -306,7 +308,7 @@ function load3Dmodel(item, ar = true) {
             // minUnvisibleDelay: 1,
         });
 
-    // build markerControls
+        // build markerControls
         let markerControls = new THREEx.ArMarkerControls(
             arToolkitContext,
             root, {
@@ -314,7 +316,7 @@ function load3Dmodel(item, ar = true) {
                 patternUrl: "data/" + modelData.pattern + ".patt",
             }
         );
-    }else{
+    } else {
 
     }
 
@@ -337,6 +339,13 @@ function load3Dmodel(item, ar = true) {
         meshItem = load_model.scene;
         //meshItem.material.side = THREE.DoubleSide;
         let scale = modelData.scale * 0.25;
+        /*const box = new Box3().setFromObject(meshItem);
+        const size = box.getSize(new Vector3()).length();
+        const center = box.getCenter(new Vector3());
+        meshItem.position.sub(center);
+        meshItem.position.x += (meshItem.position.x - center.x);
+        meshItem.position.y += (meshItem.position.y - center.y);
+        meshItem.position.z += (meshItem.position.z - center.z);*/
         meshItem.scale.set(scale, scale, scale);
         meshItem.position.x += pos.x;
         meshItem.position.y += pos.y;
@@ -358,9 +367,15 @@ function load3Dmodel(item, ar = true) {
                 action.clampWhenFinished = true;
             }
             modelData.actions.push(action);
-            if (modelData.visible) {
-                action.play();
-            }
+            /*if (modelData.visible) {
+                
+                videoplay.addEventListener('load', function () {
+                    videocontent = videoplay.contentDocument;
+                    videocontent.addEventListener('click', function () {
+                        playAnimation(action);
+                    })
+                })
+            }*/
         }
 
         root.add(meshItem);
@@ -375,9 +390,10 @@ function load3Dmodel(item, ar = true) {
     } //*/
     modelData.visible = false;
     modelData.root = root;
-    if (ar){
+    if (ar) {
         modelData.control = smoothedControl;
     }
+
 }
 
 function load3Dmodels() {
@@ -406,11 +422,45 @@ function update() {
         if (item.model.actions == undefined) continue;
         if (item.model.root.visible === item.model.visible) continue;
         item.model.visible = item.model.root.visible;
+        var toPause = null;
         if (item.model.visible) {
+            var initialPlayState = true
             if (typeof item.onVisible === 'function') item.onVisible();
+            var videoplay = document.getElementById("video-button");
+            var videocontent = videoplay.contentDocument;
             for (let action of item.model.actions) {
-                action.play();
+                if (initialPlayState) {
+                    action.play();
+                }
             }
+            videocontent.addEventListener('click', function () {
+                initialPlayState = false;
+                for (let action of item.model.actions) {
+                    console.log(action)
+                    if (!action.paused) {
+                        action.paused = true;
+                        videocontent.getElementById("pause").style.display = "none";
+                        videocontent.getElementById("play").style.display = "inline";
+                    } else {
+                        action.paused = false;
+                        videocontent.getElementById("play").style.display = "none";
+                        videocontent.getElementById("pause").style.display = "inline";
+                        action.play();
+                    }
+                }
+                /*for (let action of item.model.actions) {
+                    action.paused = toPause;
+                    //action.play();
+                    if (!toPause) {
+                        videocontent.getElementById("play").style.display = "none";
+                        videocontent.getElementById("pause").style.display = "inline";
+                        action.play();
+                    } else {
+                        videocontent.getElementById("pause").style.display = "none";
+                        videocontent.getElementById("play").style.display = "inline";
+                    }
+                }*/
+            })
         } else {
             if (typeof item.onHidden === 'function') item.onHidden();
             for (let action of item.model.actions) {
@@ -425,7 +475,6 @@ function animate() {
     requestAnimationFrame(animate);
     deltaTime = clock.getDelta();
     totalTime += deltaTime;
-
     for (let key of dataKeys) {
         if (data[key].model.mixer != null) data[key].model.mixer.update(deltaTime);
     }
@@ -503,8 +552,37 @@ function positionInfoDiv() {
 }
 
 function playAudio(file) {
-    music.pause();
-    music = new Audio(file);
-    music.play();
+    var audioplay = document.getElementById("audio-button");
+    var audiocontent = audioplay.contentDocument;
+    console.log(audiocontent)
+    if (typeof rec !== 'undefined') {
+        if (!rec.paused) {
+            rec.pause()
+            audiocontent.getElementById("pause").style.display = "none";
+            audiocontent.getElementById("play").style.display = "inline";
+        } else if (rec.paused) {
+            audiocontent.getElementById("play").style.display = "none";
+            audiocontent.getElementById("pause").style.display = "inline";
+            rec.play();
+        }
+    } else {
+        rec = new Audio(file);
+        audiocontent.getElementById("play").style.display = "none";
+        audiocontent.getElementById("pause").style.display = "inline";
+        rec.play();
+    }
+}
 
+function playAnimation(actions, state) {
+    var videoplay = document.getElementById("audio-button");
+    var videocontent = videoplay.contentDocument;
+
+    for (let action of actions) {
+        console.log(action)
+        if (!action.paused) {
+            return true
+        } else {
+            return false
+        }
+    }
 }
