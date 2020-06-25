@@ -58,11 +58,11 @@ LanguageSwitcher.listeners = [];
 LanguageSwitcher.languages = {
     lt: {
         name: "lietuvių k.",
-        img: "../images/language/lt.svg"
+        img: "images/language/lt.svg"
     },
     en: {
         name: "English",
-        img: "../images/language/en.svg"
+        img: "images/language/en.svg"
     },
 };
 LanguageSwitcher.languageKeys = Object.keys(LanguageSwitcher.languages);

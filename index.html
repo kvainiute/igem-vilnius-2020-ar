@@ -31,8 +31,8 @@
         </header>
 
         <main role="main" class="inner cover">
-            <a href="./map.html" id="button-map" class="btn btn-lg btn-secondary">Visos stotelės</a>
-            <a href="./info.html" id="button-instr" class="btn btn-lg btn-secondary">Instrukcija</a>
+            <a href="./map.html" id="button-map" class="btn btn-lg btn-secondary"></a>
+            <a href="./info.html" id="button-instr" class="btn btn-lg btn-secondary"></a>
             <a href="http://vilniusigem.lt" id="button-igem" target="_blank" class="btn btn-lg btn-secondary">iGEM</a>
             <div id="language" style="margin-top: 14px"></div>
         </main>
@@ -46,19 +46,25 @@
     </div>
     <script src="js/languages.js" charset="UTF-8"></script>
     <script>
-        LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
-        LanguageSwitcher.addOnLanguageChangeListener((newLanguage) => {
-            // TODO: there is definitely a better way to do this, please refactor
-            switch (newLanguage){
-                case "en":
-                    document.getElementById("button-map").innerText = "All Spots";
-                    document.getElementById("button-instr").innerText = "Instructions";
-                    break;
-                case "lt":
-                    document.getElementById("button-map").innerText = "Visos stotelės";
-                    document.getElementById("button-instr").innerText = "Instrukcija";
-                    break;
+        let texts = {
+            lt: {
+                map: "Visos stotelės",
+                instr: "Instrukcija"
+            },
+            en: {
+                map: "All Spots",
+                instr: "Instructions"
             }
-        });
+        };
+
+        function updateTexts(language){
+            document.getElementById("button-map").innerText = texts[language].map;
+            document.getElementById("button-instr").innerText = texts[language].instr;
+        }
+
+        updateTexts(LanguageSwitcher.currentLanguage);
+
+        LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
+        LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
     </script>
 </body></html>
