@@ -1,5 +1,13 @@
 var scene, camera, renderer, clock, deltaTime, totalTime, header, paragraph, recording, rec;
 
+let isAR = false;
+let currentModelName;
+
+let loader = new THREE.GLTFLoader();
+let dracoLoader = new THREE.DRACOLoader();
+dracoLoader.setDecoderPath('./draco/');
+loader.setDRACOLoader(dracoLoader);
+
 var mixer;
 
 const dataKeys = Object.keys(data); // get list of model ids
@@ -17,26 +25,39 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial({
 
 // functions to use in different versions
 function loadAll() {
-    initialize();
+    initializeAR();
     load3Dmodels();
     animate();
 }
 
 function loadSingle(which) {
     if (data[which] == undefined) return;
-    initialize();
-    load3Dmodel(data[which], true);
+    currentModel = which;
+    initializeAR();
+    load3Dmodel(data[which]);
     animate();
 }
 
 function loadSingleNoAR(which) {
     if (data[which] == undefined) return;
-    initializeNoAR();
+    currentModel = which;
+    initialize3D();
     load3Dmodel(data[which], false);
     animate();
 }
 
-function initialize() {
+
+function onResize() {
+    arToolkitSource.onResizeElement()
+    arToolkitSource.copyElementSizeTo(renderer.domElement)
+    if (arToolkitContext.arController !== null) {
+        arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
+    }
+    positionInfoDiv();
+}
+
+function initializeAR() {
+    isAR = true;
     if (navigator.userAgent.indexOf("like Mac") != -1) {
         if (navigator.userAgent.indexOf("CriOS") != -1) {
             alert("iOS nepalaiko WebRTC naršyklėje Google Chrome. Siūlome naudoti Safari.");
@@ -79,17 +100,8 @@ function initialize() {
     deltaTime = 0;
     totalTime = 0;
 
-    function onResizeNoAR() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        positionInfoDiv();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    }
 
-    window.addEventListener('resize', onResizeNoAR, false);
-
-
-
+    document.getElementById("ar-switch").addEventListener('click', toggleAR3D, false);
     document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
     }, false);
@@ -100,15 +112,6 @@ function initialize() {
     arToolkitSource = new THREEx.ArToolkitSource({
         sourceType: 'webcam',
     });
-
-    function onResize() {
-        arToolkitSource.onResizeElement()
-        arToolkitSource.copyElementSizeTo(renderer.domElement)
-        if (arToolkitContext.arController !== null) {
-            arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
-        }
-        positionInfoDiv();
-    }
 
     arToolkitSource.init(function onReady() {
         onResize()
@@ -134,7 +137,33 @@ function initialize() {
 
 }
 
-function initializeNoAR() {
+function toggleAR3D(){
+    reset();
+    isAR = !isAR;
+    if (isAR){
+        loadSingle(currentModel);
+    }else{
+        loadSingleNoAR(currentModel);
+    }
+}
+
+function onResizeNoAR() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    positionInfoDiv();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function initialize3D(){
+    isAR = false;
+    if (navigator.userAgent.indexOf("like Mac") != -1) {
+        if (navigator.userAgent.indexOf("CriOS") != -1) {
+            alert("iOS nepalaiko WebRTC naršyklėje Google Chrome. Siūlome naudoti Safari.");
+        } else if (navigator.userAgent.indexOf("FxiOS") != -1) {
+            alert("iOS nepalaiko WebRTC naršyklėje Mozilla Firefox. Siūlome naudoti Safari.");
+        }
+    }
+    
     clock = new THREE.Clock();
     deltaTime = 0;
     totalTime = 0;
@@ -158,6 +187,7 @@ function initializeNoAR() {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 2;
     camera.position.y = 0.5;
+    scene.position.y = -0.5;
     // TODO: fix rotations on models
     scene.add(camera);
 
@@ -183,20 +213,58 @@ function initializeNoAR() {
 
     scene.background = new THREE.Color(0x333333);
 
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    let controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.zoomSpeed = 0.3;
     controls.rotateSpeed = 0.5;
     controls.panSpeed = 0.5;
 
-    var switchAR = document.getElementById("ar-switch");
-    var switchcontent = switchAR.contentDocument;
-    console.log(switchcontent)
-    let model = getQueryParams()["model"];
-    console.log("yes")
-    switchcontent.addEventListener('click', function () {
-        switchcontent.getElementById("no").style.display = "inline";
-    })
+    window.addEventListener('resize', onResizeNoAR, false);
 }
+
+function disposeRecursive(thing){
+    if (thing.children != undefined){
+        for (let child of thing.children){
+            disposeRecursive(child);
+        }
+    }
+    if (thing.geometry != undefined) thing.geometry.dispose();
+    if (thing.material != undefined) thing.material.dispose();
+}
+
+function reset(){
+    for (let key of dataKeys) {
+        if (data[key].model.root == undefined) continue;
+        data[key].model.root.parent.dispose()
+        disposeRecursive(data[key].model.root);
+    }
+
+    // TODO: optimize switching between just 3D and AR:
+    // https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects
+
+    document.body.removeChild(renderer.domElement);
+    renderer = undefined;
+    scene.dispose();
+    scene = undefined;
+    camera = undefined;
+    renderer = undefined;
+    clock = undefined;
+    deltaTime = undefined;
+    totalTime = undefined;
+    header = undefined;
+    paragraph = undefined;
+    recording = undefined;
+
+    arToolkitSource = undefined;
+    arToolkitContext = undefined;
+
+    rootsAndControls = [];
+
+    window.removeEventListener('resize', onResize);
+    window.removeEventListener('resize', onResizeNoAR);
+
+    tray.innerHTML = "";
+}
+
 
 function load3Dmodel(item, ar = true) {
     let language = "lt"; // TODO: normal language
@@ -266,10 +334,6 @@ function load3Dmodel(item, ar = true) {
         y: 0,
         x: 0
     };
-    let loader = new THREE.GLTFLoader();
-    let dracoLoader = new THREE.DRACOLoader();
-    dracoLoader.setDecoderPath('./draco/');
-    loader.setDRACOLoader(dracoLoader);
     let meshItem;
     loader.load(modelPath, function (load_model) {
         meshItem = load_model.scene;
@@ -453,7 +517,6 @@ function initGfpColors() {
             shininess: 10
         });
 
-        console.log("click " + color); // TODO: remove
         setMaterial(data["gfp"].model.root.children[0], 'GFP', new_mtl);
     }
 
@@ -474,13 +537,13 @@ function initGfpColors() {
 
 //positioning the Info Div in the middle
 function positionInfoDiv() {
-    var height = $("#model-info").height();
-    var width = $("#model-info").width();
+    let height = $("#model-info").height();
+    let width = $("#model-info").width();
     if (width < $("#model-info h1").width()) {
         width = $("#model-info h1").width();
     }
-    var left = (window.innerWidth - width) / 2;
-    var top = (window.innerHeight - height) / 2;
+    let left = (window.innerWidth - width) / 2;
+    let top = (window.innerHeight - height) / 2;
 
     $('#model-info').css({
         left: left,
