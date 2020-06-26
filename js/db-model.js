@@ -83,15 +83,16 @@ const data = {
             path: "./models/crisprcas9.glb",
             pattern: "crisprcas",
             pos: {
-                x: 0.3,
-                y: 0.6,
+                x: -0.7,
+                y: 0,
                 z: -0.1
             },
             rot: {
                 x: 0,
-                y: 0,
+                y: 4.7,
                 z: 0
-            }
+            },
+            scale: 0.03,
         }
     },
 
@@ -262,16 +263,16 @@ const data = {
             path: "./models/circuit.glb",
             pattern: "circuit",
             pos: {
-                x: 0,
+                x: -0.5,
                 y: 0,
                 z: 0
             },
             rot: {
-                x: 0,
-                y: 1.5,
-                z: 0
+                x: -Math.PI / 2,
+                y: Math.PI,
+                z: Math.PI
             },
-            scale: 0.5
+            scale: 30
         }
     },
 
@@ -356,6 +357,64 @@ const data = {
                 z: 0
             },
             scale: 25
+        }
+    },
+    // -------------------- painting --------------------
+    painting: {
+        meta: {
+            lt: {
+                name: "Sintetinė biologija",
+                desc: "tekstas",
+                audioRec: ""
+            },
+            en: {
+                name: "Synthetic biology",
+                desc: "text",
+            }
+        },
+        model: {
+            path: "./models/painting.glb",
+            pattern: "paveikslas",
+            pos: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            rot: {
+                x: 0,
+                y: Math.PI / 2,
+                z: 0
+            },
+            scale: 0.3
+        }
+    },
+    // -------------------- gmo --------------------
+    gmo: {
+        meta: {
+            lt: {
+                name: "Genetiškai modifikuoti organizmai",
+                desc: "tekstas",
+                audioRec: ""
+            },
+            en: {
+                name: "Genetically modified organisms",
+                desc: "text",
+            }
+        },
+        model: {
+            path: "./models/gmo.glb",
+            pattern: "gmo",
+            pos: {
+                x: 0,
+                y: 0.4,
+                z: 0
+            },
+            rot: {
+                x: 0,
+                y: Math.PI,
+                z: 0
+            },
+            scale: 2
         }
     }
 };

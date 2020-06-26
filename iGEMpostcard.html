@@ -159,7 +159,7 @@
             header = modelMeta.name;
             paragraph = modelMeta.desc;
             recording = modelMeta.audioRec;
-            infoBox.addEventListener('click', function() {
+            document.getElementById("info-button").addEventListener('click', function() {
                     document.getElementById("st-name").innerHTML = header;
                     document.getElementById("text-info").innerHTML = paragraph;
                     document.getElementById("model-info").style.display = 'block';
