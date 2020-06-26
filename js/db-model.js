@@ -208,7 +208,7 @@ const data = {
             },
             rot: {
                 x: 0,
-                y: 1.5,
+                y: 4.6,
                 z: 0
             },
             scale: 0.5

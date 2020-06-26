@@ -22,6 +22,10 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial({
     color: 0x03fc4a
 });
 
+function setTitle(){
+    document.title = "Vilnius iGEM AR – " + data[currentModel].meta[language].name;
+}
+
 // functions to use in different versions
 function loadAll() {
     initializeAR();

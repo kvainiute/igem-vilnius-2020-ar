@@ -24,10 +24,10 @@
 
 <body>
     <div class="info">
-        <div class="col-3"><a href="#"><img class="button" id="info-button" src="images/info.svg"></a></div>
+        <div class="col-3"><a href="#" aria-label="Information about the model"><img class="button" id="info-button" src="images/info.svg"></a></div>
         <div class="col-3" id="audio-div"><object type="image/svg+xml" class="button" id="audio-button" data="images/audio.svg"></object></div>
         <div class="col-3"><object type="image/svg+xml" class="button" id="video-button" data="images/video-control.svg"></object></div>
-        <div class="col-3"><a href="/map.html"><img class="button" id="home-button" src="images/house.svg"></a></div>
+        <div class="col-3"><a href="/map.html" aria-label="Back to map"><img class="button" id="home-button" src="images/house.svg"></a></div>
     </div>
     <div id="model-info">
         <div id="info-name">
@@ -63,7 +63,7 @@
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js/db-model.js" charset="UTF-8"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js" charset="UTF-8"></script>
     <script src="js/queryParams.js"></script>
     <script src="js/languages.js" charset="UTF-8"></script>
 
@@ -82,7 +82,9 @@
             language = newLanguage;
             showModelInfo();
             recording = data[currentModel].meta[language].audioRec;
+            setTitle();
         });
+        setTitle();
     </script>
 </body>
 

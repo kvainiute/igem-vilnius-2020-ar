@@ -12,6 +12,7 @@ class LanguageSwitcher {
     static setLanguage(language, updateLanguageBox = false){
         LanguageSwitcher.currentLanguage = language;
         document.cookie = "language=" + language;
+        document.documentElement.lang = language;
         for (let func of LanguageSwitcher.listeners){
             func(language);
         }
