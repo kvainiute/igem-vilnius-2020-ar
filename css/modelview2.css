@@ -148,7 +148,8 @@ svg text {
 
 @media (min-width: 768px) {
     .button {
-        height: 50px
+        height: 50px;
+        width: 50px;
     }
 
     #model-info #info-name h1 {

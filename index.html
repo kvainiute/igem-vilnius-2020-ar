@@ -21,25 +21,50 @@
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="./css/main.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./css/languagebox.css">
 </head>
 
 <body class="text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
-            <img align="middle" src="./images/igem.png" height="442px" width="653px">
+            <img src="./images/igem.png" height="442px" width="653px" alt="iGEM Vilnius Logo">
         </header>
 
         <main role="main" class="inner cover">
-            <a href="./map.html" class="btn btn-lg btn-secondary">visos stotelės</a><br>
-            <a href="./info.html" class="btn btn-lg btn-secondary">instrukcija</a><br>
-            <a href="http://vilniusigem.lt" target="_blank" class="btn btn-lg btn-secondary">iGEM</a>
+            <a href="./map.html" id="button-map" class="btn btn-lg btn-secondary"></a>
+            <a href="./info.html" id="button-instr" class="btn btn-lg btn-secondary">i</a>
+            <a href="http://vilniusigem.lt" id="button-igem" target="_blank" class="btn btn-lg btn-secondary">iGEM</a>
+            <div id="language" style="margin-top: 14px"></div>
         </main>
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <img width="200px" height="167px" src="./images/vilnius.png">
-                <img width="179px" height="200px" src="./images/vu.png">
+                <img width="200px" height="167px" src="./images/vilnius.png" alt="Vilnius Logo">
+                <img width="179px" height="200px" src="./images/vu.png" alt="VU Logo">
             </div>
         </footer>
     </div>
+    <script src="js/languages.js" charset="UTF-8"></script>
+    <script>
+        let texts = {
+            lt: {
+                map: "Visos stotelės",
+                instr: "Instrukcija"
+            },
+            en: {
+                map: "All Spots",
+                instr: "Instructions"
+            }
+        };
+
+        function updateTexts(language){
+            document.getElementById("button-map").innerText = texts[language].map;
+            document.getElementById("button-instr").innerText = texts[language].instr;
+        }
+
+        updateTexts(LanguageSwitcher.currentLanguage);
+
+        LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
+        LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+    </script>
 </body></html>
