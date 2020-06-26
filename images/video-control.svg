@@ -4,10 +4,10 @@
 	 viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
 <g id="pause">
 	
-		<line fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="21.2" y1="1.5" x2="21.2" y2="48.5"/>
+		<line fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="21.8" y1="5" x2="21.8" y2="45"/>
 	
-		<line fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="28.8" y1="1.5" x2="28.8" y2="48.5"/>
+		<line fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="28.2" y1="5" x2="28.2" y2="45"/>
 </g>
 <polygon id="play" display="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-	48.8,25 1.2,1.2 1.2,48.8 "/>
+	43,25 13,10 13,40 "/>
 </svg>

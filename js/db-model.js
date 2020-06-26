@@ -344,7 +344,7 @@ const data = {
         },
         model: {
             path: "./models/igem-logo.glb",
-            pattern: "lego",
+            pattern: "igem-logo",
             pos: {
                 x: 0,
                 y: 0,

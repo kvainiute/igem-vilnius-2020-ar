@@ -1,5 +1,6 @@
 var scene, camera, renderer, clock, deltaTime, totalTime, header, paragraph, recording, rec;
 
+let modelLoaded = false;
 let isAR = false;
 let currentModelName;
 
@@ -101,10 +102,59 @@ function initializeAR() {
     totalTime = 0;
 
 
-    document.getElementById("ar-switch").addEventListener('click', toggleAR3D, false);
+
+    var switchAR = document.getElementById("ar-switch");
+    var arContent;
+    switchAR.addEventListener('load', function () {
+        arContent = switchAR.contentDocument;
+        arContent.addEventListener('click', toggleAR3D, false);
+    })
     document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
     }, false);
+
+    var videoplay = document.getElementById("video-button");
+    var videocontent;
+    videoplay.addEventListener('load', function () {
+        videocontent = videoplay.contentDocument;
+        videocontent.addEventListener('click', function () {
+            if (videocontent.getElementById("pause").style.display == "none") {
+                videocontent.getElementById("play").style.display = "none";
+                videocontent.getElementById("pause").style.display = "inline";
+                if (modelLoaded) {
+                    for (let key of dataKeys) {
+                        let item = data[key];
+                        if (item.model.actions == undefined) continue;
+                        for (let action of item.model.actions) {
+                            action.paused = false;
+                            action.play();
+                        }
+
+                    }
+                }
+                videocontent = videoplay.contentDocument;
+            } else {
+                videocontent.getElementById("pause").style.display = "none";
+                videocontent.getElementById("play").style.display = "inline";
+                if (modelLoaded) {
+                    for (let key of dataKeys) {
+                        let item = data[key];
+                        if (item.model.actions == undefined) continue;
+                        for (let action of item.model.actions) {
+                            action.paused = true;
+                            action.play();
+                        }
+
+                    }
+                }
+                videocontent = videoplay.contentDocument;
+
+            }
+        })
+
+
+    })
+
     ////////////////////////////////////////////////////////////
     // setup arToolkitSource
     ////////////////////////////////////////////////////////////
@@ -137,12 +187,13 @@ function initializeAR() {
 
 }
 
-function toggleAR3D(){
+function toggleAR3D() {
     reset();
     isAR = !isAR;
-    if (isAR){
+    if (isAR) {
         loadSingle(currentModel);
-    }else{
+    } else {
+        console.log(data[currentModel])
         loadSingleNoAR(currentModel);
     }
 }
@@ -154,7 +205,7 @@ function onResizeNoAR() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-function initialize3D(){
+function initialize3D() {
     isAR = false;
     if (navigator.userAgent.indexOf("like Mac") != -1) {
         if (navigator.userAgent.indexOf("CriOS") != -1) {
@@ -163,7 +214,7 @@ function initialize3D(){
             alert("iOS nepalaiko WebRTC naršyklėje Mozilla Firefox. Siūlome naudoti Safari.");
         }
     }
-    
+
     clock = new THREE.Clock();
     deltaTime = 0;
     totalTime = 0;
@@ -185,13 +236,7 @@ function initialize3D(){
 
     //setting up the camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 2;
-    camera.position.y = 0.5;
-    scene.position.y = -0.5;
-    // TODO: fix rotations on models
-    scene.add(camera);
 
-    //setting up the renderer
     renderer = new THREE.WebGLRenderer({
         antialias: true,
         preserveDrawingBuffer: true,
@@ -205,6 +250,22 @@ function initialize3D(){
     renderer.physicallyCorrectLights = true;
     document.body.appendChild(renderer.domElement);
 
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.zoomSpeed = 0.3;
+    controls.rotateSpeed = 0.5;
+    controls.panSpeed = 0.5;
+
+    camera.position.z = 2;
+    camera.position.y = 0.5;
+    scene.position.y = -0.5;
+
+
+    // TODO: fix rotations on models
+    scene.add(camera);
+
+    //setting up the renderer
+
+
     //setting the background as webcam stream
     video = document.createElement('video');
     video.setAttribute('autoplay', '');
@@ -213,17 +274,13 @@ function initialize3D(){
 
     scene.background = new THREE.Color(0x333333);
 
-    let controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.zoomSpeed = 0.3;
-    controls.rotateSpeed = 0.5;
-    controls.panSpeed = 0.5;
 
     window.addEventListener('resize', onResizeNoAR, false);
 }
 
-function disposeRecursive(thing){
-    if (thing.children != undefined){
-        for (let child of thing.children){
+function disposeRecursive(thing) {
+    if (thing.children != undefined) {
+        for (let child of thing.children) {
             disposeRecursive(child);
         }
     }
@@ -231,7 +288,7 @@ function disposeRecursive(thing){
     if (thing.material != undefined) thing.material.dispose();
 }
 
-function reset(){
+function reset() {
     for (let key of dataKeys) {
         if (data[key].model.root == undefined) continue;
         data[key].model.root.parent.dispose()
@@ -337,15 +394,7 @@ function load3Dmodel(item, ar = true) {
     let meshItem;
     loader.load(modelPath, function (load_model) {
         meshItem = load_model.scene;
-        //meshItem.material.side = THREE.DoubleSide;
         let scale = modelData.scale * 0.25;
-        /*const box = new Box3().setFromObject(meshItem);
-        const size = box.getSize(new Vector3()).length();
-        const center = box.getCenter(new Vector3());
-        meshItem.position.sub(center);
-        meshItem.position.x += (meshItem.position.x - center.x);
-        meshItem.position.y += (meshItem.position.y - center.y);
-        meshItem.position.z += (meshItem.position.z - center.z);*/
         meshItem.scale.set(scale, scale, scale);
         meshItem.position.x += pos.x;
         meshItem.position.y += pos.y;
@@ -367,18 +416,13 @@ function load3Dmodel(item, ar = true) {
                 action.clampWhenFinished = true;
             }
             modelData.actions.push(action);
-            /*if (modelData.visible) {
-                
-                videoplay.addEventListener('load', function () {
-                    videocontent = videoplay.contentDocument;
-                    videocontent.addEventListener('click', function () {
-                        playAnimation(action);
-                    })
-                })
-            }*/
+            if (!isAR && document.getElementById("video-button").contentDocument.getElementById("pause").style.display != "none") {
+                action.play()
+            }
         }
 
         root.add(meshItem);
+
     }, function (xhr) {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
     }, function (error) {
@@ -404,6 +448,7 @@ function load3Dmodels() {
 
 
 function update() {
+
     // update artoolkit on every frame
     if (arToolkitSource != undefined && arToolkitSource.ready !== false)
         arToolkitContext.update(arToolkitSource.domElement);
@@ -417,61 +462,31 @@ function update() {
 
     // start animation depending on model
     for (let key of dataKeys) {
+
         let item = data[key];
         if (item.model.root == undefined) continue;
         if (item.model.actions == undefined) continue;
         if (item.model.root.visible === item.model.visible) continue;
         item.model.visible = item.model.root.visible;
-        var toPause = null;
-        if (item.model.visible) {
-            var initialPlayState = true
+        var videoPlay = document.getElementById("video-button");
+        var videocontent = videoPlay.contentDocument;
+        if (item.model.visible || !isAR) {
             if (typeof item.onVisible === 'function') item.onVisible();
-            var videoplay = document.getElementById("video-button");
-            var videocontent = videoplay.contentDocument;
             for (let action of item.model.actions) {
-                if (initialPlayState) {
-                    action.play();
-                }
+                action.play();
+                modelLoaded = true;
             }
-            videocontent.addEventListener('click', function () {
-                initialPlayState = false;
-                for (let action of item.model.actions) {
-                    console.log(action)
-                    if (!action.paused) {
-                        action.paused = true;
-                        videocontent.getElementById("pause").style.display = "none";
-                        videocontent.getElementById("play").style.display = "inline";
-                    } else {
-                        action.paused = false;
-                        videocontent.getElementById("play").style.display = "none";
-                        videocontent.getElementById("pause").style.display = "inline";
-                        action.play();
-                    }
-                }
-                /*for (let action of item.model.actions) {
-                    action.paused = toPause;
-                    //action.play();
-                    if (!toPause) {
-                        videocontent.getElementById("play").style.display = "none";
-                        videocontent.getElementById("pause").style.display = "inline";
-                        action.play();
-                    } else {
-                        videocontent.getElementById("pause").style.display = "none";
-                        videocontent.getElementById("play").style.display = "inline";
-                    }
-                }*/
-            })
+
         } else {
             if (typeof item.onHidden === 'function') item.onHidden();
-            for (let action of item.model.actions) {
-                action.stop();
-            }
+
         }
     }
 }
 
 
 function animate() {
+
     requestAnimationFrame(animate);
     deltaTime = clock.getDelta();
     totalTime += deltaTime;
