@@ -13,6 +13,7 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-163985569-1');
+
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,6 +31,7 @@
             left: 0;
             border-radius: 0;
         }
+
     </style>
 </head>
 
@@ -47,10 +49,13 @@
             if (language == "en") {
                 document.getElementById("foot").innerText = "return to the main page"
             } else {
-                document.getElementById("foot").innerText = "gr&iogon;&zcaron;ti atgal"
+                document.getElementById("foot").innerText = "grįžti atgal"
             }
         }
         updateTexts(LanguageSwitcher.currentLanguage);
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+
     </script>
-</body></html>
+</body>
+
+</html>

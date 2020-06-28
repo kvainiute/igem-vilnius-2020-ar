@@ -37,14 +37,15 @@ canvas {
 }
 
 
+
 .button {
+    box-sizing: border-box;
     background: #fcbd1b;
     border-radius: 100%;
-    padding: 4px 4px 4px 4px;
-    border: 2px dashed #000020;
+    padding: 7px;
     margin-bottom: 2vh;
-    height: 40px;
-    width: 40px
+    height: 60px;
+    width: 60px
 }
 
 
@@ -80,7 +81,7 @@ canvas {
 }
 
 #model-info #info-name {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     padding: 10px 10px 5px 10px;
     word-wrap: break-word
@@ -117,7 +118,7 @@ svg text {
 }
 
 #model-info #info-text {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     overflow: auto;
     padding: 5px 10px 10px 10px;
@@ -132,8 +133,10 @@ svg text {
 #model-info #info-footer {
     bottom: 5px;
     margin: 0 auto;
+    padding-top: 2%;
     width: 100%;
-    display: inline-flex
+    display: inline-flex;
+    padding: 2%
 }
 
 #info-footer a {
@@ -145,13 +148,18 @@ svg text {
     margin: 0 auto;
     vertical-align: middle;
     display: inline-flex;
-    height: 30px;
+    height: 40px;
 }
 
 @media (min-width: 768px) {
     .button {
-        height: 50px;
-        width: 50px;
+        padding: 15px;
+        height: 80px;
+        width: 80px;
+    }
+
+    #audio-button {
+        padding: 7px
     }
 
     #model-info #info-name h1 {
@@ -164,8 +172,17 @@ svg text {
     }
 
     #model-info .info-footer-icons {
-        height: 50px
+        height: 60px
     }
+
+    #model-info .spacer {
+        width: 20%
+    }
+
+    .info .spacer {
+        width: 20vw
+    }
+
 
 }
 
