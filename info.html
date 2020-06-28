@@ -41,4 +41,16 @@
 
         <main role="main" class="inner cover"><a href="/" id="foot" class="btn btn-lg btn-secondary">gr&iogon;&zcaron;ti atgal</a><br></main>
     </div>
+    <script src="js/languages.js" charset="UTF-8"></script>
+    <script>
+        function updateTexts(language) {
+            if (language == "en") {
+                document.getElementById("foot").innerText = "return to the main page"
+            } else {
+                document.getElementById("foot").innerText = "gr&iogon;&zcaron;ti atgal"
+            }
+        }
+        updateTexts(LanguageSwitcher.currentLanguage);
+        LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+    </script>
 </body></html>
