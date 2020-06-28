@@ -1,4 +1,4 @@
-var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec;
+var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls;
 
 let modelLoaded = false;
 let isAR = false;
@@ -243,10 +243,12 @@ function initialize3D() {
     renderer.physicallyCorrectLights = true;
     document.body.appendChild(renderer.domElement);
 
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.zoomSpeed = 0.3;
     controls.rotateSpeed = 0.5;
     controls.panSpeed = 0.5;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
 
     camera.position.z = 2;
     camera.position.y = 0.5;
@@ -267,6 +269,7 @@ function initialize3D() {
 
     scene.background = new THREE.Color(0x333333);
 
+    controls.update();
 
     window.addEventListener('resize', onResizeNoAR, false);
 }
@@ -301,6 +304,8 @@ function reset() {
     deltaTime = undefined;
     totalTime = undefined;
     recording = undefined;
+    if (controls != undefined) controls.dispose();
+    controls = undefined;
 
     arToolkitSource = undefined;
     arToolkitContext = undefined;
@@ -483,6 +488,7 @@ function animate() {
     for (let key of dataKeys) {
         if (data[key].model.mixer != null) data[key].model.mixer.update(deltaTime);
     }
+    if (controls != undefined) controls.update();
     update();
     renderer.render(scene, camera); // model update
 }
