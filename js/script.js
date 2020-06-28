@@ -23,7 +23,7 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial({
     color: 0x03fc4a
 });
 
-function setTitle(){
+function setTitle() {
     document.title = "Vilnius iGEM AR – " + data[currentModel].meta[language].name;
 }
 
@@ -72,7 +72,6 @@ function initializeAR() {
 
     scene = new THREE.Scene();
     scene.background = "none"
-
     let light0 = new THREE.DirectionalLight(0xcccccc, 1);
     light0.position.set(0, 3, 0);
     scene.add(light0);
@@ -125,38 +124,30 @@ function initializeAR() {
                 videocontent.getElementById("play").style.display = "none";
                 videocontent.getElementById("pause").style.display = "inline";
                 if (modelLoaded) {
-                    for (let key of dataKeys) {
-                        let item = data[key];
-                        if (item.model.actions == undefined) continue;
-                        for (let action of item.model.actions) {
-                            action.paused = false;
-                            action.play();
-                        }
-
-                    }
+                    playPause(false)
                 }
-                videocontent = videoplay.contentDocument;
             } else {
                 videocontent.getElementById("pause").style.display = "none";
                 videocontent.getElementById("play").style.display = "inline";
                 if (modelLoaded) {
-                    for (let key of dataKeys) {
-                        let item = data[key];
-                        if (item.model.actions == undefined) continue;
-                        for (let action of item.model.actions) {
-                            action.paused = true;
-                            action.play();
-                        }
-
-                    }
+                    playPause(true)
                 }
-                videocontent = videoplay.contentDocument;
-
             }
         })
-
-
     })
+
+    function playPause(state) {
+        for (let key of dataKeys) {
+            let item = data[key];
+            if (item.model.actions == undefined) continue;
+            for (let action of item.model.actions) {
+                action.paused = state;
+                action.play();
+            }
+
+        }
+    }
+
 
     ////////////////////////////////////////////////////////////
     // setup arToolkitSource
@@ -192,11 +183,19 @@ function initializeAR() {
 
 function toggleAR3D() {
     reset();
+    $('#model-info').css('display', 'none');
+    var arSwitch = document.getElementById("ar-switch").contentDocument;
+    if (arSwitch.getElementById("no").style.display == "none") {
+        console.log("is 3d i ar")
+        arSwitch.getElementById("no").style.display = "block"
+    } else {
+        console.log("is ar i 3d")
+        arSwitch.getElementById("no").style.display = "none"
+    }
     isAR = !isAR;
     if (isAR) {
         loadSingle(currentModel);
     } else {
-        console.log(data[currentModel])
         loadSingleNoAR(currentModel);
     }
 }
@@ -223,27 +222,18 @@ function initialize3D() {
     totalTime = 0;
 
     scene = new THREE.Scene();
-
-    let light0 = new THREE.DirectionalLight(0xcccccc, 1);
-    light0.position.set(0, 3, 0);
-    scene.add(light0);
-    let light1 = new THREE.DirectionalLight(0xffffff, 1);
-    light1.position.set(1, 1, 1);
-    scene.add(light1);
-    let light2 = new THREE.DirectionalLight(0xffffff, 1);
-    light2.position.set(-1, 1, -1);
-    scene.add(light2);
-    let light3 = new THREE.DirectionalLight(0xffffff, 1);
-    light3.position.set(0, -1, 2);
-    scene.add(light3);
+    var spotLight = new THREE.SpotLight(0xffffff, 6);
+    spotLight.position.set(1, 1, 1);
+    scene.add(spotLight);
 
     //setting up the camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
+    var canvas = document.getElementById('appCanvas');
     renderer = new THREE.WebGLRenderer({
         antialias: true,
         preserveDrawingBuffer: true,
-        alpha: true
+        alpha: true,
+        canvas: canvas
     });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.outputEncoding = THREE.sRGBEncoding;
@@ -321,11 +311,12 @@ function reset() {
     tray.innerHTML = "";
 }
 
-function showModelInfo(){
+function showModelInfo() {
     let info = data[currentModel].meta[language]
 
     document.getElementById("st-name").innerHTML = info.name;
     document.getElementById("text-info").innerHTML = info.desc;
+
     document.getElementById("model-info").style.display = 'block';
     positionInfoDiv();
 }
@@ -340,7 +331,9 @@ function load3Dmodel(item, ar = true) {
     }
 
     recording = modelMeta.audioRec;
-    infoButton.addEventListener('click', showModelInfo, false);
+    infoButton.addEventListener('load', function () {
+        infoButton.contentDocument.addEventListener('click', showModelInfo, false);
+    })
     var audioplay = document.getElementById("audio-button");
     var audiocontent;
     audioplay.addEventListener('load', function () {
@@ -424,7 +417,6 @@ function load3Dmodel(item, ar = true) {
     }, function (xhr) {
         console.log((xhr.loaded / xhr.total * 100) + '% loaded');
     }, function (error) {
-        console.error('Error loading the model (load3Dmodel)\n');
         console.error(error);
     });
     if (modelPath.includes("gfp")) {
@@ -567,7 +559,6 @@ function positionInfoDiv() {
 function playAudio(file) {
     var audioplay = document.getElementById("audio-button");
     var audiocontent = audioplay.contentDocument;
-    console.log(audiocontent)
     if (typeof rec !== 'undefined') {
         if (!rec.paused) {
             rec.pause()
@@ -591,7 +582,6 @@ function playAnimation(actions, state) {
     var videocontent = videoplay.contentDocument;
 
     for (let action of actions) {
-        console.log(action)
         if (!action.paused) {
             return true
         } else {

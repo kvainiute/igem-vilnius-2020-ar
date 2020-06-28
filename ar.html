@@ -13,6 +13,7 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-163985569-1');
+
     </script>
     <title>Vilnius iGEM AR</title>
 
@@ -23,23 +24,23 @@
 
 <body>
     <div class="info">
-        <div class="col-3"><a href="#" aria-label="Information about the model"><img class="button" id="info-button" src="images/info.svg"></a></div>
+        <div class="col-3"><a href="#" aria-label="Information about the model"><object type="image/svg+xml" class="button" id="info-button" data="images/info.svg"></object></a></div>
         <div class="col-3" id="audio-div"><object type="image/svg+xml" class="button" id="audio-button" data="images/audio.svg"></object></div>
         <div class="col-3"><object type="image/svg+xml" class="button" id="video-button" data="images/video-control.svg"></object></div>
         <div class="col-3"><a href="/map.html" aria-label="Back to map"><img class="button" id="home-button" src="images/house.svg"></a></div>
     </div>
+    <canvas id="appCanvas"></canvas>
     <div id="model-info">
         <div id="info-name">
             <h1 id="st-name" text-align="center"></h1>
         </div>
-
         <div id="info-text">
             <p id="text-info"></p>
         </div>
         <div id="info-footer">
             <object type="image/svg+xml" id="ar-switch" class="info-footer-icons " data="images/ar.svg"></object>
             <img id="close-button" class="info-footer-icons" src="./images/close.svg">
-            <a href="/info.html"><img id="settings-button" class="info-footer-icons" src="./images/settings.svg"></a>
+            <a href="/info.html"><object type="image/svg+xml" id="settings-button" class="info-footer-icons" data="./images/info-main.svg"></object></a>
         </div>
     </div>
 
@@ -84,5 +85,8 @@
             setTitle();
         });
         setTitle();
+
     </script>
-</body></html>
+</body>
+
+</html>

@@ -43,7 +43,8 @@ canvas {
     padding: 4px 4px 4px 4px;
     border: 2px dashed #000020;
     margin-bottom: 2vh;
-    height: 40px
+    height: 40px;
+    width: 40px
 }
 
 
@@ -68,6 +69,7 @@ canvas {
     padding: 10px;
     width: 60%;
     max-height: 60%;
+    overflow: auto;
     background: rgba(252, 189, 27, 0.9);
     border-radius: 2%;
     position: relative;
