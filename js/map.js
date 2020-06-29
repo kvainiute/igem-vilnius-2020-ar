@@ -276,19 +276,26 @@ updateTexts(LanguageSwitcher.currentLanguage);
 LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
 LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
-window.onresize = openNav
+window.onresize = ()=>{
+    if (navOpen) return;
+    if (window.innerWidth > 768) {
+        navBar.style.right = "-33vw";
+    }else{
+        navBar.style.right = "-66vw";
+    }
+};
 
 let navBar = document.getElementById("dropdown-content");
 let footerButton = document.getElementById("foot");
 
-let navOpen = false;
+var navOpen = false;
 
 function openNav() {
     if (navOpen) return;
+    navOpen = true;
     navBar.style.right = "0";
     footerButton.style.height = "0px";
     footerButton.style.padding = "0";
-    navOpen = true;
 }
 
 function closeNav() {
