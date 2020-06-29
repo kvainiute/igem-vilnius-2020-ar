@@ -286,7 +286,7 @@ window.onresize = ()=>{
 };
 
 let navBar = document.getElementById("dropdown-content");
-let footerButton = document.getElementById("foot");
+let footerButton = document.getElementById("footer");
 
 var navOpen = false;
 
@@ -294,8 +294,7 @@ function openNav() {
     if (navOpen) return;
     navOpen = true;
     navBar.style.right = "0";
-    footerButton.style.height = "0px";
-    footerButton.style.padding = "0";
+    footerButton.style.bottom = "-100px";
 }
 
 function closeNav() {
@@ -303,11 +302,10 @@ function closeNav() {
     navOpen = false;
     if (window.innerWidth > 768) {
         navBar.style.right = "-33vw";
-    }else{
+    } else {
         navBar.style.right = "-66vw";
     }
-    footerButton.style.height = "initial";
-    footerButton.style.padding = "12px 20px 12px 20px";
+    footerButton.style.bottom = "0";
 }
 
 

@@ -29,13 +29,16 @@
             <div id="top" class="row">
                 <h3>6-asis</h3>
                 <h2>SinBio</h2>
-                <h1>pojūtis<p id="movingDot">.</p>
+                <h1 id="main-text">
+                    <p id="static-text"> pojūtis</p>
+                    <p id="movingDot">.</p>
                 </h1>
             </div>
 
             <div id="middle" class="row">
-                <hr id="line">
-                <p>Pažink iš naujo gyvybės mokslus panirdamas į AR ir QR technologijas.</p>
+                <hr align="left" id="line">
+                <p id="middle-text">Pažink iš naujo gyvybės mokslus panirdamas į AR ir QR technologijas.</p>
+
             </div>
             <div id="bottom" class="row">
                 <svg version="1.1" id="arrows" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 73.4 100" enable-background="new 0 0 73.4 100" xml:space="preserve">
@@ -47,31 +50,32 @@
             </div>
         </section>
         <section id="main-menu" class="section">
-            <!--<div id="menu-top" class="row">
-                <div class="col-6" id="dyslexia"><img src="images/disleksija.svg">
-                    <p>Modifikacija disleksijai</p>
+            <div id="menu-top" class="row">
+                <div class="col-6" id="dyslexia"><img id="dysImg" src="images/disleksija.svg">
+                    <p id="dysText">Modifikacija<br> disleksijai</p>
                 </div>
                 <div class="col-6" id=languages>
                     <p>LT</p>
                     <p>EN</p>
                 </div>
-            </div>-->
+            </div>
             <div class="row" id="middle-menu">
                 <div>
                     <img src="./images/igem.png" height="442px" width="653px" alt="iGEM Vilnius Logo">
                 </div>
 
                 <div class="row" id="navigation">
-                    <a href="./map.html" id="button-map" class="btn btn-lg btn-secondary"></a>
-                    <a href="./info.html" id="button-instr" class="btn btn-lg btn-secondary"></a>
-                    <a href="#" id="button-print" class="btn btn-lg btn-secondary"></a>
-                    <a href="http://vilniusigem.lt" id="button-igem" target="_blank" class="btn btn-lg btn-secondary" aria-label="Vilnius iGEM main page">iGEM</a>
+                    <a href="./map.html" id="button-map"></a>
+                    <a href="./info.html" id="button-instr"></a>
+                    <a href="#" id="button-print"></a>
+                    <a href="http://vilniusigem.lt" id="button-igem" target="_blank" aria-label="Vilnius iGEM main page">iGEM</a>
 
                 </div>
 
-                <div class="row" id="footer">
-                    <a href="#">Privatumo politika</a>
-                </div>
+
+            </div>
+            <div class="row" id="footer">
+                <a href="#">Privatumo politika</a>
             </div>
         </section>
     </div>
@@ -79,12 +83,10 @@
     <script src="js/languages.js" charset="UTF-8"></script>
     <script src="js/fullPage.min.js"></script>
     <script>
-        /*window.addEventListener('scroll', function() {
-            console.log("scrolling")
-        })*/
         var dotTravel
+        var dotWidth;
 
-        function setArrows() {
+        function setInitialElements() {
             var viewportOffsetDot = document.getElementById("movingDot").getBoundingClientRect();
 
             dotWidth = viewportOffsetDot.width;
@@ -92,16 +94,26 @@
             var arrowWidth = document.getElementById("arrows").getBoundingClientRect().width;
             dotLeft = viewportOffsetDot.left;
 
-            document.getElementById("arrows").style.left = dotLeft - dotWidth / 2
+            document.getElementById("arrows").style.marginLeft = dotLeft - dotWidth / 2
 
+            var viewportOffseth1 = document.getElementById("main-text").getBoundingClientRect();
 
+            document.getElementById("middle").style.width = viewportOffseth1.width + "px";
+            document.getElementById("middle-text").style.width = (viewportOffseth1.width * 0.9) + "px";
+            document.getElementById("middle").style.marginLeft = viewportOffseth1.left + "px";
+            var viewportDyslexia = document.getElementById("dysText").getBoundingClientRect();
+            console.log(viewportDyslexia);
+            document.getElementById("dysImg").style.height = viewportDyslexia.height + "px";
         }
-        window.addEventListener('load', setArrows)
-        window.onresize = setArrows
+        window.addEventListener('load', setInitialElements)
+        window.onresize = setInitialElements
 
         document.getElementById("arrows").addEventListener('hover', function() {
-            console.log("hovered");
             document.getElementById("line").style.width = "50%"
+        })
+        document.getElementById("intro").addEventListener('click', function() {
+            console.log(document.getElementById("line").getBoundingClientRect().width, dotWidth)
+            document.getElementById("line").style.width = (document.getElementById("static-text").getBoundingClientRect().width * 0.95) + "px"
         })
         /*document.getElementById("arrows").addEventListener('click', function() {
                               var middlePart = document.getElementById("middle").getBoundingClientRect();
@@ -150,7 +162,7 @@
                 print: "Atsispausdink AR markerius"
             },
             en: {
-                map: "Stations map",
+                map: "Stops map",
                 instr: "Instructions",
                 print: "Print AR marker"
             }
