@@ -62,7 +62,7 @@ p {
 
 #top #movingDot {
     color: #fcbd1b;
-    transition: 1s ease-in-out;
+    transition: 0.8s ease-in-out;
     height: 1em;
 }
 
@@ -126,7 +126,8 @@ p {
     cursor: pointer;
 }
 
-#languages .languageBox span.active, #languages .languageBox span:hover {
+#languages .languageBox span.active,
+#languages .languageBox span:hover {
     border-bottom: 2px solid white;
 }
 
@@ -325,8 +326,7 @@ p {
 }
 
 #dropdown-content a:hover {
-    text-decoration: overline;
-    font-size: 20px;
+    text-decoration: underline;
 }
 
 #foot {
@@ -421,7 +421,7 @@ p {
     }
 
     #navigation {
-        width: 30%;
+        width: 50%;
         font-size: 1.5em
     }
 
@@ -432,6 +432,10 @@ p {
 
     .container h1 {
         font-size: 4em
+    }
+
+    #dropdown-icon {
+        height: 4em
     }
 
     #dropdown-menu {
@@ -450,9 +454,6 @@ p {
         font-size: 24px;
     }
 
-    #dropdown-content a:hover {
-        font-size: 28px;
-    }
 
     .navbar-contr img {
         height: 40px;
@@ -467,5 +468,15 @@ p {
     #info-page #footer a,
     #map-page #footer a {
         font-size: 2em;
+    }
+}
+
+@media (min-width:1024px) {
+    #dropdown-icon {
+        height: 5em
+    }
+
+    #navigation {
+        width: 30%;
     }
 }
