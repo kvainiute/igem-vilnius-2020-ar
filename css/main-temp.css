@@ -1,27 +1,3 @@
-@font-face {
-    font-family: 'CustomBold';
-    src: url('../fonts/Lato-Bold.ttf') format('truetype'),
-        url('../fonts/Lato-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'CustomReg';
-    src: url('../fonts/Lato-Regular.ttf') format('truetype'),
-        url('../fonts/Lato-Regular.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'CustomLight';
-    src: url('../fonts/Lato-Light.ttf') format('truetype'),
-        url('../fonts/Lato-Light.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'CustomHeavy';
-    src: url('../fonts/Lato-Heavy.ttf') format('truetype'),
-        url('../fonts/Lato-Heavy.woff') format('woff');
-}
-
 html,
 body {
     background-size: cover;
