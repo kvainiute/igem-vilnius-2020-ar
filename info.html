@@ -18,29 +18,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vilnius iGEM AR</title>
     <link href="./css/fonts.css" rel="stylesheet">
+    <link href="./css/languagebox.css" rel="stylesheet">
     <link href="./css/opendyslexic.css" rel="stylesheet">
     <link href="./css/main-temp.css" rel="stylesheet">
 </head>
 
 <body id="info-page">
-    <div class="container">
-        <header>
-            <h1>INFORMACIJA</h1>
+    <div class="container" style="text-align: unset;">
+        <header class="infoHeader">
+            <h1 id="header">Instrukcija</h1>
         </header>
+        <main style="margin:16px 10%;">
+            <p class="question" id="q1"></p>
+            <p class="answer"   id="a1"></p>
+            <p class="question" id="q2"></p>
+            <p class="answer"   id="a2"></p>
+            <p class="question" id="q3"></p>
+            <p class="answer"   id="a3"></p>
+        </main>
 
-        <main id="footer"><a id="foot" href="/">gr&iogon;&zcaron;ti atgal</a><br></main>
+        <div id="footer">
+            <a id="foot" href="/">back</a>
+        </div>
     </div>
     <script src="js/languages.js" charset="UTF-8"></script>
     <script src="js/opendyslexic.js" charset="UTF-8"></script>
     <script>
+        
+        let texts = {
+            en: {
+                foot: "return to the main page",
+                header: "INSTRUCTIONS",
+
+                q1: "Does AR work on my browser?",
+                a1: "Browsers, which support AR: iOS Safari, Google Chrome, Firefox, ...",
+
+                q2: "How to switch to the simple 3D preview?",
+                a2: "In the model page, click the info button and then click the no camera button.",
+
+                q3: "...",
+                a3: ""
+            },
+            lt: {
+                foot: "grįžti atgal",
+                header: "INSTRUKCIJA",
+
+                q1: "Ar mano naršyklėje veikia AR?",
+                a1: "Naršyklės, kurios palaiko šias technologijas: iOS Safari, Google Chrome, Firefox, ...",
+
+                q2: "Kaip persijungti į paprastą 3D peržiūrą?",
+                a2: "Peržiūros puslapyje paspauskite info mygtuką ir tada perbrauktos kameros mygtuką.",
+                
+                q3: "...",
+                a3: ""
+            }
+        };
+
         function updateTexts(language) {
-            if (language == "en") {
-                document.getElementById("foot").innerText = "return to the main page"
-            } else {
-                document.getElementById("foot").innerText = "grįžti atgal"
+            let elements = Object.keys(texts.lt);
+            for (let element of elements){
+                document.getElementById(element).innerText = texts[language][element];
             }
         }
         updateTexts(LanguageSwitcher.currentLanguage);
+        LanguageSwitcher.makeLanguageBox(document.querySelector("header"), 0);
+        LanguageSwitcher.languagebox.className = "languageBox";
+        LanguageSwitcher.languagebox.style = "position:absolute;right:0;margin:10px;";
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
         FontSwitcher.init();
