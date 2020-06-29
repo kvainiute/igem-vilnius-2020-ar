@@ -101,7 +101,7 @@ const data = {
         meta: {
             lt: {
                 name: "Bakteriofagai",
-                desc: "<b>Bakteriofagai</b> - tai virusų rūšis, kuri puola tam tikras bakterijas, bet nedaro žalos žmogaus ląstelėms. Jų forma primena robotus: turi galvutę, kurioje saugo genetinę informaciją, uodegėlę ir kojytes, kuriomis tvirtinasi prie bakterijos. Prisikabinęs prie bakterijos bakteriofagas įleidžia savo genetinę informaciją, liepia kopijuoti naujas viruso dalis ir galiausiai sunaikina ląstelę. Didėjant bakterijų atsparumui antibiotikams, fagų terapija gali pakeisti tradicinius gydymo būdus. Todėl mokslininkai bando padaryti šią terapiją kuo saugesne ir prieinamesne visuomenei. Vienas tokių bandymų pavyzdžių: http://2018.igem.org/Team:Munich.",
+                desc: "<b>Bakteriofagai</b> - tai virusų rūšis, kuri puola tam tikras bakterijas, bet nedaro žalos žmogaus ląstelėms. Jų forma primena robotus: turi galvutę, kurioje saugo genetinę informaciją, uodegėlę ir kojytes, kuriomis tvirtinasi prie bakterijos. Prisikabinęs prie bakterijos bakteriofagas įleidžia savo genetinę informaciją, liepia kopijuoti naujas viruso dalis ir galiausiai sunaikina ląstelę. Didėjant bakterijų atsparumui antibiotikams, fagų terapija gali pakeisti tradicinius gydymo būdus. Todėl mokslininkai bando padaryti šią terapiją kuo saugesne ir prieinamesne visuomenei. Vienas tokių bandymų pavyzdžių: <a href='http://2018.igem.org/Team:Munich'>iGEM 2018 Munich</a>.",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {

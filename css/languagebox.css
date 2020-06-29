@@ -1,16 +1,20 @@
-.languageBox {
-    margin: 8spx;
-}
-
+/* .languageBox {
+} */
 .languageBox span {
     text-transform: uppercase;
     margin-right: 8px;
     cursor: pointer;
     font-family: 'CustomHeavy';
     font-weight: normal;
-    font-size: 1.6em;
+    font-size: 1em;
 }
 .languageBox span.active, .languageBox span:hover {
     border-bottom: 2px solid rgb(0, 3, 31);
-    border-radius: 0 0px 2px 2px;
+}
+
+
+@media (min-width: 768px) {
+    .languageBox span {
+        font-size: 1.6em;
+    }
 }

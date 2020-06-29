@@ -1,34 +1,10 @@
-@font-face {
-    font-family: 'CustomBold';
-    src: url('../fonts/Lato-Bold.ttf') format('truetype'),
-        url('../fonts/Lato-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'CustomReg';
-    src: url('../fonts/Lato-Regular.ttf') format('truetype'),
-        url('../fonts/Lato-Regular.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'CustomLight';
-    src: url('../fonts/Lato-Light.ttf') format('truetype'),
-        url('../fonts/Lato-Light.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'CustomHeavy';
-    src: url('../fonts/Lato-Heavy.ttf') format('truetype'),
-        url('../fonts/Lato-Heavy.woff') format('woff');
-}
-
 html,
 body {
     background-size: cover;
     padding: 0;
     margin: 0;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     background-color: #000020;
     color: white;
@@ -154,6 +130,7 @@ p {
 #dyslexia p {
     margin: 0;
     padding-left: 5%;
+    font-size: 1em;
 }
 
 #middle-menu img {
@@ -215,14 +192,17 @@ p {
     position: fixed;
     margin: 0;
     bottom: 0;
+    padding: 5px;
     width: 100%;
     height: 5vh;
     background-color: #fcbd1b;
-
+    display: flex;
+    align-items: center;
 }
 
 #info-page #footer a,
 #map-page #footer a {
+    position: fixed;
     float: none;
     font-family: 'CustomLight';
     text-decoration: none;
@@ -254,7 +234,7 @@ p {
     box-shadow: 0px 0px 32px -2px rgba(255, 221, 0, 1);
     padding: 20px;
     font-size: 24px;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .mapboxgl-popup-content p {
@@ -313,15 +293,14 @@ p {
 #dropdown-content {
     position: absolute;
     background: #14192e;
-    right: 0;
-    width: 0;
+    right: -66vw;
+    width: 66vw;
     z-index: 1000;
     height: 100%;
     transition: 1s;
-    padding-top: 20px;
     overflow-x: hidden;
     overflow-y: auto;
-
+    align-items: center;
     text-align: left;
 }
 
@@ -355,7 +334,17 @@ p {
 
 #navbar-controls {
     display: flex;
+    justify-content: space-between;
     width: 100%
+}
+
+#language.navbar-contr {
+    margin: 8px;
+}
+
+#language.navbar-contr span:hover,
+#language.navbar-contr span.active {
+    border-bottom: 2px solid white;
 }
 
 #navbar-controls svg {
@@ -441,6 +430,11 @@ p {
         width: 7vw;
         height: 100vh;
         z-index: 1000;
+    }
+
+    #dropdown-content {
+        width: 33vw;
+        right: -33vw;
     }
 
     #dropdown-content a {

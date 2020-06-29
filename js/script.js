@@ -1,4 +1,4 @@
-var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls;
+var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls, background;
 
 let modelLoaded = false;
 let isAR = false;
@@ -57,7 +57,6 @@ function onResize() {
     if (arToolkitContext.arController !== null) {
         arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
     }
-    positionInfoDiv();
 }
 
 function initializeAR() {
@@ -71,7 +70,6 @@ function initializeAR() {
     }
 
     scene = new THREE.Scene();
-    scene.background = "none"
     let light0 = new THREE.DirectionalLight(0xcccccc, 1);
     light0.position.set(0, 3, 0);
     scene.add(light0);
@@ -203,7 +201,6 @@ function toggleAR3D() {
 function onResizeNoAR() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    positionInfoDiv();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
@@ -222,9 +219,20 @@ function initialize3D() {
     totalTime = 0;
 
     scene = new THREE.Scene();
-    var spotLight = new THREE.SpotLight(0xffffff, 6);
+    let spotLight = new THREE.SpotLight(0xffffff, 6);
     spotLight.position.set(1, 1, 1);
     scene.add(spotLight);
+
+    let spotLight2 = new THREE.SpotLight(0xffffff, 2);
+    spotLight2.position.set(-1, 1, -1);
+    scene.add(spotLight2);
+
+    background = new THREE.TextureLoader().load("../images/bg/bg-dark.png");
+    background.wrapS = THREE.RepeatWrapping;
+    background.wrapT = THREE.RepeatWrapping;
+    background.repeat.set(4, 4);
+
+    scene.background = background;
 
     //setting up the camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -237,7 +245,6 @@ function initialize3D() {
     });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.outputEncoding = THREE.sRGBEncoding;
-    //scene.background.encoding = THREE.LinearEncoding;
     renderer.toneMappingExposure = 0.7;
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.physicallyCorrectLights = true;
@@ -266,8 +273,6 @@ function initialize3D() {
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
-
-    scene.background = new THREE.Color(0x333333);
 
     controls.update();
 
@@ -306,6 +311,8 @@ function reset() {
     recording = undefined;
     if (controls != undefined) controls.dispose();
     controls = undefined;
+    if (background != undefined) background.dispose();
+    background = undefined;
 
     arToolkitSource = undefined;
     arToolkitContext = undefined;
@@ -322,8 +329,7 @@ function showModelInfo() {
     document.getElementById("st-name").innerHTML = info.name;
     document.getElementById("text-info").innerHTML = info.desc;
 
-    document.getElementById("model-info").style.display = 'block';
-    positionInfoDiv();
+    document.getElementById("model-info").style.display = 'flex';
 }
 
 
@@ -336,9 +342,9 @@ function load3Dmodel(item, ar = true) {
     }
 
     recording = modelMeta.audioRec;
-    infoButton.addEventListener('load', function () {
+    window.onload = () => {
         infoButton.contentDocument.addEventListener('click', showModelInfo, false);
-    })
+    };
     var audioplay = document.getElementById("audio-button");
     var audiocontent;
     audioplay.addEventListener('load', function () {
@@ -544,22 +550,6 @@ function initGfpColors() {
     }
 
     buildColors(colors);
-}
-
-//positioning the Info Div in the middle
-function positionInfoDiv() {
-    let height = $("#model-info").height();
-    let width = $("#model-info").width();
-    if (width < $("#model-info h1").width()) {
-        width = $("#model-info h1").width();
-    }
-    let left = (window.innerWidth - width) / 2;
-    let top = (window.innerHeight - height) / 2;
-
-    $('#model-info').css({
-        left: left,
-        top: top
-    });
 }
 
 function playAudio(file) {

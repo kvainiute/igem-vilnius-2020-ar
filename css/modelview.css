@@ -66,10 +66,13 @@ canvas {
 
 #model-info {
     display: none;
-    padding: 10px;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px;
     width: 60%;
-    max-height: 60%;
-    overflow: auto;
+    height: 60%;
+    margin: auto;
+    top: 20%;
     background: rgba(252, 189, 27, 0.9);
     border-radius: 15px;
     position: relative;
@@ -79,29 +82,30 @@ canvas {
     box-shadow: 0px 0px 32px -2px rgba(255, 221, 0, 1);
 }
 
-#model-info #info-name {
-    width: 80%;
+#info-text {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
     margin: 0 auto;
-    padding: 10px 10px 5px 10px;
-    word-wrap: break-word
 }
 
-@font-face {
-    font-family: 'CustomBold';
-    src: url('../fonts/Lato-Bold.ttf') format('truetype'),
-        url('../fonts/Lato-Bold.woff') format('woff');
+#info-text::-webkit-scrollbar { 
+    width: 2vw;
 }
 
-@font-face {
-    font-family: 'CustomReg';
-    src: url('../fonts/Lato-Regular.ttf') format('truetype'),
-        url('../fonts/Lato-Regular.woff') format('woff');
+#info-text::-webkit-scrollbar-thumb { 
+    background-color: #000020;
+    border-radius: 100px;
 }
 
-@font-face {
-    font-family: 'CustomLight';
-    src: url('../fonts/Lato-Light.ttf') format('truetype'),
-        url('../fonts/Lato-Light.woff') format('woff');
+#model-info #info-name {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto 10px;
+    /* padding: 10px 10px 5px 10px; */
 }
 
 svg text {
@@ -114,28 +118,26 @@ svg text {
     font-family: 'CustomBold';
     font-weight: normal;
     font-style: normal;
-}
-
-#model-info #info-text {
-    width: 80%;
-    margin: 0 auto;
-    overflow: auto;
-    padding: 5px 10px 10px 10px;
+    margin: 0;
 }
 
 #model-info #info-text p {
     font-family: 'CustomLight';
     font-size: 12pt;
-    font-weight: 600΄
+    font-weight: 600;
+    margin: 0 5%;
+}
+#info-text a {
+    color: #00031F;
+    font-family: 'CustomBold';
 }
 
 #model-info #info-footer {
     bottom: 5px;
     margin: 0 auto;
-    padding-top: 2%;
     width: 100%;
     display: inline-flex;
-    padding: 2%;
+    padding-top: 20px;
     box-sizing: border-box;
 }
 

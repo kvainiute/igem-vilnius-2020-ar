@@ -1,27 +1,3 @@
-@font-face {
-    font-family: 'CustomBold';
-    src: url('../fonts/Lato-Bold.ttf') format('truetype'),
-        url('../fonts/Lato-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'CustomReg';
-    src: url('../fonts/Lato-Regular.ttf') format('truetype'),
-        url('../fonts/Lato-Regular.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'CustomLight';
-    src: url('../fonts/Lato-Light.ttf') format('truetype'),
-        url('../fonts/Lato-Light.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'CustomHeavy';
-    src: url('../fonts/Lato-Heavy.ttf') format('truetype'),
-        url('../fonts/Lato-Heavy.woff') format('woff');
-}
-
 * {
     box-sizing: border-box;
     font-family: 'CustomBold';
@@ -287,9 +263,10 @@ footer .inner a:hover {
 
 #dropdown-content {
     position: absolute;
+    align-items: center;
     background: #14192e;
-    right: 0;
-    width: 0;
+    right: -66vw;
+    width: 66vw;
     z-index: 1000;
     height: 100%;
     transition: 1s;
@@ -329,7 +306,15 @@ footer .inner a:hover {
 
 #navbar-controls {
     display: flex;
+    justify-content: space-between;
     width: 100%
+}
+
+#language.navbar-contr {
+    margin: 8px;
+}
+#language.navbar-contr span:hover, #language.navbar-contr span.active {
+    border-bottom: 2px solid white;
 }
 
 #navbar-controls svg {
@@ -368,6 +353,11 @@ footer .inner a:hover {
         width: 7vw;
         height: 100vh;
         z-index: 1000;
+    }
+    
+    #dropdown-content {
+        width: 33vw;
+        right: -33vw;
     }
 
     #dropdown-content a {
