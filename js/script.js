@@ -1,4 +1,4 @@
-var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls;
+var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls, background;
 
 let modelLoaded = false;
 let isAR = false;
@@ -222,9 +222,20 @@ function initialize3D() {
     totalTime = 0;
 
     scene = new THREE.Scene();
-    var spotLight = new THREE.SpotLight(0xffffff, 6);
+    let spotLight = new THREE.SpotLight(0xffffff, 6);
     spotLight.position.set(1, 1, 1);
     scene.add(spotLight);
+
+    let spotLight2 = new THREE.SpotLight(0xffffff, 2);
+    spotLight2.position.set(-1, 1, -1);
+    scene.add(spotLight2);
+
+    background = new THREE.TextureLoader().load("../images/bg/bg-dark.png");
+    background.wrapS = THREE.RepeatWrapping;
+    background.wrapT = THREE.RepeatWrapping;
+    background.repeat.set(4, 4);
+
+    scene.background = background;
 
     //setting up the camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -237,7 +248,6 @@ function initialize3D() {
     });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.outputEncoding = THREE.sRGBEncoding;
-    //scene.background.encoding = THREE.LinearEncoding;
     renderer.toneMappingExposure = 0.7;
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.physicallyCorrectLights = true;
@@ -266,8 +276,6 @@ function initialize3D() {
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
-
-    scene.background = new THREE.Color(0x333333);
 
     controls.update();
 
@@ -306,6 +314,8 @@ function reset() {
     recording = undefined;
     if (controls != undefined) controls.dispose();
     controls = undefined;
+    if (background != undefined) background.dispose();
+    background = undefined;
 
     arToolkitSource = undefined;
     arToolkitContext = undefined;
