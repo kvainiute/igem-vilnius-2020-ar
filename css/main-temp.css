@@ -1,0 +1,159 @@
+@font-face {
+    font-family: 'CustomBold';
+    src: url('../fonts/Lato-Bold.ttf') format('truetype'),
+        url('../fonts/Lato-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'CustomReg';
+    src: url('../fonts/Lato-Regular.ttf') format('truetype'),
+        url('../fonts/Lato-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'CustomLight';
+    src: url('../fonts/Lato-Light.ttf') format('truetype'),
+        url('../fonts/Lato-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'CustomHeavy';
+    src: url('../fonts/Lato-Heavy.ttf') format('truetype'),
+        url('../fonts/Lato-Heavy.woff') format('woff');
+}
+
+html,
+body {
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000020;
+    color: white;
+    font-family: 'CustomReg';
+    box-sizing: border-box
+}
+
+.row {
+    width: 100%;
+    box-sizing: border-box
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-block-start: auto;
+    margin-block-end: auto;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+#main {
+    height: 100vh
+}
+
+#intro,
+#main-menu {
+    height: 100vh;
+    text-align: center
+}
+
+#top {
+    font-family: 'CustomBold';
+    padding-top: 30px
+}
+
+#top h3 {
+    font-size: 40px
+}
+
+#top h2 {
+    font-size: 60px
+}
+
+#top h1 {
+    font-size: 80px;
+    display: inline-flex;
+    color: #257cef
+}
+
+#top h1 p {
+    color: #fcbd1b;
+}
+
+#bottom {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    padding: 20px;
+    height: 20vh
+}
+
+#arrows {
+    position: absolute;
+    height: 10vh;
+}
+
+#middle {
+    padding-top: 20px
+}
+
+#middle hr {
+    border-width: 0.2px
+}
+
+#middle p {
+    font-family: 'CustomLight';
+    text-align: left;
+    padding-top: 20px
+}
+
+#middle-menu {
+    height: 100%
+}
+
+#middle-menu img {
+    max-width: 70%;
+    height: auto;
+    padding: 10px
+}
+
+#navigation {
+    font-family: 'CustomLight';
+    font-size: 20px;
+    max-width: 70%;
+    display: inline-grid;
+}
+
+#navigation a {
+    background-color: #fcbd1b;
+    padding: 13px;
+    margin: 10px;
+    border-radius: 15px;
+    color: #000020;
+    text-decoration: none;
+}
+
+#footer a {
+    color: #fcbd1b;
+}
+
+#footer a:active,
+#footer a:focus {
+    color: #fcbd1b;
+}
+
+@media (min-width:768px) {
+    #middle-menu img {
+        max-width: 50%;
+        height: auto;
+    }
+
+    #navigation {
+        width: 50%;
+        font-size: 26px
+    }
+}

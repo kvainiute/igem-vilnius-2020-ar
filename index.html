@@ -17,53 +17,152 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vilnius iGEM AR</title>
-    <!-- Bootstrap core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="./css/main.css" rel="stylesheet">
+    <link href="./css/main-temp.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./css/languagebox.css">
 </head>
 
-<body class="text-center">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="masthead mb-auto">
-            <img src="./images/igem.png" height="442px" width="653px" alt="iGEM Vilnius Logo">
-        </header>
-
-        <main role="main" class="inner cover">
-            <a href="./map.html" id="button-map" class="btn btn-lg btn-secondary"></a>
-            <a href="./info.html" id="button-instr" class="btn btn-lg btn-secondary">i</a>
-            <a href="http://vilniusigem.lt" id="button-igem" target="_blank" class="btn btn-lg btn-secondary" aria-label="Vilnius iGEM main page">iGEM</a>
-            <div id="language" style="margin-top: 14px"></div>
-        </main>
-
-        <footer class="mastfoot mt-auto">
-            <div class="inner">
-                <img src="./images/vu.svg" alt="VU Logo">
+<body>
+    <div id="main">
+        <section id="intro" class="section">
+            <div id="top" class="row">
+                <h3>6-asis</h3>
+                <h2>SinBio</h2>
+                <h1>pojūtis<p id="movingDot">.</p>
+                </h1>
             </div>
-        </footer>
+
+            <div id="middle" class="row">
+                <hr id="line">
+                <p>Pažink iš naujo gyvybės mokslus panirdamas į AR ir QR technologijas.</p>
+            </div>
+            <div id="bottom" class="row">
+                <svg version="1.1" id="arrows" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 73.4 100" enable-background="new 0 0 73.4 100" xml:space="preserve">
+                    <polyline fill="none" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.5,5.5 
+	36.7,39.6 67.9,5.5 " />
+                    <polyline fill="none" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.6,60.4 
+	36.8,94.5 68,60.4 " />
+                </svg>
+            </div>
+        </section>
+        <section id="main-menu" class="section">
+            <!--<div id="menu-top" class="row">
+                <div class="col-6" id="dyslexia"><img src="images/disleksija.svg">
+                    <p>Modifikacija disleksijai</p>
+                </div>
+                <div class="col-6" id=languages>
+                    <p>LT</p>
+                    <p>EN</p>
+                </div>
+            </div>-->
+            <div class="row" id="middle-menu">
+                <div>
+                    <img src="./images/igem.png" height="442px" width="653px" alt="iGEM Vilnius Logo">
+                </div>
+
+                <div class="row" id="navigation">
+                    <a href="./map.html" id="button-map" class="btn btn-lg btn-secondary"></a>
+                    <a href="./info.html" id="button-instr" class="btn btn-lg btn-secondary"></a>
+                    <a href="#" id="button-print" class="btn btn-lg btn-secondary"></a>
+                    <a href="http://vilniusigem.lt" id="button-igem" target="_blank" class="btn btn-lg btn-secondary" aria-label="Vilnius iGEM main page">iGEM</a>
+
+                </div>
+
+                <div class="row" id="footer">
+                    <a href="#">Privatumo politika</a>
+                </div>
+            </div>
+        </section>
     </div>
+
     <script src="js/languages.js" charset="UTF-8"></script>
+    <script src="js/fullPage.min.js"></script>
     <script>
+        /*window.addEventListener('scroll', function() {
+            console.log("scrolling")
+        })*/
+        var dotTravel
+
+        function setArrows() {
+            var viewportOffsetDot = document.getElementById("movingDot").getBoundingClientRect();
+
+            dotWidth = viewportOffsetDot.width;
+            document.getElementById("arrows").style.width = dotWidth * 2
+            var arrowWidth = document.getElementById("arrows").getBoundingClientRect().width;
+            dotLeft = viewportOffsetDot.left;
+
+            document.getElementById("arrows").style.left = dotLeft - dotWidth / 2
+
+
+        }
+        window.addEventListener('load', setArrows)
+        window.onresize = setArrows
+
+        document.getElementById("arrows").addEventListener('hover', function() {
+            console.log("hovered");
+            document.getElementById("line").style.width = "50%"
+        })
+        /*document.getElementById("arrows").addEventListener('click', function() {
+                              var middlePart = document.getElementById("middle").getBoundingClientRect();
+                              console.log(middlePart.right, dotLeft)
+                              if (middlePart.right > dotLeft) {
+                                  document.getElementById("middle").style.transform = "translateX(-400px)"
+                              }
+
+                              document.getElementById("movingDot").style.transform = "translateY(" + dotTravel + "px)"
+                          })
+*/
+        var page = new FullPage("#main", {
+
+            // section selector
+            section: '.section',
+
+            // animation options
+            animationDuration: 1000,
+            animationTiming: 'ease',
+            animationTranform: 'transform',
+
+            // enable side navigation
+            pagination: true,
+
+            // enable keyboard navigation
+            keyboard: true,
+
+            // enable touch events
+            touch: true,
+
+            // touch limit in ms
+            touchLimit: 100,
+
+            // infinite loop
+            loop: false,
+
+            // callbacks
+            onLeave: null,
+            afterLoad: null,
+
+        });
         let texts = {
             lt: {
-                map: "Visos stotelės",
-                instr: "Instrukcija"
+                map: "Stotelių žemėlapis",
+                instr: "Instrukcija",
+                print: "Atsispausdink AR markerius"
             },
             en: {
-                map: "All Spots",
-                instr: "Instructions"
+                map: "Stations map",
+                instr: "Instructions",
+                print: "Print AR marker"
             }
         };
 
         function updateTexts(language) {
             document.getElementById("button-map").innerText = texts[language].map;
             document.getElementById("button-instr").innerText = texts[language].instr;
+            document.getElementById("button-print").innerText = texts[language].print;
         }
 
         updateTexts(LanguageSwitcher.currentLanguage);
 
-        LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
+
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
     </script>
 </body></html>
