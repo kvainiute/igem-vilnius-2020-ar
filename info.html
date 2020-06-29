@@ -31,6 +31,7 @@
         <main id="footer"><a id="foot" href="/">gr&iogon;&zcaron;ti atgal</a><br></main>
     </div>
     <script src="js/languages.js" charset="UTF-8"></script>
+    <script src="js/opendyslexic.js" charset="UTF-8"></script>
     <script>
         function updateTexts(language) {
             if (language == "en") {
@@ -41,5 +42,7 @@
         }
         updateTexts(LanguageSwitcher.currentLanguage);
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+
+        FontSwitcher.init();
     </script>
 </body></html>

@@ -120,7 +120,7 @@ p {
 #dyslexia {
     display: flex;
     text-align: left;
-
+    cursor: pointer;
 }
 
 #dyslexia img {

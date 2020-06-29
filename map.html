@@ -39,6 +39,7 @@
     <main id="footer"><a href="/" id="foot">gr&iogon;&zcaron;ti atgal</a><br></main>
 
     <script src="js/languages.js" charset="UTF-8"></script>
+    <script src="js/opendyslexic.js" charset="UTF-8"></script>
     <script src="js/map.js"></script>
     <script>
         function updateTexts(language) {
@@ -50,5 +51,7 @@
         }
         updateTexts(LanguageSwitcher.currentLanguage);
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+
+        FontSwitcher.init();
     </script>
 </body></html>
