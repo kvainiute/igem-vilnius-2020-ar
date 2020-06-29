@@ -50,6 +50,7 @@
             <div class="spacer"></div>
         </div>
     </div>
+    
 
     <div id="tray-container" style="display:none;"></div>
     <script src='js/three.js'></script>
@@ -84,7 +85,7 @@
         loadSingle(model);
 
         LanguageSwitcher.makeLanguageBox(document.getElementById("model-info"), 0);
-        LanguageSwitcher.languagebox.style = "float: right; margin: 8px;";
+        LanguageSwitcher.languagebox.style = "align-self: flex-end;";
         LanguageSwitcher.addOnLanguageChangeListener((newLanguage) => {
             language = newLanguage;
             showModelInfo();

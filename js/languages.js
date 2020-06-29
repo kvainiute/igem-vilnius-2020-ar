@@ -48,6 +48,7 @@ class LanguageSwitcher {
             element.insertBefore(languagebox, element.children[position]);
         }
         LanguageSwitcher.languagebox = languagebox;
+        document.documentElement.lang = language;
     }
 
     static addOnLanguageChangeListener(listener){

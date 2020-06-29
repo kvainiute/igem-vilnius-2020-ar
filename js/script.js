@@ -57,7 +57,6 @@ function onResize() {
     if (arToolkitContext.arController !== null) {
         arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
     }
-    positionInfoDiv();
 }
 
 function initializeAR() {
@@ -71,7 +70,6 @@ function initializeAR() {
     }
 
     scene = new THREE.Scene();
-    scene.background = "none"
     let light0 = new THREE.DirectionalLight(0xcccccc, 1);
     light0.position.set(0, 3, 0);
     scene.add(light0);
@@ -203,7 +201,6 @@ function toggleAR3D() {
 function onResizeNoAR() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    positionInfoDiv();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
@@ -332,8 +329,7 @@ function showModelInfo() {
     document.getElementById("st-name").innerHTML = info.name;
     document.getElementById("text-info").innerHTML = info.desc;
 
-    document.getElementById("model-info").style.display = 'block';
-    positionInfoDiv();
+    document.getElementById("model-info").style.display = 'flex';
 }
 
 
@@ -346,9 +342,9 @@ function load3Dmodel(item, ar = true) {
     }
 
     recording = modelMeta.audioRec;
-    infoButton.addEventListener('load', function () {
+    window.onload = () => {
         infoButton.contentDocument.addEventListener('click', showModelInfo, false);
-    })
+    };
     var audioplay = document.getElementById("audio-button");
     var audiocontent;
     audioplay.addEventListener('load', function () {
@@ -554,22 +550,6 @@ function initGfpColors() {
     }
 
     buildColors(colors);
-}
-
-//positioning the Info Div in the middle
-function positionInfoDiv() {
-    let height = $("#model-info").height();
-    let width = $("#model-info").width();
-    if (width < $("#model-info h1").width()) {
-        width = $("#model-info h1").width();
-    }
-    let left = (window.innerWidth - width) / 2;
-    let top = (window.innerHeight - height) / 2;
-
-    $('#model-info').css({
-        left: left,
-        top: top
-    });
 }
 
 function playAudio(file) {
