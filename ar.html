@@ -83,7 +83,7 @@
         loadSingle(model);
 
         LanguageSwitcher.makeLanguageBox(document.getElementById("model-info"), 0);
-        LanguageSwitcher.languagebox.style = "float: right";
+        LanguageSwitcher.languagebox.style = "float: right; margin: 8px;";
         LanguageSwitcher.addOnLanguageChangeListener((newLanguage) => {
             language = newLanguage;
             showModelInfo();

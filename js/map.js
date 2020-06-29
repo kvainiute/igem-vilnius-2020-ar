@@ -278,24 +278,29 @@ LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
 window.onresize = openNav
 
+let navBar = document.getElementById("dropdown-content");
+let footerButton = document.getElementById("foot");
+
+let navOpen = false;
+
 function openNav() {
-    var width = window.innerWidth;
-    if (width > 768) {
-        document.getElementById("dropdown-content").style.width = "33vw";
-    } else {
-        document.getElementById("dropdown-content").style.width = "66vw";
-    }
-    document.getElementById("foot").style.height = "0px";
-    document.getElementById("foot").style.padding = "0";
+    if (navOpen) return;
+    navBar.style.right = "0";
+    footerButton.style.height = "0px";
+    footerButton.style.padding = "0";
+    navOpen = true;
 }
 
 function closeNav() {
-    var navBar = document.getElementById("dropdown-content");
-    if (navBar.style.width != "") {
-        navBar.style.width = "0px";
-        document.getElementById("foot").style.height = "initial";
-        document.getElementById("foot").style.padding = "12px 20px 12px 20px";
+    if (!navOpen) return;
+    navOpen = false;
+    if (window.innerWidth > 768) {
+        navBar.style.right = "-33vw";
+    }else{
+        navBar.style.right = "-66vw";
     }
+    footerButton.style.height = "initial";
+    footerButton.style.padding = "12px 20px 12px 20px";
 }
 
 
