@@ -336,7 +336,8 @@ p {
     left: 0;
     border-radius: 0;
     border: none;
-    transition: 1s
+    transition: 1s;
+    text-align: center;
 }
 
 #navbar-controls {
@@ -369,12 +370,17 @@ p {
     float: right
 }
 
+
+.infoHeader .languageBox span.active, .infoHeader .languageBox span:hover {
+    border-bottom: 2px solid white;
+}
+
 #dropdown-menu:hover #dropdown-content {
     transition: 1s;
     transform: translateX(-100%);
 }
 
-#dropdown-menu:hover - > #foot {
+#dropdown-menu:hover > #foot {
     display: none;
 }
 
@@ -382,6 +388,19 @@ p {
     font-family: 'CustomHeavy';
     padding-left: 16px;
     font-size: 34px
+}
+
+#header {
+    text-align: center;
+}
+
+.question {
+    font-family: 'CustomHeavy';
+    text-decoration: underline;
+    margin-top: 8px;
+}
+
+.answer {
 }
 
 @media (min-width:768px) {
