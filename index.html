@@ -52,11 +52,9 @@
         <section id="main-menu" class="section">
             <div id="menu-top" class="row">
                 <div id="dyslexia"><img id="dysImg" src="images/disleksija.svg">
-                    <p id="dysText">Modifikacija<br> disleksijai</p>
+                    <p id="dysText">Modifikacija<br>disleksijai</p>
                 </div>
-                <div id=languages>
-                    <p>LT</p>
-                    <p>EN</p>
+                <div id="languages">
                 </div>
             </div>
             <div class="row" id="middle-menu">
@@ -164,9 +162,9 @@
                 print: "Atsispausdink AR markerius"
             },
             en: {
-                map: "Stops map",
+                map: "Stops Map",
                 instr: "Instructions",
-                print: "Print AR marker"
+                print: "Print AR Markers"
             }
         };
 
@@ -177,7 +175,7 @@
         }
 
         updateTexts(LanguageSwitcher.currentLanguage);
-
+        LanguageSwitcher.makeLanguageBox(document.getElementById("languages"), 0);
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
         FontSwitcher.init();

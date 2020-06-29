@@ -113,6 +113,7 @@ p {
 #menu-top {
     box-sizing: border-box;
     display: inline-flex;
+    justify-content: space-between;
     padding: 1em;
     font-family: 'CustomBold';
 }
@@ -121,6 +122,10 @@ p {
     display: flex;
     text-align: left;
     cursor: pointer;
+}
+
+#languages .languageBox span.active, #languages .languageBox span:hover {
+    border-bottom: 2px solid white;
 }
 
 #dyslexia img {
