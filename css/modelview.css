@@ -80,10 +80,10 @@ canvas {
 }
 
 #model-info #info-name {
-    width: 80%;
+    width: 100%;
+    box-sizing: border-box;
     margin: 0 auto;
     padding: 10px 10px 5px 10px;
-    word-wrap: break-word
 }
 
 svg text {
@@ -108,7 +108,11 @@ svg text {
 #model-info #info-text p {
     font-family: 'CustomLight';
     font-size: 12pt;
-    font-weight: 600΄
+    font-weight: 600;
+}
+#info-text a {
+    color: #00031F;
+    font-family: 'CustomBold';
 }
 
 #model-info #info-footer {
