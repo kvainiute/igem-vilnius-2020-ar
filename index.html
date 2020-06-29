@@ -29,10 +29,16 @@
             <div id="top" class="row">
                 <h3>6-asis</h3>
                 <h2>SinBio</h2>
-                <h1 id="main-text">
-                    <p id="static-text"> pojūtis</p>
-                    <p id="movingDot">.</p>
-                </h1>
+                <div id="head-text">
+                    <h1 id="main-text">
+                        <p id="static-text"> pojūtis</p>
+                    </h1>
+                    <svg version="1.1" id="movingDot" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 73.4 45.1" enable-background="new 0 0 73.4 45.1" xml:space="preserve">
+                        <polygon fill="#FCBD1B" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.5,39.6 
+	36.7,5.5 67.9,39.6 " />
+                    </svg>
+                </div>
+
             </div>
 
             <div id="middle" class="row">
@@ -42,7 +48,7 @@
             </div>
             <div id="bottom" class="row">
                 <svg version="1.1" id="arrows" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 73.4 100" enable-background="new 0 0 73.4 100" xml:space="preserve">
-                    <polyline fill="none" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.5,5.5 
+                    <polyline id="top-triangle" fill="none" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.5,5.5 
 	36.7,39.6 67.9,5.5 " />
                     <polyline fill="none" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.6,60.4 
 	36.8,94.5 68,60.4 " />
@@ -85,21 +91,23 @@
     <script>
         var dotTravel
         var dotWidth;
+        var textWidth;
+        var distance;
 
         function setInitialElements() {
             var viewportOffsetDot = document.getElementById("movingDot").getBoundingClientRect();
 
             dotWidth = viewportOffsetDot.width;
-            document.getElementById("arrows").style.width = dotWidth * 2
+            document.getElementById("arrows").style.width = dotWidth
             var arrowWidth = document.getElementById("arrows").getBoundingClientRect().width;
             dotLeft = viewportOffsetDot.left;
 
-            document.getElementById("arrows").style.marginLeft = dotLeft - dotWidth / 2
+            document.getElementById("arrows").style.marginLeft = dotLeft
 
             var viewportOffseth1 = document.getElementById("main-text").getBoundingClientRect();
-
-            document.getElementById("middle").style.width = viewportOffseth1.width + "px";
-            document.getElementById("middle-text").style.width = (viewportOffseth1.width * 0.9) + "px";
+            textWidth = (viewportOffseth1.width * 0.9) + "px";
+            document.getElementById("middle").style.width = (viewportOffseth1.width * 1.1) + "px";
+            document.getElementById("middle-text").style.width = textWidth;
             document.getElementById("middle").style.marginLeft = viewportOffseth1.left + "px";
             var viewportDyslexia = document.getElementById("dysText").getBoundingClientRect();
             console.log(viewportDyslexia);
@@ -108,30 +116,35 @@
         window.addEventListener('load', setInitialElements)
         window.onresize = setInitialElements
 
-        document.getElementById("arrows").addEventListener('hover', function() {
-            document.getElementById("line").style.width = "50%"
-        })
-        document.getElementById("intro").addEventListener('click', function() {
-            console.log(document.getElementById("line").getBoundingClientRect().width, dotWidth)
+        function dotDown() {
+            document.getElementById("line").style.transitionDelay = "0s"
             document.getElementById("line").style.width = (document.getElementById("static-text").getBoundingClientRect().width * 0.95) + "px"
-        })
-        /*document.getElementById("arrows").addEventListener('click', function() {
-                              var middlePart = document.getElementById("middle").getBoundingClientRect();
-                              console.log(middlePart.right, dotLeft)
-                              if (middlePart.right > dotLeft) {
-                                  document.getElementById("middle").style.transform = "translateX(-400px)"
-                              }
+            var triangleBox = document.getElementById("top-triangle").getBoundingClientRect();
+            var dotBox = document.getElementById("movingDot").getBoundingClientRect();
+            distance = triangleBox.top - dotBox.top - 3;
 
-                              document.getElementById("movingDot").style.transform = "translateY(" + dotTravel + "px)"
-                          })
-*/
+            document.getElementById("movingDot").style.transform = "translateY(" + distance + "px) rotate(180deg) "
+            var dotBox = document.getElementById("movingDot").getBoundingClientRect();
+        }
+
+        function dotUp() {
+            console.log("up");
+
+
+            var triangleBox = document.getElementById("top-triangle").getBoundingClientRect();
+            var dotBox = document.getElementById("movingDot").getBoundingClientRect();
+
+            document.getElementById("movingDot").style.transform = "translateY(0px) rotate(0deg) "
+            document.getElementById("line").style.transitionDelay = "1s"
+            document.getElementById("line").style.width = (document.getElementById("static-text").getBoundingClientRect().width * 1.05) + "px"
+        }
         var page = new FullPage("#main", {
 
             // section selector
             section: '.section',
 
             // animation options
-            animationDuration: 1000,
+            animationDuration: 2000,
             animationTiming: 'ease',
             animationTranform: 'transform',
 
@@ -151,7 +164,14 @@
             loop: false,
 
             // callbacks
-            onLeave: null,
+            onLeave: function(e) {
+                if (e == 0) {
+                    dotDown()
+                } else {
+                    console.log(e)
+                    dotUp()
+                }
+            },
             afterLoad: null,
 
         });

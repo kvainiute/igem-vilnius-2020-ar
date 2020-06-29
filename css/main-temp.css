@@ -60,8 +60,10 @@ p {
     line-height: 0.8em
 }
 
-#top h1 #movingDot {
+#top #movingDot {
     color: #fcbd1b;
+    transition: 1s ease-in-out;
+    height: 1em;
 }
 
 #bottom {
@@ -409,10 +411,12 @@ p {
     #middle-menu img {
         max-width: 50%;
         height: auto;
+        max-height: 30vh;
+        width: auto;
     }
 
     #navigation {
-        width: 50%;
+        width: 30%;
         font-size: 1.5em
     }
 
