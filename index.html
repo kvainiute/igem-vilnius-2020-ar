@@ -42,7 +42,7 @@
             </div>
 
             <div id="middle" class="row">
-                <hr align="left" id="line">
+                <hr id="line">
                 <p id="middle-text">Pažink iš naujo gyvybės mokslus panirdamas į AR ir QR technologijas.</p>
 
             </div>
@@ -57,12 +57,10 @@
         </section>
         <section id="main-menu" class="section">
             <div id="menu-top" class="row">
-                <div class="col-6" id="dyslexia"><img id="dysImg" src="images/disleksija.svg">
-                    <p id="dysText">Modifikacija<br> disleksijai</p>
+                <div id="dyslexia"><img id="dysImg" src="images/disleksija.svg">
+                    <p id="dysText">Modifikacija<br>disleksijai</p>
                 </div>
-                <div class="col-6" id=languages>
-                    <p>LT</p>
-                    <p>EN</p>
+                <div id="languages">
                 </div>
             </div>
             <div class="row" id="middle-menu">
@@ -87,6 +85,7 @@
     </div>
 
     <script src="js/languages.js" charset="UTF-8"></script>
+    <script src="js/opendyslexic.js" charset="UTF-8"></script>
     <script src="js/fullPage.min.js"></script>
     <script>
         var dotTravel
@@ -175,6 +174,7 @@
             afterLoad: null,
 
         });
+
         let texts = {
             lt: {
                 map: "Stotelių žemėlapis",
@@ -182,9 +182,9 @@
                 print: "Atsispausdink AR markerius"
             },
             en: {
-                map: "Stops map",
+                map: "Stops Map",
                 instr: "Instructions",
-                print: "Print AR marker"
+                print: "Print AR Markers"
             }
         };
 
@@ -195,8 +195,10 @@
         }
 
         updateTexts(LanguageSwitcher.currentLanguage);
-
-
+        LanguageSwitcher.makeLanguageBox(document.getElementById("languages"), 0);
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+
+        FontSwitcher.init();
+        document.getElementById("dyslexia").onclick = () => FontSwitcher.toggle();
     </script>
 </body></html>
