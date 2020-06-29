@@ -14,19 +14,16 @@
         }
         gtag('js', new Date());
         gtag('config', 'UA-163985569-1');
-
     </script>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
     <link href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" rel="stylesheet" />
-    <!-- Bootstrap core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="./css/main.css" rel="stylesheet">
+    <link href="./css/main-temp.css" rel="stylesheet">
 </head>
 
-<body>
-    <div id="dropdown-menu"><img onclick="openNav()" id="dropdown-icon" src="images/navbar.svg">
+<body id="map-page" class="container">
+    <!--<div id="dropdown-menu"><img onclick="openNav()" id="dropdown-icon" src="images/navbar.svg">
     </div>
     <div id="dropdown-content">
         <div id="navbar-controls">
@@ -34,10 +31,10 @@
             <div class="navbar-contr" id="close"><img id="close-img" onclick="closeNav()" src="images/close-light.svg"></div>
         </div>
         <h1>3D modeliai</h1>
-    </div>
+    </div>-->
 
     <div id="map" onclick="closeNav()"></div>
-    <main role="main" class="inner cover"><a href="/" id="foot" class="btn btn-lg btn-secondary">gr&iogon;&zcaron;ti atgal</a><br></main>
+    <main id="footer"><a href="/" id="foot">gr&iogon;&zcaron;ti atgal</a><br></main>
 
     <script src="js/languages.js" charset="UTF-8"></script>
     <script src="js/map.js"></script>
@@ -51,8 +48,5 @@
         }
         updateTexts(LanguageSwitcher.currentLanguage);
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
-
     </script>
-</body>
-
-</html>
+</body></html>
