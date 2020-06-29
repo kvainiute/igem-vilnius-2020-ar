@@ -24,17 +24,17 @@ class LanguageSwitcher {
         languagebox.innerHTML = "";
         languagebox.className = "languageBox";
         for (let key of LanguageSwitcher.languageKeys){
-            if (key == LanguageSwitcher.currentLanguage) continue;
             let item = LanguageSwitcher.languages[key];
     
-            let itemImg = document.createElement("img");
-            itemImg.src = item.img;
-            itemImg.alt = item.name;
-            itemImg.onclick = ()=>{
+            let itemText = document.createElement("span");
+            if (key == LanguageSwitcher.currentLanguage) itemText.className = "active";
+            itemText.innerText = key;
+            itemText.setAttribute("ariaLabel", item.name);
+            itemText.onclick = ()=>{
                 LanguageSwitcher.setLanguage(key, true);
             };
     
-            languagebox.appendChild(itemImg);
+            languagebox.appendChild(itemText);
         }
     }
 

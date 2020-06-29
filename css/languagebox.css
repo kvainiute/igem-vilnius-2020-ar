@@ -1,7 +1,16 @@
-.languageBox img {
-    max-height: 24px;
-    max-width: 32px;
-    margin-right: 6px;
+.languageBox {
+    margin: 8spx;
+}
+
+.languageBox span {
+    text-transform: uppercase;
+    margin-right: 8px;
     cursor: pointer;
-    vertical-align: middle;
+    font-family: 'CustomHeavy';
+    font-weight: normal;
+    font-size: 1.6em;
+}
+.languageBox span.active, .languageBox span:hover {
+    border-bottom: 2px solid rgb(0, 3, 31);
+    border-radius: 0 0px 2px 2px;
 }

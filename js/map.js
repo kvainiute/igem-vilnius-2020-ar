@@ -1,4 +1,5 @@
-let pointList = [{
+let pointList = [
+    {
         lt: {
             title: "Katedros aik&scaron;t&edot;",
             menuTitle: "DNR"
@@ -9,128 +10,127 @@ let pointList = [{
         },
         coordinates: [25.288243, 54.685297],
         link: "dna",
-
-            },
+    },
     {
         lt: {
-            title: "Daukanto aik&scaron;t&edot;",
+            title: "Simono Daukanto aik&scaron;t&edot;",
             menuTitle: "RNR"
         },
         en: {
-            title: "??? Square",
+            title: "Simonas Daukantas Square",
             menuTitle: "RNA"
         },
         coordinates: [25.288991, 54.688194],
         link: "rna",
-            },
+    },
     {
         lt: {
             title: "Vingio parkas (I)",
             menuTitle: "Genetinė grandinė"
         },
         en: {
-            title: "Vingis park (I)",
+            title: "Vingis Park (I)",
             menuTitle: "Genetic circuit"
         },
         coordinates: [25.248680, 54.682399],
         link: "circuit",
-            },
+    },
     {
         lt: {
             title: "Vingio parkas (II)",
             menuTitle: "Biobrick"
         },
         en: {
-            title: "Vingis park (II)",
+            title: "Vingis Park (II)",
             menuTitle: "Biobrick"
         },
         coordinates: [25.236457, 54.682373],
         link: "biobrick",
-            },
+    },
     {
         lt: {
             title: "Trij&uogon; kry&zcaron;i&uogon; kalnas",
             menuTitle: "Crispr-Cas9"
         },
         en: {
-            title: "Three Crosses Hill",
+            title: "Hill of Three Crosses",
             menuTitle: "Crispr-Cas9"
         },
         coordinates: [25.297490, 54.686754],
         link: "crisprcas9",
-            },
+    },
     {
         lt: {
             title: "Bernardin&uogon; sodas (I)",
             menuTitle: "Žaliai fluorescuojantis baltymas"
         },
         en: {
-            title: "??? park (I)",
+            title: "Bernardine Garden (I)",
             menuTitle: "Green fluorescent protein"
         },
         coordinates: [25.297362, 54.683689],
         link: "gfp",
-            },
+    },
     {
         lt: {
             title: "Vinco Kudirkos aik&scaron;t&edot;",
             menuTitle: "Genetiškai modifikuoti organizmai"
         },
         en: {
-            title: "Vincas Kudirka square",
+            title: "Vincas Kudirka Square",
             menuTitle: "Genetically modified organisms"
         },
         coordinates: [25.280564, 54.687349],
         link: "gmo",
-            },
+    },
     {
         lt: {
             title: "U&zcaron;upio undin&edot;",
             menuTitle: "Sekvenavimas"
         },
         en: {
-            title: "U&zcaron;upis Mermaid",
+            title: "Mermaid of U&zcaron;upis",
             menuTitle: "Sequencing"
         },
         coordinates: [25.292648, 54.680584],
         link: "sequencing",
-            },
+    },
     {
         lt: {
             title: "Luki&scaron;ki&uogon; aik&scaron;t&edot;",
             menuTitle: "Bakteriofagas"
         },
         en: {
-            title: "Luki&scaron;ki&uogon; Square",
+            title: "Luki&scaron;k&edot;s Square",
             menuTitle: "Bacteriophage"
         },
         coordinates: [25.271029, 54.689640],
         link: "nano",
-            },
+    },
     {
         lt: {
             title: "Bernardin&uogon; sodas (II)",
             menuTitle: "Modeliniai organizmai"
         },
         en: {
-            title: "Bernardinai park (II)",
+            title: "Bernardine Garden (II)",
             menuTitle: "Model organisms"
         },
         coordinates: [25.296628, 54.682367],
         link: "ecoli",
-            },
+    },
     {
         lt: {
             title: "Vingio parkas (III)",
             menuTitle: "Sintetinė Biologija"
         },
         en: {
-            title: "Vingis park (III)",
+            title: "Vingis Park (III)",
             menuTitle: "Synthetic Biology"
         },
         coordinates: [25.232576, 54.683055],
         link: "painting",
-            },
+    },
     {
         lt: {
             title: "Sirvydo skveras",
@@ -142,20 +142,20 @@ let pointList = [{
         },
         coordinates: [25.303095, 54.692732],
         link: "translation",
-            },
+    },
     {
         lt: {
             title: "MO muziejus",
             menuTitle: "Virusai"
         },
         en: {
-            title: "MO museum",
+            title: "MO Museum",
             menuTitle: "Viruses"
         },
         coordinates: [25.277759, 54.679589],
         link: "virus",
-            },
-        ];
+    },
+];
 
 
 
