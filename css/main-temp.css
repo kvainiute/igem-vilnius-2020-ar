@@ -124,6 +124,7 @@ p {
     display: flex;
     text-align: left;
     cursor: pointer;
+    font-family: 'opendyslexic';
 }
 
 #languages .languageBox span.active, #languages .languageBox span:hover {
