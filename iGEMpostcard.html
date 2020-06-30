@@ -3,28 +3,25 @@
 
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163985569-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-163985569-1');
-    </script>
     <title>Vilnius iGEM AR</title>
 
     <link href="./css/fonts.css" rel="stylesheet">
     <link href="./css/postcard.css" rel="stylesheet">
-
+    <link href="./css/cookieconsent.css" rel="stylesheet">
+    <style>
+        #consent {
+            bottom: unset;
+            top: 0px;
+            border-top: unset;
+            border-bottom: 1px solid #000020;
+        }
+    </style>
 </head>
 
 <body>
     <div class="info">
         <div class="col-6"><a href="#"><img class="button" id="info-button" src="images/info.svg"></a></div>
-        <div class="col-6"><object type="image/svg+xml" class="button" id="video-button" data="images/video-control.svg"></object></div>
+        <div class="col-6"><object type="image/svg+xml" class="button" id="video-button" data="images/animation.svg"></object></div>
     </div>
     <div id="model-info">
         <div id="info-name">
@@ -58,6 +55,7 @@
     <script src="js/db-model.js" charset="UTF-8"></script>
     <script src="js/script.js"></script>
     <script src="js/queryParams.js"></script>
+    <script src="js/ga.js"></script>
 
     <script>
         var scene, camera, renderer, clock, deltaTime, totalTime, header, paragraph, recording;
@@ -69,7 +67,7 @@
         var rootsAndControls = [];
 
         initialize();
-        console.log(data.igem)
+        //console.log(data.igem)
         load3Dmodel(data.igem);
         animate();
 
@@ -232,7 +230,7 @@
 
                 root.add(meshItem);
             }, function(xhr) {
-                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                //console.log((xhr.loaded / xhr.total * 100) + '% loaded');
             }, function(error) {
                 console.error('Error loading the model (load3Dmodel)\n');
                 console.error(error);

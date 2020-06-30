@@ -1,4 +1,17 @@
+const cookietext = {
+    lt: ["Šioje svetainėje naudojami slapukai analitikai. Ar sutinkate su slapukų naudojimu?", "Sutinku", "Nesutinku"],
+    en: ["This website uses cookies for analytics. Do you allow the use of cookies?", "Allow", "Deny"]
+}
+
 class LanguageSwitcher {
+    static setCookieLanguage(language){
+        let cookiebox = document.getElementById("consent");
+        if (cookiebox == undefined) return;
+        cookiebox.children[0].innerText = cookietext[language][0];
+        cookiebox.children[1].innerText = cookietext[language][1];
+        cookiebox.children[2].innerText = cookietext[language][2];
+    }
+
     static getLanguage(){
         try {
             return document.cookie.split('; ')
@@ -16,6 +29,7 @@ class LanguageSwitcher {
         for (let func of LanguageSwitcher.listeners){
             func(language);
         }
+        this.setCookieLanguage(language);
         if (!updateLanguageBox) return;
         this.createLanguageBox(LanguageSwitcher.languagebox);
     }
@@ -69,3 +83,4 @@ LanguageSwitcher.languages = {
 };
 LanguageSwitcher.languageKeys = Object.keys(LanguageSwitcher.languages);
 LanguageSwitcher.currentLanguage = LanguageSwitcher.getLanguage();
+LanguageSwitcher.setCookieLanguage(LanguageSwitcher.currentLanguage);

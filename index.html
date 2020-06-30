@@ -2,19 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163985569-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-163985569-1');
-
-    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vilnius iGEM AR</title>
@@ -22,6 +9,12 @@
     <link href="./css/main-temp.css" rel="stylesheet">
     <link href="./css/languagebox.css" rel="stylesheet">
     <link href="./css/opendyslexic.css" rel="stylesheet">
+    <link href="./css/cookieconsent.css" rel="stylesheet">
+    <style>
+        #consent {
+            bottom: -100vh;
+        }
+    </style>
 </head>
 
 <body>
@@ -85,6 +78,10 @@
         </section>
     </div>
 
+    <script>
+        var cookieConsentApplyElement = document.getElementById("main-menu");
+    </script>
+    <script src="js/ga.js"></script>
     <script src="js/languages.js" charset="UTF-8"></script>
     <script src="js/opendyslexic.js" charset="UTF-8"></script>
     <script src="js/fullPage.min.js"></script>
@@ -110,7 +107,7 @@
             document.getElementById("middle-text").style.width = textWidth;
             document.getElementById("middle").style.marginLeft = viewportOffseth1.left + "px";
             var viewportDyslexia = document.getElementById("dysText").getBoundingClientRect();
-            console.log(viewportDyslexia);
+            //console.log(viewportDyslexia);
             document.getElementById("dysImg").style.height = viewportDyslexia.height + "px";
         }
         window.addEventListener('load', setInitialElements);
@@ -130,7 +127,7 @@
         }
 
         function dotUp() {
-            console.log("up");
+            //console.log("up");
 
 
             var triangleBox = document.getElementById("top-triangle").getBoundingClientRect();
@@ -173,7 +170,7 @@
                 if (e == 0) {
                     dotDown()
                 } else {
-                    console.log(e)
+                    //console.log(e)
                     dotUp()
                 }
             },

@@ -1,0 +1,30 @@
+#consent {
+    bottom: 0px;
+    position: absolute;
+    background: #FCBD1B;
+    width: 100%;
+    display: flex;
+    padding: 12px;
+    border-top: 1px solid #000020;
+    z-index: 20;
+    font-family: 'CustomReg';
+}
+
+#consent button {
+    background: #000020;
+    color: white;
+    border: 0px;
+    border-radius: 8px;
+    padding: 4px 10px;
+}
+#consent button + button {
+    margin: 0 20px 0 8px;
+}
+
+#consent p {
+    color: #000020;
+    margin-block-start: auto;
+    margin-block-end: auto;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
