@@ -184,10 +184,8 @@ function toggleAR3D() {
     $('#model-info').css('display', 'none');
     var arSwitch = document.getElementById("ar-switch").contentDocument;
     if (arSwitch.getElementById("no").style.display == "none") {
-        console.log("is 3d i ar")
         arSwitch.getElementById("no").style.display = "block"
     } else {
-        console.log("is ar i 3d")
         arSwitch.getElementById("no").style.display = "none"
     }
     isAR = !isAR;
@@ -574,7 +572,7 @@ function playAudio(file) {
 }
 
 function playAnimation(actions, state) {
-    var videoplay = document.getElementById("audio-button");
+    var videoplay = document.getElementById("video-button");
     var videocontent = videoplay.contentDocument;
 
     for (let action of actions) {

@@ -4,15 +4,16 @@ const cookietext = {
 }
 
 class LanguageSwitcher {
-    static setCookieLanguage(language){
+    static setCookieLanguage(language) {
         let cookiebox = document.getElementById("consent");
+        let buttons = document.getElementById("button-wrapper")
         if (cookiebox == undefined) return;
         cookiebox.children[0].innerText = cookietext[language][0];
-        cookiebox.children[1].innerText = cookietext[language][1];
-        cookiebox.children[2].innerText = cookietext[language][2];
+        buttons.children[0].innerText = cookietext[language][1];
+        buttons.children[1].innerText = cookietext[language][2];
     }
 
-    static getLanguage(){
+    static getLanguage() {
         try {
             return document.cookie.split('; ')
                 .find(row => row.startsWith('language'))
@@ -22,11 +23,11 @@ class LanguageSwitcher {
         }
     }
 
-    static setLanguage(language, updateLanguageBox = false){
+    static setLanguage(language, updateLanguageBox = false) {
         LanguageSwitcher.currentLanguage = language;
         document.cookie = "language=" + language;
         document.documentElement.lang = language;
-        for (let func of LanguageSwitcher.listeners){
+        for (let func of LanguageSwitcher.listeners) {
             func(language);
         }
         this.setCookieLanguage(language);
@@ -34,20 +35,20 @@ class LanguageSwitcher {
         this.createLanguageBox(LanguageSwitcher.languagebox);
     }
 
-    static createLanguageBox(languagebox){
+    static createLanguageBox(languagebox) {
         languagebox.innerHTML = "";
         languagebox.className = "languageBox";
-        for (let key of LanguageSwitcher.languageKeys){
+        for (let key of LanguageSwitcher.languageKeys) {
             let item = LanguageSwitcher.languages[key];
-    
+
             let itemText = document.createElement("span");
             if (key == LanguageSwitcher.currentLanguage) itemText.className = "active";
             itemText.innerText = key;
             itemText.setAttribute("ariaLabel", item.name);
-            itemText.onclick = ()=>{
+            itemText.onclick = () => {
                 LanguageSwitcher.setLanguage(key, true);
             };
-    
+
             languagebox.appendChild(itemText);
         }
     }
@@ -55,17 +56,17 @@ class LanguageSwitcher {
     static makeLanguageBox(element, position) {
         let languagebox = document.createElement("div");
         this.createLanguageBox(languagebox);
-    
-        if (element.children == undefined || element.children.length == 0){
+
+        if (element.children == undefined || element.children.length == 0) {
             element.appendChild(languagebox);
-        }else{
+        } else {
             element.insertBefore(languagebox, element.children[position]);
         }
         LanguageSwitcher.languagebox = languagebox;
         document.documentElement.lang = LanguageSwitcher.currentLanguage;
     }
 
-    static addOnLanguageChangeListener(listener){
+    static addOnLanguageChangeListener(listener) {
         LanguageSwitcher.listeners.push(listener);
     }
 }

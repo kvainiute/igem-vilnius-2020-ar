@@ -1,4 +1,4 @@
-function gaEnable(){
+function gaEnable() {
     window.dataLayer = window.dataLayer || [];
 
     function gtag() {
@@ -15,7 +15,7 @@ function gaEnable(){
     gaEnable = undefined;
 }
 
-function getCookieConsent(){
+function getCookieConsent() {
     try {
         return document.cookie.split('; ')
             .find(row => row.startsWith('cookieconsent'))
@@ -24,39 +24,45 @@ function getCookieConsent(){
         return "0";
     }
 }
-function setCookieConsent(value){
+
+function setCookieConsent(value) {
     document.cookie = "cookieconsent=" + value;
 }
 
-function createCookieConsentBox(){
+function createCookieConsentBox() {
     const cookiediv = document.createElement("div");
+    const buttonWrapper = document.createElement("div");
     cookiediv.id = "consent";
+    buttonWrapper.id = "button-wrapper";
     let text = document.createElement("p");
     text.innerText = "This website uses cookies for analytics. Do you allow the use of cookies?";
     cookiediv.appendChild(text);
+    cookiediv.appendChild(buttonWrapper);
     let buttonAccept = document.createElement("button");
     buttonAccept.innerText = "Allow";
-    buttonAccept.onclick = ()=>{
+    buttonAccept.onclick = () => {
         cookiediv.remove();
         setCookieConsent("1");
         gaEnable();
     };
-    cookiediv.appendChild(buttonAccept);
+    buttonAccept.id = "bt-accept"
+    buttonWrapper.appendChild(buttonAccept);
     let buttonReject = document.createElement("button");
     buttonReject.innerText = "Deny";
-    buttonReject.onclick = ()=>{
+    buttonReject.onclick = () => {
         cookiediv.remove();
         setCookieConsent("-1");
     };
-    cookiediv.appendChild(buttonReject);
+    buttonReject.id = "bt-reject"
+    buttonWrapper.appendChild(buttonReject);
     return cookiediv;
 }
 
 if (cookieConsentApplyElement == undefined) var cookieConsentApplyElement = document.body;
 let consent = getCookieConsent();
-if (consent === "1"){
+if (consent === "1") {
     gaEnable();
-}else if (consent == "0"){
-    let cookiediv = createCookieConsentBox();    
+} else if (consent == "0") {
+    let cookiediv = createCookieConsentBox();
     cookieConsentApplyElement.appendChild(cookiediv);
 }

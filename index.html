@@ -106,9 +106,6 @@
             document.getElementById("middle").style.width = (viewportOffseth1.width * 1.1) + "px";
             document.getElementById("middle-text").style.width = textWidth;
             document.getElementById("middle").style.marginLeft = viewportOffseth1.left + "px";
-            var viewportDyslexia = document.getElementById("dysText").getBoundingClientRect();
-            //console.log(viewportDyslexia);
-            document.getElementById("dysImg").style.height = viewportDyslexia.height + "px";
         }
         window.addEventListener('load', setInitialElements);
         window.onresize = setInitialElements
@@ -203,8 +200,5 @@
 
         FontSwitcher.init();
         document.getElementById("dyslexia").onclick = () => FontSwitcher.toggle();
-
     </script>
-</body>
-
-</html>
+</body></html>

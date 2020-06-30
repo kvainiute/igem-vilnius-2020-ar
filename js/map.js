@@ -20,44 +20,44 @@ let pointList = [
             title: "Simonas Daukantas Square",
             menuTitle: "RNA"
         },
-        coordinates: [25.288991, 54.688194],
+        coordinates: [25.286342, 54.683594],
         link: "rna",
     },
     {
         lt: {
-            title: "Vingio parkas (I)",
+            title: "Baltasis tiltas",
             menuTitle: "Genetinė grandinė"
         },
         en: {
-            title: "Vingis Park (I)",
+            title: "White Bridge",
             menuTitle: "Genetic circuit"
         },
-        coordinates: [25.248680, 54.682399],
+        coordinates: [25.273619, 54.693303],
         link: "circuit",
     },
     {
         lt: {
-            title: "Vingio parkas (II)",
+            title: "Literatų gatvė",
             menuTitle: "Biobrick"
         },
         en: {
-            title: "Vingis Park (II)",
+            title: "Literatų Street",
             menuTitle: "Biobrick"
         },
-        coordinates: [25.236457, 54.682373],
+        coordinates: [25.290187, 54.682223],
         link: "biobrick",
     },
     {
         lt: {
             title: "Trij&uogon; kry&zcaron;i&uogon; kalnas",
-            menuTitle: "Crispr-Cas9"
+            menuTitle: "Sintetinė Biologija"
         },
         en: {
             title: "Hill of Three Crosses",
-            menuTitle: "Crispr-Cas9"
+            menuTitle: "Synthetic Biology"
         },
         coordinates: [25.297490, 54.686754],
-        link: "crisprcas9",
+        link: "painting",
     },
     {
         lt: {
@@ -86,26 +86,26 @@ let pointList = [
     {
         lt: {
             title: "U&zcaron;upio undin&edot;",
-            menuTitle: "Sekvenavimas"
+            menuTitle: "Bakteriofagas"
         },
         en: {
             title: "Mermaid of U&zcaron;upis",
-            menuTitle: "Sequencing"
+            menuTitle: "Bacteriophage"
         },
         coordinates: [25.292648, 54.680584],
-        link: "sequencing",
+        link: "nano",
     },
     {
         lt: {
             title: "Luki&scaron;ki&uogon; aik&scaron;t&edot;",
-            menuTitle: "Bakteriofagas"
+            menuTitle: "Sekvenavimas"
         },
         en: {
             title: "Luki&scaron;k&edot;s Square",
-            menuTitle: "Bacteriophage"
+            menuTitle: "Sequencing"
         },
         coordinates: [25.271029, 54.689640],
-        link: "nano",
+        link: "sequencing",
     },
     {
         lt: {
@@ -121,26 +121,26 @@ let pointList = [
     },
     {
         lt: {
-            title: "Vingio parkas (III)",
-            menuTitle: "Sintetinė Biologija"
+            title: "Vokiečių gatvė",
+            menuTitle: "Crispr-Cas9"
         },
         en: {
-            title: "Vingis Park (III)",
-            menuTitle: "Synthetic Biology"
+            title: "Vokiečių Street",
+            menuTitle: "Crispr-Cas9"
         },
-        coordinates: [25.232576, 54.683055],
-        link: "painting",
+        coordinates: [25.283881, 54.679338],
+        link: "crisprcas9",
     },
     {
         lt: {
-            title: "Sirvydo skveras",
+            title: "Rotušės aikštė",
             menuTitle: "Transliacija"
         },
         en: {
-            title: "Sirvydas Square",
+            title: "Town Hall Square",
             menuTitle: "Translation"
         },
-        coordinates: [25.303095, 54.692732],
+        coordinates: [25.287631, 54.679236],
         link: "translation",
     },
     {
@@ -214,8 +214,8 @@ function loadMap(language) {
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'https://api.maptiler.com/maps/565e5c8b-5c56-489b-b954-0f260bfa40eb/style.json?key=dh3avbXkPzMlI59PVFsz',
-            //center: [25.27989, 54.68842],
-            //zoom: 13.45
+            center: [25.283881, 54.683594],
+            zoom: 13
         });
         map.on('load', function () {
             map.loadImage('images/map-target.png', function (error, image) {
@@ -276,11 +276,11 @@ updateTexts(LanguageSwitcher.currentLanguage);
 LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
 LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
-window.onresize = ()=>{
+window.onresize = () => {
     if (navOpen) return;
     if (window.innerWidth > 768) {
         navBar.style.right = "-33vw";
-    }else{
+    } else {
         navBar.style.right = "-66vw";
     }
 };

@@ -1,24 +1,49 @@
 #consent {
+
+    box-sizing: border-box;
     bottom: 0px;
     position: absolute;
-    background: #FCBD1B;
+    /*    background: #FCBD1B;*/
+    background: rgba(252, 189, 72, 0.95);
     width: 100%;
-    display: flex;
+    display: table;
     padding: 12px;
     border-top: 1px solid #000020;
     z-index: 20;
     font-family: 'CustomReg';
 }
 
-#consent button {
-    background: #000020;
-    color: white;
-    border: 0px;
-    border-radius: 8px;
-    padding: 4px 10px;
+#button-wrapper {
+    padding-top: 20px;
+    width: fit-content;
+    margin: 0 auto;
 }
+
+
+#consent button {
+    background: none;
+    color: #000020;
+    padding: 4px 10px;
+    max-height: 40px;
+    font-family: 'CustomHeavy'
+}
+
+#bt-accept {
+    border: 0;
+    border-right: solid 1px #000020
+}
+
+#bt-reject {
+    border: 0;
+    border-left: solid 1px #000020
+}
+
+#consent button:hover {
+    cursor: pointer
+}
+
 #consent button + button {
-    margin: 0 20px 0 8px;
+    margin: 0 0 0 8px;
 }
 
 #consent p {
@@ -27,4 +52,14 @@
     margin-block-end: auto;
     margin-inline-start: auto;
     margin-inline-end: auto;
+}
+
+@media (min-width: 768px) {
+    #button-wrapper {
+        padding-top: 0px
+    }
+
+    #consent {
+        display: flex;
+    }
 }

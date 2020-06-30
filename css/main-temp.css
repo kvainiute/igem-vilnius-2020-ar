@@ -133,7 +133,7 @@ p {
 }
 
 #dyslexia img {
-    height: 1em
+    height: 3em
 }
 
 #dyslexia p {
@@ -372,7 +372,8 @@ p {
 }
 
 
-.infoHeader .languageBox span.active, .infoHeader .languageBox span:hover {
+.infoHeader .languageBox span.active,
+.infoHeader .languageBox span:hover {
     border-bottom: 2px solid white;
 }
 
@@ -401,8 +402,7 @@ p {
     margin-top: 8px;
 }
 
-.answer {
-}
+.answer {}
 
 @media (min-width:768px) {
     #top {
@@ -438,6 +438,10 @@ p {
         height: auto;
         max-height: 30vh;
         width: auto;
+    }
+
+    #dyslexia img {
+        height: 4.6em
     }
 
     #navigation {
