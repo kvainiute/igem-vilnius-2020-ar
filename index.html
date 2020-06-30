@@ -13,6 +13,7 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-163985569-1');
+
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,7 +43,7 @@
             </div>
 
             <div id="middle" class="row">
-                <hr id="line">
+                <hr align="left" id="line">
                 <p id="middle-text">Pažink iš naujo gyvybės mokslus panirdamas į AR ir QR technologijas.</p>
 
             </div>
@@ -71,7 +72,7 @@
                 <div class="row" id="navigation">
                     <a href="./map.html" id="button-map"></a>
                     <a href="./info.html" id="button-instr"></a>
-                    <a href="#" id="button-print"></a>
+                    <a href="data/ar-markers.zip" download="ar-markers" id="button-print"></a>
                     <a href="http://vilniusigem.lt" id="button-igem" target="_blank" aria-label="Vilnius iGEM main page">iGEM</a>
 
                 </div>
@@ -112,11 +113,13 @@
             console.log(viewportDyslexia);
             document.getElementById("dysImg").style.height = viewportDyslexia.height + "px";
         }
-        window.addEventListener('load', setInitialElements)
+        window.addEventListener('load', setInitialElements);
         window.onresize = setInitialElements
 
         function dotDown() {
+            document.getElementById("movingDot").style.transition = "0.8s"
             document.getElementById("line").style.transitionDelay = "0s"
+            document.getElementById("line").style.transition = "0.5s"
             document.getElementById("line").style.width = (document.getElementById("static-text").getBoundingClientRect().width * 0.95) + "px"
             var triangleBox = document.getElementById("top-triangle").getBoundingClientRect();
             var dotBox = document.getElementById("movingDot").getBoundingClientRect();
@@ -134,7 +137,10 @@
             var dotBox = document.getElementById("movingDot").getBoundingClientRect();
 
             document.getElementById("movingDot").style.transform = "translateY(0px) rotate(0deg) "
+            document.getElementById("line").style.transition = "1s"
             document.getElementById("line").style.transitionDelay = "1s"
+
+            document.getElementById("movingDot").style.transition = "2s"
             document.getElementById("line").style.width = (document.getElementById("static-text").getBoundingClientRect().width * 1.05) + "px"
         }
         var page = new FullPage("#main", {
@@ -200,5 +206,8 @@
 
         FontSwitcher.init();
         document.getElementById("dyslexia").onclick = () => FontSwitcher.toggle();
+
     </script>
-</body></html>
+</body>
+
+</html>
