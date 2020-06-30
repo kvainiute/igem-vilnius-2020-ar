@@ -9,7 +9,7 @@
     display: table;
     padding: 12px;
     border-top: 1px solid #000020;
-    z-index: 20;
+    z-index: 2000;
     font-family: 'CustomReg';
 }
 

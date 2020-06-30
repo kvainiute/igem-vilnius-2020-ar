@@ -9,6 +9,12 @@ body {
     height: 100vh;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 video,
 canvas {
@@ -71,8 +77,8 @@ canvas {
     padding: 20px;
     width: 60%;
     height: 60%;
-    margin: auto;
-    top: 20%;
+    /* margin: auto;
+    top: 15%; */
     background: rgba(252, 189, 27, 0.9);
     border-radius: 15px;
     position: relative;
