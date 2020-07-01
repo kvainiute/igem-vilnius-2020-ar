@@ -115,26 +115,25 @@ function initializeAR() {
 
     var videoplay = document.getElementById("video-button");
     var videocontent;
-    videoplay.addEventListener('load', function () {
-        console.log("loaded")
+    window.addEventListener("load", function () {
         videocontent = videoplay.contentDocument;
         videocontent.addEventListener('click', function () {
-            console.log("pushed")
+            //console.log("clicked");
             if (videocontent.getElementById("pause").style.display == "none") {
                 videocontent.getElementById("play").style.display = "none";
                 videocontent.getElementById("pause").style.display = "inline";
                 if (modelLoaded) {
-                    playPause(false)
+                    playPause(false);
                 }
             } else {
                 videocontent.getElementById("pause").style.display = "none";
                 videocontent.getElementById("play").style.display = "inline";
                 if (modelLoaded) {
-                    playPause(true)
+                    playPause(true);
                 }
             }
-        })
-    })
+        });
+    });
 
     function playPause(state) {
         for (let key of dataKeys) {
@@ -342,19 +341,16 @@ function load3Dmodel(item, ar = true) {
     }
 
     recording = modelMeta.audioRec;
-    window.onload = () => {
+    window.addEventListener("load", function () {
         infoButton.contentDocument.addEventListener('click', showModelInfo, false);
-    };
+    });
     var audioplay = document.getElementById("audio-button");
     var audiocontent;
-    audioplay.addEventListener('load', function () {
-        console.log("loaded");
-        audiocontent = audioplay.contentDocument;
-        audiocontent.addEventListener('click', function () {
-            console.log("pushed");
+    window.addEventListener("load", function () {
+        audioplay.contentDocument.addEventListener('click', function () {
             playAudio(recording);
-        })
-    })
+        });
+    });
     // interpolates from last position to create smoother transitions when moving.
     // parameter lerp values near 0 are slow, near 1 are fast (instantaneous).
     let root = new THREE.Group();
