@@ -237,6 +237,12 @@ body {
     margin-top: 8px;
 }
 
+#consent {
+    bottom: initial;
+    top: 0;
+    max-width: 34vw;
+}
+
 
 @media (min-width:768px) {
 
@@ -278,6 +284,10 @@ body {
     #info-page #footer a,
     #map-page #footer a {
         font-size: 2em;
+    }
+    
+    #consent {
+        max-width: 67vw;
     }
 }
 
