@@ -116,9 +116,10 @@ function initializeAR() {
     var videoplay = document.getElementById("video-button");
     var videocontent;
     videoplay.addEventListener('load', function () {
-        //console.log("pushed")
+        console.log("loaded")
         videocontent = videoplay.contentDocument;
         videocontent.addEventListener('click', function () {
+            console.log("pushed")
             if (videocontent.getElementById("pause").style.display == "none") {
                 videocontent.getElementById("play").style.display = "none";
                 videocontent.getElementById("pause").style.display = "inline";
@@ -347,6 +348,7 @@ function load3Dmodel(item, ar = true) {
     var audioplay = document.getElementById("audio-button");
     var audiocontent;
     audioplay.addEventListener('load', function () {
+        console.log("loaded");
         audiocontent = audioplay.contentDocument;
         audiocontent.addEventListener('click', function () {
             console.log("pushed");
