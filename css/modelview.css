@@ -77,8 +77,7 @@ canvas {
     padding: 20px;
     width: 60%;
     height: 60%;
-    /* margin: auto;
-    top: 15%; */
+    margin-top: -130px;
     background: rgba(252, 189, 27, 0.9);
     border-radius: 15px;
     position: relative;
