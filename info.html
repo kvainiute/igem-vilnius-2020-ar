@@ -20,7 +20,7 @@
     <link href="./css/fonts.css" rel="stylesheet">
     <link href="./css/languagebox.css" rel="stylesheet">
     <link href="./css/opendyslexic.css" rel="stylesheet">
-    <link href="./css/main-temp.css" rel="stylesheet">
+    <link href="./css/map-info.css" rel="stylesheet">
     <link href="./css/cookieconsent.css" rel="stylesheet">
 </head>
 
@@ -31,11 +31,11 @@
         </header>
         <main style="margin:16px 10%;">
             <p class="question" id="q1"></p>
-            <p class="answer"   id="a1"></p>
+            <p class="answer" id="a1"></p>
             <p class="question" id="q2"></p>
-            <p class="answer"   id="a2"></p>
+            <p class="answer" id="a2"></p>
             <p class="question" id="q3"></p>
-            <p class="answer"   id="a3"></p>
+            <p class="answer" id="a3"></p>
         </main>
 
         <div id="footer">
@@ -46,7 +46,6 @@
     <script src="js/languages.js" charset="UTF-8"></script>
     <script src="js/opendyslexic.js" charset="UTF-8"></script>
     <script>
-        
         let texts = {
             en: {
                 foot: "return to the main page",
@@ -70,7 +69,7 @@
 
                 q2: "Kaip persijungti į paprastą 3D peržiūrą?",
                 a2: "Peržiūros puslapyje paspauskite info mygtuką ir tada perbrauktos kameros mygtuką.",
-                
+
                 q3: "...",
                 a3: ""
             }
@@ -78,7 +77,7 @@
 
         function updateTexts(language) {
             let elements = Object.keys(texts.lt);
-            for (let element of elements){
+            for (let element of elements) {
                 document.getElementById(element).innerText = texts[language][element];
             }
         }

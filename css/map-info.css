@@ -1,15 +1,8 @@
 html,
 body {
-    background-size: cover;
-    padding: 0;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
     background-color: #000020;
-    color: white;
+
     font-family: 'CustomReg';
-    box-sizing: border-box
 }
 
 .row {
@@ -17,172 +10,14 @@ body {
     box-sizing: border-box
 }
 
-h1,
-h2,
-h3,
-p {
-    margin-block-start: auto;
-    margin-block-end: auto;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-}
-
-#main {
-    height: 100%
-}
-
-#intro,
-#main-menu {
-    height: 100vh;
-    text-align: center
-}
-
-#top {
-    font-family: 'CustomBold';
-    padding-top: 15vh;
-    text-align: left;
-    margin-left: 10vw;
-    margin-bottom: 5vh
-}
-
-#top h3 {
-    font-size: 3em
-}
-
-#top h2 {
-    font-size: 4em
-}
-
-#top h1 {
-    font-size: 5em;
-    display: inline-flex;
-    color: #257cef;
-    line-height: 0.8em
-}
-
-#top #movingDot {
-    color: #fcbd1b;
-    transition: 0.8s ease-in-out;
-    height: 1em;
-}
-
-#bottom {
-    position: fixed;
-    bottom: 0px;
-    left: 0;
-    height: 20vh;
-    text-align: left
-}
-
-#arrows {
-    height: 10vh;
-    width: 100%;
-}
-
-#middle {
-    padding-top: 20px;
-}
-
-#middle-wrapper {
-    position: absolute;
-}
-
-#middle hr {
-    border-width: 0.2px;
-    width: 100%
-}
-
-#line {
-    transition: 0.5s ease-out
-}
-
-#middle p {
-    font-family: 'CustomLight';
-    text-align: left;
-    padding-top: 40px;
-    font-size: 1em;
-    margin: 0
-}
-
-#middle-menu {
-    height: 100%
-}
-
-.col-6 {
-    width: 50%
-}
-
-#menu-top {
-    box-sizing: border-box;
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 1em;
-    font-family: 'CustomBold';
-}
-
-#dyslexia {
-    display: flex;
-    text-align: left;
-    cursor: pointer;
-    font-family: 'opendyslexic';
-}
-
 #languages .languageBox span.active,
 #languages .languageBox span:hover {
     border-bottom: 2px solid white;
 }
 
-#dyslexia img {
-    height: 3em
-}
-
-#dyslexia p {
-    margin: 0;
-    padding-left: 5%;
-    font-size: 1em;
-}
-
-#middle-menu img {
-    box-sizing: border-box;
-    width: 60%;
-    height: auto;
-    padding: 5vh;
-}
-
-#navigation {
-    font-family: 'CustomLight';
-    font-size: 1em;
-    max-width: 60%;
-    display: inline-grid;
-}
-
-#navigation a {
-    box-sizing: border-box;
-    background-color: #fcbd1b;
-    padding: 0.7em;
-    margin: 0.7em;
-    border-radius: 1em;
-    color: #000020;
-    text-decoration: none;
-}
-
-#footer {
-
-    position: fixed;
-    bottom: calc(-97vh);
-
-}
-
-#main-menu #footer a {
-    color: #fcbd1b;
-    font-size: 0.6em;
-    float: left;
-    padding-left: 5vw
-}
-
-#footer a:active,
-#footer a:focus {
-    color: #fcbd1b;
+#info-page,
+#map-page {
+    color: white
 }
 
 .container {
@@ -402,57 +237,8 @@ p {
     margin-top: 8px;
 }
 
-.answer {}
 
 @media (min-width:768px) {
-    #top {
-        text-align: center;
-        margin: 0 auto;
-        margin-bottom: 5vh
-    }
-
-    #top h3 {
-        font-size: 5em
-    }
-
-    #top h2 {
-        font-size: 6em
-    }
-
-    #top h1 {
-        font-size: 7em;
-        letter-spacing: 10px
-    }
-
-    #middle p {
-        font-size: 1.5em;
-        margin: 0
-    }
-
-    #menu-top p {
-        font-size: 1.5em;
-    }
-
-    #middle-menu img {
-        max-width: 50%;
-        height: auto;
-        max-height: 30vh;
-        width: auto;
-    }
-
-    #dyslexia img {
-        height: 4.6em
-    }
-
-    #navigation {
-        width: 50%;
-        font-size: 1.5em
-    }
-
-    #main-menu #footer a {
-        font-size: 0.8em;
-
-    }
 
     .container h1 {
         font-size: 4em
@@ -500,7 +286,4 @@ p {
         height: 5em
     }
 
-    #navigation {
-        width: 30%;
-    }
 }

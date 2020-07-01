@@ -5,21 +5,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vilnius iGEM AR</title>
+
+
     <link href="./css/fonts.css" rel="stylesheet">
-    <link href="./css/main-temp.css" rel="stylesheet">
+
+
+
     <link href="./css/languagebox.css" rel="stylesheet">
     <link href="./css/opendyslexic.css" rel="stylesheet">
     <link href="./css/cookieconsent.css" rel="stylesheet">
-    <style>
-        #consent {
-            bottom: -100vh;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/jquery.pagepiling.css" />
+    <link href="./css/index.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pagepiling.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#pagepiling').pagepiling({
+                scrollingSpeed: 2000,
+                navigation: false,
+                touchSensitivity: 2,
+                onLeave: function(index, nextIndex, direction) {
+                    if (index == 1) {
+                        dotDown();
+                    } else {
+                        dotUp()
+                    }
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
-    <div id="main">
-        <section id="intro" class="section">
+    <div id="pagepiling">
+        <div id="intro" class="section">
             <div id="top" class="row">
                 <h3>6-asis</h3>
                 <h2>SinBio</h2>
@@ -48,8 +68,10 @@
 	36.8,94.5 68,60.4 " />
                 </svg>
             </div>
-        </section>
-        <section id="main-menu" class="section">
+        </div>
+
+
+        <div id="main-menu" class="section">
             <div id="menu-top" class="row">
                 <div id="dyslexia"><img id="dysImg" src="images/disleksija.svg">
                     <p id="dysText">Modifikacija<br>disleksijai</p>
@@ -75,8 +97,10 @@
             <div class="row" id="footer">
                 <a href="#">Privatumo politika</a>
             </div>
-        </section>
+        </div>
+
     </div>
+
 
     <script>
         var cookieConsentApplyElement = document.getElementById("main-menu");
@@ -84,7 +108,11 @@
     <script src="js/ga.js"></script>
     <script src="js/languages.js" charset="UTF-8"></script>
     <script src="js/opendyslexic.js" charset="UTF-8"></script>
+    <!--
     <script src="js/fullPage.min.js"></script>
+-->
+
+
     <script>
         var dotTravel
         var dotWidth;
@@ -137,43 +165,44 @@
             document.getElementById("movingDot").style.transition = "2s"
             document.getElementById("line").style.width = (document.getElementById("static-text").getBoundingClientRect().width * 1.05) + "px"
         }
-        var page = new FullPage("#main", {
 
-            // section selector
-            section: '.section',
-
-            // animation options
-            animationDuration: 2000,
-            animationTiming: 'ease',
-            animationTranform: 'transform',
-
-            // enable side navigation
-            pagination: true,
-
-            // enable keyboard navigation
-            keyboard: true,
-
-            // enable touch events
-            touch: true,
-
-            // touch limit in ms
-            touchLimit: 100,
-
-            // infinite loop
-            loop: false,
-
-            // callbacks
-            onLeave: function(e) {
-                if (e == 0) {
-                    dotDown()
-                } else {
-                    //console.log(e)
-                    dotUp()
-                }
-            },
-            afterLoad: null,
-
-        });
+        //        var page = new FullPage("#main", {
+        //
+        //            // section selector
+        //            section: '.section',
+        //
+        //            // animation options
+        //            animationDuration: 2000,
+        //            animationTiming: 'ease',
+        //            animationTranform: 'transform',
+        //
+        //            // enable side navigation
+        //            pagination: true,
+        //
+        //            // enable keyboard navigation
+        //            keyboard: true,
+        //
+        //            // enable touch events
+        //            touch: true,
+        //
+        //            // touch limit in ms
+        //            touchLimit: 100,
+        //
+        //            // infinite loop
+        //            loop: false,
+        //
+        //            // callbacks
+        //            onLeave: function(e) {
+        //                if (e == 0) {
+        //                    dotDown()
+        //                } else {
+        //                    //console.log(e)
+        //                    dotUp()
+        //                }
+        //            },
+        //            afterLoad: null,
+        //
+        //        });
 
         let texts = {
             lt: {
