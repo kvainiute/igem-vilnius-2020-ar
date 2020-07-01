@@ -21,7 +21,7 @@
     <script>
         $(document).ready(function() {
             $('#pagepiling').pagepiling({
-                scrollingSpeed: 2000,
+                scrollingSpeed: 1000,
                 navigation: false,
                 touchSensitivity: 2,
                 onLeave: function(index, nextIndex, direction) {
@@ -40,17 +40,20 @@
     <div id="pagepiling">
         <div id="intro" class="section">
             <div id="top" class="row">
-                <h3 id="header-one">6-asis</h3>
-                <h2 id="header-two">SinBio</h2>
-                <div id="head-text">
-                    <h1 id="main-text">
-                        <p id="static-text">pojūtis</p>
-                    </h1>
-                    <svg version="1.1" id="movingDot" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 73.4 45.1" enable-background="new 0 0 73.4 45.1" xml:space="preserve">
-                        <polygon fill="#FCBD1B" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.5,39.6 
+                <div id="header-wrapper">
+                    <h3 id="header-one">6-asis</h3>
+                    <h2 id="header-two">SinBio</h2>
+                    <div id="head-text">
+                        <h1 id="main-text">
+                            <p id="static-text">pojūtis</p>
+                        </h1>
+                        <svg version="1.1" id="movingDot" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 73.4 45.1" enable-background="new 0 0 73.4 45.1" xml:space="preserve">
+                            <polygon fill="#FCBD1B" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.5,39.6 
 	36.7,5.5 67.9,39.6 " />
-                    </svg>
+                        </svg>
+                    </div>
                 </div>
+
 
             </div>
 
@@ -128,20 +131,21 @@
 
             document.getElementById("arrows").style.marginLeft = dotLeft
 
-            var viewportOffseth1 = document.getElementById("main-text").getBoundingClientRect();
-            textWidth = (viewportOffseth1.width * 0.9) + "px";
-            document.getElementById("middle").style.width = (viewportOffseth1.width * 1.1) + "px";
+            var viewportOffsetWrapper = document.getElementById("header-wrapper").getBoundingClientRect();
+            textWidth = (viewportOffsetWrapper.width * 0.9) + "px";
+            document.getElementById("middle").style.width = (viewportOffsetWrapper.width) + "px";
             document.getElementById("middle-text").style.width = textWidth;
-            document.getElementById("middle").style.marginLeft = viewportOffseth1.left + "px";
+            document.getElementById("middle").style.marginLeft = viewportOffsetWrapper.left + "px";
         }
         window.addEventListener('load', setInitialElements);
-        window.onresize = setInitialElements
+        window.addEventListener('resize', setInitialElements);
 
         function dotDown() {
-            document.getElementById("movingDot").style.transition = "0.8s"
+            document.getElementById("movingDot").style.transition = "0.5s"
             document.getElementById("line").style.transitionDelay = "0s"
-            document.getElementById("line").style.transition = "0.5s"
-            document.getElementById("line").style.width = (document.getElementById("static-text").getBoundingClientRect().width * 0.95) + "px"
+            document.getElementById("line").style.transition = "0.3s"
+            var lineWidth = document.getElementById("header-wrapper").getBoundingClientRect().width - (document.getElementById("movingDot").getBoundingClientRect().width * 1.5)
+            document.getElementById("line").style.width = lineWidth + "px"
             var triangleBox = document.getElementById("top-triangle").getBoundingClientRect();
             var dotBox = document.getElementById("movingDot").getBoundingClientRect();
             distance = triangleBox.top - dotBox.top - 3;
@@ -162,47 +166,9 @@
             document.getElementById("line").style.transitionDelay = "1s"
 
             document.getElementById("movingDot").style.transition = "2s"
-            document.getElementById("line").style.width = (document.getElementById("static-text").getBoundingClientRect().width * 1.05) + "px"
+            var lineWidth = document.getElementById("header-wrapper").getBoundingClientRect().width
+            document.getElementById("line").style.width = lineWidth + "px"
         }
-
-        //        var page = new FullPage("#main", {
-        //
-        //            // section selector
-        //            section: '.section',
-        //
-        //            // animation options
-        //            animationDuration: 2000,
-        //            animationTiming: 'ease',
-        //            animationTranform: 'transform',
-        //
-        //            // enable side navigation
-        //            pagination: true,
-        //
-        //            // enable keyboard navigation
-        //            keyboard: true,
-        //
-        //            // enable touch events
-        //            touch: true,
-        //
-        //            // touch limit in ms
-        //            touchLimit: 100,
-        //
-        //            // infinite loop
-        //            loop: false,
-        //
-        //            // callbacks
-        //            onLeave: function(e) {
-        //                if (e == 0) {
-        //                    dotDown()
-        //                } else {
-        //                    //console.log(e)
-        //                    dotUp()
-        //                }
-        //            },
-        //            afterLoad: null,
-        //
-        //        });
-
         let texts = {
             lt: {
                 "button-map": "Stotelių žemėlapis",
