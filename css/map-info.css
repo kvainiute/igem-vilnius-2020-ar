@@ -1,8 +1,10 @@
 html,
 body {
     background-color: #000020;
-
     font-family: 'CustomReg';
+    margin: 0;
+    padding: 0;
+    overflow: hidden
 }
 
 .row {
