@@ -41,11 +41,11 @@
     <div id="pagepiling">
         <div id="intro" class="section">
             <div id="top" class="row">
-                <h3>6-asis</h3>
-                <h2>SinBio</h2>
+                <h3 id="header-one">6-asis</h3>
+                <h2 id="header-two">SinBio</h2>
                 <div id="head-text">
                     <h1 id="main-text">
-                        <p id="static-text"> pojūtis</p>
+                        <p id="static-text">pojūtis</p>
                     </h1>
                     <svg version="1.1" id="movingDot" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 73.4 45.1" enable-background="new 0 0 73.4 45.1" xml:space="preserve">
                         <polygon fill="#FCBD1B" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.5,39.6 
@@ -57,7 +57,7 @@
 
             <div id="middle" class="row">
                 <hr align="left" id="line">
-                <p id="middle-text">Pažink iš naujo gyvybės mokslus panirdamas į AR ir QR technologijas.</p>
+                <p id="middle-text">Pažink gyvybės mokslus iš naujo panirdamas į AR ir QR technologijas.</p>
 
             </div>
             <div id="bottom" class="row">
@@ -206,21 +206,30 @@
 
         let texts = {
             lt: {
-                map: "Stotelių žemėlapis",
-                instr: "Instrukcija",
-                print: "Atsispausdink AR markerius"
+                "button-map": "Stotelių žemėlapis",
+                "button-instr": "Instrukcija",
+                "button-print": "Atsispausdink AR markerius",
+                "header-one": "6-asis",
+                "header-two": "SinBio",
+                "static-text": "pojūtis",
+                "middle-text": "Pažink gyvybės mokslus iš naujo panirdamas į AR ir QR technologijas."
             },
             en: {
-                map: "Stops Map",
-                instr: "Instructions",
-                print: "Print AR Markers"
+                "button-map": "Stops Map",
+                "button-instr": "Instructions",
+                "button-print": "Print AR Markers",
+                "header-one": "6th",
+                "header-two": "SynBio",
+                "static-text": "sense",
+                "middle-text": "Experience life sciences through AR and QR technologies."
             }
         };
 
         function updateTexts(language) {
-            document.getElementById("button-map").innerText = texts[language].map;
-            document.getElementById("button-instr").innerText = texts[language].instr;
-            document.getElementById("button-print").innerText = texts[language].print;
+            let elements = Object.keys(texts.lt);
+            for (let element of elements) {
+                document.getElementById(element).innerText = texts[language][element];
+            }
         }
 
         updateTexts(LanguageSwitcher.currentLanguage);
