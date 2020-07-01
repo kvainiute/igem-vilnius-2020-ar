@@ -245,6 +245,23 @@ body {
     max-width: 34vw;
 }
 
+#button-wrapper {
+    font-size: 1.2em;
+    text-align: center;
+
+}
+
+#bt-accept {
+    border: 0;
+}
+
+#bt-reject {
+    border: 0;
+    border-top: solid 1px #000020;
+
+}
+
+
 
 @media (min-width:768px) {
 
@@ -287,10 +304,22 @@ body {
     #map-page #footer a {
         font-size: 2em;
     }
-    
+
     #consent {
         max-width: 67vw;
     }
+
+    #bt-accept {
+        border: 0;
+        border-right: solid 1px #000020
+    }
+
+    #bt-reject {
+        border: 0;
+        border-left: solid 1px #000020
+    }
+
+
 }
 
 @media (min-width:1024px) {
