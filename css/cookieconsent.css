@@ -25,7 +25,8 @@
     color: #000020;
     padding: 4px 10px;
     max-height: 40px;
-    font-family: 'CustomHeavy'
+    font-family: 'CustomHeavy';
+    font-size: 0.9em
 }
 
 #bt-accept {
@@ -42,9 +43,7 @@
     cursor: pointer
 }
 
-#consent button + button {
-    margin: 0 0 0 8px;
-}
+
 
 #consent p {
     color: #000020;
@@ -61,5 +60,14 @@
 
     #consent {
         display: flex;
+        font-size: 0.8em
+    }
+
+    #consent button {
+        font-size: 1em
+    }
+
+    #consent button + button {
+        margin: 0 0 0 8px;
     }
 }
