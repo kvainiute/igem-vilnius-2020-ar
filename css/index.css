@@ -6,6 +6,11 @@
                     background-color: #000020;
                 }
 
+                body {
+                    overflow-y: hidden;
+                    overflow-x: hidden;
+                }
+
                 .pp-easing {
                     -webkit-transition: all 5000ms ease-in;
                     -moz-transition: all 5000ms ease-in;
@@ -36,7 +41,8 @@
                 #intro {
                     background-color: #000020;
                     color: white;
-                    font-family: 'CustomReg'
+                    font-family: 'CustomReg';
+                    overflow: hidden;
                 }
 
                 #top {
@@ -111,7 +117,8 @@
 
                 #main-menu {
                     background-color: #000020;
-                    text-align: center
+                    text-align: center;
+                    overflow: hidden;
                 }
 
                 #main-menu .pp-tableCell {
@@ -158,19 +165,18 @@
                     box-sizing: border-box;
                     width: auto;
                     height: auto;
-                    max-height: 40vh;
-                    padding: 5vh;
+                    max-height: 25vh;
+                    margin: 2vh
                 }
 
                 #navigation {
                     font-family: 'CustomLight';
                     font-size: 1em;
-                    max-width: 60%;
+                    width: 60%;
                     display: grid;
                     margin: auto;
 
-                    grid-template-columns: 1fr;
-                    grid-template-rows: 1fr 1fr 1fr 1fr;
+
                 }
 
                 #navigation a {
@@ -180,7 +186,7 @@
                     box-sizing: border-box;
                     background-color: #fcbd1b;
                     padding: 0.7em;
-                    margin: 0.7em;
+                    margin: 0.6em;
                     border-radius: 1em;
                     color: #000020;
                     text-decoration: none;
@@ -399,6 +405,18 @@
                     #middle p {
                         font-size: 0.9em
                     }
+
+                    #menu-top {
+                        padding: 10px
+                    }
+
+                    #middle-menu img {
+                        max-height: 30vh
+                    }
+
+                    #navigation {
+                        width: 70vw
+                    }
                 }
 
                 @media (min-aspect-ratio: 16/9) and (max-width:674px) {
@@ -456,16 +474,41 @@
                         font-size: 2em
                     }
                 }
-                
-                @media (max-height: 720px) {
+
+                @media (min-aspect-ratio: 16/9) and (max-height: 720px) {
                     #navigation {
                         grid-template-columns: 1fr 1fr;
                         grid-template-rows: 1fr 1fr;
                     }
                 }
-                @media (max-height: 520px) {
+
+                @media (min-aspect-ratio: 16/9) and (max-height: 520px) {
+                    #menu-top {
+                        padding: 5px;
+                        box-sizing: border-box;
+                        padding-left: 5vw;
+                        padding-right: 5vw;
+
+                    }
+
+                    #dyslexia img {
+                        height: 2.5em
+                    }
+
+                    #dyslexia p {
+                        line-height: 1.3
+                    }
+
+                    #middle-menu img {
+                        max-height: 30vh
+                    }
+
+                    #navigation {
+                        width: 80vw
+                    }
+
                     #navigation a {
-                        padding: 0.3em;
+                        padding: 0.1em;
                         margin: 0.3em;
                     }
                 }
