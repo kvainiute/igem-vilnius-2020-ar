@@ -1,3 +1,51 @@
+let cities = [
+    {
+        title: 'Vilnius',
+        coordinates: [25.276374, 54.684333],
+        link: 'vilnius'
+    },
+    {
+        title: 'Kaunas',
+        coordinates: [23.923427, 54.906427],
+        link: 'kaunas'
+    },
+    {
+        title: 'Klaipėda',
+        coordinates: [21.160634, 55.702939],
+        link: 'klaipeda'
+    },
+    {
+        title: 'Šiauliai',
+        coordinates: [23.326771, 55.918838],
+        link: 'siauliai'
+    },
+    {
+        title: 'Panevėžys',
+        coordinates: [24.355265, 55.731426],
+        link: 'panevezys'
+    },
+    {
+        title: 'Tauragė',
+        coordinates: [22.291524, 55.252605],
+        link: 'taurage'
+    },
+    {
+        title: 'Alytus',
+        coordinates: [24.036988, 54.405185],
+        link: 'alytus'
+    },
+    {
+        title: 'Rietavas',
+        coordinates: [21.932847, 55.724311],
+        link: 'rietavas'
+    },
+    {
+        title: 'Zarasai',
+        coordinates: [26.245589, 55.731057],
+        link: 'zarasai'
+    },
+]
+
 let pointList = [
     {
         lt: {
@@ -180,101 +228,104 @@ function initializeNavBar(language) {
         document.getElementById("dropdown-content").appendChild(a);
     })
 }
+//
+//function makeFeatures(language) {
+//    let returnList = [];
+//    for (let item of pointList) {
+//        let theLink;
+//        if (typeof (item.customLink) === 'string') {
+//            theLink = item.customLink;
+//        } else {
+//            theLink = './ar.html?model=' + item.link;
+//        }
+//
+//        returnList.push({
+//            'type': 'Feature',
+//            'properties': {
+//                'description': '<p><a href="' + theLink + '">' + item[language].title + '</a></p>'
+//            },
+//            'geometry': {
+//                'type': 'Point',
+//                'coordinates': item.coordinates
+//            }
+//        });
+//    }
+//    return returnList;
+//}
+//
+//mapboxgl.setRTLTextPlugin('https://cdn.maptiler.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.2/mapbox-gl-rtl-text.js');
+//
+//function loadMap(language) {
+//    if (!mapboxgl.supported()) {
+//        alert('Your browser does not support Mapbox GL');
+//    } else {
+//        mapboxgl.accessToken = 'pk.eyJ1IjoiaWdlbXZpbG5pdXMiLCJhIjoiY2s4b2tuM3ZmMDNmMDNlbnNyNjBjYmF6byJ9.awDMKTb7QstzkFAD3FPA-g';
+//        var map = new mapboxgl.Map({
+//            container: 'map',
+//            style: 'https://api.maptiler.com/maps/565e5c8b-5c56-489b-b954-0f260bfa40eb/style.json?key=dh3avbXkPzMlI59PVFsz',
+//            center: [25.283881, 54.683594],
+//            zoom: 13
+//        });
+//
+//        map.on('load', function () {
+//            map.loadImage('images/map-target.png', function (error, image) {
+//                if (error) throw error;
+//                map.addImage('map-target', image);
+//                map.addSource('stations-Vln', {
+//                    'type': 'geojson',
+//                    'data': {
+//                        'type': 'FeatureCollection',
+//                        'features': makeFeatures(language),
+//                    }
+//
+//                });
+//                // Add a layer showing the places.
+//                map.addLayer({
+//                    'id': 'stations',
+//                    'type': 'symbol',
+//                    'source': 'stations-Vln',
+//                    'layout': {
+//                        'icon-image': 'map-target',
+//                        'icon-allow-overlap': true,
+//                        'icon-size': 0.07,
+//                        'icon-anchor': "bottom"
+//                    }
+//                });
+//                map.on('click', 'stations', function (e) {
+//                    var coordinates = e.features[0].geometry.coordinates.slice();
+//                    var description = e.features[0].properties.description;
+//                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+//                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+//                    }
+//
+//                    new mapboxgl.Popup()
+//                        .setLngLat(coordinates)
+//                        .setHTML(description)
+//                        .addTo(map);
+//                });
+//                map.on('mouseenter', 'places', function () {
+//                    map.getCanvas().style.cursor = 'pointer';
+//                });
+//                map.on('mouseleave', 'places', function () {
+//                    map.getCanvas().style.cursor = '';
+//                });
+//            });
+//
+//
+//        });
+//    }
+//
+//}
+//
+//
+//function updateTexts(language) {
+//    initializeNavBar(language)
+//    loadMap(language)
+//}
+//updateTexts(LanguageSwitcher.currentLanguage);
+//LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
+//LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
-function makeFeatures(language) {
-    let returnList = [];
-    for (let item of pointList) {
-        let theLink;
-        if (typeof (item.customLink) === 'string') {
-            theLink = item.customLink;
-        } else {
-            theLink = './ar.html?model=' + item.link;
-        }
-
-        returnList.push({
-            'type': 'Feature',
-            'properties': {
-                'description': '<p><a href="' + theLink + '">' + item[language].title + '</a></p>'
-            },
-            'geometry': {
-                'type': 'Point',
-                'coordinates': item.coordinates
-            }
-        });
-    }
-    return returnList;
-}
-mapboxgl.setRTLTextPlugin('https://cdn.maptiler.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.1.2/mapbox-gl-rtl-text.js');
-
-function loadMap(language) {
-    if (!mapboxgl.supported()) {
-        alert('Your browser does not support Mapbox GL');
-    } else {
-        mapboxgl.accessToken = 'pk.eyJ1IjoiaWdlbXZpbG5pdXMiLCJhIjoiY2s4b2tuM3ZmMDNmMDNlbnNyNjBjYmF6byJ9.awDMKTb7QstzkFAD3FPA-g';
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'https://api.maptiler.com/maps/565e5c8b-5c56-489b-b954-0f260bfa40eb/style.json?key=dh3avbXkPzMlI59PVFsz',
-            center: [25.283881, 54.683594],
-            zoom: 13
-        });
-        map.on('load', function () {
-            map.loadImage('images/map-target.png', function (error, image) {
-                if (error) throw error;
-                map.addImage('map-target', image);
-                map.addSource('stations-Vln', {
-                    'type': 'geojson',
-                    'data': {
-                        'type': 'FeatureCollection',
-                        'features': makeFeatures(language),
-                    }
-
-                });
-                // Add a layer showing the places.
-                map.addLayer({
-                    'id': 'stations',
-                    'type': 'symbol',
-                    'source': 'stations-Vln',
-                    'layout': {
-                        'icon-image': 'map-target',
-                        'icon-allow-overlap': true,
-                        'icon-size': 0.4,
-                        'icon-anchor': "bottom"
-                    }
-                });
-                map.on('click', 'stations', function (e) {
-                    var coordinates = e.features[0].geometry.coordinates.slice();
-                    var description = e.features[0].properties.description;
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                    }
-
-                    new mapboxgl.Popup()
-                        .setLngLat(coordinates)
-                        .setHTML(description)
-                        .addTo(map);
-                });
-                map.on('mouseenter', 'places', function () {
-                    map.getCanvas().style.cursor = 'pointer';
-                });
-                map.on('mouseleave', 'places', function () {
-                    map.getCanvas().style.cursor = '';
-                });
-            });
-
-
-        });
-    }
-
-}
-
-
-function updateTexts(language) {
-    initializeNavBar(language)
-    loadMap(language)
-}
-updateTexts(LanguageSwitcher.currentLanguage);
-LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
-LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
 window.onresize = () => {
     if (navOpen) return;
@@ -312,5 +363,5 @@ function closeNav() {
 document.addEventListener('load', function () {
     var language = LanguageSwitcher.currentLanguage
     initializeNavBar(language);
-    loadMap(language)
+    //    loadMap(language)
 });
