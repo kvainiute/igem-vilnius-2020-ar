@@ -16,7 +16,7 @@ function gaEnable() {
 }
 
 function getCookieConsent() {
-    return "1"; // TODO: remove after presentation
+    //return "1"; // TODO: remove after presentation
     try {
         return document.cookie.split('; ')
             .find(row => row.startsWith('cookieconsent'))
