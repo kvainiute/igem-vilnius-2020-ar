@@ -134,12 +134,12 @@ const data = {
     dna: {
         meta: {
             lt: {
-                name: "Deoksiribonukleorūgštis (DNR)",
+                name: "DNR",
                 desc: "tekstas",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {
-                name: "Deoxyribonucleic acid (DNA)",
+                name: "DNA",
                 desc: "tekstas",
                 audioRec: "./recordings/nano.mp3"
             },
@@ -165,12 +165,12 @@ const data = {
     rna: {
         meta: {
             lt: {
-                name: "Ribonukleino rūgštis (RNR)",
+                name: "RNR",
                 desc: "tekstas",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {
-                name: "Ribonucleic acid (RNA)",
+                name: "RNA",
                 desc: "tekstas",
                 audioRec: "./recordings/nano.mp3"
             },
@@ -196,12 +196,12 @@ const data = {
     virus: {
         meta: {
             lt: {
-                name: "SARS-CoV-2",
-                desc: "Koronavirusai yra virusai, kurie cirkuliuoja tarp gyvūnų, tačiau žinoma, kad kai kurie iš jų sukelia infekcijas žmonėms. Sukėlę infekciją žmonėms, jie toliau gali būti perduoti nuo žmogaus žmogui. Koronavirusų infekcijos šaltinis gali būti daugybė gyvūnų. Pavyzdžiui, Artimųjų Rytų respiracinio sindromo koronaviruso (MERS-CoV) šaltinis buvo kupranugariai, o sunkaus ūmaus respiracinio sindromo (SARS-CoV-1) – civetės katės.",
+                name: "Virusai",
+                desc: "...",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {
-                name: "SARS-CoV-2",
+                name: "Viruses",
                 desc: "tekstas",
                 audioRec: "./recordings/nano.mp3"
             },
