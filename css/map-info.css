@@ -33,6 +33,7 @@ body {
 
 #info-page #footer,
 #map-page #footer {
+    box-sizing: border-box;
     vertical-align: middle;
     z-index: 10;
     position: fixed;
@@ -40,7 +41,8 @@ body {
     bottom: 0;
     padding: 5px;
     width: 100%;
-    height: 5vh;
+    height: 7vh;
+    font-size: 1.3em;
     background-color: #fcbd1b;
     display: flex;
     align-items: center;
@@ -61,6 +63,46 @@ body {
     text-decoration: underline;
 }
 
+#change-city img {
+    height: 7vh;
+    width: auto;
+    position: fixed;
+    left: 50%;
+    top: 3vh;
+    transform: translate(-50%, 0);
+    z-index: 1200;
+    background-color: transparent;
+    cursor: pointer
+}
+
+#choose-city {
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    z-index: 900
+}
+
+#choose-city button {
+    font-family: 'CustomLight';
+    font-size: 1.5em;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #fcbd1b;
+    border: none;
+    border-radius: 1em;
+    color: #000020;
+    text-decoration: none;
+    padding: 5px;
+    margin-bottom: 15px;
+    cursor: pointer
+}
+
 #map {
     position: absolute;
     top: 0;
@@ -68,6 +110,7 @@ body {
     bottom: 0;
     left: 0;
     font-family: 'CustomReg';
+
 }
 
 .mapboxgl-popup-content {
@@ -266,6 +309,11 @@ body {
 
 @media (min-width:768px) {
 
+
+    #choose-city button {
+        padding: 8px;
+    }
+
     .container h1 {
         font-size: 4em
     }
@@ -320,6 +368,39 @@ body {
         border-left: solid 1px #000020
     }
 
+
+}
+
+@media (min-aspect-ratio: 16/9) and (max-width:768px) {
+
+    #info-page #footer,
+    #map-page #footer {
+        height: 12vh
+    }
+
+    #choose-city {
+        width: fit-content;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 7px
+    }
+}
+
+@media (min-aspect-ratio: 18/9) and (min-width:768px) {
+
+    #info-page #footer,
+    #map-page #footer {
+        height: 15vh
+    }
+
+    #choose-city {
+        width: fit-content;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 7px
+    }
 
 }
 

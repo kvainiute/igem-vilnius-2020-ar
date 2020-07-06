@@ -473,6 +473,17 @@
                     #top h3 {
                         font-size: 2em
                     }
+
+                    #navigation {
+                        width: 90vw;
+                        height: 25vh;
+                        grid-template-columns: 1fr 1fr;
+                        grid-template-rows: 1fr 1fr;
+                    }
+
+                    #navigation a {
+                        padding: 5px
+                    }
                 }
 
                 @media (min-aspect-ratio: 16/9) and (max-height: 720px) {
@@ -504,7 +515,8 @@
                     }
 
                     #navigation {
-                        width: 80vw
+                        width: 80vw;
+                        height: 30vh
                     }
 
                     #navigation a {

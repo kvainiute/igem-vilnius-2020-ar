@@ -95,11 +95,11 @@ canvas {
     margin: 0 auto;
 }
 
-#info-text::-webkit-scrollbar { 
+#info-text::-webkit-scrollbar {
     width: 2vw;
 }
 
-#info-text::-webkit-scrollbar-thumb { 
+#info-text::-webkit-scrollbar-thumb {
     background-color: #000020;
     border-radius: 100px;
 }
@@ -132,6 +132,7 @@ svg text {
     font-weight: 600;
     margin: 0 5%;
 }
+
 #info-text a {
     color: #00031F;
     font-family: 'CustomBold';
@@ -148,6 +149,11 @@ svg text {
 
 #info-footer a {
     margin: 0 auto
+}
+
+#model-info em {
+    font-style: normal;
+    font-family: 'CustomBold'
 }
 
 

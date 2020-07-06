@@ -26,7 +26,7 @@
 <body>
     <div class="info">
         <div class="spacer"></div>
-        <div class="col-3"><a href="/map.html" aria-label="Back to map">
+        <div class="col-3"><a href="/map.html" onclick="goBack()" aria-label="Back to map">
                 <img class="button" id="home-button" src="images/menu.svg">
             </a></div>
         <div class="col-3"><object type="image/svg+xml" class="button" id="video-button" data="images/animation.svg"></object></div>
@@ -45,8 +45,7 @@
         <div id="info-footer">
             <div class="spacer"></div>
             <object type="image/svg+xml" id="ar-switch" class="info-footer-icons " data="images/camera.svg"></object>
-            <img id="close-button" class="info-footer-icons" src="./images/close.svg"><a href="/info.html">
-                <object type="image/svg+xml" id="settings-button" class="info-footer-icons" data="./images/instruction.svg"></object></a>
+            <img id="close-button" class="info-footer-icons" src="./images/close.svg"><a href="/info.html"><img src="./images/instruction.svg" id="settings-button" class="info-footer-icons"></a>
             <div class="spacer"></div>
         </div>
     </div>
@@ -83,6 +82,9 @@
         language = LanguageSwitcher.currentLanguage;
 
         let model = getQueryParams()["model"];
+        let city = getQueryParams()["city"];
+
+        document.cookie = "city=" + city;
 
         loadSingle(model);
 
