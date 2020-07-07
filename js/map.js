@@ -48,6 +48,11 @@ let points = [
             en: "Alytus City Garden",
             coordinates: [24.07707, 54.3855]
         },
+        mzk: {
+            lt: "Senamiesčio parkas (I)",
+            en: "Old Town Park (I)",
+            coordinates: [22.348743, 56.316101]
+        },
     },
     {
         lt: "RNR",
@@ -97,6 +102,11 @@ let points = [
             lt: "Baltosios rožės tiltas",
             en: "Bridge of the White Rose",
             coordinates: [24.08138, 54.39313]
+        },
+        mzk: {
+            lt: "Senamiesčio parkas (II)",
+            en: "Old Town Park (II)",
+            coordinates: [22.348721, 56.316470]
         },
     },
     {
@@ -148,6 +158,11 @@ let points = [
             en: "Alytus City Garden (II)",
             coordinates: [24.04838, 54.39347]
         },
+        mzk: {
+            lt: "Juodpelkio parkas (I)",
+            en: "Juodpelkio Park (I)",
+            coordinates: [22.339610, 56.295133]
+        },
     },
     {
         lt: "Biobrick",
@@ -197,6 +212,11 @@ let points = [
             lt: "Piliakalnis",
             en: "Hillfort",
             coordinates: [24.07948, 54.39637]
+        },
+        mzk: {
+            lt: "Juodpelkio parkas (II)",
+            en: "Juodpelkio Park (II)",
+            coordinates: [22.346875, 56.294752]
         },
     },
     {
@@ -248,6 +268,11 @@ let points = [
             en: "Millenium Bridge",
             coordinates: [24.04095, 54.42128]
         },
+        mzk: {
+            lt: "Juodpelkio parkas (III)",
+            en: "Juodpelkio Park (III)",
+            coordinates: [22.338881, 56.295645]
+        },
     },
     {
         lt: "Žaliai fluorescuojantis baltymas",
@@ -297,6 +322,11 @@ let points = [
             lt: "Dailidės ežeras",
             en: "Dailidė Lake",
             coordinates: [24.07707, 54.3855]
+        },
+        mzk: {
+            lt: "Šv. Pranciškaus Asyžiečio bažnyčios aikštėle",
+            en: "Church of St. Francis and St. Bernard Square",
+            coordinates: [22.338646, 56.303939]
         },
     },
     {
@@ -348,6 +378,11 @@ let points = [
             en: "Youth Park (I)",
             coordinates: [24.03019, 54.40527]
         },
+        mzk: {
+            lt: "Senamiesčio parkas (III)",
+            en: "Old Town Park (III)",
+            coordinates: [22.347766, 56.316446]
+        },
     },
     {
         lt: "Bakteriofagas",
@@ -397,6 +432,11 @@ let points = [
             lt: "Rotušė",
             en: "Town Hall",
             coordinates: [24.04921, 54.39623]
+        },
+        mzk: {
+            lt: "Pavenčių paplūdimys (I)",
+            en: "Pavenčiai Beach (I)",
+            coordinates: [22.332374, 56.293762]
         },
     },
     {
@@ -448,6 +488,11 @@ let points = [
             en: "Youth Park (II)",
             coordinates: [24.02786, 54.40656]
         },
+        mzk: {
+            lt: "Sodų skverelis (I)",
+            en: "Gardens Square (I)",
+            coordinates: [22.335150, 56.308655]
+        },
     },
     {
         lt: "Modeliniai organizmai",
@@ -497,6 +542,11 @@ let points = [
             lt: "Senamiesčio skveras",
             en: "Old Town Square",
             coordinates: [24.04895, 54.39915]
+        },
+        mzk: {
+            lt: "Pavenčių paplūdimys (II)",
+            en: "Pavenčiai Beach (II)",
+            coordinates: [22.330539, 56.292643]
         },
     },
     {
@@ -548,6 +598,11 @@ let points = [
             en: "Dailidė Lake (II)",
             coordinates: [24.07503, 54.3865]
         },
+        mzk: {
+            lt: "Sodų skverelis (II)",
+            en: "Gardens Square (II)",
+            coordinates: [22.332365, 56.309574]
+        },
     },
     {
         lt: "Transliacija",
@@ -597,6 +652,11 @@ let points = [
             lt: "Laisvės Angelas",
             en: "Angel of Freedom",
             coordinates: [24.04947, 54.39404]
+        },
+        mzk: {
+            lt: "Mažeikių kultūros centro aikštelė",
+            en: "Mažeikiai Culture Centre Square",
+            coordinates: [22.339286, 56.304385]
         },
     },
     {
@@ -653,6 +713,11 @@ let points = [
             en: "Little Dailidė Lake",
             coordinates: [24.06095, 54.3927]
         },
+        mzk: {
+            lt: "Mažeikių Merkelio Račkausko gimnazija",
+            en: "Mažeikiai Merkelio Račkausko gymnasium",
+            coordinates: [22.347358, 56.311710]
+        },
     },
 ];
 let cities = {
@@ -690,6 +755,10 @@ let cities = {
     },
     zrs: {
         coordinates: [26.239, 55.732083],
+        zoom: 14
+    },
+    mzk: {
+        coordinates: [22.341217, 56.311901],
         zoom: 14
     }
 }
