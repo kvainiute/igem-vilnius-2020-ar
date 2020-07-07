@@ -1,24 +1,25 @@
 let points = [
     {
         vln: {
-            lt: "Katedros aik&scaron;t&edot;",
-            en: "Cathedral Square",
-            coordinates: [25.288243, 54.685297],
+            lt: "Vinco Kudirkos aik&scaron;t&edot;",
+            en: "Vincas Kudirka Square",
+            coordinates: [25.280564, 54.687349],
         },
         sil: {
-            lt: "Saulės laikrodžio aikštė",
-            en: "Sun Clock Square",
-            coordinates: [23.325083, 55.930636],
+            lt: "Geležinė lapė",
+            en: "Iron Fox",
+            coordinates: [23.328929, 55.931132],
         },
+
         klp: {
-            lt: "Melnragės molas",
-            en: "Melnragė Pier",
-            coordinates: [21.08048, 55.73038]
+            lt: "Senoji perkėla",
+            en: "Old Ferry",
+            coordinates: [21.122890, 55.706472]
         },
         kns: {
-            lt: "Centrinis paštas",
-            en: "Central Post",
-            coordinates: [23.9045, 54.89793]
+            lt: "Laisvės alėjos fontanas",
+            en: "Laisvės Avenue Fountain",
+            coordinates: [23.91356, 54.89738]
         },
         rtv: {
             lt: "Skveras prie bažnyčios",
@@ -46,24 +47,25 @@ let points = [
     },
     {
         vln: {
-            lt: "Simono Daukanto aik&scaron;t&edot;",
-            en: "Simonas Daukantas Square",
-            coordinates: [25.286342, 54.683594],
+            lt: "Bernardin&uogon; sodas (I)",
+            en: "Bernardine Garden (I)",
+            coordinates: [25.297362, 54.683689],
         },
         sil: {
-            lt: "Prisikėlimo aikštė",
-            en: "Resurrection Square",
-            coordinates: [23.316255, 55.933128],
+            lt: "Saulės laikrodžio aikštė",
+            en: "Sun Clock Square",
+            coordinates: [23.325083, 55.930636],
         },
         klp: {
-            lt: "Senoji perkėla",
-            en: "Old Ferry",
-            coordinates: [21.12942, 55.70347]
+            lt: "Teatro aikštė",
+            en: "Theatre Square",
+            coordinates: [21.13155, 55.70784]
         },
+
         kns: {
-            lt: "Soboras",
-            en: "Garrison Church",
-            coordinates: [23.92147, 54.89704]
+            lt: "Studentų skveras",
+            en: "Students' Square",
+            coordinates: [23.91431, 54.89897]
         },
         rtv: {
             lt: "Anikės aikštė",
@@ -91,24 +93,25 @@ let points = [
     },
     {
         vln: {
-            lt: "Baltasis tiltas",
-            en: "White Bridge",
-            coordinates: [25.273619, 54.693303],
+            lt: "Luki&scaron;ki&uogon; aik&scaron;t&edot;",
+            en: "Luki&scaron;k&edot;s Square",
+            coordinates: [25.271029, 54.689640],
         },
+
         sil: {
-            lt: "Geležinė lapė",
-            en: "Iron Fox",
-            coordinates: [23.328929, 55.931132],
+            lt: "Koncertų salė \"Saulė\"",
+            en: "Concert Hall \"Saulė\"",
+            coordinates: [23.31269, 55.929935],
         },
         klp: {
-            lt: "Teatro aikštė",
-            en: "Theatre Square",
-            coordinates: [21.13155, 55.70784]
+            lt: "Jūrų muziejus",
+            en: "Sea Museum",
+            coordinates: [21.101346, 55.716877]
         },
         kns: {
-            lt: "Kauno Pilis",
-            en: "Kaunas Castle",
-            coordinates: [23.8854, 54.89892]
+            lt: "Muzikinio teatro kiemelis",
+            en: "Musical Theater Yard",
+            coordinates: [23.90616, 54.89641]
         },
         rtv: {
             lt: "Zarbeko alėja",
@@ -135,25 +138,27 @@ let points = [
         link: "circuit",
     },
     {
+
         vln: {
-            lt: "Literatų gatvė",
-            en: "Literatų Street",
-            coordinates: [25.290187, 54.682223],
+            lt: "Simono Daukanto aik&scaron;t&edot;",
+            en: "Simonas Daukantas Square",
+            coordinates: [25.286342, 54.683594],
         },
         sil: {
-            lt: "Šiaulių Didždvario gimnazija",
-            en: "Didžvaris Gymnasium",
-            coordinates: [23.310130, 55.934403],
+            lt: "Sukilėlių kalnelis",
+            en: "Rebel Hill",
+            coordinates: [23.304555, 55.935753],
         },
         klp: {
             lt: "Jono kalnelis",
             en: "Jonas Hill",
             coordinates: [21.13819, 55.71063]
         },
+
         kns: {
-            lt: "Muzikinio teatro kiemelis",
-            en: "Musical Theater Yard",
-            coordinates: [23.90616, 54.89641]
+            lt: "Rožinis dramblys",
+            en: "The Pink Elephant",
+            coordinates: [23.90826, 54.90015]
         },
         rtv: {
             lt: "Šv. Mykolo Arkangelo bažnyčia",
@@ -180,25 +185,27 @@ let points = [
         link: "biobrick",
     },
     {
+
         vln: {
-            lt: "Trij&uogon; kry&zcaron;i&uogon; kalnas",
-            en: "Hill of Three Crosses",
-            coordinates: [25.297490, 54.686754],
+            lt: "Literatų gatvė",
+            en: "Literatų Street",
+            coordinates: [25.290187, 54.682223],
         },
         sil: {
-            lt: "Pelikanų fontanas",
-            en: "Pelican Fountain",
-            coordinates: [23.314924, 55.931415],
+            lt: "Autobusų stotis",
+            en: "Bus station",
+            coordinates: [23.308000, 55.927814],
         },
         klp: {
             lt: "Kultūros fabrikas",
             en: "Culture Factory",
             coordinates: [21.14116, 55.70782]
         },
+
         kns: {
-            lt: "Kauko laiptai",
-            en: "Kaukas Steps",
-            coordinates: [23.92547, 54.90095]
+            lt: "Kauno Pilis",
+            en: "Kaunas Castle",
+            coordinates: [23.8854, 54.89892]
         },
         rtv: {
             lt: "Raudonieji vartai",
@@ -226,24 +233,25 @@ let points = [
     },
     {
         vln: {
-            lt: "Bernardin&uogon; sodas (I)",
-            en: "Bernardine Garden (I)",
-            coordinates: [25.297362, 54.683689],
+            lt: "Katedros aik&scaron;t&edot;",
+            en: "Cathedral Square",
+            coordinates: [25.288243, 54.685297],
         },
         sil: {
-            lt: "Talkšos paplūdimys",
-            en: "Talkša Beach",
-            coordinates: [23.336872, 55.932422],
+            lt: "Prisikėlimo aikštė",
+            en: "Resurrection Square",
+            coordinates: [23.316255, 55.933128],
         },
         klp: {
             lt: "Klaipėdos pilis",
             en: "Klaipėda Castle",
             coordinates: [21.12892, 55.70583]
         },
+
         kns: {
-            lt: "Kiemo galerija",
-            en: "Yard Gallery",
-            coordinates: [23.90479, 54.89937]
+            lt: "Rotušė",
+            en: "Town Hall",
+            coordinates: [23.88581, 54.8973]
         },
         rtv: {
             lt: "Parko tvenkino alėja",
@@ -271,24 +279,25 @@ let points = [
     },
     {
         vln: {
-            lt: "Vinco Kudirkos aik&scaron;t&edot;",
-            en: "Vincas Kudirka Square",
-            coordinates: [25.280564, 54.687349],
+            lt: "U&zcaron;upio undin&edot;",
+            en: "Mermaid of U&zcaron;upis",
+            coordinates: [25.292648, 54.680584],
         },
         sil: {
-            lt: "Savivaldybės aikštė",
-            en: "Municipality Square",
-            coordinates: [23.318037, 55.932106],
+            lt: "Kaštonų alėja",
+            en: "Kaštonų Alley",
+            coordinates: [23.310130, 55.934403],
         },
         klp: {
             lt: "Dienovidžio skveras",
             en: "Dienovidžio Square",
             coordinates: [21.13491, 55.70807]
         },
+
         kns: {
-            lt: "Studentų skveras",
-            en: "Students' Square",
-            coordinates: [23.91431, 54.89897]
+            lt: "Centrinis paštas",
+            en: "Central Post",
+            coordinates: [23.9045, 54.89793]
         },
         rtv: {
             lt: "Rietavo dvaro oranžerija",
@@ -315,15 +324,16 @@ let points = [
         link: "gmo",
     },
     {
+
         vln: {
-            lt: "U&zcaron;upio undin&edot;",
-            en: "Mermaid of U&zcaron;upis",
-            coordinates: [25.292648, 54.680584],
+            lt: "Trij&uogon; kry&zcaron;i&uogon; kalnas",
+            en: "Hill of Three Crosses",
+            coordinates: [25.297490, 54.686754],
         },
         sil: {
-            lt: "Chaimo Frenkelio vila",
-            en: "??? Villa",
-            coordinates: [23.328716, 55.925281],
+            lt: "Pelikanų fontanas",
+            en: "Pelican Fountain",
+            coordinates: [23.314924, 55.931415],
         },
         klp: {
             lt: "Biržos tiltas",
@@ -360,25 +370,28 @@ let points = [
         link: "nano",
     },
     {
+
         vln: {
-            lt: "Luki&scaron;ki&uogon; aik&scaron;t&edot;",
-            en: "Luki&scaron;k&edot;s Square",
-            coordinates: [25.271029, 54.689640],
+            lt: "Rotušės aikštė",
+            en: "Town Hall Square",
+            coordinates: [25.287631, 54.679236],
         },
         sil: {
-            lt: "P. Višinsio biblioteka",
-            en: "P. Višinskis Library",
-            coordinates: [23.310647, 55.937133],
+            lt: "Geležinkelio stotis",
+            en: "Railway Station",
+            coordinates: [23.313971, 55.923436],
         },
+
         klp: {
             lt: "Atgimimo aikštė",
             en: "Resurrection Square",
             coordinates: [21.132, 55.71095]
         },
+
         kns: {
-            lt: "Nemuno sala",
-            en: "Nemunas Island",
-            coordinates: [23.91045, 54.89159]
+            lt: "Kiemo galerija",
+            en: "Yard Gallery",
+            coordinates: [23.90479, 54.89937]
         },
         rtv: {
             lt: "Vasaros terasa",
@@ -406,24 +419,25 @@ let points = [
     },
     {
         vln: {
-            lt: "Bernardin&uogon; sodas (II)",
-            en: "Bernardine Garden (II)",
-            coordinates: [25.296628, 54.682367],
+            lt: "Baltasis tiltas",
+            en: "White Bridge",
+            coordinates: [25.273619, 54.693303],
         },
         sil: {
-            lt: "Saulės koncertų salė",
-            en: "Saulė Concert Hall",
-            coordinates: [23.31269, 55.929935],
+            lt: "Talkšos paplūdimys",
+            en: "Talkša Beach",
+            coordinates: [23.336872, 55.932422],
         },
         klp: {
             lt: "M. Mažvydo alėja",
             en: "M. Mažvydas Alley",
             coordinates: [21.13234, 55.71452]
         },
+
         kns: {
-            lt: "Aleksoto apžvalgos aikštelė",
-            en: "Aleksotas Observation Point",
-            coordinates: [23.88653, 54.89161]
+            lt: "Nemuno sala",
+            en: "Nemunas Island",
+            coordinates: [23.91045, 54.89159]
         },
         rtv: {
             lt: "Naujasis tiltelis",
@@ -450,25 +464,27 @@ let points = [
         link: "ecoli",
     },
     {
+
         vln: {
-            lt: "Vokiečių gatvė",
-            en: "Vokiečių Street",
-            coordinates: [25.283881, 54.679338],
+            lt: "Bernardin&uogon; sodas (II)",
+            en: "Bernardine Garden (II)",
+            coordinates: [25.296628, 54.682367],
         },
         sil: {
-            lt: "Geležinkelio stotis",
-            en: "Railway Station",
-            coordinates: [23.313971, 55.923436],
+            lt: "P. Višinsio biblioteka",
+            en: "P. Višinskis Library",
+            coordinates: [23.310647, 55.937133],
         },
         klp: {
             lt: "Meridianas",
             en: "Meridian",
             coordinates: [21.13507, 55.71038]
         },
+
         kns: {
-            lt: "Rožinis dramblys",
-            en: "The Pink Elephant",
-            coordinates: [23.90826, 54.90015]
+            lt: "Kauko laiptai",
+            en: "Kaukas Steps",
+            coordinates: [23.92547, 54.90095]
         },
         rtv: {
             lt: "Meilės kalnelis",
@@ -495,25 +511,27 @@ let points = [
         link: "crisprcas9",
     },
     {
+
         vln: {
-            lt: "Rotušės aikštė",
-            en: "Town Hall Square",
-            coordinates: [25.287631, 54.679236],
+            lt: "Vokiečių gatvė",
+            en: "Vokiečių Street",
+            coordinates: [25.283881, 54.679338],
         },
         sil: {
-            lt: "Sukilėlių kalnelis",
-            en: "Rebel Hill",
-            coordinates: [23.304555, 55.935753],
+            lt: "Chaimo Frenkelio vila",
+            en: "Chaimas Frenkelis Villa",
+            coordinates: [23.328716, 55.925281],
         },
+
         klp: {
-            lt: "Naujoji perkėla",
-            en: "New Ferry",
-            coordinates: [21.13933, 55.68866]
+            lt: "Melnragės molas",
+            en: "Melnragė Pier",
+            coordinates: [21.085865, 55.731250]
         },
         kns: {
-            lt: "Rotušė",
-            en: "Town Hall",
-            coordinates: [23.88581, 54.8973]
+            lt: "Soboras",
+            en: "Garrison Church",
+            coordinates: [23.92147, 54.89704]
         },
         rtv: {
             lt: "Muziejus",
@@ -546,19 +564,14 @@ let points = [
             coordinates: [25.277759, 54.679589],
         },
         sil: {
-            lt: "Autobusų stotis",
-            en: "Bus station",
-            coordinates: [23.308000, 55.927814],
-        },
-        klp: {
-            lt: "Jūrų muziejus",
-            en: "Sea Museum",
-            coordinates: [21.09983, 55.71679]
+            lt: "Savivaldybės aikštė",
+            en: "Municipality Square",
+            coordinates: [23.318037, 55.932106],
         },
         kns: {
-            lt: "Laisvės alėjos fontanas",
-            en: "Laisvės Avenue Fountain",
-            coordinates: [23.91356, 54.89738]
+            lt: "Aleksoto apžvalgos aikštelė",
+            en: "Aleksotas Observation Point",
+            coordinates: [23.88653, 54.89161]
         },
         rtv: {
             lt: "Naujasis pažintinis takelis",
