@@ -39,8 +39,8 @@ let points = [
             coordinates: [21.934260, 55.725814]
         },
         zrs: {
-            lt: "Zarasų krašto muziejus",
-            en: "Zarasai Museum",
+            lt: "Didžiosios salos paplūdimys",
+            en: "Big Island Beach",
             coordinates: [26.245028, 55.728278]
         },
         alt: {
@@ -89,9 +89,9 @@ let points = [
             coordinates: [21.931144, 55.723730]
         },
         zrs: {
-            lt: "Didžioji sala",
-            en: "The Great Island of Zarasas Lake",
-            coordinates: [26.235028, 55.735083]
+            lt: "Zaraso ežero apžvalgos ratas",
+            en: "Lake Zarasai Observation Circle",
+            coordinates: [26.243639, 55.728028]
         },
         alt: {
             lt: "Baltosios rožės tiltas",
@@ -139,9 +139,9 @@ let points = [
             coordinates: [21.933667, 55.726798]
         },
         zrs: {
-            lt: "Αpžvalgos ratas",
-            en: "Ferris Wheel",
-            coordinates: [26.243639, 55.728028]
+            lt: "Wake Inn",
+            en: "Wake Inn",
+            coordinates: [26.231528, 55.735139]
         },
         alt: {
             lt: "Alytaus miesto sodas (II)",
@@ -189,9 +189,9 @@ let points = [
             coordinates: [21.932130, 55.722873]
         },
         zrs: {
-            lt: "Bajorų gatvė (I)",
-            en: "Bajorų Street (I)",
-            coordinates: [26.240500, 55.733889]
+            lt: "Žalias tiltas link Didžiosios salos",
+            en: "Green Bridge towards Big Island",
+            coordinates: [26.237000, 55.735806]
         },
         alt: {
             lt: "Piliakalnis",
@@ -239,9 +239,9 @@ let points = [
             coordinates: [21.933833, 55.728535]
         },
         zrs: {
-            lt: "Wake Inn",
-            en: "Wake Inn",
-            coordinates: [26.231528, 55.735139]
+            lt: "Zarasų turizmo ir verslo informacijos centras",
+            en: "Zarasai Tourism and Business Information Centre",
+            coordinates: [26.244361, 55.732]
         },
         alt: {
             lt: "Tūkstantmečio tiltas",
@@ -289,9 +289,9 @@ let points = [
             coordinates: [21.932608, 55.723778]
         },
         zrs: {
-            lt: "Žalias tiltas",
-            en: "The Green Bridge",
-            coordinates: [26.237000, 55.735806]
+            lt: "Sėlių aikštė (II)",
+            en: "Sėliai Square (II)",
+            coordinates: [26.244361, 55.732000]
         },
         alt: {
             lt: "Dailidės ežeras",
@@ -339,9 +339,9 @@ let points = [
             coordinates: [21.931575, 55.727031]
         },
         zrs: {
-            lt: "Savivaldybė",
-            en: "Municipality",
-            coordinates: [26.246472, 55.732417]
+            lt: "Zarasų krašto muziejus",
+            en: "Zarasai Region Museum",
+            coordinates: [26.245028, 55.728278]
         },
         alt: {
             lt: "Jaunimo parkas (I)",
@@ -389,9 +389,9 @@ let points = [
             coordinates: [21.941778, 55.728632]
         },
         zrs: {
-            lt: "Sėlių aikštė (I)",
-            en: "Sėliai Square (I)",
-            coordinates: [26.245722, 55.731722]
+            lt: "Bajorų gatvė (I)",
+            en: "Bajorai street (I)",
+            coordinates: [26.240861, 55.732083]
         },
         alt: {
             lt: "Rotušė",
@@ -439,8 +439,8 @@ let points = [
             coordinates: [21.937548, 55.727696]
         },
         zrs: {
-            lt: "Bajorų gatvė  (II)",
-            en: "Bajorų Street  (II)",
+            lt: "Bajorų gatvė (III)",
+            en: "Bajorai Street (III)",
             coordinates: [26.241167, 55.733306]
         },
         alt: {
@@ -489,10 +489,10 @@ let points = [
             coordinates: [21.942132, 55.730166]
         },
         zrs: {
-            lt: "Sėlių aikštė (ΙΙ)",
-            en: "Sėlių Square (ΙΙ)",
-            coordinates: [26.244361, 55.732000]
-        },
+            lt: "Bajorų gatvė (II)",
+            en: "Bajorai Street (II)",
+            coordinates: [26.240861, 55.732556]
+        },  
         alt: {
             lt: "Senamiesčio skveras",
             en: "Old Town Square",
@@ -538,10 +538,10 @@ let points = [
             en: "Museum",
             coordinates: [21.931111, 55.728413]
         },
-        zrs: {
-            lt: "Bajorų gatvė (III)",
-            en: "Bajorų Street (III)",
-            coordinates: [26.240861, 55.732083]
+        zrs: { 
+            lt: "Bajorų gatvė (IV)",
+            en: "Bajorai Street (IV)",
+            coordinates: [26.240500, 55.733889]
         },
         alt: {
             lt: "Dailidės ežeras (II)",
@@ -589,9 +589,9 @@ let points = [
             coordinates: [21.933069, 55.723338]
         },
         zrs: {
-            lt: "Bajorų gatvė (IV)",
-            en: "Bajorų Street (IV)",
-            coordinates: [26.240861, 55.732556]
+            lt: "Sėlių aikštė (I)",
+            en: "Sėliai Square (I)",
+            coordinates: [26.245722, 55.731722]
         },
         alt: {
             lt: "Laisvės Angelas",
@@ -645,7 +645,7 @@ let points = [
         },
         zrs: {
             lt: "Zarasų bažnyčia",
-            en: "Zarasai Church",
+            en: "Zarasai Catholic Church",
             coordinates: [26.245444, 55.730889]
         },
         alt: {
