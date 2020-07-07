@@ -41,6 +41,11 @@ canvas {
     text-align: center
 }
 
+.col-6 {
+    width: 50%;
+    text-align: center;
+}
+
 
 
 .button {

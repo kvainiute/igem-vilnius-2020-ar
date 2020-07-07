@@ -24,7 +24,11 @@ const INITIAL_MTL = new THREE.MeshPhongMaterial({
 });
 
 function setTitle() {
-    document.title = "Vilnius iGEM AR – " + data[currentModel].meta[language].name;
+    if (data[currentModel].model.pattern == "igem-logo") {
+        document.title = "Vilnius iGEM AR";
+    } else {
+        document.title = "Vilnius iGEM AR – " + data[currentModel].meta[language].name;
+    }
 }
 
 // functions to use in different versions
@@ -105,10 +109,12 @@ function initializeAR() {
 
     var switchAR = document.getElementById("ar-switch");
     var arContent;
-    switchAR.addEventListener('load', function () {
-        arContent = switchAR.contentDocument;
-        arContent.addEventListener('click', toggleAR3D, false);
-    })
+    if (switchAR != null) {
+        switchAR.addEventListener('load', function () {
+            arContent = switchAR.contentDocument;
+            arContent.addEventListener('click', toggleAR3D, false);
+        })
+    }
     document.getElementById("close-button").addEventListener('click', function () {
         $('#model-info').css('display', 'none');
     }, false);
@@ -324,6 +330,9 @@ function reset() {
 
 function showModelInfo() {
     let info = data[currentModel].meta[language]
+    if (data[currentModel].model.pattern == "igem-logo") {
+        info = data[currentModel].meta.en;
+    }
 
     document.getElementById("st-name").innerHTML = info.name;
     document.getElementById("text-info").innerHTML = info.desc;
@@ -335,22 +344,27 @@ function showModelInfo() {
 function load3Dmodel(item, ar = true) {
     let modelData = item.model;
     let modelMeta = item.meta[language];
+    if (modelData.pattern == "igem-logo") {
+        modelMeta = item.meta.en;
+    }
 
     if (typeof modelData.pattern === 'undefined') {
         return;
     }
-
-    recording = modelMeta.audioRec;
     window.addEventListener("load", function () {
         infoButton.contentDocument.addEventListener('click', showModelInfo, false);
     });
-    var audioplay = document.getElementById("audio-button");
-    var audiocontent;
-    window.addEventListener("load", function () {
-        audioplay.contentDocument.addEventListener('click', function () {
-            playAudio(recording);
+    if (typeof modelMeta.audioRec !== 'undefined') {
+        recording = modelMeta.audioRec;
+
+        var audioplay = document.getElementById("audio-button");
+        var audiocontent;
+        window.addEventListener("load", function () {
+            audioplay.contentDocument.addEventListener('click', function () {
+                playAudio(recording);
+            });
         });
-    });
+    }
     // interpolates from last position to create smoother transitions when moving.
     // parameter lerp values near 0 are slow, near 1 are fast (instantaneous).
     let root = new THREE.Group();
