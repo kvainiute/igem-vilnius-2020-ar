@@ -758,8 +758,8 @@ let cities = {
         zoom: 14
     },
     mzk: {
-        coordinates: [22.341217, 56.311901],
-        zoom: 14
+        coordinates: [22.346578, 56.304067],
+        zoom: 13
     }
 }
 
