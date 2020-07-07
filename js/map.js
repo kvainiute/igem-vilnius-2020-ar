@@ -23,7 +23,11 @@ let points = [
             en: "Iron Fox",
             coordinates: [23.328929, 55.931132],
         },
-        // panevezys?
+        pnv: {
+            lt: "Skaistakalnio parkas",
+            en: "Skaistakalnis Park",
+            coordinates: [24.37616, 55.73379]
+        },
         trg: {
             lt: "Pilies aikštė",
             en: "Castle Square",
@@ -69,7 +73,11 @@ let points = [
             en: "The Sundial Square",
             coordinates: [23.325083, 55.930636],
         },
-        // panevezys?
+        pnv: {
+            lt: "Laisvės aikštė",
+            en: "Freedom Square",
+            coordinates: [24.36228, 55.72615]
+        },
         trg: {
             lt: "Muzikinis fontanas",
             en: "Musical Fountain",
@@ -115,7 +123,11 @@ let points = [
             en: "Concert Hall \"Saulė\"",
             coordinates: [23.312699, 55.9299356],
         },
-        // panevezys?
+        pnv: {
+            lt: "Raktų medis",
+            en: "Key Tree",
+            coordinates: [24.35827, 55.72926]
+        },
         trg: {
             lt: "Užtvanka",
             en: "Dam",
@@ -161,7 +173,11 @@ let points = [
             en: "The Hill of Rebels",
             coordinates: [23.304555, 55.935753],
         },
-        // panevezys?
+        pnv: {
+            lt: "Kraštotyros muziejus",
+            en: "Local Lore Museum",
+            coordinates: [24.35838, 55.73005]
+        },
         trg: {
             lt: "Švč. Trejybės bažnyčia",
             en: "Catholic Church of the Holy Trinity",
@@ -207,7 +223,11 @@ let points = [
             en: "Bus Station",
             coordinates: [23.308000, 55.927814],
         },
-        // panevezys?
+        pnv: {
+            lt: "Katedra",
+            en: "Cathedral",
+            coordinates: [24.3564, 55.72288]
+        },
         trg: {
             lt: "Sėkmės deivės skulptūra",
             en: "Sculpture of the Goddess of Luck",
@@ -253,7 +273,11 @@ let points = [
             en: "Resurrection Square",
             coordinates: [23.3162558, 55.9331288],
         },
-        // panevezys?
+        pnv: {
+            lt: "Muzikinis teatras",
+            en: "Musical Theatre",
+            coordinates: [24.35699, 55.72581]
+        },
         trg: {
             lt: "Liberty Beach",
             en: "Liberty Beach",
@@ -299,7 +323,11 @@ let points = [
             en: "Kaštonų Alley",
             coordinates: [23.3101301, 55.9344033],
         },
-        // panevezys?
+        pnv: {
+            lt: "Dailės galerija",
+            en: "Art Gallery",
+            coordinates: [24.35979, 55.72793]
+        },
         trg: {
             lt: "Vytauto stadionas",
             en: "Vytautas Stadium",
@@ -345,7 +373,11 @@ let points = [
             en: "Fountain \"Pelicans\"",
             coordinates: [23.314924, 55.931415],
         },
-        // panevezys?
+        pnv: {
+            lt: "Juozo Miltinio teatras",
+            en: "Juozas Miltinis Drama Theater",
+            coordinates: [24.36456, 55.72889]
+        },
         trg: {
             lt: "Zumpės tvenkinys",
             en: "Zumpės Pond",
@@ -391,7 +423,11 @@ let points = [
             en: "Railway Station",
             coordinates: [23.3139713, 55.9234364],
         },
-        // panevezys?
+        pnv: {
+            lt: "Senoji siauruko stotis",
+            en: "Old Narrow Gauge Station",
+            coordinates: [24.35861, 55.74599]
+        },
         trg: {
             lt: "Tauragės kultūros centras",
             en: "Tauragė Culture Centre",
@@ -437,7 +473,11 @@ let points = [
             en: "Talkša Beach",
             coordinates: [23.336872, 55.932422],
         },
-        // panevezys?
+        pnv: {
+            lt: "Kino centras „Garsas“",
+            en: "Cinema centre \"Garsas\"",
+            coordinates: [24.35999, 55.73179]
+        },
         trg: {
             lt: "Jaunimo erdvė",
             en: "Youth Space",
@@ -483,7 +523,11 @@ let points = [
             en: "P. Višinskis Library",
             coordinates: [23.3106477, 55.9371334],
         },
-        // panevezys?
+        pnv: {
+            lt: "Kultūros ir poilsio parkas",
+            en: "Culture and Leisure Park",
+            coordinates: [24.3356, 55.73761]
+        },
         trg: {
             lt: "Vasaros estrada",
             en: "Summer Stage",
@@ -529,7 +573,11 @@ let points = [
             en: "Chaimas Frenkelis Villa",
             coordinates: [23.3287166, 55.9252816],
         },
-        // panevezys?
+        pnv: {
+            lt: "Senvagė",
+            en: "Old Riverbed",
+            coordinates: [24.36375, 55.73062]
+        },
         trg: {
             lt: "Riedlenčių parkas",
             en: "Skatepark",
@@ -580,7 +628,11 @@ let points = [
             en: "The New Hiking Trail",
             coordinates: [21.937548, 55.727696]
         },
-        // panevezys?
+        pnv: {
+            lt: "Lėlių vežimo tetras",
+            en: "Puppet Wagon Theater",
+            coordinates: [24.36045, 55.73086]
+        },
         trg: {
             lt: "Autobusų stotis",
             en: "Bus Station",
