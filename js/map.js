@@ -527,18 +527,18 @@ let points = [
         sil: {
             lt: "Chaimo Frenkelio vila",
             en: "Chaimas Frenkelis Villa",
-            coordinates: [23.328716, 55.925281],
+            coordinates: [23.3287166, 55.9252816],
         },
         // panevezys?
         trg: {
-            lt: "Švč. Trejybės bažnyčia",
-            en: "Church of the Holy Trinity",
-            coordinates: [22.284751, 55.249393]
+            lt: "Riedlenčių parkas",
+            en: "Skatepark",
+            coordinates: [22.291550, 55.252889]
         },
         rtv: {
-            lt: "Muziejus",
-            en: "Museum",
-            coordinates: [21.931111, 55.728413]
+            lt: "Šv. Mykolo Arkangelo bažnyčia",
+            en: "Church of St. Michael",
+            coordinates: [21.933069, 55.723338]
         },
         zrs: {
             lt: "Bajorų gatvė (IV)",
@@ -546,9 +546,9 @@ let points = [
             coordinates: [26.240861, 55.732556]
         },
         alt: {
-            lt: "Jaunimo parkas (II)",
-            en: "Youth Park (II)",
-            coordinates: [24.02786, 54.40656]
+            lt: "Laisvės Angelas",
+            en: "Angel of Freedom",
+            coordinates: [24.04947, 54.39404]
         },
     },
     {
@@ -565,10 +565,15 @@ let points = [
             en: "Aleksotas Observation Point",
             coordinates: [23.88653, 54.89161]
         },
+        klp: {
+            lt: "M. Mažvydo alėja",
+            en: "M. Mažvydas Alley",
+            coordinates: [21.132862, 55.714552]
+        },
         sil: {
             lt: "Savivaldybės aikštė",
             en: "Municipality Square",
-            coordinates: [23.318037, 55.932106],
+            coordinates: [23.3180374, 55.9321064],
         },
         rtv: {
             lt: "Naujasis pažintinis takelis",
@@ -577,9 +582,14 @@ let points = [
         },
         // panevezys?
         trg: {
-            lt: "Vytauto stadionas",
-            en: "Vytautas Stadium",
-            coordinates: [22.278648, 55.260828]
+            lt: "Autobusų stotis",
+            en: "Bus Station",
+            coordinates: [22.292393, 55.255545]
+        },
+        rtv: {
+            lt: "Meilės kalnelis",
+            en: "Hill of Love",
+            coordinates: [21.934343, 55.731145]
         },
         zrs: {
             lt: "Zarasų bažnyčia",
@@ -587,9 +597,9 @@ let points = [
             coordinates: [26.245444, 55.730889]
         },
         alt: {
-            lt: "Dailidės ežeras (II)",
-            en: "Dailidė Lake (II)",
-            coordinates: [24.07503, 54.3865]
+            lt: "Mažosios Dailidės ežeras",
+            en: "Little Dailidė Lake",
+            coordinates: [24.06095, 54.3927]
         },
     },
 ];
