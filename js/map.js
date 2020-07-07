@@ -664,15 +664,15 @@ function initializeNavBar(language) {
 }
 
 function makeFeatures(city, language) {
+    var cityCookie = document.cookie.split('; ')
+        .find(row => row.startsWith('city'))
+        .split('=')[1];
     let returnList = [];
     for (let item of points) {
         let theLink;
         if (typeof (item.customLink) === 'string') {
             theLink = item.customLink;
         } else {
-            var cityCookie = document.cookie.split('; ')
-                .find(row => row.startsWith('city'))
-                .split('=')[1];
             theLink = './ar.html?model=' + item.link + '&city=' + cityCookie;
         }
 
