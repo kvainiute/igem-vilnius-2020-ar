@@ -351,7 +351,7 @@ const data = {
         meta: {
             en: {
                 name: "Vilnius iGEM",
-                desc: "text",
+                desc: "Best wishes from the postcard! Vilnius-Lithuania iGEM 2020 team greets you with this sneak peek of our project, which we are developing alongside our main goal. The whole idea of the “pocket-museum” was developed in purpose to educate and encourage people to be involved in life sciences and especially synthetic biology. QR codes, as well as an augmented reality environment, are accessible to anyone with a smartphone, enabling access to a virtual museum of life sciences. QR codes and AR markers are mounted on plaques installed in cities <a href='https://igem-vilnius-ar.com/map.html'>all over Lithuania</a>. By simply scanning the QR code you enter our website and by pointing your camera towards the marker you can enjoy the 3D model exhibition!<br><a href='https://igem-vilnius-ar.com/'>More...</a>",
             },
         },
         model: {
