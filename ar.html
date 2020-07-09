@@ -20,14 +20,14 @@
         }
 
         #popup-info {
-            width: fit-content;
-            max-width: 60%;
+            width: 70%;
             height: fit-content;
             background-color: rgba(20, 25, 46, 0.9);
             border-radius: 15px;
             padding: 10px;
             max-height: 70%;
-            z-index: 10
+            z-index: 10;
+            display: none
         }
 
         #popup-text {
@@ -50,6 +50,13 @@
             cursor: pointer
         }
 
+        @media (min-width: 768px) {
+            #popup-info {
+                width: 40%;
+                max-width: 60%;
+            }
+        }
+
     </style>
 </head>
 
@@ -61,9 +68,11 @@
                 <circle fill="none" stroke="#ffffff" stroke-width="2" stroke-miterlimit="10" cx="25" cy="25" r="24" />
             </svg></div>
         <div id="popup-image"><object data="images/info-popup.svg" type="image/svg+xml"></object></div>
+        <!--
         <div id="popup-text">
             <p>Skenuok markerį taip, kad jis tilptų visas įrenginio ekrane</p>
         </div>
+-->
     </div>
     <div class="info">
         <div class="spacer"></div>
@@ -119,8 +128,16 @@
     <div id="tray-container" style="display:none;" id="prew2"></div>
 
     <script>
+        var cookieExists = document.cookie.split('; ')
+            .find(row => row.startsWith('popup'));
+        if (cookieExists == undefined) {
+            document.getElementById("popup-info").style.display = "inline";
+            document.cookie = "popup=1"
+        }
+
         function closePopup() {
             document.getElementById("popup-info").style.display = "none";
+
         }
 
         language = LanguageSwitcher.currentLanguage;
