@@ -1,16 +1,20 @@
 const cookietext = {
-    lt: ["Šioje svetainėje naudojami slapukai analitikai. Ar sutinkate su slapukų naudojimu?", "Sutinku", "Nesutinku"],
-    en: ["This website uses cookies for analytics. Do you allow the use of cookies?", "Allow", "Deny"]
+    lt: ["Šioje svetainėje naudojami slapukai analitikai. Su kurių slapukų naudojimu sutinkate?", "Sutinku", "Privalomi", "Funkciniai", "Analitiniai", "Daugiau informacijos..."],
+    en: ["This website uses cookies for analytics. Which cookies do you allow the use of?", "Allow", "Required", "Functional", "Analytical", "More information..."]
 }
 
 class LanguageSwitcher {
     static setCookieLanguage(language) {
         let cookiebox = document.getElementById("consent");
-        let buttons = document.getElementById("button-wrapper")
+        let buttons = document.getElementById("button-wrapper");
+        let checkboxes = document.getElementById("cookieCheckboxes");
         if (cookiebox == undefined) return;
         cookiebox.children[0].innerText = cookietext[language][0];
         buttons.children[0].innerText = cookietext[language][1];
-        buttons.children[1].innerText = cookietext[language][2];
+        checkboxes.children[0].lastElementChild.innerText = cookietext[language][2];
+        checkboxes.children[1].lastElementChild.innerText = cookietext[language][3];
+        checkboxes.children[2].lastElementChild.innerText = cookietext[language][4];
+        document.getElementById("policyLink").innerText = cookietext[language][5];
     }
 
     static getLanguage() {
@@ -25,7 +29,10 @@ class LanguageSwitcher {
 
     static setLanguage(language, updateLanguageBox = false) {
         LanguageSwitcher.currentLanguage = language;
-        document.cookie = "language=" + language;
+        let cookieconsent = getCookieConsent();
+        if (cookieconsent === "1" || cookieconsent === "3"){
+            document.cookie = "language=" + language;
+        }
         document.documentElement.lang = language;
         for (let func of LanguageSwitcher.listeners) {
             func(language);

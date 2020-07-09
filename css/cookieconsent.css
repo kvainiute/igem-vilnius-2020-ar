@@ -1,5 +1,5 @@
 #consent {
-
+    align-items: center;
     box-sizing: border-box;
     bottom: 0px;
     position: absolute;
@@ -11,6 +11,10 @@
     border-top: 1px solid #000020;
     z-index: 2000;
     font-family: 'CustomReg';
+}
+
+#consent a {
+    color: #000020;
 }
 
 #button-wrapper {
@@ -26,7 +30,8 @@
     padding: 4px 10px;
     max-height: 40px;
     font-family: 'CustomHeavy';
-    font-size: 0.9em
+    font-size: 0.9em;
+    cursor: pointer;
 }
 
 #bt-accept {
@@ -34,15 +39,51 @@
     border-right: solid 1px #000020
 }
 
-#bt-reject {
+#bt-close {
     border: 0;
     border-left: solid 1px #000020
 }
 
-#consent button:hover {
-    cursor: pointer
+
+#consent #cookieCheckboxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    color: #000020;   
 }
 
+#consent #cookieCheckboxes label {
+    display: flex;
+    margin-right: 8px;
+}
+
+#consent #cookieCheckboxes input[type=checkbox]+label::before {
+    content: ' ';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+
+    background-color: transparent;
+    border: 1px solid #000020;
+    border-radius: 2px;
+}
+
+#consent #cookieCheckboxes input[type=checkbox]:checked+label::before {
+    content: '✓';
+}
+
+#consent #cookieCheckboxes input[type=checkbox]:disabled+label::before {
+    background-color: gray;
+}
+
+#consent #cookieCheckboxes input[type=checkbox] {
+    display: none;
+}
 
 
 #consent p {

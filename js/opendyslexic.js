@@ -11,7 +11,10 @@ class FontSwitcher {
 
     static set(font = "none"){
         FontSwitcher.currentFont = font;
-        document.cookie = "font=" + font;
+        let cookieconsent = getCookieConsent();
+        if (cookieconsent === "1" || cookieconsent === "3"){
+            document.cookie = "font=" + font;
+        }
         FontSwitcher.styleElement.innerText = FontSwitcher.fonts[font].style;
     }
 
