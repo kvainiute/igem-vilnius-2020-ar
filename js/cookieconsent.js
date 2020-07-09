@@ -29,7 +29,7 @@ function setCookieConsent(value) {
     document.cookie = "cookieconsent=" + value;
 }
 
-function createCheckboxAndLabel(id, text){
+function createCheckboxAndLabel(id, text) {
     const div = document.createElement("div");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -53,7 +53,9 @@ function createCookieConsentBox() {
 
     const checkboxes = document.createElement("div");
     checkboxes.id = "cookieCheckboxes";
-    
+    const checkboxesWrapper = document.createElement('div');
+    checkboxesWrapper.id = 'cookieCheckWrap';
+
     const buttonWrapper = document.createElement("div");
     buttonWrapper.id = "button-wrapper";
 
@@ -63,8 +65,9 @@ function createCookieConsentBox() {
     policyLink.innerText = "More information...";
 
     cookiediv.appendChild(text);
-    cookiediv.appendChild(checkboxes);
-    cookiediv.appendChild(policyLink);
+    cookiediv.appendChild(checkboxesWrapper);
+    checkboxesWrapper.appendChild(checkboxes)
+    checkboxesWrapper.appendChild(policyLink);
     cookiediv.appendChild(buttonWrapper);
 
     const requiredCheckbox = createCheckboxAndLabel("checkboxRequired", "Required");
@@ -88,8 +91,8 @@ function createCookieConsentBox() {
     buttonAccept.id = "bt-accept";
     buttonWrapper.appendChild(buttonAccept);
 
-    const buttonClose = document.createElement("button");
-    buttonClose.innerText = "X";
+    const buttonClose = document.createElement("div");
+    buttonClose.innerHTML = "<img src='./images/close.svg'>";
     buttonClose.onclick = () => {
         cookiediv.remove();
         setCookieConsent("-1");

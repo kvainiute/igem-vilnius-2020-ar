@@ -30,7 +30,7 @@ class LanguageSwitcher {
     static setLanguage(language, updateLanguageBox = false) {
         LanguageSwitcher.currentLanguage = language;
         let cookieconsent = getCookieConsent();
-        if (cookieconsent === "1" || cookieconsent === "3"){
+        if (cookieconsent === "1" || cookieconsent === "3") {
             document.cookie = "language=" + language;
         }
         document.documentElement.lang = language;

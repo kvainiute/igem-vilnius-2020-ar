@@ -3,14 +3,13 @@
     box-sizing: border-box;
     bottom: 0px;
     position: absolute;
-    /*    background: #FCBD1B;*/
-    background: rgba(252, 189, 72, 0.95);
+    background: #FCBD1B;
     width: 100%;
     display: table;
     padding: 12px;
-    border-top: 1px solid #000020;
     z-index: 2000;
-    font-family: 'CustomReg';
+    font-family: 'CustomLight';
+    font-size: 0.8em
 }
 
 #consent a {
@@ -18,11 +17,19 @@
 }
 
 #button-wrapper {
-    padding-top: 20px;
+    padding-top: 10px;
     width: fit-content;
     margin: 0 auto;
+    display: flex
 }
 
+#bt-close img {
+    box-sizing: border-box;
+    height: 20px;
+    padding-left: 10px;
+    padding-top: 4px;
+    vertical-align: middle;
+}
 
 #consent button {
     background: none;
@@ -35,14 +42,10 @@
 }
 
 #bt-accept {
-    border: 0;
-    border-right: solid 1px #000020
+    border: solid 1px #000020;
 }
 
-#bt-close {
-    border: 0;
-    border-left: solid 1px #000020
-}
+
 
 
 #consent #cookieCheckboxes {
@@ -50,8 +53,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
-    color: #000020;   
+    padding: 10px;
+    color: #000020;
+    padding-bottom: 2px
 }
 
 #consent #cookieCheckboxes label {
@@ -59,7 +63,11 @@
     margin-right: 8px;
 }
 
-#consent #cookieCheckboxes input[type=checkbox]+label::before {
+#policyLink {
+    font-size: 0.7em
+}
+
+#consent #cookieCheckboxes input[type=checkbox] + label::before {
     content: ' ';
     display: inline-flex;
     align-items: center;
@@ -73,11 +81,11 @@
     border-radius: 2px;
 }
 
-#consent #cookieCheckboxes input[type=checkbox]:checked+label::before {
+#consent #cookieCheckboxes input[type=checkbox]:checked + label::before {
     content: '✓';
 }
 
-#consent #cookieCheckboxes input[type=checkbox]:disabled+label::before {
+#consent #cookieCheckboxes input[type=checkbox]:disabled + label::before {
     background-color: gray;
 }
 
