@@ -2,18 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163985569-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-163985569-1');
-    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vilnius iGEM AR</title>
@@ -23,7 +11,10 @@
     <link href="./css/opendyslexic.css" rel="stylesheet">
     <link href="./css/map-info.css" rel="stylesheet">
     <style>
-        #consent { width: 100vw; }
+        #consent {
+            width: 100vw;
+        }
+
     </style>
 </head>
 
@@ -80,7 +71,7 @@
 
                 q3: "Ką daryti, jei kamera nerodo modelio?",
                 a3: "Įsitikinkite, kad nus-kenavote šios lentelės QR kodą. Patikrinkite, ar žymeklis gerai apšviestas, be šešėlių, neuždengtas ir matosi visas kameroje. Pabandykite nusukti kamerą nuo žymeklio ir tada vėl atsukti.",
-                
+
                 q4: "Mano telefonas nenuskenuoja QR kodo. Ką daryti?",
                 a4: "Galite parsisiųsti QR kodus skenuojančią programėlę savo įrenginiui. Jei jūsų įrenginys neturi kameros, galite naudotis stotelių žemėlapiu."
             }
@@ -99,5 +90,8 @@
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
         FontSwitcher.init();
+
     </script>
-</body></html>
+</body>
+
+</html>
