@@ -32,7 +32,7 @@
                     }
                 }
             });
-            if (getQueryParams()["mainmenu"] == "1"){
+            if (getQueryParams()["mainmenu"] == "1") {
                 document.getElementById("intro").style.visibility = "hidden";
                 setTimeout(() => {
                     document.getElementById("intro").style.visibility = "visible";
@@ -42,6 +42,7 @@
                 $.fn.pagepiling.moveSectionDown();
             }
         });
+
     </script>
 </head>
 
@@ -106,7 +107,7 @@
 
             </div>
             <div class="row" id="footer">
-                <a href="#">Privatumo politika</a>
+                <a href="privacypolicy.html">Privatumo politika</a>
             </div>
         </div>
 
@@ -115,6 +116,7 @@
 
     <script>
         var cookieConsentApplyElement = document.getElementById("main-menu");
+
     </script>
     <script src="js/ga.js"></script>
     <script src="js/languages.js" charset="UTF-8"></script>
@@ -213,5 +215,8 @@
 
         FontSwitcher.init();
         document.getElementById("dyslexia").onclick = () => FontSwitcher.toggle();
+
     </script>
-</body></html>
+</body>
+
+</html>

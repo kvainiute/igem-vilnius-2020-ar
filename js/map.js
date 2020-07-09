@@ -766,7 +766,6 @@ let cities = {
 function initializeNavBar(language) {
 
     var els = document.querySelectorAll('#dropdown-content :not(.navbar-contr):not(#navbar-controls):not(img):not(.languageBox):not(h1):not(span)');
-    console.log(els);
 
     for (var i = 0; i < els.length; i++) {
         els[i].parentNode.removeChild(els[i])
