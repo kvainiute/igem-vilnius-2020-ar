@@ -129,16 +129,6 @@ p {
     width: 50%
 }
 
-#menu-top {
-    box-sizing: border-box;
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 1em;
-    font-family: 'CustomBold';
-    color: white;
-    width: 100%
-}
-
 #dyslexia {
     position: fixed;
     top: 0;
@@ -172,6 +162,10 @@ p {
     margin: 0;
     padding-left: 5%;
     font-size: 1em;
+}
+
+#middle-menu {
+    margin-top: 24px;
 }
 
 #middle-menu img {
