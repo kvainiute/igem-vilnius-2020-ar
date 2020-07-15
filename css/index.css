@@ -140,10 +140,23 @@ p {
 }
 
 #dyslexia {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 16px;
+    color: white;
     display: flex;
     text-align: left;
     cursor: pointer;
     font-family: 'opendyslexic';
+}
+
+#languages {
+    position: absolute;
+    margin: 16px;
+    top: 0;
+    right: 0;
+    color: white;
 }
 
 #languages .languageBox span.active,
@@ -288,12 +301,17 @@ p {
     }
 
     #dyslexia img {
-        height: 4.6em
+        height: 3em
     }
 
     #navigation {
         width: 50%;
         font-size: 1.5em
+    }
+
+    #navigation a {
+        padding: 0.3em;
+        margin: 0.2em;
     }
 
     #main-menu #footer a {
