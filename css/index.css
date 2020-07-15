@@ -1,526 +1,526 @@
-                #consent {
-                    bottom: 0vh;
-                }
-
-                html {
-                    background-color: #000020;
-                }
-
-                body {
-                    overflow-y: hidden;
-                    overflow-x: hidden;
-                }
-
-                .pp-easing {
-                    -webkit-transition: all 5000ms ease-in;
-                    -moz-transition: all 5000ms ease-in;
-                    -o-transition: all 5000ms ease-in;
-                    transition: all 5000ms ease-in;
-                    -webkit-transition-timing-function: ease-in;
-                    -moz-transition-timing-function: ease-in;
-                    -o-transition-timing-function: ease-in;
-                    transition-timing-function: ease-in;
-                }
-
-                h1,
-                h2,
-                h3,
-                p {
-                    margin-block-start: auto;
-                    margin-block-end: auto;
-                    margin-inline-start: auto;
-                    margin-inline-end: auto;
-                }
-
-                #header-wrapper {
-                    width: fit-content;
-                    margin: 0 auto;
-                }
-
-
-                #intro {
-                    background-color: #000020;
-                    color: white;
-                    font-family: 'CustomReg';
-                    overflow: hidden;
-                }
-
-                #top {
-                    font-family: 'CustomBold';
-                    padding-top: 10vh;
-                    text-align: left;
-                    margin-bottom: 5vh
-                }
-
-
-                #top h3 {
-                    font-size: 3em
-                }
-
-                #top h2 {
-                    font-size: 4em
-                }
-
-                #top h1 {
-                    font-size: 5em;
-                    display: inline-flex;
-                    color: #257cef;
-                    line-height: 0.8em
-                }
-
-                #top #movingDot {
-                    color: #fcbd1b;
-                    transition: 0.5s ease-in-out;
-                    height: 1em;
-                }
-
-                #bottom {
-                    position: fixed;
-                    bottom: 0px;
-                    left: 0;
-                    height: 20vh;
-                    text-align: left
-                }
-
-                #arrows {
-                    position: fixed;
-                    bottom: 3vh;
-                    height: 10vh;
-                    width: 100%;
-                }
-
-                #middle {
-                    padding-top: 20px;
-                }
-
-                #middle-wrapper {
-                    position: absolute;
-                }
-
-                #middle hr {
-                    border-width: 0.2px;
-                    width: 100%
-                }
-
-                #line {
-                    transition: 0.3s ease-out
-                }
-
-                #middle p {
-                    font-family: 'CustomLight';
-                    text-align: left;
-                    padding-top: 40px;
-                    font-size: 1em;
-                    margin: 0
-                }
-
-
-                #main-menu {
-                    background-color: #000020;
-                    text-align: center;
-                    overflow: hidden;
-                }
-
-                #main-menu .pp-tableCell {
-                    display: inline
-                }
-
-                .col-6 {
-                    width: 50%
-                }
-
-                #menu-top {
-                    box-sizing: border-box;
-                    display: inline-flex;
-                    justify-content: space-between;
-                    padding: 1em;
-                    font-family: 'CustomBold';
-                    color: white;
-                    width: 100%
-                }
-
-                #dyslexia {
-                    display: flex;
-                    text-align: left;
-                    cursor: pointer;
-                    font-family: 'opendyslexic';
-                }
-
-                #languages .languageBox span.active,
-                #languages .languageBox span:hover {
-                    border-bottom: 2px solid white;
-                }
-
-                #dyslexia img {
-                    height: 3em
-                }
-
-                #dyslexia p {
-                    margin: 0;
-                    padding-left: 5%;
-                    font-size: 1em;
-                }
-
-                #middle-menu img {
-                    box-sizing: border-box;
-                    width: auto;
-                    height: auto;
-                    max-height: 25vh;
-                    margin: 2vh
-                }
-
-                #navigation {
-                    font-family: 'CustomLight';
-                    font-size: 1em;
-                    width: 60%;
-                    display: grid;
-                    margin: auto;
-
-
-                }
-
-                #navigation a {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    box-sizing: border-box;
-                    background-color: #fcbd1b;
-                    padding: 0.7em;
-                    margin: 0.6em;
-                    border-radius: 1em;
-                    color: #000020;
-                    text-decoration: none;
-                }
-
-                #footer {
-
-                    position: fixed;
-                    bottom: 2vh;
-                    left: 2vh;
-                    font-family: 'CustomLight'
-
-                }
-
-                #main-menu #footer a {
-                    color: #fcbd1b;
-                    font-size: 0.6em;
-                    float: left;
-                }
-
-                #footer a:active,
-                #footer a:focus {
-                    color: #fcbd1b;
-                }
-
-                .container {
-                    width: 100%;
-                    text-align: center;
-                }
-
-                .container h1 {
-                    font-size: 2em
-                }
-
-                #info-page #footer,
-                #map-page #footer {
-                    vertical-align: middle;
-                    z-index: 10;
-                    position: fixed;
-                    margin: 0;
-                    bottom: 0;
-                    padding: 5px;
-                    width: 100%;
-                    height: 5vh;
-                    background-color: #fcbd1b;
-                    display: flex;
-                    align-items: center;
-                }
-
-                #info-page #footer a,
-                #map-page #footer a {
-                    position: fixed;
-                    float: none;
-                    font-family: 'CustomLight';
-                    text-decoration: none;
-                    font-size: 1.3em;
-                    color: #000020;
-                }
-
-                #info-page #footer a:hover,
-                #map-page #footer a:hover {
-                    text-decoration: underline;
-                }
-
-                @media (min-width:768px) {
-                    #top {
-                        text-align: center;
-                        margin: 0 auto;
-                        margin-bottom: 5vh
-                    }
-
-                    #top h3 {
-                        font-size: 5em
-                    }
-
-                    #top h2 {
-                        font-size: 6em
-                    }
-
-                    #top h1 {
-                        font-size: 7em;
-                        letter-spacing: 10px
-                    }
-
-                    #middle p {
-                        font-size: 1.5em;
-                        margin: 0
-                    }
-
-                    #menu-top p {
-                        font-size: 1.5em;
-                    }
-
-                    #middle-menu img {
-                        max-width: 50%;
-                        height: auto;
-                        max-height: 30vh;
-                        width: auto;
-                    }
-
-                    #dyslexia img {
-                        height: 4.6em
-                    }
-
-                    #navigation {
-                        width: 50%;
-                        font-size: 1.5em
-                    }
-
-                    #main-menu #footer a {
-                        font-size: 0.8em;
-
-                    }
-
-                    .container h1 {
-                        font-size: 4em
-                    }
-
-                    #dropdown-icon {
-                        height: 4em
-                    }
-
-                    #dropdown-menu {
-                        position: absolute;
-                        width: 7vw;
-                        height: 100vh;
-                        z-index: 1000;
-                    }
-
-                    #dropdown-content {
-                        width: 33vw;
-                        right: -33vw;
-                    }
-
-                    #dropdown-content a {
-                        font-size: 24px;
-                    }
-
-
-                    .navbar-contr img {
-                        height: 40px;
-                        max-width: 100px;
-                        margin: 10px
-                    }
-
-                    #dropdown-content h1 {
-                        font-size: 48px
-                    }
-
-                    #info-page #footer a,
-                    #map-page #footer a {
-                        font-size: 2em;
-                    }
-                }
-
-                @media (min-width:1024px) {
-                    #dropdown-icon {
-                        height: 5em
-                    }
-
-                    #navigation {
-                        width: 40%;
-                    }
-                }
-
-                @media (min-aspect-ratio: 17/9) and (min-width: 1024px) {
-                    #top {
-                        display: flex;
-                        width: 80%;
-                        padding-top: 0;
-                    }
-
-                    #header-wrapper {
-                        margin-left: 6vw;
-                        display: flex
-                    }
-
-
-                    #top h1,
-                    #top h2,
-                    #top h3 {
-                        margin-inline-start: 0;
-                        margin-inline-end: 0;
-                        margin-right: 1vw;
-                        font-size: 4em;
-                        letter-spacing: normal;
-                        line-height: normal;
-                    }
-
-                }
-
-                @media (min-aspect-ratio: 16/9) and (max-width:1023px) {
-                    #top {
-                        display: flex;
-                        width: 80%;
-                        padding-top: 0;
-                        margin-left: 10vw;
-                    }
-
-                    #header-wrapper {
-                        display: flex
-                    }
-
-
-                    #top h1,
-                    #top h2,
-                    #top h3 {
-                        margin-inline-start: 0;
-                        margin-inline-end: 0;
-                        margin-right: 1vw;
-                        font-size: 3.5em;
-                        letter-spacing: normal;
-                        line-height: normal;
-                    }
-
-                    #middle p {
-                        font-size: 0.9em
-                    }
-
-                    #menu-top {
-                        padding: 10px
-                    }
-
-                    #middle-menu img {
-                        max-height: 30vh
-                    }
-
-                    #navigation {
-                        width: 70vw
-                    }
-                }
-
-                @media (min-aspect-ratio: 16/9) and (max-width:674px) {
-
-                    #top h1,
-                    #top h2,
-                    #top h3 {
-                        font-size: 3em
-                    }
-                }
-
-                @media (max-width:321px) and (max-height:570px) {
-
-                    #top h3 {
-                        font-size: 2em
-                    }
-
-                    #top h2 {
-                        font-size: 3em
-                    }
-
-                    #top h1 {
-                        font-size: 4em;
-                        letter-spacing: 5px
-                    }
-                }
-
-                @media (max-width:570px) and (max-height:321px) {
-
-                    #top h1,
-                    #top h2,
-                    #top h3 {
-                        margin-inline-start: 0;
-                        margin-inline-end: 0;
-                        margin-right: 1vw;
-                        font-size: 3.5em;
-                        letter-spacing: normal;
-                        line-height: normal;
-                    }
-
-                    #top {
-                        display: flex;
-                        width: 80%;
-                        padding-top: 0;
-                    }
-
-                    #header-wrapper {
-                        margin-left: 6vw;
-                        display: flex
-                    }
-
-                    #top h1,
-                    #top h2,
-                    #top h3 {
-                        font-size: 2em
-                    }
-
-                    #navigation {
-                        width: 90vw;
-                        height: 25vh;
-                        grid-template-columns: 1fr 1fr;
-                        grid-template-rows: 1fr 1fr;
-                    }
-
-                    #navigation a {
-                        padding: 5px
-                    }
-                }
-
-                @media (min-aspect-ratio: 16/9) and (max-height: 720px) {
-                    #navigation {
-                        grid-template-columns: 1fr 1fr;
-                        grid-template-rows: 1fr 1fr;
-                    }
-                }
-
-                @media (min-aspect-ratio: 16/9) and (max-height: 520px) {
-                    #menu-top {
-                        padding: 5px;
-                        box-sizing: border-box;
-                        padding-left: 5vw;
-                        padding-right: 5vw;
-
-                    }
-
-                    #dyslexia img {
-                        height: 2.5em
-                    }
-
-                    #dyslexia p {
-                        line-height: 1.3
-                    }
-
-                    #middle-menu img {
-                        max-height: 30vh
-                    }
-
-                    #navigation {
-                        width: 80vw;
-                        height: 30vh
-                    }
-
-                    #navigation a {
-                        padding: 0.1em;
-                        margin: 0.3em;
-                    }
-                }
+#consent {
+    bottom: 0vh;
+}
+
+html {
+    background-color: #000020;
+}
+
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.pp-easing {
+    -webkit-transition: all 5000ms ease-in;
+    -moz-transition: all 5000ms ease-in;
+    -o-transition: all 5000ms ease-in;
+    transition: all 5000ms ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -moz-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-block-start: auto;
+    margin-block-end: auto;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+#header-wrapper {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+
+#intro {
+    background-color: #000020;
+    color: white;
+    font-family: 'CustomReg';
+    overflow: hidden;
+}
+
+#top {
+    font-family: 'CustomBold';
+    padding-top: 10vh;
+    text-align: left;
+    margin-bottom: 5vh
+}
+
+
+#top h3 {
+    font-size: 3em
+}
+
+#top h2 {
+    font-size: 4em
+}
+
+#top h1 {
+    font-size: 5em;
+    display: inline-flex;
+    color: #257cef;
+    line-height: 0.8em
+}
+
+#top #movingDot {
+    color: #fcbd1b;
+    transition: 0.5s ease-in-out;
+    height: 1em;
+}
+
+#bottom {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    height: 20vh;
+    text-align: left
+}
+
+#arrows {
+    position: fixed;
+    bottom: 3vh;
+    height: 10vh;
+    width: 100%;
+}
+
+#middle {
+    padding-top: 20px;
+}
+
+#middle-wrapper {
+    position: absolute;
+}
+
+#middle hr {
+    border-width: 0.2px;
+    width: 100%
+}
+
+#line {
+    transition: 0.3s ease-out
+}
+
+#middle p {
+    font-family: 'CustomLight';
+    text-align: left;
+    padding-top: 40px;
+    font-size: 1em;
+    margin: 0
+}
+
+
+#main-menu {
+    background-color: #000020;
+    text-align: center;
+    overflow: hidden;
+}
+
+#main-menu .pp-tableCell {
+    display: inline
+}
+
+.col-6 {
+    width: 50%
+}
+
+#menu-top {
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 1em;
+    font-family: 'CustomBold';
+    color: white;
+    width: 100%
+}
+
+#dyslexia {
+    display: flex;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'opendyslexic';
+}
+
+#languages .languageBox span.active,
+#languages .languageBox span:hover {
+    border-bottom: 2px solid white;
+}
+
+#dyslexia img {
+    height: 3em
+}
+
+#dyslexia p {
+    margin: 0;
+    padding-left: 5%;
+    font-size: 1em;
+}
+
+#middle-menu img {
+    box-sizing: border-box;
+    width: auto;
+    height: auto;
+    max-height: 25vh;
+    margin: 2vh
+}
+
+#navigation {
+    font-family: 'CustomLight';
+    font-size: 1em;
+    width: 60%;
+    display: grid;
+    margin: auto;
+
+
+}
+
+#navigation a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #fcbd1b;
+    padding: 0.7em;
+    margin: 0.6em;
+    border-radius: 1em;
+    color: #000020;
+    text-decoration: none;
+}
+
+#footer {
+
+    position: fixed;
+    bottom: 2vh;
+    left: 2vh;
+    font-family: 'CustomLight'
+
+}
+
+#main-menu #footer a {
+    color: #fcbd1b;
+    font-size: 0.6em;
+    float: left;
+}
+
+#footer a:active,
+#footer a:focus {
+    color: #fcbd1b;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 2em
+}
+
+#info-page #footer,
+#map-page #footer {
+    vertical-align: middle;
+    z-index: 10;
+    position: fixed;
+    margin: 0;
+    bottom: 0;
+    padding: 5px;
+    width: 100%;
+    height: 5vh;
+    background-color: #fcbd1b;
+    display: flex;
+    align-items: center;
+}
+
+#info-page #footer a,
+#map-page #footer a {
+    position: fixed;
+    float: none;
+    font-family: 'CustomLight';
+    text-decoration: none;
+    font-size: 1.3em;
+    color: #000020;
+}
+
+#info-page #footer a:hover,
+#map-page #footer a:hover {
+    text-decoration: underline;
+}
+
+@media (min-width:768px) {
+    #top {
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: 5vh
+    }
+
+    #top h3 {
+        font-size: 5em
+    }
+
+    #top h2 {
+        font-size: 6em
+    }
+
+    #top h1 {
+        font-size: 7em;
+        letter-spacing: 10px
+    }
+
+    #middle p {
+        font-size: 1.5em;
+        margin: 0
+    }
+
+    #menu-top p {
+        font-size: 1.5em;
+    }
+
+    #middle-menu img {
+        max-width: 50%;
+        height: auto;
+        max-height: 30vh;
+        width: auto;
+    }
+
+    #dyslexia img {
+        height: 4.6em
+    }
+
+    #navigation {
+        width: 50%;
+        font-size: 1.5em
+    }
+
+    #main-menu #footer a {
+        font-size: 0.8em;
+
+    }
+
+    .container h1 {
+        font-size: 4em
+    }
+
+    #dropdown-icon {
+        height: 4em
+    }
+
+    #dropdown-menu {
+        position: absolute;
+        width: 7vw;
+        height: 100vh;
+        z-index: 1000;
+    }
+
+    #dropdown-content {
+        width: 33vw;
+        right: -33vw;
+    }
+
+    #dropdown-content a {
+        font-size: 24px;
+    }
+
+
+    .navbar-contr img {
+        height: 40px;
+        max-width: 100px;
+        margin: 10px
+    }
+
+    #dropdown-content h1 {
+        font-size: 48px
+    }
+
+    #info-page #footer a,
+    #map-page #footer a {
+        font-size: 2em;
+    }
+}
+
+@media (min-width:1024px) {
+    #dropdown-icon {
+        height: 5em
+    }
+
+    #navigation {
+        width: 40%;
+    }
+}
+
+@media (min-aspect-ratio: 17/9) and (min-width: 1024px) {
+    #top {
+        display: flex;
+        width: 80%;
+        padding-top: 0;
+    }
+
+    #header-wrapper {
+        margin-left: 6vw;
+        display: flex
+    }
+
+
+    #top h1,
+    #top h2,
+    #top h3 {
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        margin-right: 1vw;
+        font-size: 4em;
+        letter-spacing: normal;
+        line-height: normal;
+    }
+
+}
+
+@media (min-aspect-ratio: 16/9) and (max-width:1023px) {
+    #top {
+        display: flex;
+        width: 80%;
+        padding-top: 0;
+        margin-left: 10vw;
+    }
+
+    #header-wrapper {
+        display: flex
+    }
+
+
+    #top h1,
+    #top h2,
+    #top h3 {
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        margin-right: 1vw;
+        font-size: 3.5em;
+        letter-spacing: normal;
+        line-height: normal;
+    }
+
+    #middle p {
+        font-size: 0.9em
+    }
+
+    #menu-top {
+        padding: 10px
+    }
+
+    #middle-menu img {
+        max-height: 30vh
+    }
+
+    #navigation {
+        width: 70vw
+    }
+}
+
+@media (min-aspect-ratio: 16/9) and (max-width:674px) {
+
+    #top h1,
+    #top h2,
+    #top h3 {
+        font-size: 3em
+    }
+}
+
+@media (max-width:321px) and (max-height:570px) {
+
+    #top h3 {
+        font-size: 2em
+    }
+
+    #top h2 {
+        font-size: 3em
+    }
+
+    #top h1 {
+        font-size: 4em;
+        letter-spacing: 5px
+    }
+}
+
+@media (max-width:570px) and (max-height:321px) {
+
+    #top h1,
+    #top h2,
+    #top h3 {
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        margin-right: 1vw;
+        font-size: 3.5em;
+        letter-spacing: normal;
+        line-height: normal;
+    }
+
+    #top {
+        display: flex;
+        width: 80%;
+        padding-top: 0;
+    }
+
+    #header-wrapper {
+        margin-left: 6vw;
+        display: flex
+    }
+
+    #top h1,
+    #top h2,
+    #top h3 {
+        font-size: 2em
+    }
+
+    #navigation {
+        width: 90vw;
+        height: 25vh;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #navigation a {
+        padding: 5px
+    }
+}
+
+@media (min-aspect-ratio: 16/9) and (max-height: 720px) {
+    #navigation {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media (min-aspect-ratio: 16/9) and (max-height: 520px) {
+    #menu-top {
+        padding: 5px;
+        box-sizing: border-box;
+        padding-left: 5vw;
+        padding-right: 5vw;
+
+    }
+
+    #dyslexia img {
+        height: 2.5em
+    }
+
+    #dyslexia p {
+        line-height: 1.3
+    }
+
+    #middle-menu img {
+        max-height: 30vh
+    }
+
+    #navigation {
+        width: 80vw;
+        height: 30vh
+    }
+
+    #navigation a {
+        padding: 0.1em;
+        margin: 0.3em;
+    }
+}
