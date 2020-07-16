@@ -9,7 +9,7 @@ const data = {
             },
             en: {
                 name: "BioBrick",
-                desc: "BioBricks are ...",
+                desc: "<em class='bolded'>Synthetic biology</em>, or SynBio in short, is a multidisciplinary field, which encompasses a broad range of methodologies from various disciplines, such as <em class='bolded'>biology, engineering, chemistry, information technologies and mathematical modelling</em>. It is a way of creating functions of organisms by changing the genetic information. These new functions aid in solving global environmental, health and industry issues. Developments in this field have been driven in part by the <em class='bolded'>International Genetically Engineered Machine Competition (iGEM)</em>, in which students compete presenting their scientific projects.<br><br> iGEM teams develop new functions for organisms using parts called <em class='bolded'>BioBricks</em> which are analogous to LEGO bricks. BioBrick parts are DNA sequences which encode the genetic information — the “instructions” of a cell. Just like LEGO bricks, scientists can swap out specific parts to construct a different combination of functions, like initiating the production of new proteins, which give cells unusual properties.",
                 audioRec: "./recordings/nano.mp3"
             },
         },
@@ -166,12 +166,12 @@ const data = {
         meta: {
             lt: {
                 name: "RNR",
-                desc: "tekstas",
+                desc: "Kviečiame susipažinti su genetinę medžiagą koduojančiomis molekulėmis – <em class='bolded'>RNR</em>. Šios molekulės egzistuoja kelių rūšių – visos jos atlieka skirtingą funkciją. RNR funkcija glaudžiai susijusi su <em class='bolded'>informacijos pernešimu, baltymų gaminimu  ir tinkamu jų funkcijos atlikimu mūsų organizme</em>. Papildytos realybės modelis vaizduoja matricinę RNR – kuri verčia genetinę informaciją į baltymus bei ribosominę RNR, kuri atlieka baltymo gaminimo – statymo funkciją. Taigi, nors dažniausiai girdime, kad DNR yra pagrindinė genetinės medžiagos kodavimo forma, be RNR molekulės informacija <em class='bolded'>negalėtų būti realizuojama </em>ir verčiama į baltymines struktūras.",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {
                 name: "RNA",
-                desc: "tekstas",
+                desc: "Here you can see <em class='bolded'>RNA </em>molecules, which encode the genetic material. There are many types of RNA molecules, all of which perform different functions. The function of RNA is closely related to the <em class='bolded'>transfer of information, the production of proteins and the proper performance of their function in our body</em>. The augmented reality model depicts an informational RNA which translates genetic information into proteins, and a ribosomal RNA which performs protein production. We often hear that DNA is the main form of coding for genetic material but without the RNA molecule information <em class='bolded'>could not be used </em>for creating structures of proteins.",
                 audioRec: "./recordings/nano.mp3"
             },
         },
@@ -197,12 +197,12 @@ const data = {
         meta: {
             lt: {
                 name: "Virusai",
-                desc: "...",
+                desc: "Prieš akis matote kelis tūkstančius kartų padidintus <em class='bolded'>virusus</em>. Visiškai jų atsikratyti nėra įmanoma, nes kol virusai gali daugintis kontaktuodami su žmonėmis, jie mutuoja, ir taip atsiranda <em class='bolded'>naujų</em>, dar nežinomų, virusų rūšių. Vis dėl to naujausios infekcijų plitimo sekimo ir prevencijos technologijos padeda sumažinti aukų skaičius. Su kiekviena nauja grėsme ligos sukelėjo nustatymo laikas nuo kelių metų sutrumpėjo iki savaičių, o vaistų gaminimo, testavimo ir patentavimo procesai vykdomi keliolika kartų <em class='bolded'>sparčiau</em>. Pandemijų turėjome ir turėsime, o kontroliuoti galima tik <em class='bolded'>atsaką </em>į jas.",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {
                 name: "Viruses",
-                desc: "tekstas",
+                desc: "Here you can see some <em class='bolded'>viruses </em>magnified a few thousand times. We cannot get rid of them completely, because when viruses spread and multiply, they mutate, creating <em class='bolded'>completely new </em>and unknown types of viruses. On the bright side, the newest technologies of tracking viral infections and how they spread helps decrease the number of victims. With every new threat brought by viruses the time to identify the pathogen gets shorter and shorter, from a few years to a few weeks, medicine and treatment development, also, testing processes are performed <em class='bolded'>faster </em>by orders of magnitude. We may not be able to control the presence of pandemics, but we will be able to control the <em class='bolded'>response </em>to them.",
                 audioRec: "./recordings/nano.mp3"
             },
         },
@@ -321,12 +321,12 @@ const data = {
         meta: {
             lt: {
                 name: "Baltymų transliacija",
-                desc: "Prieš tavo akis – baltymų gamybos procesas. Šios molekulės – tai itin mažos plytos, padedančios sukurti mūsų organizmą tokį, koks jis yra. Baltymų gamyba – vienas iš svarbiausių procesų gyvybei. Kiekvieno mūsų kūne yra genai, sudaryti iš DNR sekų. Ši seka transkripcijos metu verčiama į RNR molekules. O šios, vykstant transliacijos procesui, iškoduojamos į baltymų sekas sudarytas iš aminorūgščių. Būtent pastarąjį procesą ir gali matyti animacijoje. Ilga grandinė, matoma nuo pat animacijos pradžios – tai informacinė RNR molekulė. Ant šios molekulės tvirtinasi ribosoma. Ji sudaryta iš didžiojo ir mažojo subvienetų. Prie didžiojo subvieneto, kaip matyti ir animacijoje, pagal informacinės RNR seką jungiasi transportinės RNR molekulės. Kiekviena transportinė RNR molekulė padeda ribosomai iššifruoti ir įjungti vieną aminorūgštį. Šioms amino rūgštims jungiantis į vieną grandinėlę gaunamas baltymas – mūsų organizmo statybinė medžiaga, atliekanti svarbiausias funkcijas organizmo gyvavime.",
+                desc: "Prieš tavo akis – <em class='bolded'>baltymų gamybos procesas</em>. Šios molekulės – tai itin mažos plytos, padedančios sukurti mūsų organizmą tokį, koks jis yra. Baltymų gamyba – vienas iš svarbiausių procesų gyvybei. Kiekvieno mūsų kūne yra <em class='bolded'>genai</em>, sudaryti iš <em class='bolded'>DNR </em>sekų. Ši seka transkripcijos metu verčiama į <em class='bolded'>RNR </em>molekules. O šios, vykstant transliacijos procesui, iškoduojamos į <em class='bolded'>baltymų </em>sekas sudarytas iš <em class='bolded'>aminorūgščių</em>. Būtent pastarąjį procesą ir gali matyti animacijoje. Ilga grandinė, matoma nuo pat animacijos pradžios – tai informacinė RNR molekulė. Ant šios molekulės tvirtinasi <em class='bolded'>ribosoma</em>. Ji sudaryta iš didžiojo ir mažojo subvienetų. Prie didžiojo subvieneto, kaip matyti ir animacijoje, pagal informacinės RNR seką jungiasi transportinės RNR molekulės. Kiekviena transportinė RNR molekulė padeda ribosomai iššifruoti ir įjungti vieną aminorūgštį. Šioms amino rūgštims jungiantis į vieną grandinėlę gaunamas baltymas – mūsų organizmo statybinė medžiaga, atliekanti <em class='bolded'>svarbiausias funkcijas organizmo gyvavime</em>.",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {
                 name: "Protein translation",
-                desc: "Here you can see the production of a protein. These molecules are the building blocks of our bodies. Protein production is one of the most important processes in living organisms. Genes are made up of DNA sequences. These sequences are transformed into RNA molecules during transcription. The molecules are then translated into protein sequences, constructed from amino acids. This process can be seen in the animation. The long chain seen from the start of the animation is the messenger RNA molecule. A ribosome is attached to the molecule. The ribosome is made up of a large and a small subunit. Transfer RNA molecules attach to the large subunit with respect to the messenger RNA sequence. All transfer RNA molecules help the ribosome decode and connect an amino acid. The chain of amino acids make up a protein which performs the most important functions in sustaining life.",
+                desc: "Here you can see the production of a <em class='bolded'>protein</em>. These molecules are the building blocks of our bodies. Protein production is one of the most important processes in living organisms. <em class='bolded'>Genes</em> are made up of <em class='bolded'>DNA sequences</em>. These sequences are transformed into <em class='bolded'>RNA</em> molecules during transcription. The molecules are then translated into <em class='bolded'>protein </em>sequences, constructed from <em class='bolded'>amino acids</em>. This process can be seen in the animation. The long chain seen from the start of the animation is the messenger RNA molecule. A <em class='bolded'>ribosome </em>is attached to the molecule. The ribosome is made up of a large and a small subunit. Transfer RNA molecules attach to the large subunit with respect to the messenger RNA sequence. All transfer RNA molecules help the ribosome decode and connect an amino acid. The chain of amino acids make up a protein which performs the <em class='bolded'>most important functions in sustaining life.</em>",
                 audioRec: "./recordings/nano.mp3"
             },
         },
@@ -351,7 +351,7 @@ const data = {
         meta: {
             en: {
                 name: "Vilnius iGEM",
-                desc: "Best wishes from the postcard! Vilnius-Lithuania iGEM 2020 team greets you with this sneak peek of our project, which we are developing alongside our main goal. The whole idea of the “pocket-museum” was developed in purpose to educate and encourage people to be involved in life sciences and especially synthetic biology. QR codes, as well as an augmented reality environment, are accessible to anyone with a smartphone, enabling access to a virtual museum of life sciences. QR codes and AR markers are mounted on plaques installed in cities <a href='https://igem-vilnius-ar.com/map.html'>all over Lithuania</a>. By simply scanning the QR code you enter our website and by pointing your camera towards the marker you can enjoy the 3D model exhibition!<br><a href='https://igem-vilnius-ar.com/'>More...</a>",
+                desc: "Best wishes from the postcard! <em class='bolded'>Vilnius-Lithuania iGEM 2020 team </em>greets you with this sneak peek of our project, which we are developing alongside our main goal. The whole idea of the “pocket-museum” was developed in purpose to educate and encourage people to be involved in life sciences and especially synthetic biology. QR codes, as well as an augmented reality environment, are accessible to anyone with a smartphone, enabling access to a <em class='bolded'>virtual museum of life sciences</em>. QR codes and AR markers are mounted on plaques installed in cities <a href='https://igem-vilnius-ar.com/map.html'>all over Lithuania</a>. By simply scanning the QR code you enter our website and by pointing your camera towards the marker you can enjoy the 3D model exhibition!<br><a href='https://igem-vilnius-ar.com/'>More...</a>",
             },
         },
         model: {
@@ -405,12 +405,12 @@ const data = {
         meta: {
             lt: {
                 name: "Genetiškai modifikuoti organizmai",
-                desc: "tekstas",
+                desc: "Ar kada nors valgėte bananą su didelėmis, kietomis, juodomis sėklomis? Kodėl bananai, kuriuos perkame parduotuvėje yra besėkliai? Tokius, mums patrauklius produktus padėjo sukurti <em class='bolded'>biotechnologiniai pasiekimai</em>. Aneuploidija, arba kitaip – chromosomų rinkinio skaičiaus padauginimas mums leidžia išgauti daug pelningesnius ir vartojimui patrauklesnius produktus. Šis papildytos realybės modelis vaizduoja, kaip atrodo <em class='bolded'>aneuploidinis bananas</em>, kuris turi 3 chromosomų rinkinius ir, kaip atrodo laukinis bananas, su jam įprastu – dvigubu chromosomų rinkiniu. Nors neretai įsivaizduojame, kad genetiškai modifikuotas maistas yra pavojingas, atrodo nenatūraliai ir yra nesaugus vartoti, iš tiesų genetinės modifikacijos yra ypač <em class='bolded'>atsakingai tikrinamos ir testuojamos</em>, tad baimintis tikrai nereikėtų.",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {
                 name: "Genetically modified organisms",
-                desc: "text",
+                desc: "Have you ever eaten a banana with large, hard, black seeds? Why are the bananas we buy in stores today seedless? Such products exist because of <em class='bolded'>biotechnological advances</em>. Knowing how to multiply the number of chromosomes in a set, called Aneuploidy, allowed us to produce much more profitable and attractive products for consumption. This augmented reality model depicts what an <em class='bolded'>aneuploid banana </em>looks like with 3 sets of chromosomes, and what a wild banana looks like with its usual double set of chromosomes. We often imagine that genetically modified foods are dangerous, unnatural, and unsafe to consume, but in reality genetic modifications are <em class='bolded'>inspected and tested very responsibly.</em>",
                 audioRec: "./recordings/nano.mp3"
             }
         },

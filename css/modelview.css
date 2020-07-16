@@ -150,10 +150,12 @@ svg text {
     display: inline-flex;
     padding-top: 20px;
     box-sizing: border-box;
+    height: fit-content;
 }
 
 #info-footer a {
-    margin: 0 auto
+    margin: 0 auto;
+    height: fit-content;
 }
 
 #model-info em {
@@ -190,7 +192,7 @@ svg text {
     }
 
     #model-info .info-footer-icons {
-        height: 60px
+        height: 50px
     }
 
     #model-info .spacer {
