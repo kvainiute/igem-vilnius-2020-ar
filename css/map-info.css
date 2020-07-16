@@ -295,15 +295,6 @@ body {
 
 }
 
-#bt-accept {
-    border: 0;
-}
-
-#bt-reject {
-    border: 0;
-    border-top: solid 1px #000020;
-
-}
 
 
 
@@ -355,19 +346,9 @@ body {
     }
 
     #consent {
+        font-size: 0.7em;
         max-width: 67vw;
     }
-
-    #bt-accept {
-        border: 0;
-        border-right: solid 1px #000020
-    }
-
-    #bt-reject {
-        border: 0;
-        border-left: solid 1px #000020
-    }
-
 
 }
 

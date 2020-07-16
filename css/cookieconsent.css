@@ -20,15 +20,17 @@
     padding-top: 10px;
     width: fit-content;
     margin: 0 auto;
-    display: flex
+    display: flex;
+    font-size: 1.2em;
+    text-align: center;
+
 }
 
 #bt-close img {
     box-sizing: border-box;
     height: 20px;
-    padding-left: 10px;
-    padding-top: 4px;
     vertical-align: middle;
+    height: 70%;
 }
 
 #consent button {
@@ -45,6 +47,12 @@
     border: solid 1px #000020;
 }
 
+#bt-close {
+    cursor: pointer;
+    padding-left: 10px;
+    padding-top: 4px;
+    box-sizing: border-box;
+}
 
 
 
@@ -58,9 +66,11 @@
     padding-bottom: 2px
 }
 
+
 #consent #cookieCheckboxes label {
     display: flex;
     margin-right: 8px;
+    cursor: pointer;
 }
 
 #policyLink {
@@ -75,7 +85,7 @@
     width: 12px;
     height: 12px;
     margin-right: 4px;
-
+    cursor: pointer;
     background-color: transparent;
     border: 1px solid #000020;
     border-radius: 2px;
