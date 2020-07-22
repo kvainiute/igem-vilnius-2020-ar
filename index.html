@@ -90,57 +90,44 @@
     <script src="js/queryParams.js"></script>
 
     <script>
-        var dotTravel
-        var dotWidth;
-        var textWidth;
-        var distance;
-        var dotDocked = false;
-        var triangleBox = 0;
+        let dotDocked = false;
+        
+        let movingDot = document.getElementById("movingDot");
+        let arrows = document.getElementById("arrows");
+        let headerWrapper = document.getElementById("header-wrapper");
+        let line = document.getElementById("line");
+        let topTriangle = document.getElementById("top-triangle");
 
         function setInitialElements() {
-            var viewportOffsetDot = document.getElementById("movingDot").getBoundingClientRect();
+            let middle = document.getElementById("middle");
 
-            dotWidth = viewportOffsetDot.width;
-            document.getElementById("arrows").style.width = dotWidth
-            var arrowWidth = document.getElementById("arrows").getBoundingClientRect().width;
-            dotLeft = viewportOffsetDot.left;
+            let viewportOffsetDot = movingDot.getBoundingClientRect();
+            arrows.style.width = viewportOffsetDot.width;
+            arrows.style.marginLeft = viewportOffsetDot.left;
 
-            document.getElementById("arrows").style.marginLeft = dotLeft
-
-            var viewportOffsetWrapper = document.getElementById("header-wrapper").getBoundingClientRect();
-            textWidth = (viewportOffsetWrapper.width * 0.9) + "px";
-            document.getElementById("middle").style.width = (viewportOffsetWrapper.width) + "px";
-            document.getElementById("middle-text").style.width = textWidth;
-            document.getElementById("middle").style.marginLeft = viewportOffsetWrapper.left + "px";
+            let viewportOffsetWrapper = headerWrapper.getBoundingClientRect();
+            middle.style.width = (viewportOffsetWrapper.width) + "px";
+            document.getElementById("middle-text").style.width = (viewportOffsetWrapper.width * 0.9) + "px";
+            middle.style.marginLeft = viewportOffsetWrapper.left + "px";
             document.removeEventListener("scroll", scrollEvent);
-            if (dotDocked) {
-                var oldTriangleBox = triangleBox;
-                triangleBox = document.getElementById("top-triangle").getBoundingClientRect();
-                var translatedDistance = document.getElementById('movingDot').style.transform.replace(/[^\d.]/g, '').slice(0, -3);
+            if (!dotDocked) return;
 
-                var dotBox = document.getElementById("movingDot").getBoundingClientRect();
-                console.log(triangleBox.top, dotBox.top, translatedDistance);
-                console.log(triangleBox, dotBox)
-                //                distance = (oldTriangleBox.top - triangleBox.top) + parseFloat(translatedDistance) - 3;
-                distance = triangleBox.top - dotBox.top - 3;
-                document.querySelector('#movingDot').style.transform = "translateY(" + distance + "px) rotate(180deg)";
-
-            }
+            let distance = topTriangle.getBoundingClientRect().top - movingDot.getBoundingClientRect().top - 3;
+            movingDot.style.transform = "translateY(" + distance + "px) rotate(180deg)";
         }
+
         window.addEventListener('load', setInitialElements);
         window.addEventListener('resize', setInitialElements);
         var scrollEvent = document.addEventListener("scroll", function() {
-            if (isInViewport(document.getElementById("header"))) {
-                if (!dotDocked) {
-                    dotDown();
-                    dotDocked = true;
-                }
-            } else {
-                console.log("not in view")
+            if (!isInViewport(document.getElementById("header"))) {
+                console.log("not in view");
                 dotUp();
                 dotDocked = false;
+            } else if (!dotDocked) {
+                dotDown();
+                dotDocked = true;
             }
-        })
+        });
 
 
         function isInViewport(elem) {
@@ -154,32 +141,25 @@
         };
 
         function dotDown() {
-            document.getElementById("movingDot").style.transition = "1s"
-            document.getElementById("line").style.transitionDelay = "0s"
-            document.getElementById("line").style.transition = "0.3s"
-            var lineWidth = document.getElementById("header-wrapper").getBoundingClientRect().width - (document.getElementById("movingDot").getBoundingClientRect().width * 1.5)
-            document.getElementById("line").style.width = lineWidth + "px"
-            triangleBox = document.getElementById("top-triangle").getBoundingClientRect();
-            var dotBox = document.getElementById("movingDot").getBoundingClientRect();
+            line.style.transitionDelay = "0s";
+            line.style.transition = "0.3s";
+            let lineWidth = headerWrapper.getBoundingClientRect().width - (movingDot.getBoundingClientRect().width * 1.5);
+            line.style.width = lineWidth + "px";
+            let dotBox = movingDot.getBoundingClientRect();
 
-            distance = triangleBox.top - dotBox.top - 3;
+            let distance = topTriangle.getBoundingClientRect().top - dotBox.top - 3;
 
-            document.getElementById("movingDot").style.transform = "translateY(" + distance + "px) rotate(180deg) "
-            var dotBox = document.getElementById("movingDot").getBoundingClientRect();
-            console.log(triangleBox, dotBox)
+            movingDot.style.transform = "translateY(" + distance + "px) rotate(180deg)";
+            dotBox = movingDot.getBoundingClientRect();
         }
 
         function dotUp() {
-            triangleBox = document.getElementById("top-triangle").getBoundingClientRect();
-            var dotBox = document.getElementById("movingDot").getBoundingClientRect();
+            movingDot.style.transform = "translateY(0px) rotate(0deg)";
+            line.style.transition = "1s";
+            line.style.transitionDelay = "0.6s";
 
-            document.getElementById("movingDot").style.transform = "translateY(0px) rotate(0deg) "
-            document.getElementById("line").style.transition = "1s"
-            document.getElementById("line").style.transitionDelay = "0.6s"
-
-            document.getElementById("movingDot").style.transition = "1s"
-            var lineWidth = document.getElementById("header-wrapper").getBoundingClientRect().width
-            document.getElementById("line").style.width = lineWidth + "px"
+            let lineWidth = headerWrapper.getBoundingClientRect().width;
+            line.style.width = lineWidth + "px";
         }
         let texts = {
             lt: {
