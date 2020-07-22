@@ -35,14 +35,13 @@ body {
 #map-page #footer {
     box-sizing: border-box;
     vertical-align: middle;
-    z-index: 10;
     position: fixed;
     margin: 0;
     bottom: 0;
-    padding: 5px;
+    padding: 10px;
     width: 100%;
-    height: 7vh;
-    font-size: 1.3em;
+    height: fit-content;
+    font-size: 1em;
     background-color: #fcbd1b;
     display: flex;
     align-items: center;
@@ -64,15 +63,20 @@ body {
 }
 
 #change-city img {
-    height: 7vh;
+    height: 5vh;
     width: auto;
     position: fixed;
     left: 50%;
-    top: 3vh;
     transform: translate(-50%, 0);
-    z-index: 1200;
-    background-color: transparent;
-    cursor: pointer
+    z-index: 900;
+    cursor: pointer;
+    background-color: #000020;
+    padding: 10px;
+    padding-top: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: solid 1px #fcbd1b;
+    border-top: none;
 }
 
 #choose-city {
@@ -81,7 +85,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     top: 50%;
-    z-index: 900
+    z-index: 2
 }
 
 #choose-city button {
@@ -247,6 +251,10 @@ body {
     cursor: pointer
 }
 
+#footer {
+    z-index: 2;
+}
+
 #close-img {
     float: right
 }
@@ -284,9 +292,7 @@ body {
 }
 
 #consent {
-    bottom: initial;
-    top: 0;
-    max-width: 34vw;
+    bottom: 0px;
 }
 
 #button-wrapper {
@@ -340,24 +346,13 @@ body {
         font-size: 48px
     }
 
-    #info-page #footer a,
-    #map-page #footer a {
-        font-size: 2em;
-    }
-
     #consent {
         font-size: 0.7em;
-        max-width: 67vw;
     }
 
 }
 
 @media (min-aspect-ratio: 16/9) and (max-width:768px) {
-
-    #info-page #footer,
-    #map-page #footer {
-        height: 12vh
-    }
 
     #choose-city {
         width: fit-content;
@@ -369,11 +364,6 @@ body {
 }
 
 @media (min-aspect-ratio: 18/9) and (min-width:768px) {
-
-    #info-page #footer,
-    #map-page #footer {
-        height: 15vh
-    }
 
     #choose-city {
         width: fit-content;

@@ -169,6 +169,7 @@ svg text {
     vertical-align: middle;
     display: inline-flex;
     height: 40px;
+    width: 40px
 }
 
 @media (min-width: 768px) {

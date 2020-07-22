@@ -92,7 +92,7 @@ function createCookieConsentBox() {
     buttonWrapper.appendChild(buttonAccept);
 
     const buttonClose = document.createElement("div");
-    buttonClose.innerHTML = "<img src='./images/close.svg'>";
+    buttonClose.innerHTML = "<img src='./images/close-yellow.svg'>";
     buttonClose.onclick = () => {
         cookiediv.remove();
         setCookieConsent("-1");

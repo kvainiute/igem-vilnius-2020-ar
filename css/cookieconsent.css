@@ -1,19 +1,25 @@
 #consent {
     align-items: center;
     box-sizing: border-box;
-    bottom: 0px;
+    bottom: -100%;
+    left: 0;
     position: absolute;
-    background: #FCBD1B;
+    background: #000020;
     width: 100%;
     display: table;
     padding: 12px;
     z-index: 2000;
     font-family: 'CustomLight';
-    font-size: 0.8em
+    font-size: 0.8em;
+    border-top: solid 1px #fcbd1b;
+}
+
+#consent p {
+    color: white;
 }
 
 #consent a {
-    color: #000020;
+    color: #fcbd1b;
 }
 
 #button-wrapper {
@@ -30,21 +36,21 @@
     box-sizing: border-box;
     height: 20px;
     vertical-align: middle;
-    height: 70%;
 }
 
 #consent button {
     background: none;
-    color: #000020;
+    color: #fcbd1b;
     padding: 4px 10px;
     max-height: 40px;
     font-family: 'CustomHeavy';
     font-size: 0.9em;
     cursor: pointer;
+    border-radius: 100px
 }
 
 #bt-accept {
-    border: solid 1px #000020;
+    border: solid 1px #fcbd1b;
 }
 
 #bt-close {
@@ -62,7 +68,7 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    color: #000020;
+    color: white;
     padding-bottom: 2px
 }
 
@@ -87,7 +93,7 @@
     margin-right: 4px;
     cursor: pointer;
     background-color: transparent;
-    border: 1px solid #000020;
+    border: 1px solid white;
     border-radius: 2px;
 }
 
@@ -96,7 +102,7 @@
 }
 
 #consent #cookieCheckboxes input[type=checkbox]:disabled + label::before {
-    background-color: gray;
+    background-color: transparent;
 }
 
 #consent #cookieCheckboxes input[type=checkbox] {
@@ -105,7 +111,7 @@
 
 
 #consent p {
-    color: #000020;
+    color: white;
     margin-block-start: auto;
     margin-block-end: auto;
     margin-inline-start: auto;

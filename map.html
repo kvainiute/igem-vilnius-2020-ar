@@ -45,6 +45,18 @@
     <script src="js/opendyslexic.js" charset="UTF-8"></script>
     <script src="js/map.js"></script>
     <script>
+        window.addEventListener('load', function() {
+            var consentExists = document.getElementById("consent").getBoundingClientRect();
+            if (consentExists) {
+                console.log(consentExists);
+                document.getElementById("footer").style.bottom = consentExists.height + "px";
+            }
+        })
+
+        document.getElementById("button-wrapper").addEventListener('click', function() {
+            document.getElementById("footer").style.bottom = "0px";
+        })
+
         function updateTexts(language) {
             if (language == "en") {
                 document.getElementById("foot").innerText = "return to the main page"

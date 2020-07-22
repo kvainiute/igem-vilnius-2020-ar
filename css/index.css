@@ -1,14 +1,10 @@
-#consent {
-    bottom: 0vh;
-}
-
 html {
     background-color: #000020;
 }
 
 body {
-    overflow-y: hidden;
     overflow-x: hidden;
+    margin: 0;
 }
 
 .pp-easing {
@@ -43,6 +39,7 @@ p {
     color: white;
     font-family: 'CustomReg';
     overflow: hidden;
+    height: 100vh;
 }
 
 #top {
@@ -75,17 +72,15 @@ p {
 }
 
 #bottom {
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     left: 0;
     height: 20vh;
-    text-align: left
+    text-align: left;
 }
 
 #arrows {
-    position: fixed;
-    bottom: 3vh;
-    height: 10vh;
+    position: relative;
     width: 100%;
 }
 
@@ -106,6 +101,12 @@ p {
     transition: 0.3s ease-out
 }
 
+#head-text {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
 #middle p {
     font-family: 'CustomLight';
     text-align: left;
@@ -119,6 +120,7 @@ p {
     background-color: #000020;
     text-align: center;
     overflow: hidden;
+    height: 100vh
 }
 
 #main-menu .pp-tableCell {
@@ -129,8 +131,13 @@ p {
     width: 50%
 }
 
+#header {
+    display: flex;
+    justify-content: space-between;
+    max-height: 7vh
+}
+
 #dyslexia {
-    position: fixed;
     top: 0;
     left: 0;
     margin: 16px;
@@ -142,7 +149,6 @@ p {
 }
 
 #languages {
-    position: absolute;
     margin: 16px;
     top: 0;
     right: 0;
@@ -164,9 +170,6 @@ p {
     font-size: 1em;
 }
 
-#middle-menu {
-    margin-top: 24px;
-}
 
 #middle-menu img {
     box-sizing: border-box;
@@ -200,11 +203,9 @@ p {
 }
 
 #footer {
-
-    position: fixed;
-    bottom: 2vh;
-    left: 2vh;
-    font-family: 'CustomLight'
+    font-family: 'CustomLight';
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -304,8 +305,8 @@ p {
     }
 
     #navigation a {
-        padding: 0.5em;
-        margin: 0.5em;
+        padding: 0.29em;
+        margin: 0.4em;
     }
 
     #main-menu #footer a {
@@ -360,7 +361,7 @@ p {
     }
 
     #navigation {
-        width: 40%;
+        width: 60%;
     }
 }
 
