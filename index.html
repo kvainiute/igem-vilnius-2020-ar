@@ -82,7 +82,6 @@
     </div>
     <script>
         var cookieConsentApplyElement = document.getElementById("main-menu");
-
     </script>
     <script src="js/cookieconsent.js"></script>
     <script src="js/languages.js" charset="UTF-8"></script>
@@ -98,27 +97,33 @@
         let line = document.getElementById("line");
         let topTriangle = document.getElementById("top-triangle");
 
+        let distanceToBottom = 0;
+
         function setInitialElements() {
+            console.log("resize?");
             let middle = document.getElementById("middle");
 
+            // set arrow position and width
             let viewportOffsetDot = movingDot.getBoundingClientRect();
             arrows.style.width = viewportOffsetDot.width;
             arrows.style.marginLeft = viewportOffsetDot.left;
 
+            // set lower text position and width
             let viewportOffsetWrapper = headerWrapper.getBoundingClientRect();
             middle.style.width = (viewportOffsetWrapper.width) + "px";
             document.getElementById("middle-text").style.width = (viewportOffsetWrapper.width * 0.9) + "px";
             middle.style.marginLeft = viewportOffsetWrapper.left + "px";
-            document.removeEventListener("scroll", scrollEvent);
-            if (!dotDocked) return;
 
-            let distance = topTriangle.getBoundingClientRect().top - movingDot.getBoundingClientRect().top - 3;
-            movingDot.style.transform = "translateY(" + distance + "px) rotate(180deg)";
+            distanceToBottom = topTriangle.getBoundingClientRect().top - movingDot.parentElement.getBoundingClientRect().top - 3;
+            if (!dotDocked) return; // dot is at initial position, do nothing
+
+            // dot may have to move to new position, because it is docked
+            dotDown();
         }
 
         window.addEventListener('load', setInitialElements);
         window.addEventListener('resize', setInitialElements);
-        var scrollEvent = document.addEventListener("scroll", function() {
+        let scrollEvent = function() {
             if (!isInViewport(document.getElementById("header"))) {
                 console.log("not in view");
                 dotUp();
@@ -127,39 +132,44 @@
                 dotDown();
                 dotDocked = true;
             }
-        });
+        };
+        console.log("add event listener");
+        document.addEventListener("scroll", scrollEvent);
 
 
         function isInViewport(elem) {
-            var bounding = elem.getBoundingClientRect();
+            let bounding = elem.getBoundingClientRect();
             return (
                 bounding.top >= 0 &&
-                bounding.left >= 0 &&
-                bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+                bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                //bounding.left >= 0 &&
+                // && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
             );
         };
 
         function dotDown() {
+            // no delay, quick transition
             line.style.transitionDelay = "0s";
             line.style.transition = "0.3s";
+            // line animation
             let lineWidth = headerWrapper.getBoundingClientRect().width - (movingDot.getBoundingClientRect().width * 1.5);
             line.style.width = lineWidth + "px";
-            let dotBox = movingDot.getBoundingClientRect();
 
-            let distance = topTriangle.getBoundingClientRect().top - dotBox.top - 3;
-
-            movingDot.style.transform = "translateY(" + distance + "px) rotate(180deg)";
-            dotBox = movingDot.getBoundingClientRect();
+            // dot animation
+            movingDot.style.transform = "translateY(" + distanceToBottom + "px) rotate(180deg)";
+            console.log("translateY(" + distanceToBottom + "px) rotate(180deg)");
         }
 
         function dotUp() {
-            movingDot.style.transform = "translateY(0px) rotate(0deg)";
+            // delay, slow transition
             line.style.transition = "1s";
             line.style.transitionDelay = "0.6s";
-
+            // line animation
             let lineWidth = headerWrapper.getBoundingClientRect().width;
             line.style.width = lineWidth + "px";
+
+            // dot animation
+            movingDot.style.transform = "translateY(0px) rotate(0deg)";
         }
         let texts = {
             lt: {
