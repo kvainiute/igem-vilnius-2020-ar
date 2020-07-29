@@ -46,15 +46,14 @@
     <script src="js/map.js"></script>
     <script>
         window.addEventListener('load', function() {
-            var consentExists = document.getElementById("consent").getBoundingClientRect();
-            if (consentExists) {
-                console.log(consentExists);
-                document.getElementById("footer").style.bottom = consentExists.height + "px";
-            }
-        })
+            var consentExists = document.getElementById("consent");
+            if (consentExists != null) {
+                document.getElementById("footer").style.bottom = consentExists.getBoundingClientRect().height + "px";
 
-        document.getElementById("button-wrapper").addEventListener('click', function() {
-            document.getElementById("footer").style.bottom = "0px";
+                document.getElementById("button-wrapper").addEventListener('click', function() {
+                    document.getElementById("footer").style.bottom = "0px";
+                })
+            }
         })
 
         function updateTexts(language) {
@@ -68,8 +67,5 @@
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
         FontSwitcher.init();
-
     </script>
-</body>
-
-</html>
+</body></html>
