@@ -82,7 +82,7 @@ canvas {
     padding: 20px;
     width: 60%;
     height: 60%;
-    margin-top: -130px;
+    margin-top: -100px;
     background: rgba(252, 189, 27, 0.9);
     border-radius: 15px;
     position: relative;
@@ -102,10 +102,16 @@ canvas {
 
 #info-text::-webkit-scrollbar {
     width: 2vw;
+    max-width: 10px;
 }
 
 #info-text::-webkit-scrollbar-thumb {
     background-color: #000020;
+    border-radius: 100px;
+}
+
+#info-text::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 32, 0.2);
     border-radius: 100px;
 }
 
@@ -170,6 +176,10 @@ svg text {
     display: inline-flex;
     height: 40px;
     width: 40px
+}
+
+#text-info > img {
+    margin: 12px 0;
 }
 
 @media (min-width: 768px) {

@@ -125,8 +125,6 @@
     <script src="js/languages.js" charset="UTF-8"></script>
     <script src="js/opendyslexic.js" charset="UTF-8"></script>
 
-    <div id="tray-container" style="display:none;" id="prew2"></div>
-
     <script>
         var cookieExists = document.cookie.split('; ')
             .find(row => row.startsWith('popup'));
@@ -161,6 +159,15 @@
 
         FontSwitcher.init();
 
+
+        let cookieConsent = document.getElementById("consent");
+        if (cookieConsent != null) {
+            document.getElementById("button-wrapper").addEventListener('click', function() {
+                let aTray = document.getElementById('tray-container');
+                if (aTray == undefined) return;
+                aTray.style.top = "20px";
+            });
+        }
     </script>
 </body>
 

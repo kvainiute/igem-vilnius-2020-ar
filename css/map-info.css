@@ -159,8 +159,6 @@ body {
     border-right-color: #fcbd1b;
 }
 
-.mapboxgl-popup-anchor-top;
-
 .mapboxgl-popup-tip {
     border-bottom-color: #fcbd1b;
 }
@@ -316,7 +314,7 @@ body {
     }
 
     #dropdown-icon {
-        height: 4em
+        height: 3em
     }
 
     #dropdown-menu {
@@ -377,7 +375,7 @@ body {
 
 @media (min-width:1024px) {
     #dropdown-icon {
-        height: 5em
+        height: 2em
     }
 
 }

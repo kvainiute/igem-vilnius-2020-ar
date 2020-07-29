@@ -565,6 +565,10 @@ function initGfpColors() {
     }
 
     buildColors(colors);
+
+    let cookieConsent = document.getElementById("consent");
+    if (cookieConsent == undefined) return;
+    tray.style.top = (cookieConsent.clientHeight + 20) + "px";
 }
 
 function playAudio(file) {
