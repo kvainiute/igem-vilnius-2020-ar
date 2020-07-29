@@ -26,9 +26,9 @@
                     <h2 id="header-two">SinBio</h2>
                     <div id="head-text">
                         <h1 id="main-text">
-                            <p id="static-text">pojūtis</p>
-                        </h1>
-                        <div>
+<p id="static-text">pojūtis</p>
+</h1>
+<div>
                             <svg version="1.1" id="movingDot" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 73.4 45.1" enable-background="new 0 0 73.4 45.1" xml:space="preserve">
                                 <polygon fill="#FCBD1B" stroke="#FCBD1B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="5.5,39.6 
 	36.7,5.5 67.9,39.6 " />
@@ -90,7 +90,7 @@
 
     <script>
         let dotDocked = false;
-        
+
         let movingDot = document.getElementById("movingDot");
         let arrows = document.getElementById("arrows");
         let headerWrapper = document.getElementById("header-wrapper");
@@ -100,20 +100,20 @@
         let distanceToBottom = 0;
 
         function setInitialElements() {
-            console.log("resize?");
             let middle = document.getElementById("middle");
 
             // set arrow position and width
             let viewportOffsetDot = movingDot.getBoundingClientRect();
             arrows.style.width = viewportOffsetDot.width;
             arrows.style.marginLeft = viewportOffsetDot.left;
+            arrows.style.visibility = "visible";
 
             // set lower text position and width
             let viewportOffsetWrapper = headerWrapper.getBoundingClientRect();
             middle.style.width = (viewportOffsetWrapper.width) + "px";
             document.getElementById("middle-text").style.width = (viewportOffsetWrapper.width * 0.9) + "px";
             middle.style.marginLeft = viewportOffsetWrapper.left + "px";
-
+            middle.style.visibility = "visible";
             distanceToBottom = topTriangle.getBoundingClientRect().top - movingDot.parentElement.getBoundingClientRect().top - 3;
             if (!dotDocked) return; // dot is at initial position, do nothing
 
@@ -125,7 +125,6 @@
         window.addEventListener('resize', setInitialElements);
         let scrollEvent = function() {
             if (!isInViewport(document.getElementById("header"))) {
-                console.log("not in view");
                 dotUp();
                 dotDocked = false;
             } else if (!dotDocked) {
@@ -133,7 +132,6 @@
                 dotDocked = true;
             }
         };
-        console.log("add event listener");
         document.addEventListener("scroll", scrollEvent);
 
 
@@ -142,8 +140,6 @@
             return (
                 bounding.top >= 0 &&
                 bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-                //bounding.left >= 0 &&
-                // && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
             );
         };
 
@@ -157,7 +153,6 @@
 
             // dot animation
             movingDot.style.transform = "translateY(" + distanceToBottom + "px) rotate(180deg)";
-            console.log("translateY(" + distanceToBottom + "px) rotate(180deg)");
         }
 
         function dotUp() {
@@ -205,8 +200,5 @@
 
         FontSwitcher.init();
         document.getElementById("dyslexia").onclick = () => FontSwitcher.toggle();
-
     </script>
-</body>
-
-</html>
+</body></html>

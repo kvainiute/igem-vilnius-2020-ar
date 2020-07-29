@@ -83,10 +83,12 @@ p {
 #arrows {
     position: relative;
     width: 100%;
+    visibility: hidden;
 }
 
 #middle {
     padding-top: 20px;
+    visibility: hidden;
 }
 
 #middle-wrapper {
