@@ -61,10 +61,10 @@ const data = {
             scale: 0.9,
         },
         onVisible: () => {
-            tray.style = "display: flex;";
+            tray.style.display = "flex";
         },
         onHidden: () => {
-            tray.style = "display: none;";
+            tray.style.display = "none";
         }
     },
 
