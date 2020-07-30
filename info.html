@@ -16,12 +16,16 @@
         }
 
         #qAndA {
-            padding-bottom: 30px;
+            padding-bottom: 160px;
             text-align: left;
         }
 
         #cookieCheckWrap {
             text-align: center;
+        }
+
+        #consent {
+            position: fixed;
         }
     </style>
 </head>
@@ -121,5 +125,11 @@
         LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
         FontSwitcher.init();
+
+        Array.from(document.querySelectorAll(".question")).forEach((question)=>{ question.onclick = ()=>{
+            let answer = document.getElementById("a" + question.id.substring(1));
+            answer.classList.toggle("open");
+            question.classList.toggle("open");
+        }; });
     </script>
 </body></html>
