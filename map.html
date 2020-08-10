@@ -15,13 +15,18 @@
 </head>
 
 <body id="map-page" class="container">
-    <div id="dropdown-menu"><img onclick="openNav()" id="dropdown-icon" src="images/navbar.svg">
+    <div id="dropdown-menu">
+		<div class="navbar-contr" id="language"></div>
+		                <div id="dropdown-icon" class="menu-wrapper header-part toggleable" onclick="toggleNav()">
+                    <div id="top-hamb" class="menu-long menu-hamb">
+                    </div>
+                    <div class="menu-short menu-hamb">
+                    </div>
+                    <div id="bottom-hamb" class="menu-long menu-hamb">
+                    </div>
+                </div>
     </div>
     <div id="dropdown-content">
-        <div id="navbar-controls">
-            <div class="navbar-contr" id="close"><img id="close-img" onclick="closeNav()" src="images/close-light.svg"></div>
-            <div class="navbar-contr" id="language"></div>
-        </div>
         <h1>3D modeliai</h1>
     </div>
     <div id="change-city"><img id="change-city-icon" src="images/city.svg"></div>
@@ -38,7 +43,7 @@
         <button class="city-button" id="rtv">Rietavas</button>
     </div>
     <div id="map" onclick="closeNav()"></div>
-    <main id="footer"><a href="/?mainmenu=1" id="foot">gr&iogon;&zcaron;ti atgal</a><br></main>
+    <main id="footer"><a href="/#main-menu" id="foot">gr&iogon;&zcaron;ti atgal</a><br></main>
 
     <script src="js/cookieconsent.js"></script>
     <script src="js/languages.js" charset="UTF-8"></script>

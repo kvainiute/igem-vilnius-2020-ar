@@ -4,5 +4,5 @@
 	 viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
 <line fill="none" stroke="#FCBD1B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x1="14.7" y1="36.2" x2="35.9" y2="14.9"/>
 <line fill="none" stroke="#FCBD1B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x1="14.7" y1="14.9" x2="35.9" y2="36.2"/>
-<circle fill="none" stroke="#FCBD1B" stroke-width="2" stroke-miterlimit="10" cx="25" cy="25" r="24"/>
+<!--<circle fill="none" stroke="#FCBD1B" stroke-width="2" stroke-miterlimit="10" cx="25" cy="25" r="24" />-->
 </svg>

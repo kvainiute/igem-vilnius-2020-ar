@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
-<g id="home">
-	<rect x="7.5" y="22.9" fill="#00031F" width="12.7" height="20.9"/>
-	<rect x="29.8" y="22.9" fill="#00031F" width="12.7" height="20.9"/>
-	<polygon fill="#00031F" points="25,13.2 7.5,22.9 42.5,22.9 	"/>
-	<rect x="7.5" y="22.9" fill="#00031F" width="34.7" height="7.2"/>
-	<polyline fill="none" stroke="#00031F" stroke-width="5.75" stroke-linecap="round" stroke-linejoin="round" points="8.1,17.6 
-		25,8.2 41.9,17.6 	"/>
-</g>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
+	<g id="home">
+		<rect x="7.5" y="22.9" fill="#6281ef" width="12.7" height="20.9" />
+		<rect x="29.8" y="22.9" fill="#6281ef" width="12.7" height="20.9" />
+		<polygon fill="#6281ef" points="25,13.2 7.5,22.9 42.5,22.9 	" />
+		<rect x="7.5" y="22.9" fill="#6281ef" width="34.7" height="7.2" />
+		<polyline fill="none" stroke="#6281ef" stroke-width="5.75" stroke-linecap="round" stroke-linejoin="round" points="8.1,17.6 
+		25,8.2 41.9,17.6 	" />
+	</g>
 </svg>

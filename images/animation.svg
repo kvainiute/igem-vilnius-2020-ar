@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
-<polygon id="play" display="none" fill="#00031F" stroke="#00031F" stroke-width="7.62" stroke-linecap="round" stroke-linejoin="round" points="
-	41,24.9 13,9 13,41 "/>
-<g id="pause">
-	
-		<line fill="none" stroke="#00031F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" x1="17.4" y1="7.5" x2="17.4" y2="42.5"/>
-	
-		<line fill="none" stroke="#00031F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" x1="32.6" y1="7.5" x2="32.6" y2="42.5"/>
-</g>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
+	<polygon id="play" display="none" fill="#6281ef" stroke="#6281ef" stroke-width="7.62" stroke-linecap="round" stroke-linejoin="round" points="
+	41,24.9 13,9 13,41 " />
+	<g id="pause">
+
+		<line fill="none" stroke="#6281ef" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" x1="17.4" y1="7.5" x2="17.4" y2="42.5" />
+
+		<line fill="none" stroke="#6281ef" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" x1="32.6" y1="7.5" x2="32.6" y2="42.5" />
+	</g>
 </svg>

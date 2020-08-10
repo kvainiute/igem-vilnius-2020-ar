@@ -1,20 +1,27 @@
-/* .languageBox {
-} */
-.languageBox span {
-    text-transform: uppercase;
-    margin-right: 8px;
-    cursor: pointer;
-    font-family: 'CustomHeavy';
-    font-weight: normal;
-    font-size: 1em;
-}
-.languageBox span.active, .languageBox span:hover {
-    border-bottom: 2px solid rgb(0, 3, 31);
-}
+ .languageBox {
+ 	text-align: right;
+ 	box-sizing: border-box;
+ 	padding: 10px;
+ 	width: 100%
+ }
+
+ .languageBox span {
+ 	text-transform: uppercase;
+ 	margin-right: 8px;
+ 	cursor: pointer;
+ 	font-family: 'CustomHeavy';
+ 	font-weight: normal;
+ 	font-size: 1em;
+ }
+
+ .languageBox span.active,
+ .languageBox span:hover {
+ 	border-bottom: 2px solid rgb(0, 3, 31);
+ }
 
 
-@media (min-width: 768px) {
-    .languageBox span {
-        font-size: 1.6em;
-    }
-}
+ @media (min-width: 768px) {
+ 	.languageBox span {
+ 		font-size: 1.6em;
+ 	}
+ }
