@@ -796,6 +796,18 @@ function toggleNav() {
 		document.getElementById("dropdown-menu").classList.add("active")
 	}
 }
+function setFooterPos(){
+			var consentExists = document.getElementById("consent");
+            if (consentExists != null) {
+                document.getElementById("footer").style.bottom = consentExists.getBoundingClientRect().height + "px";
+
+                document.getElementById("button-wrapper").addEventListener('click', function() {
+                    document.getElementById("footer").style.bottom = "0px";
+                })
+            } else {
+				document.getElementById("footer").style.bottom = "0px";
+			}
+		}
 
 function closeNav() {
 	navOpen = false;
