@@ -80,8 +80,8 @@ canvas {
 	flex-direction: column;
 	box-sizing: border-box;
 	padding: 20px;
-	width: 60%;
-	height: 60%;
+	width: 80%;
+	height: 70%;
 	margin-top: -100px;
 	background: rgba(18, 18, 18, 0.9);
 	border-radius: 15px;
@@ -139,6 +139,7 @@ svg text {
 	font-size: 12pt;
 	font-weight: 600;
 	margin: 0 5%;
+	line-height: 1.5em;
 }
 
 #info-text a {
@@ -154,6 +155,7 @@ svg text {
 	padding-top: 20px;
 	box-sizing: border-box;
 	height: fit-content;
+	padding-bottom: 10px
 }
 
 #info-footer a {
@@ -163,7 +165,8 @@ svg text {
 
 #model-info em {
 	font-style: normal;
-	font-family: 'CustomBold'
+	font-family: 'CustomBold';
+	color: #6281ef
 }
 
 
@@ -196,7 +199,7 @@ svg text {
 	}
 
 	#model-info #info-text p {
-		font-size: 16pt
+		font-size: 1em;
 	}
 
 	#model-info .info-footer-icons {

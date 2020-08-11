@@ -28,7 +28,8 @@ body {
 }
 
 .container h1 {
-	font-size: 2em
+	font-size: 2em;
+	text-transform: uppercase
 }
 
 #info-page #footer,
@@ -84,6 +85,9 @@ body {
 	transform: translate(-50%, -50%);
 	top: 50%;
 	z-index: 2
+}
+#map-page div[showing=false]{
+	display: none;
 }
 
 #choose-city button {
@@ -171,12 +175,14 @@ body {
 	position: absolute;
 	right: 0vw;
 	z-index: 3000;
-	display: inline-block;
 	display: flex;
 	justify-content: space-between;
 	width: 66vw;
-	padding: 16px;
-	box-sizing: border-box
+	padding: 21px;
+	padding-top: 15px;
+	box-sizing: border-box;
+	align-items: baseline;
+	pointer-events: none
 }
 
 #dropdown-menu img:hover {
@@ -223,7 +229,8 @@ body {
 .active #language.navbar-contr {
 	opacity: 100%;
 	transition-delay: 1s;
-	transition-duration: 0.5s
+	transition-duration: 0.5s;
+	pointer-events: all
 }
 
 .active .languageBox {
@@ -258,14 +265,12 @@ body {
 	transition: 0.5s
 }
 
+
 #dropdown-content a p {
 	margin-block-end: 0;
 	margin-block-start: 0;
-}
-
-#dropdown-content a p {
 	background-image: linear-gradient(transparent 0%, transparent 65%, #6281ef 65%, #6281ef 100%);
-	background-position: 0px 1em;
+	background-position: 0px 2em;
 	background-repeat: no-repeat;
 	transition: 0.5s;
 	padding-left: 5px;
@@ -337,12 +342,18 @@ body {
 }
 
 #dropdown-content h1 {
+	margin: 0;
 	font-family: 'CustomHeavy';
-	padding-left: 16px;
-	font-size: 34px;
+	padding-left: 21px;
+	font-size: 30px;
+	-webkit-text-stroke: thin #6281ef;
 	stroke-color: #6281ef;
 	color: transparent;
-	margin-top: 7vh
+	padding-top: 8vh;
+	padding-bottom: 2vh;
+	position: fixed;
+	background-color: #121212;
+	width: 100%
 }
 
 #header {
@@ -350,11 +361,12 @@ body {
 	margin-top: 8px;
 }
 
-#qAndA {
+.container main {
 	padding-top: 0;
 	margin-top: 0;
 	width: 80%;
 	margin: 0 auto;
+	padding-bottom: 30vh
 }
 
 .question:first-child {
@@ -412,8 +424,19 @@ body {
 
 }
 
+@media (max-width:768px) {
+	.container main {
+		padding-bottom: 40vh
+	}
 
-
+	#content-wrapper {
+		padding-top: calc(9vh + 34px);
+		padding-bottom: 20vh
+	}
+	#choose-city {
+	width: 50%;
+	}
+}
 
 @media (min-width:768px) {
 
@@ -426,9 +449,6 @@ body {
 		font-size: 4em
 	}
 
-	#dropdown-icon {
-		height: 3em
-	}
 
 	#dropdown-menu {
 		width: 33vw;
@@ -451,11 +471,16 @@ body {
 	}
 
 	#dropdown-content h1 {
-		font-size: 48px
+		font-size: 40px
 	}
 
 	#consent {
 		font-size: 0.7em;
+	}
+
+	#content-wrapper {
+		padding-top: calc(10vh + 48px);
+		padding-bottom: 20vh
 	}
 
 }
@@ -465,20 +490,27 @@ body {
 	#choose-city {
 		width: fit-content;
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-rows: 1fr;
 		grid-gap: 7px
 	}
 }
 
-@media (min-aspect-ratio: 18/9) and (min-width:768px) {
+@media (min-aspect-ratio: 16/9) and (min-width:768px) {
 
 	#choose-city {
 		width: fit-content;
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-rows: 1fr;
 		grid-gap: 7px
+	}
+	#dropdown-content h1 {
+		padding-top: 14vh
+	}
+	#content-wrapper{
+		padding-top: calc(14vh + 48px);
+		padding-bottom: 20vh;
 	}
 
 }

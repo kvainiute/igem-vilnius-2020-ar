@@ -28,15 +28,14 @@
     </div>
     <div id="dropdown-content">
         <h1>3D modeliai</h1>
+		<div id="content-wrapper"></div>
     </div>
     <div id="change-city"><img id="change-city-icon" src="images/city.svg"></div>
     <div id="choose-city">
         <button class="city-button" id="vln">Vilnius</button>
         <button class="city-button" id="kns">Kaunas</button>
         <button class="city-button" id="klp">Klaipėda</button>
-        <button class="city-button" id="sil">Šiauliai</button>
         <button class="city-button" id="pnv">Panevėžys</button>
-        <button class="city-button" id="mzk">Mažeikiai</button>
         <button class="city-button" id="trg">Tauragė</button>
         <button class="city-button" id="alt">Alytus</button>
         <button class="city-button" id="zrs">Zarasai</button>
@@ -50,22 +49,29 @@
     <script src="js/opendyslexic.js" charset="UTF-8"></script>
     <script src="js/map.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            var consentExists = document.getElementById("consent");
+
+		function setFooterPos(){
+			var consentExists = document.getElementById("consent");
             if (consentExists != null) {
                 document.getElementById("footer").style.bottom = consentExists.getBoundingClientRect().height + "px";
 
                 document.getElementById("button-wrapper").addEventListener('click', function() {
                     document.getElementById("footer").style.bottom = "0px";
                 })
-            }
-        })
+            } else {
+				document.getElementById("footer").style.bottom = "0px";
+			}
+		}
+		        window.addEventListener('load', setFooterPos)
+		 window.addEventListener('resize', setFooterPos)
 
         function updateTexts(language) {
             if (language == "en") {
-                document.getElementById("foot").innerText = "return to the main page"
+				document.getElementById("foot").innerText = "return to the main page"
+                document.querySelector("#dropdown-content h1").innerText = "3d models"
             } else {
                 document.getElementById("foot").innerText = "grįžti atgal"
+				document.querySelector("#dropdown-content h1").innerText = "3d modeliai"
             }
         }
         updateTexts(LanguageSwitcher.currentLanguage);

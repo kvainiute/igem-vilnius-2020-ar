@@ -56,8 +56,8 @@
     <script src="js/languages.js" charset="UTF-8"></script>
     <script src="js/opendyslexic.js" charset="UTF-8"></script>
     <script>
-        window.addEventListener('load', function() {
-            var consentExists = document.getElementById("consent");
+		function setFooterPos(){
+			var consentExists = document.getElementById("consent");
             if (consentExists != null) {
                 document.getElementById("footer").style.bottom = consentExists.getBoundingClientRect().height + "px";
 
@@ -65,7 +65,9 @@
                     document.getElementById("footer").style.bottom = "0px";
                 })
             }
-        })
+		}
+		        window.addEventListener('load', setFooterPos)
+		 window.addEventListener('resize', setFooterPos)
         let texts = {
             en: {
                 foot: "return to the main page",

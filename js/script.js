@@ -177,9 +177,7 @@ function initializeAR() {
 	arToolkitContext = new THREEx.ArToolkitContext({
 		cameraParametersUrl: 'data/camera_para.dat',
 		detectionMode: 'mono',
-		imageSmoothingEnabled: true,
-		smoothCount: 100,
-		smoothTolerance: 1
+		imageSmoothingEnabled: true
 	});
 
 	// copy projection matrix to camera when initialization complete
@@ -192,17 +190,15 @@ function initializeAR() {
 function toggleAR3D() {
 	reset();
 	$('#model-info').css('display', 'none');
-	var arSwitch = document.getElementById("ar-switch").contentDocument;
-	console.log(arSwitch)
-	if (arSwitch.getElementById("no").style.display == "none") {
-		arSwitch.getElementById("no").style.display = "block"
-	} else {
-		arSwitch.getElementById("no").style.display = "none"
-	}
+	var arSwitch = document.getElementById("ar-switch");
 	isAR = !isAR;
 	if (isAR) {
+		arSwitch.classList.remove("disabled")
+		console.log(arSwitch.classList)
 		loadSingle(currentModel);
 	} else {
+		arSwitch.classList.add("disabled");
+		console.log(arSwitch.classList)
 		loadSingleNoAR(currentModel);
 	}
 }
@@ -340,7 +336,9 @@ function showModelInfo() {
 
 	document.getElementById("st-name").innerHTML = info.name;
 	document.getElementById("text-info").innerHTML = info.desc;
-
+	if (document.getElementById("popup-info").style.display == "inline") {
+		document.getElementById("popup-info").style.display = "none"
+	}
 	document.getElementById("model-info").style.display = 'flex';
 }
 

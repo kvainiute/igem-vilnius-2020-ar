@@ -113,6 +113,18 @@
                 document.getElementById(element).innerHTML = texts[language][element];
             }
         }
+		function setFooterPos(){
+			var consentExists = document.getElementById("consent");
+            if (consentExists != null) {
+                document.getElementById("footer").style.bottom = consentExists.getBoundingClientRect().height + "px";
+
+                document.getElementById("button-wrapper").addEventListener('click', function() {
+                    document.getElementById("footer").style.bottom = "0px";
+                })
+            }
+		}
+		        window.addEventListener('load', setFooterPos)
+		 window.addEventListener('resize', setFooterPos)
         updateTexts(LanguageSwitcher.currentLanguage);
         LanguageSwitcher.makeLanguageBox(document.querySelector("header"), 0);
         LanguageSwitcher.languagebox.className = "languageBox";

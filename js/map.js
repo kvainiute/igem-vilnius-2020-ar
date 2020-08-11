@@ -18,11 +18,6 @@ let points = [
 			en: "Old Ferry",
 			coordinates: [21.122890, 55.706472]
 		},
-		sil: {
-			lt: "Geležinė lapė",
-			en: "Iron Fox",
-			coordinates: [23.328929, 55.931132],
-		},
 		pnv: {
 			lt: "Skaistakalnio parkas",
 			en: "Skaistakalnis Park",
@@ -48,11 +43,6 @@ let points = [
 			en: "Alytus City Garden",
 			coordinates: [24.07707, 54.3855]
 		},
-		mzk: {
-			lt: "Senamiesčio parkas (I)",
-			en: "Old Town Park (I)",
-			coordinates: [22.348743, 56.316101]
-		},
     },
 	{
 		lt: "RNR",
@@ -72,11 +62,6 @@ let points = [
 			lt: "Teatro aikštė",
 			en: "Theatre Square",
 			coordinates: [21.13155, 55.70784]
-		},
-		sil: {
-			lt: "Saulės laikrodžio aikštė",
-			en: "The Sundial Square",
-			coordinates: [23.325083, 55.930636],
 		},
 		pnv: {
 			lt: "Laisvės aikštė",
@@ -102,12 +87,7 @@ let points = [
 			lt: "Baltosios rožės tiltas",
 			en: "Bridge of the White Rose",
 			coordinates: [24.08138, 54.39313]
-		},
-		mzk: {
-			lt: "Senamiesčio parkas (II)",
-			en: "Old Town Park (II)",
-			coordinates: [22.348721, 56.316470]
-		},
+		}
     },
 	{
 		lt: "Genetinė grandinė",
@@ -127,11 +107,6 @@ let points = [
 			lt: "Lietuvos jūrų muziejus",
 			en: "Lithuanian Sea Museum",
 			coordinates: [21.101346, 55.716877]
-		},
-		sil: {
-			lt: "Koncertų salė „Saulė“",
-			en: "Concert Hall \"Saulė\"",
-			coordinates: [23.312699, 55.9299356],
 		},
 		pnv: {
 			lt: "Raktų medis",
@@ -157,12 +132,7 @@ let points = [
 			lt: "Alytaus miesto sodas (II)",
 			en: "Alytus City Garden (II)",
 			coordinates: [24.04838, 54.39347]
-		},
-		mzk: {
-			lt: "Juodpelkio parkas (I)",
-			en: "Juodpelkio Park (I)",
-			coordinates: [22.339610, 56.295133]
-		},
+		}
     },
 	{
 		lt: "Biobrick",
@@ -182,11 +152,6 @@ let points = [
 			lt: "Dienovidžio skveras",
 			en: "Midday Square",
 			coordinates: [21.13491, 55.70807]
-		},
-		sil: {
-			lt: "Sukilėlių kalnelis",
-			en: "The Hill of Rebels",
-			coordinates: [23.304555, 55.935753],
 		},
 		pnv: {
 			lt: "Kraštotyros muziejus",
@@ -212,12 +177,7 @@ let points = [
 			lt: "Piliakalnis",
 			en: "Hillfort",
 			coordinates: [24.07948, 54.39637]
-		},
-		mzk: {
-			lt: "Juodpelkio parkas (II)",
-			en: "Juodpelkio Park (II)",
-			coordinates: [22.346875, 56.294752]
-		},
+		}
     },
 	{
 		lt: "Sintetinė Biologija",
@@ -237,11 +197,6 @@ let points = [
 			lt: "Biržos tiltas",
 			en: "Biržos Bridge",
 			coordinates: [21.13343, 55.71013]
-		},
-		sil: {
-			lt: "Autobusų stotis",
-			en: "Bus Station",
-			coordinates: [23.308000, 55.927814],
 		},
 		pnv: {
 			lt: "Katedra",
@@ -267,12 +222,7 @@ let points = [
 			lt: "Tūkstantmečio tiltas",
 			en: "Millenium Bridge",
 			coordinates: [24.04095, 54.42128]
-		},
-		mzk: {
-			lt: "Juodpelkio parkas (III)",
-			en: "Juodpelkio Park (III)",
-			coordinates: [22.338881, 56.295645]
-		},
+		}
     },
 	{
 		lt: "Žaliai fluorescuojantis baltymas",
@@ -292,11 +242,6 @@ let points = [
 			lt: "Meridianas",
 			en: "Sailboat Meridian",
 			coordinates: [21.134859, 55.710149]
-		},
-		sil: {
-			lt: "Prisikėlimo aikštė",
-			en: "Resurrection Square",
-			coordinates: [23.3162558, 55.9331288],
 		},
 		pnv: {
 			lt: "Muzikinis teatras",
@@ -322,12 +267,7 @@ let points = [
 			lt: "Dailidės ežeras",
 			en: "Dailidė Lake",
 			coordinates: [24.07707, 54.3855]
-		},
-		mzk: {
-			lt: "Šv. Pranciškaus Asyžiečio bažnyčios aikštėle",
-			en: "Church of St. Francis and St. Bernard Square",
-			coordinates: [22.338646, 56.303939]
-		},
+		}
     },
 	{
 		lt: "Genetiškai modifikuoti organizmai",
@@ -347,11 +287,6 @@ let points = [
 			lt: "Klaipėdos pilis",
 			en: "Klaipėda Castle",
 			coordinates: [21.12892, 55.70583]
-		},
-		sil: {
-			lt: "Kaštonų alėja",
-			en: "Kaštonų Alley",
-			coordinates: [23.3101301, 55.9344033],
 		},
 		pnv: {
 			lt: "Dailės galerija",
@@ -377,12 +312,7 @@ let points = [
 			lt: "Jaunimo parkas (I)",
 			en: "Youth Park (I)",
 			coordinates: [24.03019, 54.40527]
-		},
-		mzk: {
-			lt: "Senamiesčio parkas (III)",
-			en: "Old Town Park (III)",
-			coordinates: [22.347766, 56.316446]
-		},
+		}
     },
 	{
 		lt: "Bakteriofagas",
@@ -402,11 +332,6 @@ let points = [
 			lt: "Kultūros fabrikas",
 			en: "Culture Factory",
 			coordinates: [21.14116, 55.70782]
-		},
-		sil: {
-			lt: "Fontanas „Pelikanai“",
-			en: "Fountain \"Pelicans\"",
-			coordinates: [23.314924, 55.931415],
 		},
 		pnv: {
 			lt: "Juozo Miltinio teatras",
@@ -432,12 +357,7 @@ let points = [
 			lt: "Rotušė",
 			en: "Town Hall",
 			coordinates: [24.04921, 54.39623]
-		},
-		mzk: {
-			lt: "Pavenčių paplūdimys (I)",
-			en: "Pavenčiai Beach (I)",
-			coordinates: [22.332374, 56.293762]
-		},
+		}
     },
 	{
 		lt: "Sekvenavimas",
@@ -457,11 +377,6 @@ let points = [
 			lt: "„Juodasis vaiduoklis“",
 			en: "\"Black Ghost\" Sculpture",
 			coordinates: [21.126767, 55.706624]
-		},
-		sil: {
-			lt: "Geležinkelio stotis",
-			en: "Railway Station",
-			coordinates: [23.3139713, 55.9234364],
 		},
 		pnv: {
 			lt: "Senoji siauruko stotis",
@@ -487,12 +402,7 @@ let points = [
 			lt: "Jaunimo parkas (II)",
 			en: "Youth Park (II)",
 			coordinates: [24.02786, 54.40656]
-		},
-		mzk: {
-			lt: "Sodų skverelis (I)",
-			en: "Gardens Square (I)",
-			coordinates: [22.335150, 56.308655]
-		},
+		}
     },
 	{
 		lt: "Modeliniai organizmai",
@@ -512,11 +422,6 @@ let points = [
 			lt: "„Baltijos-banga“",
 			en: "\"Baltijos-banga\"",
 			coordinates: [21.132110, 55.708681]
-		},
-		sil: {
-			lt: "Talkšos paplūdimys",
-			en: "Talkša Beach",
-			coordinates: [23.336872, 55.932422],
 		},
 		pnv: {
 			lt: "Kino centras „Garsas“",
@@ -542,12 +447,7 @@ let points = [
 			lt: "Senamiesčio skveras",
 			en: "Old Town Square",
 			coordinates: [24.04895, 54.39915]
-		},
-		mzk: {
-			lt: "Pavenčių paplūdimys (II)",
-			en: "Pavenčiai Beach (II)",
-			coordinates: [22.330539, 56.292643]
-		},
+		}
     },
 	{
 		lt: "Crispr-Cas9",
@@ -567,11 +467,6 @@ let points = [
 			lt: "„Vaikystės svajonė“",
 			en: "\"Childhood Dream\" Sculpture",
 			coordinates: [21.122211, 55.705501]
-		},
-		sil: {
-			lt: "P. Višinsio biblioteka",
-			en: "P. Višinskis Library",
-			coordinates: [23.3106477, 55.9371334],
 		},
 		pnv: {
 			lt: "Kultūros ir poilsio parkas",
@@ -597,12 +492,7 @@ let points = [
 			lt: "Dailidės ežeras (II)",
 			en: "Dailidė Lake (II)",
 			coordinates: [24.07503, 54.3865]
-		},
-		mzk: {
-			lt: "Sodų skverelis (II)",
-			en: "Gardens Square (II)",
-			coordinates: [22.332365, 56.309574]
-		},
+		}
     },
 	{
 		lt: "Transliacija",
@@ -622,11 +512,6 @@ let points = [
 			lt: "Melnragės molas",
 			en: "Melnragė Pier",
 			coordinates: [21.085865, 55.731250]
-		},
-		sil: {
-			lt: "Chaimo Frenkelio vila",
-			en: "Chaimas Frenkelis Villa",
-			coordinates: [23.3287166, 55.9252816],
 		},
 		pnv: {
 			lt: "Senvagė",
@@ -652,12 +537,7 @@ let points = [
 			lt: "Laisvės Angelas",
 			en: "Angel of Freedom",
 			coordinates: [24.04947, 54.39404]
-		},
-		mzk: {
-			lt: "Mažeikių kultūros centro aikštelė",
-			en: "Mažeikiai Culture Centre Square",
-			coordinates: [22.339286, 56.304385]
-		},
+		}
     },
 	{
 		lt: "Virusai",
@@ -677,11 +557,6 @@ let points = [
 			lt: "M. Mažvydo alėja",
 			en: "M. Mažvydas Alley",
 			coordinates: [21.132862, 55.714552]
-		},
-		sil: {
-			lt: "Savivaldybės aikštė",
-			en: "Municipality Square",
-			coordinates: [23.3180374, 55.9321064],
 		},
 		rtv: {
 			lt: "Naujasis pažintinis takelis",
@@ -712,60 +587,55 @@ let points = [
 			lt: "Mažosios Dailidės ežeras",
 			en: "Little Dailidė Lake",
 			coordinates: [24.06095, 54.3927]
-		},
-		mzk: {
-			lt: "Mažeikių Merkelio Račkausko gimnazija",
-			en: "Mažeikiai Merkelio Račkausko gymnasium",
-			coordinates: [22.347358, 56.311710]
-		},
+		}
     },
 ];
 let cities = {
 	vln: {
+		name: "Vilnius",
 		coordinates: [25.2855, 54.687],
 		zoom: 13
 	},
 	kns: {
+		name: "Kaunas",
 		coordinates: [23.907, 54.89721],
 		zoom: 12.45
 	},
 	klp: {
+		name: "Klaipėda",
 		coordinates: [21.11, 55.70583],
 		zoom: 11.9
 	},
-	sil: {
-		coordinates: [23.319, 55.932106],
-		zoom: 12.7
-	},
 	pnv: {
+		name: "Panevėžys",
 		coordinates: [24.355265, 55.731426],
 		zoom: 13
 	},
 	trg: {
+		name: "Tauragė",
 		coordinates: [22.299, 55.25],
 		zoom: 12.5
 	},
 	alt: {
+		name: "Alytus",
 		coordinates: [24.055, 54.399],
 		zoom: 12.2
 	},
 	rtv: {
+		name: "Rietavas",
 		coordinates: [21.936, 55.726798],
 		zoom: 14.4
 	},
 	zrs: {
+		name: "Zarasai",
 		coordinates: [26.239, 55.732083],
 		zoom: 14
-	},
-	mzk: {
-		coordinates: [22.346578, 56.304067],
-		zoom: 13
 	}
 }
 
 function initializeNavBar(language) {
 
-	var els = document.querySelectorAll('#dropdown-content :not(.navbar-contr):not(#navbar-controls):not(img):not(.languageBox):not(h1):not(span)');
+	var els = document.querySelectorAll('#dropdown-content :not(.navbar-contr):not(#navbar-controls):not(img):not(.languageBox):not(h1):not(span):not(#content-wrapper)');
 
 	for (var i = 0; i < els.length; i++) {
 		els[i].parentNode.removeChild(els[i])
@@ -784,10 +654,10 @@ function initializeNavBar(language) {
 		var a = document.createElement('a');
 		a.setAttribute("href", './ar.html?model=' + point.link + '&city=' + cityCookie);
 		a.id = point.link
-		document.getElementById("dropdown-content").appendChild(a);
+		document.querySelector("#content-wrapper").appendChild(a);
 		var p = document.createElement('p');
 		p.innerHTML = point[language];
-		document.querySelector("#dropdown-content #" + point.link).appendChild(p)
+		document.querySelector("#content-wrapper #" + point.link).appendChild(p)
 	})
 }
 
@@ -917,7 +787,7 @@ function toggleNav() {
 		} else {
 			navBar.style.right = "-66vw";
 		}
-		footerButton.style.bottom = "0";
+		setFooterPos();
 		document.getElementById("dropdown-menu").classList.remove("active")
 	} else {
 		navOpen = true;
@@ -928,15 +798,16 @@ function toggleNav() {
 }
 
 function closeNav() {
-	if (!navOpen) return;
 	navOpen = false;
 	if (window.innerWidth > 768) {
 		navBar.style.right = "-33vw";
 	} else {
 		navBar.style.right = "-66vw";
 	}
-	footerButton.style.bottom = "0";
+	setFooterPos();
+	document.getElementById("dropdown-menu").classList.remove("active")
 }
+
 var city;
 
 var cookieExists = document.cookie.split('; ')
@@ -948,15 +819,16 @@ if (cookieExists != undefined) {
 }
 
 function chooseCity() {
-	document.getElementById("dropdown-menu").style.display = "none";
+	document.getElementById("dropdown-menu").setAttribute("showing", "false");
+	closeNav()
 	document.getElementById("change-city").style.display = "none";
 	var cityButtons = document.getElementsByClassName("city-button");
 	var cityMain;
 	for (var i = 0; i < cityButtons.length; i++) {
 		document.getElementById(cityButtons[i].id).addEventListener('click', function (ev) {
 			document.getElementById("change-city").style.display = "initial";
-			document.getElementById("choose-city").style.display = "none";
-			document.getElementById("dropdown-menu").style.display = "initial";
+			document.getElementById("choose-city").setAttribute("showing", "false");
+			document.getElementById("dropdown-menu").setAttribute("showing", "true");
 			cityMain = ev.target.id
 			document.cookie = "city=" + cityMain;
 			initializeNavBar(LanguageSwitcher.currentLanguage);
@@ -968,7 +840,7 @@ function chooseCity() {
 if (city == undefined) {
 	chooseCity();
 } else {
-	document.getElementById("choose-city").style.display = "none";
+	document.getElementById("choose-city").setAttribute("showing", "false");
 	document.getElementById("change-city").style.display = "initial";
 	initializeNavBar(LanguageSwitcher.currentLanguage);
 	loadMap(city, LanguageSwitcher.currentLanguage)
@@ -976,6 +848,6 @@ if (city == undefined) {
 document.getElementById("change-city-icon").addEventListener('click', function () {
 	var node = document.getElementById("map");
 	node.querySelectorAll('*').forEach(n => n.remove());
-	document.getElementById("choose-city").style.display = "initial";
+	document.getElementById("choose-city").setAttribute("showing", "true");
 	chooseCity();
 })

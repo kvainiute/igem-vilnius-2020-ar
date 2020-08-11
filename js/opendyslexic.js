@@ -38,7 +38,7 @@ class FontSwitcher {
 
 FontSwitcher.fonts = {
     od: {
-        style: '* { font-family: "opendyslexic" !important; }'
+        style: '* { font-family: "opendyslexic" !important; line-height: 1em}'
     },
     none: {
         style: ""

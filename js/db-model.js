@@ -259,12 +259,12 @@ const data = {
         meta: {
             lt: {
                 name: "Genetinė grandinė",
-                desc: "tekstas-tekstas",
+                desc: "Prieš jūsų akis - bene dažniausiai mokslininkų naudojamas įrankis - <em class='bolded'>plazmidė</em>, žiedinės formos DNR seka. Jei žmogaus chromosomose DNR seką įsivaizduojame kaip begalo ilgą, itin susisukusią grandinę, šioji DNR seka yra visai kitokia. Visos šios plazmidės dydis kartais būna netgi mažesnis už žmogaus chromosomose randamus genus. Tačiau visas plazmidės žavesys - tai galimybė į ją <em class='bolded'>įdėti mūsų pasirinktą geną</em>. Plazmidė - tai uždaras žiedas, sudarytas iš nukleotidų A, T, G, C, susijungusių pagal tam tikras taisykles. Dėl sekoje esančių konkrečių vietų, kurias paveikus <em class='bolded'>molekulinėmis žirklėmis</em> mokslininkai įkerpa abi plazmidėje esančias DNR grandines, o į likusį tarpą <em class='bolded'>įklijuoja pasirinktą geną</em> - tai gali būti įvairius baltymus, pavyzdžiui alergenus ar švytinčius baltymus, koduojančios sekos. Vėliau iš šių plazmidžių gaunami baltymai naudojami įvairiuose tyrimuose siekiant gydyti ar detektuoti įvairias ligas, sutrikimus ar mechanizmus. Taip pat, kartais tokios plazmidės gali būti naudojamos ir įvairiais <em class='bolded'>komerciniais tikslais</em>, pavyzdžiui susintetinti dažus, galinčius nudažyti tekstilę.",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {
                 name: "Genetic circuit",
-                desc: "text",
+                desc: "Here you can see perhaps the most common tool used by scientists - <em class='bolded'>plasmid</em>, a DNA sequence in the form of a ring. While we know that DNA sequence of human chromosomes is infinitely long and highly twisted strand, this DNA sequence is quite different. The size of this entire plasmid is sometimes even smaller than the genes found on human chromosomes. However, the whole charm of the plasmid is the ability to <em class='bolded'>insert our chosen genes</em> into it. The plasmid itself is a closed ring composed of nucleotides A, T, G, C joined together according to certain rules. Because of the specific sites in the sequence, researchers can <em class='bolded'>cut both strands of DNA</em> in the plasmid and <em class='bolded'>paste the selected gene</em> into the plasmid. These sequences might encode various proteins, such as allergens or glowing proteins. Subsequently, proteins derived from these plasmids are used in a variety of studies to treat or detect a range of diseases, disorders, or mechanisms. Sometimes such plasmids can be used for a variety of <em class='bolded'>commercial purposes</em>, such as synthesizing dyes that can dye textiles.",
                 audioRec: "./recordings/nano.mp3"
             },
         },
@@ -375,12 +375,12 @@ const data = {
         meta: {
             lt: {
                 name: "Sintetinė biologija",
-                desc: "tekstas",
+                desc: "Modelyje matote paveikslą, kuris sudarytas iš <em class='bolded'>bakterijų, gebančių keisti spalvas</em>. Tokį paveikslą būtų galima sukurti <em class='bolded'>genų inžinerijos</em> pagalba, parenkant bakterijoms tinkamas spalvas. Šiam projektui naudojami genų inžinerijos metodai gali būti pritaikyti sprendžiant įvairias žmonijos problemas, pavyzdžiui <em class='bolded'>oro teršalų valymui</em> pasitelkiant mikroorganizmus vykdančius bioremediaciją; dumbliai, kurie žuvies organizme <em class='bolded'>naikina ligų sukėlėją</em>; vitamino A trūkumo šalinimas pasitelkiant modifikuotus ryžius. Visi šie projektai yra sukurti genų inžinerijos pagalba.",
                 audioRec: "./recordings/nano.mp3"
             },
             en: {
                 name: "Synthetic biology",
-                desc: "text",
+                desc: "In this model you can see a visual representation of carefully arranged <em class='bolded'>color-changing bacteria</em>. It is possible to recreate such art in real life by <em class='bolded'>engineering bacteria </em>accordingly. The methods used to create this masterpiece may be applied to solving the intricate problems of humanity. For example, by exploiting bacteria that perform bioremediation, we can <em class='bolded'>clean polluted air</em>, or minimize <em class='bolded'>vitamin A deficiencies </em>with genetically modified rice. There are many problems waiting to be solved, and with the help of genetic engineering, a lot of them could be alleviated.",
                 audioRec: "./recordings/nano.mp3"
             }
         },

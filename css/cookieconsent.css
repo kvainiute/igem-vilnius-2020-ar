@@ -3,8 +3,8 @@
 	box-sizing: border-box;
 	bottom: -100%;
 	left: 0;
-	position: absolute;
-	background: #121224;
+	position: fixed;
+	background: #121212;
 	width: 100%;
 	display: table;
 	padding: 12px;
@@ -12,6 +12,11 @@
 	font-family: 'CustomLight';
 	font-size: 0.8em;
 	box-shadow: 0px 0px 8px #6281ef;
+}
+
+#main-menu #consent {
+	bottom: -100%;
+	position: absolute;
 }
 
 #consent p {
@@ -135,5 +140,11 @@
 
 	#consent button + button {
 		margin: 0 0 0 8px;
+	}
+}
+
+@media (max-width: 768px) {
+	#consent {
+		text-align: center
 	}
 }

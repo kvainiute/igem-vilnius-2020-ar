@@ -52,6 +52,9 @@
 		.languageBox span.active, .languageBox span:hover {
     border-bottom: 2px solid #fafafc;
 }
+		#info-footer .disabled #no line{
+			stroke: none
+		}
 
         @media (min-width: 768px) {
             #popup-info {
@@ -61,6 +64,26 @@
         }
 
     </style>
+	<script src='js/three.js'></script>
+
+    <script src="jsartoolkit5/artoolkit.min.js"></script>
+    <script src="jsartoolkit5/artoolkit.api.js"></script>
+
+    <script src="threex/threex-artoolkitsource.js"></script>
+    <script src="threex/threex-artoolkitcontext.js"></script>
+    <script src="threex/threex-arbasecontrols.js"></script>
+    <script src="threex/threex-armarkercontrols.js"></script>
+    <script src="threex/threex-arsmoothedcontrols.js"></script>
+
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/GLTFLoader.js"></script>
+    <script src="js/DRACOLoader.js"></script>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="js/db-model.js" charset="UTF-8"></script>
+    
+    <script src="js/languages.js" charset="UTF-8"></script>
+    <script src="js/opendyslexic.js" charset="UTF-8"></script>
 </head>
 
 <body>
@@ -71,11 +94,6 @@
                 <circle fill="none" stroke="#ffffff" stroke-width="2" stroke-miterlimit="10" cx="25" cy="25" r="24" />
             </svg></div>
         <div id="popup-image"><object data="images/info-popup.svg" type="image/svg+xml"></object></div>
-        <!--
-        <div id="popup-text">
-            <p>Skenuok markerį taip, kad jis tilptų visas įrenginio ekrane</p>
-        </div>
--->
     </div>
     <div class="info">
         <div class="spacer"></div>
@@ -105,29 +123,9 @@
 
 
     <div id="tray-container" style="display:none;"></div>
-    <script src='js/three.js'></script>
-
-    <script src="jsartoolkit5/artoolkit.min.js"></script>
-    <script src="jsartoolkit5/artoolkit.api.js"></script>
-
-    <script src="threex/threex-artoolkitsource.js"></script>
-    <script src="threex/threex-artoolkitcontext.js"></script>
-    <script src="threex/threex-arbasecontrols.js"></script>
-    <script src="threex/threex-armarkercontrols.js"></script>
-    <script src="threex/threex-arsmoothedcontrols.js"></script>
-
-    <script src="js/OrbitControls.js"></script>
-    <script src="js/GLTFLoader.js"></script>
-    <script src="js/DRACOLoader.js"></script>
-
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="js/db-model.js" charset="UTF-8"></script>
-    <script src="js/script.js" charset="UTF-8"></script>
+<script src="js/script.js" charset="UTF-8"></script>
     <script src="js/queryParams.js"></script>
     <script src="js/cookieconsent.js"></script>
-    <script src="js/languages.js" charset="UTF-8"></script>
-    <script src="js/opendyslexic.js" charset="UTF-8"></script>
-
     <script>
         var cookieExists = document.cookie.split('; ')
             .find(row => row.startsWith('popup'));
