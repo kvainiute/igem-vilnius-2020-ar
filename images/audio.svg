@@ -12,9 +12,9 @@
 	</g>
 	<g id="pause" display="none">
 
-		<line display="inline" fill="none" stroke="#000020" stroke-width="4.28" stroke-linecap="round" stroke-linejoin="round" x1="34.6" y1="15" x2="34.6" y2="34.7" />
+		<line display="inline" fill="none" stroke="#6281ef" stroke-width="4.28" stroke-linecap="round" stroke-linejoin="round" x1="34.6" y1="15" x2="34.6" y2="34.7" />
 
-		<line display="inline" fill="none" stroke="#000020" stroke-width="4.28" stroke-linecap="round" stroke-linejoin="round" x1="43.1" y1="15" x2="43.1" y2="34.7" />
+		<line display="inline" fill="none" stroke="#6281ef" stroke-width="4.28" stroke-linecap="round" stroke-linejoin="round" x1="43.1" y1="15" x2="43.1" y2="34.7" />
 	</g>
 	<polygon id="play" fill="#6281ef" stroke="#6281ef" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="
 	44.2,24.7 35.3,19.7 35.3,29.9 " />

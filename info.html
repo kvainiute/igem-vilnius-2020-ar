@@ -2,137 +2,148 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Vilnius iGEM AR</title>
-    <link href="./css/cookieconsent.css" rel="stylesheet">
-    <link href="./css/fonts.css" rel="stylesheet">
-    <link href="./css/languagebox.css" rel="stylesheet">
-    <link href="./css/opendyslexic.css" rel="stylesheet">
-    <link href="./css/map-info.css" rel="stylesheet">
-    <style>
-        html {
-            overflow-y: auto;
-        }
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Vilnius iGEM AR</title>
+	<link href="./css/cookieconsent.css" rel="stylesheet">
+	<link href="./css/fonts.css" rel="stylesheet">
+	<link href="./css/languagebox.css" rel="stylesheet">
+	<link href="./css/opendyslexic.css" rel="stylesheet">
+	<link href="./css/map-info.css" rel="stylesheet">
+	<style>
+		html {
+			overflow-y: auto;
+		}
 
-        #qAndA {
-            padding-bottom: 160px;
-            text-align: left;
-        }
+		#qAndA {
+			padding-bottom: 160px;
+			text-align: left;
 
-        #cookieCheckWrap {
-            text-align: center;
-        }
+		}
 
-        #consent {
-            position: fixed;
-        }
-    </style>
+		#qAndA .question {
+			background-color: rgba(75, 75, 89, 0.15);
+		}
+
+		#cookieCheckWrap {
+			text-align: center;
+		}
+
+		#consent {
+			position: fixed;
+		}
+
+	</style>
 </head>
 
 <body id="info-page">
-    <div class="container">
-        <header class="infoHeader">
-            <h1 id="header">Instrukcija</h1>
-        </header>
-        <main id="qAndA">
-            <p class="question" id="q1"></p>
-            <p class="answer" id="a1"></p>
-            <p class="question" id="q2"></p>
-            <p class="answer" id="a2"></p>
-            <p class="question" id="q3"></p>
-            <p class="answer" id="a3"></p>
-            <p class="question" id="q4"></p>
-            <p class="answer" id="a4"></p>
-            <p class="question" id="q5"></p>
-            <p class="answer" id="a5"></p>
-            <p class="question" id="q6"></p>
-            <p class="answer" id="a6"></p>
-        </main>
+	<div class="container">
+		<header class="infoHeader">
+			<h1 id="header">Instrukcija</h1>
+		</header>
+		<main id="qAndA">
+			<p class="question" id="q1"></p>
+			<p class="answer" id="a1"></p>
+			<p class="question" id="q2"></p>
+			<p class="answer" id="a2"></p>
+			<p class="question" id="q3"></p>
+			<p class="answer" id="a3"></p>
+			<p class="question" id="q4"></p>
+			<p class="answer" id="a4"></p>
+			<p class="question" id="q5"></p>
+			<p class="answer" id="a5"></p>
+			<p class="question" id="q6"></p>
+			<p class="answer" id="a6"></p>
+		</main>
 		<div id="footer"><a href="/#main-menu" id="foot">gr&iogon;&zcaron;ti atgal</a><br></div>
-    </div>
-    
-    <script src="js/cookieconsent.js"></script>
-    <script src="js/languages.js" charset="UTF-8"></script>
-    <script src="js/opendyslexic.js" charset="UTF-8"></script>
-    <script>
-		function setFooterPos(){
+	</div>
+
+	<script src="js/cookieconsent.js"></script>
+	<script src="js/languages.js" charset="UTF-8"></script>
+	<script src="js/opendyslexic.js" charset="UTF-8"></script>
+	<script>
+		function setFooterPos() {
 			var consentExists = document.getElementById("consent");
-            if (consentExists != null) {
-                document.getElementById("footer").style.bottom = consentExists.getBoundingClientRect().height + "px";
+			if (consentExists != null) {
+				document.getElementById("footer").style.bottom = consentExists.getBoundingClientRect().height + "px";
 
-                document.getElementById("button-wrapper").addEventListener('click', function() {
-                    document.getElementById("footer").style.bottom = "0px";
-                })
-            }
+				document.getElementById("button-wrapper").addEventListener('click', function() {
+					document.getElementById("footer").style.bottom = "0px";
+				})
+			}
 		}
-		        window.addEventListener('load', setFooterPos)
-		 window.addEventListener('resize', setFooterPos)
-        let texts = {
-            en: {
-                foot: "return to the main page",
-                header: "INSTRUCTIONS",
+		window.addEventListener('load', setFooterPos)
+		window.addEventListener('resize', setFooterPos)
+		let texts = {
+			en: {
+				foot: "return to the main page",
+				header: "INSTRUCTIONS",
 
-                q1: "Does AR work on my browser?",
-                a1: "Most browsers support this technology. Browsers that are not supported: iOS Chrome, iOS Firefox.",
+				q1: "Does AR work on my browser?",
+				a1: "Most browsers support this technology. Browsers that are not supported: iOS Chrome, iOS Firefox.",
 
-                q2: "How to switch to the simple 3D preview?",
-                a2: "In the model page, click the info button and then click the no camera button.",
+				q2: "How to switch to the simple 3D preview?",
+				a2: "In the model page, click the info button and then click the no camera button.",
 
-                q3: "What should I do, if the model does not show up?",
-                a3: "Make sure you scanned the QR of this plate. Check if the marker is well lit, without shadows, obstructions, and is fully visible in the camera view. If that doesn't work, try turning your camera away from the marker, and back.",
+				q3: "What should I do, if the model does not show up?",
+				a3: "Make sure you scanned the QR of this plate. Check if the marker is well lit, without shadows, obstructions, and is fully visible in the camera view. If that doesn't work, try turning your camera away from the marker, and back.",
 
-                q4: "My phone does not scan QR codes. What should I do?",
-                a4: "You can download a QR scanner application to your device. If your device does not have a camera, you can use the stops map from the main page.",
+				q4: "My phone does not scan QR codes. What should I do?",
+				a4: "You can download a QR scanner application to your device. If your device does not have a camera, you can use the stops map from the main page.",
 
-                q5: "What is AR?",
-                a5: "AR stands for Augmented Reality, the real time use of graphics (like a 3D model) and other virtual enhancements integrated with real-world objects. This project uses your camera to add specific 3D models on markers to your screen.",
+				q5: "What is AR?",
+				a5: "AR stands for Augmented Reality, the real time use of graphics (like a 3D model) and other virtual enhancements integrated with real-world objects. This project uses your camera to add specific 3D models on markers to your screen.",
 
-                q6: "How to use this website without having markers?",
-                a6: "You can download the markers from the front page. They can be used on a computer screen, although we recommend printing them, because cameras may be less effective at recognizing the markers.",
-            },
-            lt: {
-                foot: "grįžti atgal",
-                header: "INSTRUKCIJA",
+				q6: "How to use this website without having markers?",
+				a6: "You can download the markers from the front page. They can be used on a computer screen, although we recommend printing them, because cameras may be less effective at recognizing the markers.",
+			},
+			lt: {
+				foot: "grįžti atgal",
+				header: "INSTRUKCIJA",
 
-                q1: "Ar mano naršyklėje veikia AR?",
-                a1: "Dauguma naršyklių palaiko šias technologijas. Nepalaikančios naršyklės: iOS Chrome, iOS Firefox.",
+				q1: "Ar mano naršyklėje veikia AR?",
+				a1: "Dauguma naršyklių palaiko šias technologijas. Nepalaikančios naršyklės: iOS Chrome, iOS Firefox.",
 
-                q2: "Kaip persijungti į paprastą 3D peržiūrą?",
-                a2: "Peržiūros puslapyje paspauskite info mygtuką ir tada perbrauktos kameros mygtuką.",
+				q2: "Kaip persijungti į paprastą 3D peržiūrą?",
+				a2: "Peržiūros puslapyje paspauskite info mygtuką ir tada perbrauktos kameros mygtuką.",
 
-                q3: "Ką daryti, jei kamera nerodo modelio?",
-                a3: "Įsitikinkite, kad nuskenavote šios lentelės QR kodą. Patikrinkite, ar žymeklis gerai apšviestas, be šešėlių, neuždengtas ir matosi visas kameroje. Pabandykite nusukti kamerą nuo žymeklio ir tada vėl atsukti.",
+				q3: "Ką daryti, jei kamera nerodo modelio?",
+				a3: "Įsitikinkite, kad nuskenavote šios lentelės QR kodą. Patikrinkite, ar žymeklis gerai apšviestas, be šešėlių, neuždengtas ir matosi visas kameroje. Pabandykite nusukti kamerą nuo žymeklio ir tada vėl atsukti.",
 
-                q4: "Mano telefonas nenuskenuoja QR kodo. Ką daryti?",
-                a4: "Galite parsisiųsti QR kodus skenuojančią programėlę savo įrenginiui. Jei jūsų įrenginys neturi kameros, galite naudotis stotelių žemėlapiu.",
+				q4: "Mano telefonas nenuskenuoja QR kodo. Ką daryti?",
+				a4: "Galite parsisiųsti QR kodus skenuojančią programėlę savo įrenginiui. Jei jūsų įrenginys neturi kameros, galite naudotis stotelių žemėlapiu.",
 
-                q5: "Kas yra AR?",
-                a5: "AR (angl. Augmented Reality) – papildyta realybė – technologija, kuri leidžia realiu laiku pridėti vizualų (pvz. 3D modelis) ir kitų virtualių patobulinimų į realaus pasaulio objektus. Šis projektas jūsų įrenginio kameros pagalba ekrane atvaizduoja 3D modelius ant žymeklių.",
-                
-                q6: "Kaip naudotis šia svetaine neturint žymeklių?",
-                a6: "Žymeklius galite parsisiųsti pagrindiniame puslapyje. Juos galite naudoti per kompiuterio ekraną, tačiau rekomenduojame atsispausdinti, kadangi QR kodai ir žymekliai gali būti prasčiau nuskaitomi iš ekranų.",
-            }
-        };
+				q5: "Kas yra AR?",
+				a5: "AR (angl. Augmented Reality) – papildyta realybė – technologija, kuri leidžia realiu laiku pridėti vizualų (pvz. 3D modelis) ir kitų virtualių patobulinimų į realaus pasaulio objektus. Šis projektas jūsų įrenginio kameros pagalba ekrane atvaizduoja 3D modelius ant žymeklių.",
 
-        function updateTexts(language) {
-            let elements = Object.keys(texts.lt);
-            for (let element of elements) {
-                document.getElementById(element).innerText = texts[language][element];
-            }
-        }
-        updateTexts(LanguageSwitcher.currentLanguage);
-        LanguageSwitcher.makeLanguageBox(document.querySelector("header"), 0);
-        LanguageSwitcher.languagebox.className = "languageBox";
-        LanguageSwitcher.languagebox.style = "position:absolute;right:0;margin:10px;";
-        LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+				q6: "Kaip naudotis šia svetaine neturint žymeklių?",
+				a6: "Žymeklius galite parsisiųsti pagrindiniame puslapyje. Juos galite naudoti per kompiuterio ekraną, tačiau rekomenduojame atsispausdinti, kadangi QR kodai ir žymekliai gali būti prasčiau nuskaitomi iš ekranų.",
+			}
+		};
 
-        FontSwitcher.init();
+		function updateTexts(language) {
+			let elements = Object.keys(texts.lt);
+			for (let element of elements) {
+				document.getElementById(element).innerText = texts[language][element];
+			}
+		}
+		updateTexts(LanguageSwitcher.currentLanguage);
+		LanguageSwitcher.makeLanguageBox(document.querySelector("header"), 0);
+		LanguageSwitcher.languagebox.className = "languageBox";
+		LanguageSwitcher.languagebox.style = "position:absolute;right:0;font-size:0.7em";
+		LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
 
-        Array.from(document.querySelectorAll(".question")).forEach((question)=>{ question.onclick = ()=>{
-            let answer = document.getElementById("a" + question.id.substring(1));
-            answer.classList.toggle("open");
-            question.classList.toggle("open");
-        }; });
-    </script>
-</body></html>
+		FontSwitcher.init();
+
+		Array.from(document.querySelectorAll(".question")).forEach((question) => {
+			question.onclick = () => {
+				let answer = document.getElementById("a" + question.id.substring(1));
+				answer.classList.toggle("open");
+				question.classList.toggle("open");
+			};
+		});
+
+	</script>
+</body>
+
+</html>

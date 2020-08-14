@@ -28,7 +28,7 @@ body {
 }
 
 .container h1 {
-	font-size: 2em;
+	font-size: 1.4em;
 	text-transform: uppercase
 }
 
@@ -43,10 +43,10 @@ body {
 	width: 100%;
 	height: fit-content;
 	font-size: 1.3em;
-	background-color: #121212;
+	background-color: #1a1a1c;
 	display: flex;
 	align-items: center;
-	box-shadow: 0px 0px 10px #6281ef
+	border-top: solid 4px #6281ef
 }
 
 #info-page #footer a,
@@ -86,7 +86,8 @@ body {
 	top: 50%;
 	z-index: 2
 }
-#map-page div[showing=false]{
+
+#map-page div[showing=false] {
 	display: none;
 }
 
@@ -122,12 +123,10 @@ body {
 
 .mapboxgl-popup-content {
 	max-width: 400px;
-	background-color: #121212;
+	background-color: #1a1a1c;
 	color: #fff;
 	text-align: center;
-	-webkit-box-shadow: 0px 0px 10px #6281ef;
-	-moz-box-shadow: 0px 0px 10px #6281ef;
-	box-shadow: 0px 0px 10px #6281ef;
+	border: solid 2px #6281ef;
 	padding: 10px;
 	font-size: 24px;
 	vertical-align: middle;
@@ -152,20 +151,17 @@ body {
 }
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-	border-top-color: #121212;
+	border-top-color: #6281ef;
 }
 
 .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-	border-left-color: #121212;
+	border-left-color: #6281ef;
 }
 
 .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-	border-right-color: #121212;
+	border-right-color: #6281ef;
 }
 
-.mapboxgl-popup-tip {
-	border-bottom-color: #121212;
-}
 
 .mapboxgl-popup-close-button {
 	display: none
@@ -326,6 +322,15 @@ body {
 	float: right
 }
 
+.infoHeader {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	box-sizing: border-box;
+	padding-bottom: 30px;
+	padding-top: 20px
+}
+
 
 .infoHeader .languageBox span.active,
 .infoHeader .languageBox span:hover {
@@ -358,7 +363,8 @@ body {
 
 #header {
 	text-align: center;
-	margin-top: 8px;
+	margin: 0;
+	width: 100%
 }
 
 .container main {
@@ -366,7 +372,8 @@ body {
 	margin-top: 0;
 	width: 80%;
 	margin: 0 auto;
-	padding-bottom: 30vh
+	padding-bottom: 30vh;
+	font-size: 0.8em
 }
 
 .question:first-child {
@@ -387,10 +394,12 @@ body {
 	font-family: 'CustomReg';
 	margin: 0;
 	padding: 16px;
-	background-color: #121212;
+	background-color: rgba(75, 75, 89, 0.15);
 	color: #fafafc;
 	cursor: pointer;
-	box-shadow: 0px 0px 6px #6281ef;
+	border: solid 2px #6281ef;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
 }
 
 .answer {
@@ -433,8 +442,9 @@ body {
 		padding-top: calc(9vh + 34px);
 		padding-bottom: 20vh
 	}
+
 	#choose-city {
-	width: 50%;
+		width: 50%;
 	}
 }
 
@@ -505,10 +515,12 @@ body {
 		grid-template-rows: 1fr;
 		grid-gap: 7px
 	}
+
 	#dropdown-content h1 {
 		padding-top: 14vh
 	}
-	#content-wrapper{
+
+	#content-wrapper {
 		padding-top: calc(14vh + 48px);
 		padding-bottom: 20vh;
 	}

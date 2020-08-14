@@ -1,7 +1,7 @@
 #consent {
 	align-items: center;
 	box-sizing: border-box;
-	bottom: -100%;
+	bottom: -100vh;
 	left: 0;
 	position: fixed;
 	background: #121212;
@@ -11,11 +11,11 @@
 	z-index: 2000;
 	font-family: 'CustomLight';
 	font-size: 0.8em;
-	box-shadow: 0px 0px 8px #6281ef;
+	border-top: solid 4px #6281ef
 }
 
 #main-menu #consent {
-	bottom: -100%;
+	/*	bottom: -150%;*/
 	position: absolute;
 }
 

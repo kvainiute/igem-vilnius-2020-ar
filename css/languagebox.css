@@ -2,7 +2,12 @@
  	text-align: right;
  	box-sizing: border-box;
  	padding: 10px;
- 	width: 100%
+ 	width: 100%;
+
+ }
+
+ .infoHeader .languageBox {
+ 	padding: 0px
  }
 
  .languageBox span {
