@@ -112,3 +112,4 @@ if (consent === "2" || consent === "3") {
 	cookieConsentApplyElement.appendChild(cookiediv);
 }
 window.onbeforeunload = acceptCookies
+window.addEventListener("pagehide", acceptCookies)
