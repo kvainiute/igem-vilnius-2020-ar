@@ -90,9 +90,11 @@ function initializeAR() {
 	camera = new THREE.Camera();
 	scene.add(camera);
 
+	//var canvas = document.getElementById('appCanvas');
 	renderer = new THREE.WebGLRenderer({
 		antialias: true,
-		alpha: true
+		alpha: true,
+		//canvas: canvas,
 	});
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	renderer.setSize(1280, 960);
@@ -241,12 +243,12 @@ function initialize3D() {
 
 	//setting up the camera
 	camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-	var canvas = document.getElementById('appCanvas');
+	//var canvas = document.getElementById('appCanvas');
 	renderer = new THREE.WebGLRenderer({
 		antialias: true,
 		preserveDrawingBuffer: true,
 		alpha: true,
-		canvas: canvas
+		//canvas: canvas
 	});
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.outputEncoding = THREE.sRGBEncoding;
@@ -304,12 +306,11 @@ function reset() {
 	// TODO: optimize switching between just 3D and AR:
 	// https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects
 
-	document.body.removeChild(renderer.domElement);
+	if (renderer != undefined && renderer.domElement != undefined) document.body.removeChild(renderer.domElement);
 	renderer = undefined;
 	scene.dispose();
 	scene = undefined;
 	camera = undefined;
-	renderer = undefined;
 	clock = undefined;
 	deltaTime = undefined;
 	totalTime = undefined;
@@ -501,8 +502,7 @@ function update() {
 
 
 function animate() {
-
-	requestAnimationFrame(animate);
+	if (renderer === undefined) return;
 	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
 	for (let key of dataKeys) {
@@ -510,7 +510,10 @@ function animate() {
 	}
 	if (controls != undefined) controls.update();
 	update();
+	//console.log(renderer)
 	renderer.render(scene, camera); // model update
+	
+	requestAnimationFrame(animate);
 }
 
 
