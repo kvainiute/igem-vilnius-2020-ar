@@ -60,7 +60,7 @@ function createCookieConsentBox() {
 	cookiediv.id = "consent";
 
 	const text = document.createElement("p");
-	text.innerHTML = "This website uses cookies for analytics.By clicking 'Allow' or continuing to browse this site, you agree to our < a href = '/privacypolicy.html' > privacy policy < /a>. Which cookies do you allow the use of?"
+	text.innerHTML = "This website uses cookies. By clicking 'Allow' or continuing to browse this site, you agree to our <a href='/privacypolicy.html'>privacy policy</a>. Which cookies do you allow the use of?"
 
 	const checkboxes = document.createElement("div");
 	checkboxes.id = "cookieCheckboxes";

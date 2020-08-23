@@ -170,7 +170,7 @@ p {
 #dyslexia p {
 	margin: 0;
 	font-size: 0.7em;
-	/*	display: inline-table;*/
+	display: inline-table;
 }
 
 
