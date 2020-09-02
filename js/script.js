@@ -126,7 +126,6 @@ function initializeAR() {
 	window.addEventListener("load", function () {
 		videocontent = videoplay.contentDocument;
 		videocontent.addEventListener('click', function () {
-			//console.log("clicked");
 			if (videocontent.getElementById("pause").style.display == "none") {
 				videocontent.getElementById("play").style.display = "none";
 				videocontent.getElementById("pause").style.display = "inline";
@@ -196,11 +195,9 @@ function toggleAR3D() {
 	isAR = !isAR;
 	if (isAR) {
 		arSwitch.classList.remove("disabled")
-		console.log(arSwitch.classList)
 		loadSingle(currentModel);
 	} else {
 		arSwitch.classList.add("disabled");
-		console.log(arSwitch.classList)
 		loadSingleNoAR(currentModel);
 	}
 }
@@ -426,6 +423,7 @@ function load3Dmodel(item, ar = true) {
 
 		modelData.actions = [];
 		modelData.mixer = new THREE.AnimationMixer(meshItem);
+		modelData.mixer = new THREE.AnimationMixer(meshItem);
 		for (let i = 0; i < load_model.animations.length; i++) {
 			let action = modelData.mixer.clipAction(load_model.animations[i]);
 			if (modelData.looponce) {
@@ -510,9 +508,7 @@ function animate() {
 	}
 	if (controls != undefined) controls.update();
 	update();
-	//console.log(renderer)
 	renderer.render(scene, camera); // model update
-	
 	requestAnimationFrame(animate);
 }
 
@@ -530,8 +526,6 @@ function initColor(parent, type, mtl) {
 }
 
 function initGfpColors() {
-	//tray.style = "display: flex;";
-	// const colors = ['03f4fc', '0303fc', 'fc03a1', 'f4fc03', '03fc4a', '6703fc', 'fc0303', ]; // old colors
 	const colors = ['0CFC16', 'F2FC3B', 'FC8839', 'FC3D3D', '4040FC', '35A0FC', '3AEBFC', ];
 
 	const setMaterial = (parent, type, mtl) => {

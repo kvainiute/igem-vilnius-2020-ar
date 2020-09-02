@@ -5,7 +5,6 @@ const cookietext = {
 
 class LanguageSwitcher {
 	static setCookieLanguage(language) {
-		console.log(language)
 		let cookiebox = document.getElementById("consent");
 		let buttons = document.getElementById("button-wrapper");
 		let checkboxes = document.getElementById("cookieCheckboxes");
