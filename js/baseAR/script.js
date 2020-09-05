@@ -1,5 +1,14 @@
+import {
+	EffectComposer
+} from '../postproc/EffectComposer.js';
+import {
+	RenderPass
+} from '../postproc/RenderPass.js';
+import {
+	UnrealBloomPass
+} from '../postproc/UnrealBloomPass.js';
 var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls, background;
-
+var renderScene, bloomPass, composer;
 let modelLoaded = false;
 let isAR = false;
 let currentModel;
@@ -106,6 +115,24 @@ function initializeAR() {
 	clock = new THREE.Clock();
 	deltaTime = 0;
 	totalTime = 0;
+
+
+	if (currentModel == "synbio") {
+		var params = {
+			exposure: 1,
+			bloomStrength: 5,
+			bloomThreshold: 0,
+			bloomRadius: 1
+		};
+		renderScene = new RenderPass(scene, camera);
+
+		bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), params.bloomStrength, params.bloomRadius, params.bloomThreshold);
+
+		composer = new EffectComposer(renderer);
+		composer.addPass(renderScene);
+		composer.addPass(bloomPass);
+
+	}
 
 
 
@@ -269,14 +296,6 @@ function initialize3D() {
 	// TODO: fix rotations on models
 	scene.add(camera);
 
-	//setting up the renderer
-
-
-	//setting the background as webcam stream
-	video = document.createElement('video');
-	video.setAttribute('autoplay', '');
-	video.setAttribute('muted', '');
-	video.setAttribute('playsinline', '');
 
 	controls.update();
 
@@ -509,6 +528,9 @@ function animate() {
 	if (controls != undefined) controls.update();
 	update();
 	renderer.render(scene, camera); // model update
+	if (currentModel == "synbio") {
+		composer.render();
+	}
 	requestAnimationFrame(animate);
 }
 
@@ -600,3 +622,7 @@ function playAnimation(actions, state) {
 		}
 	}
 }
+export {
+	loadSingle,
+	setTitle
+};
