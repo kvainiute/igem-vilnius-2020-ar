@@ -7,6 +7,7 @@ import {
 import {
 	UnrealBloomPass
 } from '../postproc/UnrealBloomPass.js';
+import data from './db-model.js'
 var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls, background;
 var renderScene, bloomPass, composer;
 let modelLoaded = false;
@@ -22,7 +23,6 @@ loader.setDRACOLoader(dracoLoader);
 var mixer;
 
 const dataKeys = Object.keys(data); // get list of model ids
-
 const tray = document.getElementById('tray-container');
 const infoButton = document.getElementById("info-button");
 

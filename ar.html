@@ -82,7 +82,7 @@
 	<script src="js/baseAR/DRACOLoader.js"></script>
 
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="js/baseAR/db-model.js" charset="UTF-8"></script>
+	<!--	<script src="js/baseAR/db-model.js" charset="UTF-8"></script>-->
 
 	<script src="js/languages.js" charset="UTF-8"></script>
 	<script src="js/opendyslexic.js" charset="UTF-8"></script>
@@ -173,8 +173,9 @@
 	</script>
 	<script type="module">
 		import {
-	loadSingle, setTitle
-} from './js/baseAR/script.js';
+			loadSingle,
+			setTitle
+		} from './js/baseAR/script.js';
 
 		loadSingle(model);
 		setTitle();

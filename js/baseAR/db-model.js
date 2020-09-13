@@ -1,4 +1,4 @@
-const data = {
+export default {
 	// -------------------- biobrick --------------------
 	biobrick: {
 		meta: {
@@ -61,9 +61,11 @@ const data = {
 			scale: 0.9,
 		},
 		onVisible: () => {
+			const tray = document.getElementById('tray-container');
 			tray.style.display = "flex";
 		},
 		onHidden: () => {
+			const tray = document.getElementById('tray-container');
 			tray.style.display = "none";
 		}
 	},
