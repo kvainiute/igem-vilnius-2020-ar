@@ -4,6 +4,7 @@ let modelLoaded = false;
 let isAR = false;
 let currentModel;
 let language = "lt";
+let isPlaying = false;
 
 let loader = new THREE.GLTFLoader();
 let dracoLoader = new THREE.DRACOLoader();
@@ -357,11 +358,11 @@ function load3Dmodel(item, ar = true) {
 	if (typeof modelMeta.audioRec !== 'undefined') {
 		recording = modelMeta.audioRec;
 
-		var audioplay = document.getElementById("audio-button");
-		var audiocontent;
+		var audioplay = document.querySelector('#audio-button');
 		window.addEventListener("load", function () {
-			audioplay.contentDocument.addEventListener('click', function () {
-				playAudio(recording);
+			audioplay.addEventListener('click', function () {
+				playAudio(recording)
+				audioplay.setAttribute('playing', isPlaying)
 			});
 		});
 	}
@@ -568,23 +569,18 @@ function initGfpColors() {
 }
 
 function playAudio(file) {
-	var audioplay = document.getElementById("audio-button");
-	var audiocontent = audioplay.contentDocument;
 	if (typeof rec !== 'undefined') {
-		if (!rec.paused) {
+		if (isPlaying) {
 			rec.pause()
-			audiocontent.getElementById("pause").style.display = "none";
-			audiocontent.getElementById("play").style.display = "inline";
-		} else if (rec.paused) {
-			audiocontent.getElementById("play").style.display = "none";
-			audiocontent.getElementById("pause").style.display = "inline";
+			isPlaying = false
+		} else {
 			rec.play();
+			isPlaying = true;
 		}
 	} else {
 		rec = new Audio(file);
-		audiocontent.getElementById("play").style.display = "none";
-		audiocontent.getElementById("pause").style.display = "inline";
 		rec.play();
+		isPlaying = true
 	}
 }
 
