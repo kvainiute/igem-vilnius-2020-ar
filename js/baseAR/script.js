@@ -1,5 +1,5 @@
 var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls, background;
-
+var renderScene, bloomPass, composer;
 let modelLoaded = false;
 let isAR = false;
 let currentModel;
@@ -12,9 +12,7 @@ dracoLoader.setDecoderPath('./draco/');
 loader.setDRACOLoader(dracoLoader);
 
 var mixer;
-
-const dataKeys = Object.keys(data); // get list of model ids
-
+var dataKeys; // get list of model ids
 const tray = document.getElementById('tray-container');
 const infoButton = document.getElementById("info-button");
 
@@ -41,6 +39,7 @@ function loadAll() {
 
 function loadSingle(which) {
 	if (data[which] == undefined) return;
+	dataKeys = Object.keys(data);
 	currentModel = which;
 	initializeAR();
 	load3Dmodel(data[which]);
@@ -107,7 +106,6 @@ function initializeAR() {
 	clock = new THREE.Clock();
 	deltaTime = 0;
 	totalTime = 0;
-
 
 
 	var switchAR = document.getElementById("ar-switch");
@@ -270,14 +268,6 @@ function initialize3D() {
 	// TODO: fix rotations on models
 	scene.add(camera);
 
-	//setting up the renderer
-
-
-	//setting the background as webcam stream
-	video = document.createElement('video');
-	video.setAttribute('autoplay', '');
-	video.setAttribute('muted', '');
-	video.setAttribute('playsinline', '');
 
 	controls.update();
 
@@ -339,6 +329,19 @@ function showModelInfo() {
 		document.getElementById("popup-info").style.display = "none"
 	}
 	document.getElementById("model-info").style.display = 'flex';
+	recording = data[model].meta[language].audioRec;
+	var languages = document.querySelectorAll('.languageBox span');
+	for (var lang of languages) {
+		lang.addEventListener('click', function () {
+			var audioplay = document.querySelector('#audio-button');
+			if (rec !== undefined) {
+				isPlaying = false
+				rec.src = recording
+				audioplay.setAttribute('playing', isPlaying)
+			}
+		})
+
+	}
 }
 
 
@@ -353,8 +356,11 @@ function load3Dmodel(item, ar = true) {
 		return;
 	}
 	window.addEventListener("load", function () {
-		infoButton.contentDocument.addEventListener('click', showModelInfo, false);
+		infoButton.contentDocument.addEventListener('click', function () {
+			showModelInfo()
+		}, false);
 	});
+	console.log(item.meta[language])
 	if (typeof modelMeta.audioRec !== 'undefined') {
 		recording = modelMeta.audioRec;
 

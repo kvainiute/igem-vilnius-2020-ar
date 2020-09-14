@@ -104,7 +104,7 @@
 		</div>
 	</div>
 
-	<script src='js/three.js'></script>
+	<script src='js/baseAR/three.js'></script>
 
 	<script src="jsartoolkit5/artoolkit.min.js"></script>
 	<script src="jsartoolkit5/artoolkit.api.js"></script>
@@ -115,13 +115,13 @@
 	<script src="threex/threex-armarkercontrols.js"></script>
 	<script src="threex/threex-arsmoothedcontrols.js"></script>
 
-	<script src="js/OrbitControls.js"></script>
-	<script src="js/GLTFLoader.js"></script>
-	<script src="js/DRACOLoader.js"></script>
+	<script src="js/baseAR/OrbitControls.js"></script>
+	<script src="js/baseAR/GLTFLoader.js"></script>
+	<script src="js/baseAR/DRACOLoader.js"></script>
 
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="js/db-model.js" charset="UTF-8"></script>
-	<script src="js/script.js"></script>
+	<script src="js/baseAR/db-model.js" charset="UTF-8"></script>
+	<script src="js/baseAR/script.js"></script>
 	<script src="js/queryParams.js"></script>
 	<script src="js/cookieconsent.js"></script>
 
@@ -139,6 +139,12 @@
 
 		}
 		let model = "igem";
+	</script>
+	<script type="module">
+		import {
+	loadSingle, setTitle
+} from './js/baseAR/script.js';
+
 		loadSingle(model);
 		setTitle();
 	</script>

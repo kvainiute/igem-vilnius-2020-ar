@@ -61,9 +61,11 @@ const data = {
 			scale: 0.9,
 		},
 		onVisible: () => {
+			const tray = document.getElementById('tray-container');
 			tray.style.display = "flex";
 		},
 		onHidden: () => {
+			const tray = document.getElementById('tray-container');
 			tray.style.display = "none";
 		}
 	},
@@ -370,18 +372,18 @@ const data = {
 			scale: 1
 		}
 	},
-	// -------------------- painting --------------------
+	// -------------------- synbio --------------------
 	synbio: {
 		meta: {
 			lt: {
 				name: "Sintetinė biologija",
-				desc: "Prieš save matote lempą, kuri veikia <em class='bolded'>švytinčių bakterijų</em> pagalba. Toks reiškinys, kai švyti gyvi organizmai, vadinamas <em class='bolded'>bioliuminescencija</em>. Šiam projektui naudojami genų inžinerijos metodai gali būti pritaikyti sprendžiant įvairias žmonijos problemas, pavyzdžiui <em class='bolded'>oro teršalų valymui</em> pasitelkiant mikroorganizmus vykdančius bioremediaciją; dumbliai, kurie žuvies organizme <em class='bolded'>naikina ligų sukėlėją</em>; vitamino A trūkumo šalinimas pasitelkiant modifikuotus ryžius. Visi šie projektai yra sukurti genų inžinerijos pagalba.",
-				audioRec: "./recordings/lt/painting.mp3"
+				desc: "Modelyje matote paveikslą, kuris sudarytas iš <em class='bolded'>bakterijų, gebančių keisti spalvas</em>. Tokį paveikslą būtų galima sukurti <em class='bolded'>genų inžinerijos</em> pagalba, parenkant bakterijoms tinkamas spalvas. Šiam projektui naudojami genų inžinerijos metodai gali būti pritaikyti sprendžiant įvairias žmonijos problemas, pavyzdžiui <em class='bolded'>oro teršalų valymui</em> pasitelkiant mikroorganizmus vykdančius bioremediaciją; dumbliai, kurie žuvies organizme <em class='bolded'>naikina ligų sukėlėją</em>; vitamino A trūkumo šalinimas pasitelkiant modifikuotus ryžius. Visi šie projektai yra sukurti genų inžinerijos pagalba.",
+				audioRec: "./recordings/lt/synbio.mp3"
 			},
 			en: {
 				name: "Synthetic biology",
-				desc: "Here you can see a lamp, which uses <em class='bolded'>bacteria to glow</em>. The production and emission of light by living organisms is called <em class='bolded'>bioluminescence</em>. The methods used to create this masterpiece may be applied to solving the intricate problems of humanity. For example, by exploiting bacteria that perform bioremediation, we can <em class='bolded'>clean polluted air</em>, or minimize <em class='bolded'>vitamin A deficiencies </em>with genetically modified rice. There are many problems waiting to be solved, and with the help of genetic engineering, a lot of them could be alleviated.",
-				audioRec: "./recordings/en/painting.mp3"
+				desc: "In this model you can see a visual representation of carefully arranged <em class='bolded'>color-changing bacteria</em>. It is possible to recreate such art in real life by <em class='bolded'>engineering bacteria </em>accordingly. The methods used to create this masterpiece may be applied to solving the intricate problems of humanity. For example, by exploiting bacteria that perform bioremediation, we can <em class='bolded'>clean polluted air</em>, or minimize <em class='bolded'>vitamin A deficiencies </em>with genetically modified rice. There are many problems waiting to be solved, and with the help of genetic engineering, a lot of them could be alleviated.",
+				audioRec: "./recordings/en/synbio.mp3"
 			}
 		},
 		model: {
@@ -389,15 +391,15 @@ const data = {
 			pattern: "synbio",
 			pos: {
 				x: 0,
-				y: 0,
-				z: 0.5
+				y: -0.2,
+				z: 0
 			},
 			rot: {
 				x: 0,
 				y: 0,
 				z: 0
 			},
-			scale: 0.3
+			scale: 0.2
 		}
 	},
 	// -------------------- gmo --------------------
