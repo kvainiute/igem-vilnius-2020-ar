@@ -7,13 +7,13 @@ import {
 import {
 	UnrealBloomPass
 } from '../postproc/UnrealBloomPass.js';
-import data from './db-model.js'
 var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls, background;
 var renderScene, bloomPass, composer;
 let modelLoaded = false;
 let isAR = false;
 let currentModel;
 let language = "lt";
+let isPlaying = false;
 
 let loader = new THREE.GLTFLoader();
 let dracoLoader = new THREE.DRACOLoader();
@@ -21,8 +21,7 @@ dracoLoader.setDecoderPath('./draco/');
 loader.setDRACOLoader(dracoLoader);
 
 var mixer;
-
-const dataKeys = Object.keys(data); // get list of model ids
+var dataKeys; // get list of model ids
 const tray = document.getElementById('tray-container');
 const infoButton = document.getElementById("info-button");
 
@@ -47,8 +46,10 @@ function loadAll() {
 	animate();
 }
 
-function loadSingle(which) {
+function loadSingle(which, lang) {
 	if (data[which] == undefined) return;
+	language = lang
+	dataKeys = Object.keys(data);
 	currentModel = which;
 	initializeAR();
 	load3Dmodel(data[which]);
@@ -345,7 +346,7 @@ function reset() {
 	tray.innerHTML = "";
 }
 
-function showModelInfo() {
+function showModelInfo(language) {
 	let info = data[currentModel].meta[language]
 	if (data[currentModel].model.pattern == "igem-logo") {
 		info = data[currentModel].meta.en;
@@ -357,6 +358,19 @@ function showModelInfo() {
 		document.getElementById("popup-info").style.display = "none"
 	}
 	document.getElementById("model-info").style.display = 'flex';
+	recording = data[model].meta[language].audioRec;
+	var languages = document.querySelectorAll('.languageBox span');
+	for (var lang of languages) {
+		lang.addEventListener('click', function () {
+			var audioplay = document.querySelector('#audio-button');
+			if (rec !== undefined) {
+				isPlaying = false
+				rec.src = recording
+				audioplay.setAttribute('playing', isPlaying)
+			}
+		})
+
+	}
 }
 
 
@@ -371,16 +385,18 @@ function load3Dmodel(item, ar = true) {
 		return;
 	}
 	window.addEventListener("load", function () {
-		infoButton.contentDocument.addEventListener('click', showModelInfo, false);
+		infoButton.contentDocument.addEventListener('click', function () {
+			showModelInfo(language)
+		}, false);
 	});
 	if (typeof modelMeta.audioRec !== 'undefined') {
 		recording = modelMeta.audioRec;
 
-		var audioplay = document.getElementById("audio-button");
-		var audiocontent;
+		var audioplay = document.querySelector('#audio-button');
 		window.addEventListener("load", function () {
-			audioplay.contentDocument.addEventListener('click', function () {
-				playAudio(recording);
+			audioplay.addEventListener('click', function () {
+				playAudio(recording)
+				audioplay.setAttribute('playing', isPlaying)
 			});
 		});
 	}
@@ -590,23 +606,18 @@ function initGfpColors() {
 }
 
 function playAudio(file) {
-	var audioplay = document.getElementById("audio-button");
-	var audiocontent = audioplay.contentDocument;
 	if (typeof rec !== 'undefined') {
-		if (!rec.paused) {
+		if (isPlaying) {
 			rec.pause()
-			audiocontent.getElementById("pause").style.display = "none";
-			audiocontent.getElementById("play").style.display = "inline";
-		} else if (rec.paused) {
-			audiocontent.getElementById("play").style.display = "none";
-			audiocontent.getElementById("pause").style.display = "inline";
+			isPlaying = false
+		} else {
 			rec.play();
+			isPlaying = true;
 		}
 	} else {
 		rec = new Audio(file);
-		audiocontent.getElementById("play").style.display = "none";
-		audiocontent.getElementById("pause").style.display = "inline";
 		rec.play();
+		isPlaying = true
 	}
 }
 
@@ -624,5 +635,6 @@ function playAnimation(actions, state) {
 }
 export {
 	loadSingle,
-	setTitle
+	setTitle,
+	showModelInfo
 };

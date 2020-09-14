@@ -1,4 +1,4 @@
-export default {
+const data = {
 	// -------------------- biobrick --------------------
 	biobrick: {
 		meta: {
