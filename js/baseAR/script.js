@@ -1,9 +1,10 @@
 var scene, camera, renderer, clock, deltaTime, totalTime, recording, rec, controls, background;
-
+var renderScene, bloomPass, composer;
 let modelLoaded = false;
 let isAR = false;
 let currentModel;
 let language = "lt";
+let isPlaying = false;
 
 let loader = new THREE.GLTFLoader();
 let dracoLoader = new THREE.DRACOLoader();
@@ -11,9 +12,7 @@ dracoLoader.setDecoderPath('./draco/');
 loader.setDRACOLoader(dracoLoader);
 
 var mixer;
-
-const dataKeys = Object.keys(data); // get list of model ids
-
+var dataKeys; // get list of model ids
 const tray = document.getElementById('tray-container');
 const infoButton = document.getElementById("info-button");
 
@@ -40,6 +39,7 @@ function loadAll() {
 
 function loadSingle(which) {
 	if (data[which] == undefined) return;
+	dataKeys = Object.keys(data);
 	currentModel = which;
 	initializeAR();
 	load3Dmodel(data[which]);
@@ -108,7 +108,6 @@ function initializeAR() {
 	totalTime = 0;
 
 
-
 	var switchAR = document.getElementById("ar-switch");
 	var arContent;
 	if (switchAR != null) {
@@ -126,7 +125,6 @@ function initializeAR() {
 	window.addEventListener("load", function () {
 		videocontent = videoplay.contentDocument;
 		videocontent.addEventListener('click', function () {
-			//console.log("clicked");
 			if (videocontent.getElementById("pause").style.display == "none") {
 				videocontent.getElementById("play").style.display = "none";
 				videocontent.getElementById("pause").style.display = "inline";
@@ -196,11 +194,9 @@ function toggleAR3D() {
 	isAR = !isAR;
 	if (isAR) {
 		arSwitch.classList.remove("disabled")
-		console.log(arSwitch.classList)
 		loadSingle(currentModel);
 	} else {
 		arSwitch.classList.add("disabled");
-		console.log(arSwitch.classList)
 		loadSingleNoAR(currentModel);
 	}
 }
@@ -272,14 +268,6 @@ function initialize3D() {
 	// TODO: fix rotations on models
 	scene.add(camera);
 
-	//setting up the renderer
-
-
-	//setting the background as webcam stream
-	video = document.createElement('video');
-	video.setAttribute('autoplay', '');
-	video.setAttribute('muted', '');
-	video.setAttribute('playsinline', '');
 
 	controls.update();
 
@@ -341,6 +329,19 @@ function showModelInfo() {
 		document.getElementById("popup-info").style.display = "none"
 	}
 	document.getElementById("model-info").style.display = 'flex';
+	recording = data[model].meta[language].audioRec;
+	var languages = document.querySelectorAll('.languageBox span');
+	for (var lang of languages) {
+		lang.addEventListener('click', function () {
+			var audioplay = document.querySelector('#audio-button');
+			if (rec !== undefined) {
+				isPlaying = false
+				rec.src = recording
+				audioplay.setAttribute('playing', isPlaying)
+			}
+		})
+
+	}
 }
 
 
@@ -355,16 +356,19 @@ function load3Dmodel(item, ar = true) {
 		return;
 	}
 	window.addEventListener("load", function () {
-		infoButton.contentDocument.addEventListener('click', showModelInfo, false);
+		infoButton.contentDocument.addEventListener('click', function () {
+			showModelInfo()
+		}, false);
 	});
+	console.log(item.meta[language])
 	if (typeof modelMeta.audioRec !== 'undefined') {
 		recording = modelMeta.audioRec;
 
-		var audioplay = document.getElementById("audio-button");
-		var audiocontent;
+		var audioplay = document.querySelector('#audio-button');
 		window.addEventListener("load", function () {
-			audioplay.contentDocument.addEventListener('click', function () {
-				playAudio(recording);
+			audioplay.addEventListener('click', function () {
+				playAudio(recording)
+				audioplay.setAttribute('playing', isPlaying)
 			});
 		});
 	}
@@ -425,6 +429,7 @@ function load3Dmodel(item, ar = true) {
 		}
 
 		modelData.actions = [];
+		modelData.mixer = new THREE.AnimationMixer(meshItem);
 		modelData.mixer = new THREE.AnimationMixer(meshItem);
 		for (let i = 0; i < load_model.animations.length; i++) {
 			let action = modelData.mixer.clipAction(load_model.animations[i]);
@@ -510,9 +515,7 @@ function animate() {
 	}
 	if (controls != undefined) controls.update();
 	update();
-	//console.log(renderer)
 	renderer.render(scene, camera); // model update
-	
 	requestAnimationFrame(animate);
 }
 
@@ -530,8 +533,6 @@ function initColor(parent, type, mtl) {
 }
 
 function initGfpColors() {
-	//tray.style = "display: flex;";
-	// const colors = ['03f4fc', '0303fc', 'fc03a1', 'f4fc03', '03fc4a', '6703fc', 'fc0303', ]; // old colors
 	const colors = ['0CFC16', 'F2FC3B', 'FC8839', 'FC3D3D', '4040FC', '35A0FC', '3AEBFC', ];
 
 	const setMaterial = (parent, type, mtl) => {
@@ -574,23 +575,18 @@ function initGfpColors() {
 }
 
 function playAudio(file) {
-	var audioplay = document.getElementById("audio-button");
-	var audiocontent = audioplay.contentDocument;
 	if (typeof rec !== 'undefined') {
-		if (!rec.paused) {
+		if (isPlaying) {
 			rec.pause()
-			audiocontent.getElementById("pause").style.display = "none";
-			audiocontent.getElementById("play").style.display = "inline";
-		} else if (rec.paused) {
-			audiocontent.getElementById("play").style.display = "none";
-			audiocontent.getElementById("pause").style.display = "inline";
+			isPlaying = false
+		} else {
 			rec.play();
+			isPlaying = true;
 		}
 	} else {
 		rec = new Audio(file);
-		audiocontent.getElementById("play").style.display = "none";
-		audiocontent.getElementById("pause").style.display = "inline";
 		rec.play();
+		isPlaying = true
 	}
 }
 

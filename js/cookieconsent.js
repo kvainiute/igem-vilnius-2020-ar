@@ -1,113 +1,115 @@
 function gaEnable() {
-    window.dataLayer = window.dataLayer || [];
+	window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
 
-    gtag('config', 'UA-163985569-1');
+	gtag('config', 'UA-163985569-1');
 
-    let script = document.createElement("script");
-    script.src = "https://www.googletagmanager.com/gtag/js?id=UA-163985569-1";
-    script.async = true;
-    document.head.appendChild(script);
-    gaEnable = undefined;
+	let script = document.createElement("script");
+	script.src = "https://www.googletagmanager.com/gtag/js?id=UA-163985569-1";
+	script.async = true;
+	document.head.appendChild(script);
+	gaEnable = undefined;
 }
 
 function getCookieConsent() {
-    try {
-        return document.cookie.split('; ')
-            .find(row => row.startsWith('cookieconsent'))
-            .split('=')[1];
-    } catch (_) {
-        return "-2";
-    }
+	try {
+		return document.cookie.split('; ')
+			.find(row => row.startsWith('cookieconsent'))
+			.split('=')[1];
+	} catch (_) {
+		return "-2";
+	}
 }
 
 function setCookieConsent(value) {
-    document.cookie = "cookieconsent=" + value;
+	document.cookie = "cookieconsent=" + value;
 }
 
 function createCheckboxAndLabel(id, text) {
-    const div = document.createElement("div");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = true;
-    checkbox.id = id;
-    div.appendChild(checkbox);
+	const div = document.createElement("div");
+	const checkbox = document.createElement("input");
+	checkbox.type = "checkbox";
+	checkbox.checked = true;
+	checkbox.id = id;
+	div.appendChild(checkbox);
 
-    const labelFunctional = document.createElement("label");
-    labelFunctional.htmlFor = id;
-    labelFunctional.innerText = text;
-    div.appendChild(labelFunctional);
-    return div;
+	const labelFunctional = document.createElement("label");
+	labelFunctional.htmlFor = id;
+	labelFunctional.innerText = text;
+	div.appendChild(labelFunctional);
+	return div;
+}
+
+function acceptCookies() {
+	let functionalConsent = document.getElementById("checkboxFunctional").checked;
+	let analyticsConsent = document.getElementById("checkboxAnalytical").checked;
+
+	let cookieValue = (functionalConsent ? 1 : 0) + (analyticsConsent ? 2 : 0);
+
+	document.getElementById("consent").remove();
+	setCookieConsent(cookieValue.toString());
+	if (analyticsConsent) gaEnable();
 }
 
 function createCookieConsentBox() {
-    const cookiediv = document.createElement("div");
-    cookiediv.id = "consent";
+	const cookiediv = document.createElement("div");
+	cookiediv.id = "consent";
 
-    const text = document.createElement("p");
-    text.innerText = "This website uses cookies for analytics. Which cookies do you allow the use of?";
+	const text = document.createElement("p");
+	text.innerHTML = "This website uses cookies. By clicking 'Allow' or continuing to browse this site, you agree to our <a href='/privacypolicy.html'>privacy policy</a>. Which cookies do you allow the use of?"
 
-    const checkboxes = document.createElement("div");
-    checkboxes.id = "cookieCheckboxes";
-    const checkboxesWrapper = document.createElement('div');
-    checkboxesWrapper.id = 'cookieCheckWrap';
+	const checkboxes = document.createElement("div");
+	checkboxes.id = "cookieCheckboxes";
+	const checkboxesWrapper = document.createElement('div');
+	checkboxesWrapper.id = 'cookieCheckWrap';
 
-    const buttonWrapper = document.createElement("div");
-    buttonWrapper.id = "button-wrapper";
+	const buttonWrapper = document.createElement("div");
+	buttonWrapper.id = "button-wrapper";
 
-    const policyLink = document.createElement("a");
-    policyLink.id = "policyLink";
-    policyLink.href = "/privacypolicy.html";
-    policyLink.innerText = "More information...";
+	cookiediv.appendChild(text);
+	cookiediv.appendChild(checkboxesWrapper);
+	checkboxesWrapper.appendChild(checkboxes)
+	cookiediv.appendChild(buttonWrapper);
 
-    cookiediv.appendChild(text);
-    cookiediv.appendChild(checkboxesWrapper);
-    checkboxesWrapper.appendChild(checkboxes)
-    checkboxesWrapper.appendChild(policyLink);
-    cookiediv.appendChild(buttonWrapper);
+	const requiredCheckbox = createCheckboxAndLabel("checkboxRequired", "Required");
+	requiredCheckbox.firstElementChild.disabled = true;
+	checkboxes.appendChild(requiredCheckbox);
+	checkboxes.appendChild(createCheckboxAndLabel("checkboxFunctional", "Functional"));
+	checkboxes.appendChild(createCheckboxAndLabel("checkboxAnalytical", "Analytical"));
 
-    const requiredCheckbox = createCheckboxAndLabel("checkboxRequired", "Required");
-    requiredCheckbox.firstElementChild.disabled = true;
-    checkboxes.appendChild(requiredCheckbox);
-    checkboxes.appendChild(createCheckboxAndLabel("checkboxFunctional", "Functional"));
-    checkboxes.appendChild(createCheckboxAndLabel("checkboxAnalytical", "Analytical"));
+	const buttonAccept = document.createElement("button");
+	buttonAccept.innerText = "Allow";
+	buttonAccept.onclick = acceptCookies
 
-    const buttonAccept = document.createElement("button");
-    buttonAccept.innerText = "Allow";
-    buttonAccept.onclick = () => {
-        let functionalConsent = document.getElementById("checkboxFunctional").checked;
-        let analyticsConsent = document.getElementById("checkboxAnalytical").checked;
 
-        let cookieValue = (functionalConsent ? 1 : 0) + (analyticsConsent ? 2 : 0);
+	buttonAccept.id = "bt-accept";
+	buttonWrapper.appendChild(buttonAccept);
 
-        cookiediv.remove();
-        setCookieConsent(cookieValue.toString());
-        gaEnable();
-    };
-    buttonAccept.id = "bt-accept";
-    buttonWrapper.appendChild(buttonAccept);
+	const buttonClose = document.createElement("div");
+	buttonClose.innerHTML = "<img src='./images/close-yellow.svg'>";
+	buttonClose.onclick = () => {
+		cookiediv.remove();
+		setCookieConsent("-1");
+	};
+	buttonClose.id = "bt-close";
+	buttonWrapper.appendChild(buttonClose);
 
-    const buttonClose = document.createElement("div");
-    buttonClose.innerHTML = "<img src='./images/close-yellow.svg'>";
-    buttonClose.onclick = () => {
-        cookiediv.remove();
-        setCookieConsent("-1");
-    };
-    buttonClose.id = "bt-close";
-    buttonWrapper.appendChild(buttonClose);
-
-    return cookiediv;
+	return cookiediv;
 }
+
+
 
 if (cookieConsentApplyElement == undefined) var cookieConsentApplyElement = document.body;
 let consent = getCookieConsent();
 if (consent === "2" || consent === "3") {
-    gaEnable();
+	gaEnable();
 } else if (consent == "-2") {
-    let cookiediv = createCookieConsentBox();
-    cookieConsentApplyElement.appendChild(cookiediv);
+	let cookiediv = createCookieConsentBox();
+	cookieConsentApplyElement.appendChild(cookiediv);
 }
+window.onbeforeunload = acceptCookies
+window.addEventListener("pagehide", acceptCookies)

@@ -1,6 +1,6 @@
 const cookietext = {
-	lt: ["Šioje svetainėje naudojami slapukai (angl. <i>cookies</i>). Su kurių slapukų naudojimu sutinkate?", "Sutinku", "Privalomi", "Funkciniai", "Analitiniai", "Daugiau informacijos..."],
-	en: ["This website uses cookies for performance improvement. Which cookies do you allow the use of?", "Allow", "Required", "Functional", "Analytical", "More information..."]
+	lt: ["Šioje svetainėje naudojami slapukai (angl. <i>cookies</i>). Paspaudžiant 'Sutinku' arba toliau naršant šį puslapį Jūs sutinkate su mūsų <a href='/privacypolicy.html'>privatumo politika</a>. Su kurių slapukų naudojimu sutinkate?", "Sutinku", "Privalomi", "Funkciniai", "Analitiniai"],
+	en: ["This website uses cookies. By clicking 'Allow' or continuing to browse this site, you agree to our <a href='/privacypolicy.html'>privacy policy</a>. Which cookies do you allow the use of?", "Allow", "Required", "Functional", "Analytical"]
 }
 
 class LanguageSwitcher {
@@ -10,11 +10,11 @@ class LanguageSwitcher {
 		let checkboxes = document.getElementById("cookieCheckboxes");
 		if (cookiebox == undefined) return;
 		cookiebox.children[0].innerHTML = cookietext[language][0];
+		console.log(cookietext[language][0])
 		buttons.children[0].innerHTML = cookietext[language][1];
 		checkboxes.children[0].lastElementChild.innerText = cookietext[language][2];
 		checkboxes.children[1].lastElementChild.innerText = cookietext[language][3];
 		checkboxes.children[2].lastElementChild.innerText = cookietext[language][4];
-		document.getElementById("policyLink").innerText = cookietext[language][5];
 	}
 
 	static getLanguage() {
