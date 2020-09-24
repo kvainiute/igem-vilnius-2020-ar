@@ -585,6 +585,7 @@ function playAudio(file) {
 		}
 	} else {
 		rec = new Audio(file);
+		rec.loop = false;
 		rec.play();
 		isPlaying = true
 	}
