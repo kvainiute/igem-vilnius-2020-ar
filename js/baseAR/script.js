@@ -3,7 +3,7 @@ var renderScene, bloomPass, composer;
 let modelLoaded = false;
 let isAR = false;
 let currentModel;
-let language = "lt";
+let language = LanguageSwitcher.currentLanguage;
 let isPlaying = false;
 
 let loader = new THREE.GLTFLoader();

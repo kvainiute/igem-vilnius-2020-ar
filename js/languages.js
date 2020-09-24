@@ -10,7 +10,6 @@ class LanguageSwitcher {
 		let checkboxes = document.getElementById("cookieCheckboxes");
 		if (cookiebox == undefined) return;
 		cookiebox.children[0].innerHTML = cookietext[language][0];
-		console.log(cookietext[language][0])
 		buttons.children[0].innerHTML = cookietext[language][1];
 		checkboxes.children[0].lastElementChild.innerText = cookietext[language][2];
 		checkboxes.children[1].lastElementChild.innerText = cookietext[language][3];

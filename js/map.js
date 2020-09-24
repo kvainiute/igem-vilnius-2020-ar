@@ -635,7 +635,7 @@ let cities = {
 
 function initializeNavBar(language) {
 
-	var els = document.querySelectorAll('#dropdown-content :not(.navbar-contr):not(#navbar-controls):not(img):not(.languageBox):not(h1):not(span):not(#content-wrapper)');
+	var els = document.querySelectorAll('#dropdown-content a');
 
 	for (var i = 0; i < els.length; i++) {
 		els[i].parentNode.removeChild(els[i])
@@ -752,17 +752,7 @@ function loadMap(city, language) {
 
 }
 
-function changeLanguage() {
-	var lang = LanguageSwitcher.currentLanguage
-	var cityM = document.cookie.split('; ')
-		.find(row => row.startsWith('city'))
-		.split('=')[1];
-	loadMap(cityM, lang)
-	initializeNavBar(lang);
-}
-
 LanguageSwitcher.makeLanguageBox(document.getElementById("language"), 0);
-LanguageSwitcher.addOnLanguageChangeListener(changeLanguage);
 
 
 window.onresize = () => {
@@ -796,18 +786,19 @@ function toggleNav() {
 		document.getElementById("dropdown-menu").classList.add("active")
 	}
 }
-function setFooterPos(){
-			var consentExists = document.getElementById("consent");
-            if (consentExists != null) {
-                document.getElementById("footer").style.bottom = consentExists.getBoundingClientRect().height + "px";
 
-                document.getElementById("button-wrapper").addEventListener('click', function() {
-                    document.getElementById("footer").style.bottom = "0px";
-                })
-            } else {
-				document.getElementById("footer").style.bottom = "0px";
-			}
-		}
+function setFooterPos() {
+	var consentExists = document.getElementById("consent");
+	if (consentExists != null) {
+		document.getElementById("footer").style.bottom = consentExists.getBoundingClientRect().height + "px";
+
+		document.getElementById("button-wrapper").addEventListener('click', function () {
+			document.getElementById("footer").style.bottom = "0px";
+		})
+	} else {
+		document.getElementById("footer").style.bottom = "0px";
+	}
+}
 
 function closeNav() {
 	navOpen = false;
@@ -843,19 +834,41 @@ function chooseCity() {
 			document.getElementById("dropdown-menu").setAttribute("showing", "true");
 			cityMain = ev.target.id
 			document.cookie = "city=" + cityMain;
-			initializeNavBar(LanguageSwitcher.currentLanguage);
 			city = cityMain;
-			loadMap(cityMain, LanguageSwitcher.currentLanguage)
+			checkBlank();
 		})
 	}
+}
+
+function showCityInfo(language) {
+	var text = {
+		lt: "Tavo miesto nėra sąraše?<br>Ne problema!<br>Spustelk ant meniu ženkliuko viršuje dešinėje ir rinkis kurį modelį nori peržiūrėti.",
+		en: "Your city is not in the list?<br>No problem!<br>Just open the menu on upper right side and choose which model you would like to see."
+	}
+	if (!document.querySelector("#city-info")) {
+		var div = document.createElement('div');
+		div.id = "city-info"
+		document.querySelector("#map").appendChild(div);
+	}
+
+	document.querySelector("#city-info").innerHTML = text[language];
+	document.querySelector("#map").setAttribute("blank", true);
+
+}
+
+function checkBlank() {
+	initializeNavBar(LanguageSwitcher.currentLanguage);
+	if (city != "blank") {
+		document.querySelector("#map").setAttribute("blank", false);
+		loadMap(city, LanguageSwitcher.currentLanguage)
+	} else showCityInfo(LanguageSwitcher.currentLanguage);
 }
 if (city == undefined) {
 	chooseCity();
 } else {
 	document.getElementById("choose-city").setAttribute("showing", "false");
 	document.getElementById("change-city").style.display = "initial";
-	initializeNavBar(LanguageSwitcher.currentLanguage);
-	loadMap(city, LanguageSwitcher.currentLanguage)
+	checkBlank();
 }
 document.getElementById("change-city-icon").addEventListener('click', function () {
 	var node = document.getElementById("map");

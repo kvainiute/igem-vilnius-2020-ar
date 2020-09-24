@@ -2,70 +2,79 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Vilnius iGEM AR</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
-    <link href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" rel="stylesheet" />
-    <link href="./css/cookieconsent.css" rel="stylesheet">
-    <link href="./css/fonts.css" rel="stylesheet">
-    <link href="./css/map-info.css" rel="stylesheet">
-    <link href="./css/languagebox.css" rel="stylesheet">
-    <link href="./css/opendyslexic.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>Vilnius iGEM AR</title>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+	<script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
+	<link href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" rel="stylesheet" />
+	<link href="./css/cookieconsent.css" rel="stylesheet">
+	<link href="./css/fonts.css" rel="stylesheet">
+	<link href="./css/map-info.css" rel="stylesheet">
+	<link href="./css/languagebox.css" rel="stylesheet">
+	<link href="./css/opendyslexic.css" rel="stylesheet">
 </head>
 
 <body id="map-page" class="container">
-    <div id="dropdown-menu">
+	<div id="dropdown-menu">
+		<div id="dropdown-icon" class="menu-wrapper header-part toggleable" onclick="toggleNav()">
+			<div id="top-hamb" class="menu-long menu-hamb">
+			</div>
+			<div class="menu-short menu-hamb">
+			</div>
+			<div id="bottom-hamb" class="menu-long menu-hamb">
+			</div>
+		</div>
+	</div>
+	<div id="dropdown-content">
 		<div class="navbar-contr" id="language"></div>
-		                <div id="dropdown-icon" class="menu-wrapper header-part toggleable" onclick="toggleNav()">
-                    <div id="top-hamb" class="menu-long menu-hamb">
-                    </div>
-                    <div class="menu-short menu-hamb">
-                    </div>
-                    <div id="bottom-hamb" class="menu-long menu-hamb">
-                    </div>
-                </div>
-    </div>
-    <div id="dropdown-content">
-        <h1>3D modeliai</h1>
-		<div id="content-wrapper"></div>
-    </div>
-    <div id="change-city"><img id="change-city-icon" src="images/city.svg"></div>
-    <div id="choose-city">
-        <button class="city-button" id="vln">Vilnius</button>
-        <button class="city-button" id="kns">Kaunas</button>
-        <button class="city-button" id="klp">Klaipėda</button>
-        <button class="city-button" id="pnv">Panevėžys</button>
-        <button class="city-button" id="trg">Tauragė</button>
-        <button class="city-button" id="alt">Alytus</button>
+		<h1>3D modeliai</h1>
+		<div id="list-wrapper">
+
+			<div id="content-wrapper">
+			</div>
+		</div>
+	</div>
+	<div id="change-city"><img id="change-city-icon" src="images/city.svg"></div>
+	<div id="choose-city">
+		<h1>Pasirinkite miestą:</h1>
+		<button class="city-button" id="vln">Vilnius</button>
+		<!--        <button class="city-button" id="kns">Kaunas</button>-->
+		<button class="city-button" id="klp">Klaipėda</button>
+		<!--        <button class="city-button" id="pnv">Panevėžys</button>-->
+		<button class="city-button" id="trg">Tauragė</button>
+		<button class="city-button" id="alt">Alytus</button>
+		<button class="city-button" id="blank">Other</button>
+		<!--
         <button class="city-button" id="zrs">Zarasai</button>
         <button class="city-button" id="rtv">Rietavas</button>
-    </div>
-    <div id="map" onclick="closeNav()"></div>
-    <main id="footer"><a href="/#main-menu" id="foot">gr&iogon;&zcaron;ti atgal</a><br></main>
+-->
+	</div>
+	<div id="map" onclick="closeNav()"></div>
+	<main id="footer"><a href="/#main-menu" id="foot">gr&iogon;&zcaron;ti atgal</a><br></main>
 
-    <script src="js/cookieconsent.js"></script>
-    <script src="js/languages.js" charset="UTF-8"></script>
-    <script src="js/opendyslexic.js" charset="UTF-8"></script>
-    <script src="js/map.js"></script>
-    <script>
+	<script src="js/cookieconsent.js"></script>
+	<script src="js/languages.js" charset="UTF-8"></script>
+	<script src="js/opendyslexic.js" charset="UTF-8"></script>
+	<script src="js/map.js"></script>
+	<script>
+		window.addEventListener('load', setFooterPos)
+		window.addEventListener('resize', setFooterPos)
+		texts = {
+			en: ["return", "3d models", "choose city:"],
+			lt: ["grįžti atgal", "3d modeliai", "pasirinkite miestą:"]
+		}
 
-		
-		        window.addEventListener('load', setFooterPos)
-		 window.addEventListener('resize', setFooterPos)
+		function updateTexts(language) {
+			document.getElementById("foot").innerText = texts[language][0]
+			document.querySelector("#dropdown-content h1").innerText = texts[language][1]
+			document.querySelector("#choose-city h1").innerText = texts[language][2]
+		}
+		updateTexts(LanguageSwitcher.currentLanguage);
+		LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+		LanguageSwitcher.addOnLanguageChangeListener(checkBlank);
+		FontSwitcher.init();
 
-        function updateTexts(language) {
-            if (language == "en") {
-				document.getElementById("foot").innerText = "return to the main page"
-                document.querySelector("#dropdown-content h1").innerText = "3d models"
-            } else {
-                document.getElementById("foot").innerText = "grįžti atgal"
-				document.querySelector("#dropdown-content h1").innerText = "3d modeliai"
-            }
-        }
-        updateTexts(LanguageSwitcher.currentLanguage);
-        LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+	</script>
+</body>
 
-        FontSwitcher.init();
-    </script>
-</body></html>
+</html>
