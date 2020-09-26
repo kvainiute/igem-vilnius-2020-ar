@@ -93,7 +93,7 @@
 					<a href="./info.html">
 						<p class="nav-button" id="button-instr"></p>
 					</a>
-					<a href="data/ar-markers.zip" download="ar-markers">
+					<a onclick="downloadMarkers()" download="ar-markers">
 						<p class="nav-button" id="button-print"></p>
 					</a>
 					<a href="http://vilniusigem.lt" target="_blank" aria-label="Vilnius iGEM main page">
@@ -232,6 +232,14 @@
 
 		FontSwitcher.init();
 		document.getElementById("dyslexia").onclick = () => FontSwitcher.toggle();
+
+		function downloadMarkers() {
+			if (LanguageSwitcher.currentLanguage == "en") {
+				document.querySelector('[download="ar-markers"]').setAttribute('href', 'data/ar-markers-en.zip')
+			} else {
+				document.querySelector('[download="ar-markers"]').setAttribute('href', 'data/ar-markers-lt.zip')
+			}
+		}
 
 	</script>
 </body>

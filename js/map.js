@@ -135,8 +135,8 @@ let points = [
 		}
     },
 	{
-		lt: "Biobrick",
-		en: "Biobrick",
+		lt: "BioBrick",
+		en: "BioBrick",
 		link: "biobrick",
 		vln: {
 			lt: "Simono Daukanto aikštė",
@@ -182,7 +182,7 @@ let points = [
 	{
 		lt: "Sintetinė Biologija",
 		en: "Synthetic Biology",
-		link: "painting",
+		link: "synbio",
 		vln: {
 			lt: "Literatų gatvė",
 			en: "Literatų Street",
