@@ -2,95 +2,94 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>Vilnius iGEM AR</title>
-	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-	<script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
-	<link href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" rel="stylesheet" />
-	<link href="./css/cookieconsent.css" rel="stylesheet">
-	<link href="./css/fonts.css" rel="stylesheet">
-	<link href="./css/map-info.css" rel="stylesheet">
-	<link href="./css/languagebox.css" rel="stylesheet">
-	<link href="./css/opendyslexic.css" rel="stylesheet">
-	<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-	<link rel="manifest" href="favicon/manifest.json">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
+    <meta charset="UTF-8">
+    <title>Vilnius iGEM AR</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
+    <link href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" rel="stylesheet" />
+    <link href="./css/cookieconsent.css" rel="stylesheet">
+    <link href="./css/fonts.css" rel="stylesheet">
+    <link href="./css/map-info.css" rel="stylesheet">
+    <link href="./css/languagebox.css" rel="stylesheet">
+    <link href="./css/opendyslexic.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
 <body id="map-page" class="container">
-	<div id="dropdown-menu">
-		<div id="dropdown-icon" class="menu-wrapper header-part toggleable" onclick="toggleNav()">
-			<div id="top-hamb" class="menu-long menu-hamb">
-			</div>
-			<div class="menu-short menu-hamb">
-			</div>
-			<div id="bottom-hamb" class="menu-long menu-hamb">
-			</div>
-		</div>
-	</div>
-	<div id="dropdown-content">
-		<div class="navbar-contr" id="language"></div>
-		<h1>3D modeliai</h1>
-		<div id="list-wrapper">
-			<div id="content-wrapper">
-			</div>
-		</div>
-	</div>
-	<div id="change-city"><img id="change-city-icon" src="images/city.svg"></div>
-	<div id="choose-city">
-		<h1>Pasirinkite miestą:</h1>
-		<button class="city-button" id="vln">Vilnius</button>
-		<!--        <button class="city-button" id="kns">Kaunas</button>-->
-		<button class="city-button" id="klp">Klaipėda</button>
-		<!--        <button class="city-button" id="pnv">Panevėžys</button>-->
-		<button class="city-button" id="trg">Tauragė</button>
-		<button class="city-button" id="alt">Alytus</button>
-		<button class="city-button" id="blank">Other</button>
-		<!--
+    <div id="dropdown-menu">
+        <div id="dropdown-icon" class="menu-wrapper header-part toggleable" onclick="toggleNav()">
+            <div id="top-hamb" class="menu-long menu-hamb">
+            </div>
+            <div class="menu-short menu-hamb">
+            </div>
+            <div id="bottom-hamb" class="menu-long menu-hamb">
+            </div>
+        </div>
+    </div>
+    <div id="dropdown-content">
+        <div class="navbar-contr" id="language"></div>
+        <h1>3D modeliai</h1>
+        <div id="list-wrapper">
+            <div id="content-wrapper">
+            </div>
+        </div>
+    </div>
+    <div id="change-city"><img id="change-city-icon" src="images/city.svg"></div>
+    <div id="choose-city">
+        <h1>Pasirinkite miestą:</h1>
+        <!-- <button class="city-button" id="vln">Vilnius</button> -->
+        <!--        <button class="city-button" id="kns">Kaunas</button>-->
+        <button class="city-button" id="klp">Klaipėda</button>
+        <!--        <button class="city-button" id="pnv">Panevėžys</button>-->
+        <button class="city-button" id="trg">Tauragė</button>
+        <button class="city-button" id="alt">Alytus</button>
+        <button class="city-button" id="blank">Other</button>
+        <!--
         <button class="city-button" id="zrs">Zarasai</button>
         <button class="city-button" id="rtv">Rietavas</button>
 -->
-	</div>
-	<div id="map" onclick="closeNav()"></div>
-	<main id="footer"><a href="/#main-menu" id="foot">gr&iogon;&zcaron;ti atgal</a><br></main>
+    </div>
+    <div id="map" onclick="closeNav()"></div>
+    <main id="footer"><a href="/#main-menu" id="foot">gr&iogon;&zcaron;ti atgal</a><br></main>
 
-	<script src="js/cookieconsent.js"></script>
-	<script src="js/languages.js" charset="UTF-8"></script>
-	<script src="js/opendyslexic.js" charset="UTF-8"></script>
-	<script src="js/map.js"></script>
-	<script>
-		window.addEventListener('load', setFooterPos)
-		window.addEventListener('resize', setFooterPos)
-		texts = {
-			en: ["return", "3d models", "choose city:"],
-			lt: ["grįžti atgal", "3d modeliai", "pasirinkite miestą:"]
-		}
+    <script src="js/cookieconsent.js"></script>
+    <script src="js/languages.js" charset="UTF-8"></script>
+    <script src="js/opendyslexic.js" charset="UTF-8"></script>
+    <script src="js/map.js"></script>
+    <script>
+        window.addEventListener('load', setFooterPos)
+        window.addEventListener('resize', setFooterPos)
+        texts = {
+            en: ["return", "3d models", "choose city:"],
+            lt: ["grįžti atgal", "3d modeliai", "pasirinkite miestą:"]
+        }
 
-		function updateTexts(language) {
-			document.getElementById("foot").innerText = texts[language][0]
-			document.querySelector("#dropdown-content h1").innerText = texts[language][1]
-			document.querySelector("#choose-city h1").innerText = texts[language][2]
-		}
-		updateTexts(LanguageSwitcher.currentLanguage);
-		LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
-		LanguageSwitcher.addOnLanguageChangeListener(checkBlank);
-		FontSwitcher.init();
-
-	</script>
+        function updateTexts(language) {
+            document.getElementById("foot").innerText = texts[language][0]
+            document.querySelector("#dropdown-content h1").innerText = texts[language][1]
+            document.querySelector("#choose-city h1").innerText = texts[language][2]
+        }
+        updateTexts(LanguageSwitcher.currentLanguage);
+        LanguageSwitcher.addOnLanguageChangeListener(updateTexts);
+        LanguageSwitcher.addOnLanguageChangeListener(checkBlank);
+        FontSwitcher.init();
+    </script>
 </body>
 
 </html>
